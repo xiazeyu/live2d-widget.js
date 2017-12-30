@@ -1,10 +1,28 @@
-function component() {
-  var element = document.createElement('div');
+// Created by xiazeyu.
 
-  // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+////////////////////////////////////
+// Celebrate for the 3.0 version! //
+////////////////////////////////////
 
-  return element;
+
+import device from 'current-device';
+// import config from './lib/configManager.js';
+/**
+ * The public entry point
+ * @param  {Object} userConfig User's config
+ */
+
+function loadL2D(userConfig){/*
+  config.checkConfig(userConfig);
+  config.applyConfig(userConfig);
+  if((!config.mobileShow)&&(device.mobile())){
+    return;
+  }*/
+  import(/* webpackMode: "lazy" */ './cLive2DApp').then(_ => {
+    _.default();
+  }).catch(err => {
+    console.error(err);
+  });
 }
 
-document.body.appendChild(component());
+window.loadL2D = loadL2D;

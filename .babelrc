@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env",{
+      "debug": true
+    }]
+  ],
+  "plugins": [
+    "syntax-dynamic-import"
+  ]
+}
+
