@@ -17,6 +17,9 @@ import config from './lib/configManager.js';
  */
 
 export function init(userConfig){
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Hey that, you are now in DEV.');
+  }
   try{
     config.checkConfig(userConfig);
   }catch(err){
