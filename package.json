@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "inst:dev": "npm install -g webpack&&npm install -g commitizen&&npm install -g cz-conventional-changelog&&npm install -g conventional-changelog-cli&&npm install",
-    "build:dev": "webpack --progress --colors --watch --config wp.conf/webpack.dev.conf.js",
-    "build:prod": "webpack --progress --colors --config wp.conf/webpack.prod.conf.js",
+    "build:dev": "webpack --progress --colors",
+    "build:prod": "webpack --env prod --progress --colors",
+    "build:doc": "echo \"Error: no doc-building script specified\" && exit 1",
     "commit": "git-cz",
     "changelog": "git pull&&conventional-changelog -i doc/CHANGELOG.md -r 0 -s -u&&git add doc/CHANGELOG.md&&git commit -m \"docs: update CHANGELOG\"&&git push&&git status",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,29 +17,14 @@
     "type": "git",
     "url": "git+https://github.com/xiazeyu/live2d-widget.js.git"
   },
-  "author": {
-    "name": "xiazeyu",
-    "email": "xiazeyu_2011@126.com"
-  },
+  "author": "xiazeyu <xiazeyu_2011@126.com>",
   "contributors": [
-    {
-      "name": "xiazeyu",
-      "email": "xiazeyu_2011@126.com"
-    },
-    {
-      "name": "EYHN",
-      "email": "cneyhn@gmail.com"
-    }
+    "xiazeyu <xiazeyu_2011@126.com>",
+    "EYHN <cneyhn@gmail.com>"
   ],
   "maintainers": [
-    {
-      "name": "xiazeyu",
-      "email": "xiazeyu_2011@126.com"
-    },
-    {
-      "name": "EYHN",
-      "email": "cneyhn@gmail.com"
-    }
+    "xiazeyu <xiazeyu_2011@126.com>",
+    "EYHN <cneyhn@gmail.com>"
   ],
   "license": "GPL-2.0",
   "bugs": {
@@ -55,6 +41,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "html-loader": "^0.5.1",
     "path": "^0.12.7",
+    "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0",
     "webpack-manifest-plugin": "^1.3.2",
     "webpack-visualizer-plugin": "^0.1.11"
