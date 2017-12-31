@@ -1,3 +1,52 @@
+/////////////////////////////////////////////////////////////////////////////////////
+// The following license applies to the parts of software which is from Live2D.Inc //
+/////////////////////////////////////////////////////////////////////////////////////
+
+CONFIDENTIAL
+============================================================
+  Live2D Cubism SDK for WebGL Version 2.1.00_1
+
+  (c) Live2D Inc.
+============================================================
+
+This is a Software Development Kit (SDK) for developing Live2D-Cubism-powered applications on WebGL.
+The SDK contains proprietary libraries and sample projects.
+Read this document when using the SDK.
+
+
+------------------------------
+  License
+------------------------------
+  Read Live2D License Agreement
+  for business
+  http://live2d.com/en/sdk_license_cubism
+
+  for indie
+  http://live2d.com/en/sdk_license_cubism_indie
+
+  After agree and accept Live2D SDK License Agreement, the content in the following folders may be placed in the server which you control.
+
+  SDK
+  ├─framework
+  │    Live2DFramework.js
+  │
+  ├─lib
+  │    live2d.min.js
+  │
+  └─sample
+
+
+/////////////////////////////////////////////////////
+// The following license applies to current-device //
+/////////////////////////////////////////////////////
+
+https://github.com/matthewhudson/current-device/blob/master/LICENSE
+
+
+//////////////////////////////////////////////////////////////////////
+// The following license applies to the other parts of the software //
+//////////////////////////////////////////////////////////////////////
+
                     GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
 
