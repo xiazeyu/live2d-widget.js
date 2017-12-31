@@ -16,7 +16,3 @@ const defaultOptions = { // Setting default value of options
   canvasID: 'live2DCanvas',
   divID: 'hexo-helper-live2d'
 }
-
-for serverJs:
-
-jsPath:

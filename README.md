@@ -48,16 +48,18 @@ Import the module:
 import 'live2d-widget.js';
 ```
 
-Then call the function with your config.
+Then call the function along with your config.
 
 ```js
-loadL2D({
+initL2Dwidget({
   'config1': 'value1',
   'config2': 'value2',
 });
 ```
 
 ### Online
+
+https://github.com/jsdelivr/jsdelivr/
 
 TBD.
 

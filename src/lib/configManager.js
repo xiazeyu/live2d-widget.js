@@ -1,5 +1,27 @@
 // Modified by xiazeyu.
 
+/**
+ * @description The container of configeration.
+ */
+
+
+class Config{
+  constructor(
+    modelPath, modelWidth, modelHeight,
+    modelScaling, AASetting, mobileShow,
+    mobileScaling, position, horizontalOffset,
+    verticalOffset, horizontalHeadPos, verticalHeadPos,
+    opacityDefault, opacityHover, canvasID,
+    divID,
+    ){};
+}
+
+/**
+ * default options
+ * @type {Object}
+ * @param {[type]} [varname] [description]
+ */
+
 const defaultOptions = {
   modelPath: 'https://raw.githubusercontent.com/EYHN/hexo-helper-live2d/master/assets/z16/z16.model.json',
   modelWidth: 150,

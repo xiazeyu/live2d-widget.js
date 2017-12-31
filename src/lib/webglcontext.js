@@ -6,7 +6,7 @@
 
 
 // Defined a global variable to record the current WebGL context.
-var context = undefined;
+let context = undefined;
 
 /**
 * @name setContext
