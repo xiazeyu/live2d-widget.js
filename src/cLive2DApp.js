@@ -39,8 +39,6 @@ let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
 
-console.log('cLive2DApp.js is loaded.');
-
 export default () => {
   console.log('Finally!~');
 /*

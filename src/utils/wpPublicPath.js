@@ -16,9 +16,9 @@ try{
   // console.log('Stage2');
   let stack = e.stack || e.sourceURL || e.stacktrace,
   rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/,
-   absPath = rExtractUri.exec(stack);
-   currentScriptPath = absPath[0] || '';
-   currentScriptPath = currentScriptPath.replace(/[^/\\\\]+$/, '');
+  absPath = rExtractUri.exec(stack);
+  currentScriptPath = absPath[0] || '';
+  currentScriptPath = currentScriptPath.replace(/[^/\\\\]+$/, '');
 }
 
 __webpack_public_path__ = currentScriptPath;
