@@ -1,4 +1,21 @@
-import "./lib/live2d.core";
+/*import {
+  UtSystem,
+  UtDebug,
+  LDTransform,
+  LDGL,
+  Live2D,
+  Live2DModelWebGL,
+  Live2DModelJS,
+  Live2DMotion,
+  MotionQueueManager,
+  PhysicsHair,
+  AMotion,
+  PartsDataID,
+  DrawDataID,
+  BaseDataID,
+  ParamID
+} from './lib/live2d.core';*/
+import './lib/live2d.min.js';
 import { createCanvas, initCanvas } from "./lib/canvasManager";
 import { device } from 'current-device';
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
