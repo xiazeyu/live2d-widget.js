@@ -1,52 +1,49 @@
-// Modified by xiazeyu.
+// Created by xiazeyu.
 
 /**
  * @description The container of configeration.
  */
 
 
-class Config{
-  constructor(
-    modelPath, modelWidth, modelHeight,
-    modelScaling, AASetting, mobileShow,
-    mobileScaling, position, horizontalOffset,
-    verticalOffset, horizontalHeadPos, verticalHeadPos,
-    opacityDefault, opacityHover, canvasID,
-    divID,
-    ){};
-}
-
-/**
- * default options
- * @type {Object}
- * @param {[type]} [varname] [description]
- */
-
-const defaultOptions = {
-  modelPath: 'https://raw.githubusercontent.com/EYHN/hexo-helper-live2d/master/assets/z16/z16.model.json',
-  modelWidth: 150,
-  modelHeight: 300,
-  modelScaling: 1,
-  AASetting: 2,
-  mobileShow: true,
-  mobileScaling: 0.5,
-  position: 'right',
-  horizontalOffset: 0,
-  verticalOffset: -20,
-  horizontalHeadPos: 0.5,
-  verticalHeadPos: 0.618,
-  opacityDefault: 0.7,
-  opacityHover: 0.1,
-  canvasID: 'live2DCanvas',
-  divID: 'hexo-helper-live2d'
-}
-
 let currConfig = {};
 
-function checkUserConfig(inUserConfig){
-      if(( this.position != 'left' ) && ( this.position != 'right' )){
-      console.error('L2D: Invalid position setting');
-    }
+const defaultOptions = {
+  model: {
+    jsonPath: '',
+    hHeadPos: 0.5, // horizontalHeadPos
+    vHeadPos: 0.618, // verticalHeadPos
+    myDefine: {},
+  },
+  display: {
+    AA: 2, // antialiasing Grade 抗锯齿等级
+    widght: 150,
+    height: 300,
+    scale: 1,
+    position: 'right',
+    hOffset: 0, // horizontalOffset
+    vOffset: -20, // verticalOffset
+  },
+  mobile: {
+    show: true,
+    scale: 0.5,
+    motion: false,
+  },
+  name: {
+    canvas: 'live2dcanvas',
+    div: 'live2d-widget',
+  },
+  react: {
+    opacityDefault: 0.7,
+    opacityOnHover: 0.2,
+    myFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');},
+    messageFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');},
+  },
+  debug: {
+    log: false,
+    mouseLog: false,
+    mouseFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');}, // only works when debug.mouseLog is on
+  },
+  checked: false,
 }
 
 function applyConfig(inUserConfig){
@@ -58,7 +55,12 @@ function applyConfig(inUserConfig){
   );
 }
 
-export {/*
+function checkUserConfig(inUserConfig){
+      if(( this.position != 'left' ) && ( this.position != 'right' )){
+      console.error('L2D: Invalid position setting');
+    }
+}
+export {
   applyConfig,
-  currConfig,*/
+  currConfig,
 }
