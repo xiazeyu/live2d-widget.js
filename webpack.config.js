@@ -9,6 +9,7 @@ const isProd = e => e === 'prod';
 module.exports = env => {return{
 
   entry: [
+    './src/utils/wpPublicPath.js',
     './src/index.js',
   ],
 

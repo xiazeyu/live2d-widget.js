@@ -16,11 +16,9 @@
 
 # live2d-widget.js
 
-[简体中文文档](./README.zh-CN.md)
-
-<br>
-
 Add the Sseexxyyy live2d to your webpages!
+
+[TOC]
 
 Demo: [TBD.](javascript:void(0);)
 
