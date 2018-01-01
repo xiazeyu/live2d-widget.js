@@ -5,14 +5,6 @@
 */
 
 var cDefine = {
-  // above are output log settings
-  DEBUG_LOG : false, // false, output events
-  DEBUG_MOUSE_LOG : false, // false, output mouse tracking
-  // These two commented definitions havn't been achieved yet.
-  // #63
-  // DEBUG_DRAW_HIT_AREA : false, // # 63
-  // DEBUG_DRAW_ALPHA_MODEL : false, // #63
-
   // above are viewMatrix value settings
   VIEW_LOGICAL_LEFT : -1, // -1, the left abscissa of viewMatrix
   VIEW_LOGICAL_RIGHT : 1, // 1, the right abscissa of viewMatrix

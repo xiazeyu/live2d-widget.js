@@ -84,7 +84,7 @@ module.exports = env => {return{
           options: {
             minimize: true,
           },
-      }],
+        }],
       },
     ]
   },

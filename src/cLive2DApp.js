@@ -14,7 +14,7 @@
   DrawDataID,
   BaseDataID,
   ParamID
-} from './lib/live2d.core';*/
+} from './lib/live2d.min';*/
 import './lib/live2d.min.js';
 import { createCanvas, initCanvas } from "./lib/canvasManager";
 import { device } from 'current-device';
@@ -41,6 +41,7 @@ let opacityHover = 1;
 
 export default () => {
   console.log('Finally!~');
+  Live2D.init();
 /*
     headPos = typeof iHeadPos === 'undefined' ? 0.5 : iHeadPos;
     opacityDefault = typeof iOpacityDefault === 'undefined' ? 0.7 : iOpacityDefault;

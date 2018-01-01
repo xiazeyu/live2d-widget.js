@@ -1,6 +1,5 @@
 /**
- * @description Shimming for Live2D core library
- * https://doc.webpack-china.org/guides/shimming/
+ * @description Fix global expose for Live2D core library
  */
 
 
