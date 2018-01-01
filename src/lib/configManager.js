@@ -41,26 +41,20 @@ const defaultOptions = {
   debug: {
     log: false,
     mouseLog: false,
-    mouseFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');}, // only works when debug.mouseLog is on
+    mouseFunc: (x, y) => {console.log(`MouseFunc: ${x},${x}`);}, // only works when debug.mouseLog is on
   },
-  checked: false,
+  checked: true,
 }
 
 function applyConfig(inUserConfig){
-  checkUserConfig(inUserConfig);
-  currConfig = Object.assign(
-    {},
-    defaultOptions,
-    inUserConfign,
-  );
+  if (!!!inUserConfig.checked) checkUserConfig(inUserConfig);
+  // TBD.
 }
 
 function checkUserConfig(inUserConfig){
-      if(( this.position != 'left' ) && ( this.position != 'right' )){
-      console.error('L2D: Invalid position setting');
-    }
+  // TBD.
 }
 export {
   applyConfig,
-  currConfig,
+  currConfig as config,
 }

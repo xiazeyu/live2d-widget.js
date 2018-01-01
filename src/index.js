@@ -13,7 +13,7 @@
 'use strict';
 
 import device from 'current-device';
-import config from './lib/configManager.js';
+import { config, applyConfig }from './lib/configManager.js';
 
 /**
  * The public entry point
@@ -26,12 +26,12 @@ export function init(userConfig){
     console.log('Hey that, you are now in DEV MODE.');
   }
   try{
-    config.applyConfig(userConfig);
+    applyConfig(userConfig);
   }catch(err){
     console.error(err);
   }
 
-  if((!config.options.mobile.show)&&(device.mobile())){
+  if((!config.mobile.show)&&(device.mobile())){
     return;
   }
 
