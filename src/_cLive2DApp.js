@@ -14,9 +14,8 @@
   DrawDataID,
   BaseDataID,
   ParamID
-} from './lib/live2d.min';*/
+} from './lib/live2d.min';*//*
 import './lib/live2d.min.js';
-import { config }from './lib/configManager.js';
 import { createCanvas, initCanvas } from "./lib/canvasManager";
 import { device } from 'current-device';
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
@@ -39,8 +38,13 @@ let lastMouseY = 0;
 let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
+*/
+
+import { config }from './config/configMgr.js';
 
 export default () => {
+  console.log('config:');
+  console.log(config);
 /*
     headPos = typeof iHeadPos === 'undefined' ? 0.5 : iHeadPos;
     opacityDefault = typeof iOpacityDefault === 'undefined' ? 0.7 : iOpacityDefault;
@@ -348,15 +352,7 @@ function lookFront()
 function mouseEvent(e)
 {
     //e.preventDefault();
-    if (e.type == "mousewheel") {
-        // if (e.clientX < 0 || canvas.clientWidth < e.clientX ||
-        // e.clientY < 0 || canvas.clientHeight < e.clientY)
-        // {
-        //     return;
-        // }
-        // if (e.wheelDelta > 0) modelScaling(1.1);
-        // else modelScaling(0.9);
-    } else if (e.type == "mousedown") {
+    if (e.type == "mousedown") {
         modelTapEvent(e);
     } else if (e.type == "mousemove") {
         modelTurnHead(e);

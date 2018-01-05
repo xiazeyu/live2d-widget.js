@@ -4,6 +4,9 @@
  * @description The container of configeration.
  */
 
+
+'use strict';
+
 import _ from 'lodash';
 
 let currConfig = {};
@@ -36,28 +39,27 @@ const defaultOptions = {
   react: {
     opacityDefault: 0.7,
     opacityOnHover: 0.2,
-    myFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');},
-    messageFunc: () => {console.log('(undefined) ┑(￣Д ￣)┍');},
+    myFunc: (e) => {console.log('(undefined) ┑(￣Д ￣)┍');}, // e means the event
   },
   debug: {
     log: false,
     mouseLog: false,
     mouseFunc: (x, y) => {console.log(`MouseFunc: ${x},${x}`);}, // only works when debug.mouseLog is on
   },
-  checked: true,
+  _: true,
 }
 
-function configApplyer(inUserConfig){
-  console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }));
-  if (!!!inUserConfig.checked) checkUserConfig(inUserConfig);
-  // TBD.
-}
+function configApplyer(userConfig){
 
-function checkUserConfig(inUserConfig){
-  // TBD.
-}
+  if (!(_.has(userConfig, '_'))){
+    import(/* webpackMode: "lazy" */ './configValidater').then(f => {
+      f.configValidater(userConfig);
+    }).catch(err => {
+      console.error(err);
+    });
+  }
 
-function configDefaulter(){
+  currConfig = _.defaultsDeep(userConfig, defaultOptions);
 
 }
 
