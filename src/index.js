@@ -13,7 +13,7 @@
 'use strict';
 
 import device from 'current-device';
-import { config, applyConfig }from './lib/configManager.js';
+import { config, configApplyer }from './lib/configManager.js';
 
 /**
  * The public entry point
@@ -22,19 +22,21 @@ import { config, applyConfig }from './lib/configManager.js';
 
 export function init(userConfig){
 
+  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;
+
   if (process.env.NODE_ENV === 'development') {
     console.log('Hey that, you are now in DEV MODE.');
   }
   try{
-    applyConfig(userConfig);
+    configApplyer(userConfig);
   }catch(err){
     console.error(err);
   }
-
+/*
   if((!config.mobile.show)&&(device.mobile())){
     return;
   }
-
+*/
   import(/* webpackMode: "lazy" */ './cLive2DApp').then(_ => {
     _.default();
   }).catch(err => {

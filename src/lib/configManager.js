@@ -4,6 +4,7 @@
  * @description The container of configeration.
  */
 
+import _ from 'lodash';
 
 let currConfig = {};
 
@@ -46,7 +47,8 @@ const defaultOptions = {
   checked: true,
 }
 
-function applyConfig(inUserConfig){
+function configApplyer(inUserConfig){
+  console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }));
   if (!!!inUserConfig.checked) checkUserConfig(inUserConfig);
   // TBD.
 }
@@ -54,7 +56,12 @@ function applyConfig(inUserConfig){
 function checkUserConfig(inUserConfig){
   // TBD.
 }
+
+function configDefaulter(){
+
+}
+
 export {
-  applyConfig,
+  configApplyer,
   currConfig as config,
 }
