@@ -5,7 +5,8 @@
     }]
   ],
   "plugins": [
-    "syntax-dynamic-import"
-  ]
+    "syntax-dynamic-import",
+    "lodash"
+  ],
 }
 

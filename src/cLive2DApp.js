@@ -41,7 +41,6 @@ let opacityDefault = 0.7;
 let opacityHover = 1;
 
 export default () => {
-  console.log(config);
 /*
     headPos = typeof iHeadPos === 'undefined' ? 0.5 : iHeadPos;
     opacityDefault = typeof iOpacityDefault === 'undefined' ? 0.7 : iOpacityDefault;

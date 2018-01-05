@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const path = require('path')
+const path = require('path');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const visualizer = require('webpack-visualizer-plugin');
 const manifestPlugin = require('webpack-manifest-plugin');
@@ -36,6 +37,7 @@ module.exports = env => {return{
         'NODE_ENV': JSON.stringify((isProd(env) ? 'production' : 'development')),
       }
     }),
+    new LodashModuleReplacementPlugin(),
     new UglifyJsPlugin({
       cache: false,
       parallel: true,
