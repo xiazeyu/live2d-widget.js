@@ -148,6 +148,7 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 ## About me
 
 [![Author][author]][author-url]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fxiazeyu%2Flive2d-widget.js.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fxiazeyu%2Flive2d-widget.js?ref=badge_shield)
 
 [![QQ][qq]][qq-url]
 
@@ -206,3 +207,7 @@ Open sourced under the GPL v2.0 license.
 
 [current-device]: https://img.shields.io/npm/v/current-device.svg?label=current-device
 [current-device-url]: https://github.com/matthewhudson/current-device
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fxiazeyu%2Flive2d-widget.js.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fxiazeyu%2Flive2d-widget.js?ref=badge_large)
