@@ -10,6 +10,7 @@ const isProd = e => e === 'prod';
 module.exports = env => {return{
 
   entry: [
+    'core-js/fn/promise',
     './src/wpPublicPath.js',
     './src/index.js',
   ],

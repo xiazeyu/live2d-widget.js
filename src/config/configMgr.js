@@ -13,7 +13,7 @@ let currConfig = {};
 
 const defaultOptions = {
   model: {
-    jsonPath: '',
+    jsonPath: '', // string
     hHeadPos: 0.5, // horizontalHeadPos
     vHeadPos: 0.618, // verticalHeadPos
     myDefine: {},
