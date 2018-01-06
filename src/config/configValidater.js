@@ -7,6 +7,7 @@
 
 'use strict';
 
+
 import _ from 'lodash';
 
 function configValidater(userConfig){
@@ -18,6 +19,9 @@ function configValidater(userConfig){
       if(!_.isString(userConfig.model.jsonPath)){
         throw 'userConfig.model.jsonPath should be a string.';
       }
+    }
+    if(_.has(userConfig.model, 'hHeadPos')){
+
     }
   }
 
