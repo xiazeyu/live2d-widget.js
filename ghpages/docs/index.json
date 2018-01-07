@@ -732,7 +732,7 @@
     "__docId__": 56,
     "kind": "file",
     "name": "src/index.js",
-    "content": "// Created by xiazeyu.\n\n////////////////////////////////////\n// Celebrate for the 3.0 version! //\n////////////////////////////////////\n\n/**\n * @description The entry point of live2d-widget.\n */\n\n\n'use strict';\n\nimport device from 'current-device';\nimport { config, configApplyer }from './config/configMgr';\n\n/**\n * The public entry point\n * @param {Object} [userConfig] User's custom config\n * @param {String} [model.jsonPath = ''] Path to Live2D model's main json eg. https://test.com/miku.model.json\n * @param {Number} [model.scale = 1] Scale between the model and the canvas\n * @param {Number} [model.hHeadPos = 0.5] Horizontal position of model's head\n * @param {Number} [model.vHeadPos = 0.618] Vertical position of model's head\n * @param {Array}  [model.myDefine = []] User's custom Defines which will override LDefine\n * @param {Number} [display.AA = 2] Antialiasing grade\n * @param {Number} [display.widget = 150] Widget to the canvas which shows the model\n * @param {Number} [display.height = 300] Height to the canvas which shows the model\n * @param {String} [display.position = 'right'] Left of right side to show\n * @param {Number} [display.hOffset = 0] Horizontal offset of the canvas\n * @param {Number} [display.vOffset = -20] Vertical offset of the canvas\n * @param {Bool}   [mobile.show = true] Whether to show on mobile device\n * @param {Number} [mobile.scale = 0.5] Scale on mobile device\n * @param {Bool}   [mobile.motion = true] Whether to enable motion detection on mobile devices\n * @param {String} [name.canvas = 'live2dcanvas'] ID name of the canvas\n * @param {String} [name.div = 'live2d-widget'] ID name of the div\n * @param {Number} [react.opacityDefault = 0.7] Default opacity\n * @param {Number} [react.opacityOnHover = 0.2] OnHover opacity\n * @param {Func}   [react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type.\n * @param {Bool}   [dev.log = false] Whether to show log\n * @param {Bool}   [dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled\n * @param {Func}   [dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position\n */\n\nfunction init(userConfig){\n\n  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;\n\n  if (process.env.NODE_ENV === 'development'){\n    console.log('--- --- --- --- ---');\n    console.log('Hey that, notice that you are now in DEV MODE.');\n    console.log('--- --- --- --- ---');\n  }\n\n  configApplyer(userConfig);\n\n  if((!config.mobile.show)&&(device.mobile())){\n    return;\n  }\n\n  import(/* webpackMode: \"lazy\" */ './_cLive2DApp').then(f => {\n    f.default();\n  }).catch(err => {\n    console.error(err);\n  });\n\n}\n\nexport {\n  init,\n}\n",
+    "content": "// Created by xiazeyu.\n\n////////////////////////////////////\n// Celebrate for the 3.0 version! //\n////////////////////////////////////\n\n/**\n * @description The entry point of live2d-widget.\n */\n\n\n'use strict';\n\nimport device from 'current-device';\nimport { config, configApplyer }from './config/configMgr';\n\n/**\n * The public entry point\n * @param {Object}   [userConfig] User's custom config\n * @param {String}   [model.jsonPath = ''] Path to Live2D model's main json eg. https://test.com/miku.model.json\n * @param {Number}   [model.scale = 1] Scale between the model and the canvas\n * @param {Number}   [model.hHeadPos = 0.5] Horizontal position of model's head\n * @param {Number}   [model.vHeadPos = 0.618] Vertical position of model's head\n * @param {Array}    [model.myDefine = []] User's custom Defines which will override LDefine\n * @param {Number}   [display.AA = 2] Antialiasing grade\n * @param {Number}   [display.widget = 150] Widget to the canvas which shows the model\n * @param {Number}   [display.height = 300] Height to the canvas which shows the model\n * @param {String}   [display.position = 'right'] Left of right side to show\n * @param {Number}   [display.hOffset = 0] Horizontal offset of the canvas\n * @param {Number}   [display.vOffset = -20] Vertical offset of the canvas\n * @param {Boolean}  [mobile.show = true] Whether to show on mobile device\n * @param {Number}   [mobile.scale = 0.5] Scale on mobile device\n * @param {Boolean}  [mobile.motion = true] Whether to enable motion detection on mobile devices\n * @param {String}   [name.canvas = 'live2dcanvas'] ID name of the canvas\n * @param {String}   [name.div = 'live2d-widget'] ID name of the div\n * @param {Number}   [react.opacityDefault = 0.7] Default opacity\n * @param {Number}   [react.opacityOnHover = 0.2] OnHover opacity\n * @param {Function} [react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type.\n * @param {Boolean}  [dev.log = false] Whether to show log\n * @param {Boolean}  [dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled\n * @param {Function} [dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position\n */\n\nfunction init(userConfig){\n\n  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;\n\n  if (process.env.NODE_ENV === 'development'){\n    console.log('--- --- --- --- ---');\n    console.log('Hey that, notice that you are now in DEV MODE.');\n    console.log('--- --- --- --- ---');\n  }\n\n  configApplyer(userConfig);\n\n  if((!config.mobile.show)&&(device.mobile())){\n    return;\n  }\n\n  import(/* webpackMode: \"lazy\" */ './_cLive2DApp').then(f => {\n    f.default();\n  }).catch(err => {\n    console.error(err);\n  });\n\n}\n\nexport {\n  init,\n}\n",
     "static": true,
     "longname": "D:/git/live2d-widget.js/src/index.js",
     "access": "public",
@@ -900,7 +900,7 @@
       {
         "nullable": null,
         "types": [
-          "Bool"
+          "Boolean"
         ],
         "spread": false,
         "optional": true,
@@ -924,7 +924,7 @@
       {
         "nullable": null,
         "types": [
-          "Bool"
+          "Boolean"
         ],
         "spread": false,
         "optional": true,
@@ -984,7 +984,7 @@
       {
         "nullable": null,
         "types": [
-          "Func"
+          "Function"
         ],
         "spread": false,
         "optional": true,
@@ -996,7 +996,7 @@
       {
         "nullable": null,
         "types": [
-          "Bool"
+          "Boolean"
         ],
         "spread": false,
         "optional": true,
@@ -1008,7 +1008,7 @@
       {
         "nullable": null,
         "types": [
-          "Bool"
+          "Boolean"
         ],
         "spread": false,
         "optional": true,
@@ -1020,7 +1020,7 @@
       {
         "nullable": null,
         "types": [
-          "Func"
+          "Function"
         ],
         "spread": false,
         "optional": true,
