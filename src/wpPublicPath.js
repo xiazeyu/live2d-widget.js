@@ -28,7 +28,7 @@ function getCurrentPath(){
     // IE 10 +, Safari and Opera 9
 
     // console.log('Stage2');
-    // console.log(e);
+    console.log(e);
 
     let stack = e.stack || e.sourceURL || e.stacktrace,
     rExtractUri = /(file:\/{3}\w:)(\/[^\/]*){3}\//;
