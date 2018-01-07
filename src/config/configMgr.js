@@ -1,7 +1,7 @@
 // Created by xiazeyu.
 
 /**
- * @description The container of configeration.
+ * @description The manager of configeration.
  */
 
 
@@ -9,7 +9,16 @@
 
 import _ from 'lodash';
 
+/**
+ * The container of current configs
+ * @type {Object}
+ */
+
 let currConfig = {};
+/**
+ * Default settings for defaulter
+ * @type {Object}
+ */
 
 const defaultOptions = {
   model: {
@@ -49,9 +58,14 @@ const defaultOptions = {
   _: true,
 }
 
+/**
+ * Apply users function, make the full settings
+ * @param  {Object} userConfig User's custom config
+ */
+
 function configApplyer(userConfig){
 
-  if (!(_.has(userConfig, '_'))){
+  if (_.has(userConfig, '_')){
     import(/* webpackMode: "lazy" */ './configValidater').then(f => {
       f.configValidater(userConfig);
     }).catch(err => {

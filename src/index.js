@@ -5,7 +5,7 @@
 ////////////////////////////////////
 
 /**
- * @description The entry point of live2d-widget
+ * @description The entry point of live2d-widget.
  */
 
 
@@ -16,10 +16,10 @@ import { config, configApplyer }from './config/configMgr';
 
 /**
  * The public entry point
- * @param  {Object} userConfig User's config
+ * @param  {Object} userConfig User's custom config
  */
 
-export function init(userConfig){
+function init(userConfig){
 
   userConfig = typeof userConfig === 'undefined' ? {} : userConfig;
 
@@ -41,4 +41,8 @@ export function init(userConfig){
     console.error(err);
   });
 
+}
+
+export {
+  init,
 }
