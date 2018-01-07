@@ -1,7 +1,7 @@
 // Created by xiazeyu.
 
 /**
- * @description the validater for user's config
+ * @description The validater function for user's config.
  */
 
 

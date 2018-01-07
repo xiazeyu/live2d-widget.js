@@ -1,7 +1,7 @@
 {
-  "coverage": "18.68%",
-  "expectCount": 305,
-  "actualCount": 57,
+  "coverage": "19.07%",
+  "expectCount": 304,
+  "actualCount": 58,
   "files": {
     "src/config/configMgr.js": {
       "expectCount": 3,
@@ -247,12 +247,9 @@
       "undocumentLines": []
     },
     "src/wpPublicPath.js": {
-      "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        8,
-        41
-      ]
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/_canvasManager.js": {
       "expectCount": 3,

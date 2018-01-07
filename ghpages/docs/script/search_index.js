@@ -54,6 +54,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "live2d-widget/src/wppublicpath.js~getcurrentpath",
+    "function/index.html#static-function-getCurrentPath",
+    "<span>getCurrentPath</span> <span class=\"search-result-import-path\">live2d-widget/src/wpPublicPath.js</span>",
+    "function"
+  ],
+  [
     "live2d-widget/src/index.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">live2d-widget/src/index.js</span>",

@@ -1,5 +1,5 @@
 /**
- * @description Automatic locate the publicPath for webpack
+ * @description Automatic locate the publicPath and set it up for webpack.
  */
 
 
@@ -7,9 +7,9 @@
 
 /**
  * Get current script path
- * @return {String} the accessable path of current script
+ * @return {String} The accessable path of current script
  * @example
- * get 'dev/' or 'https'
+ * get 'dev/' or 'https://www.host.com/test/js/'
  */
 
 function getCurrentPath(){
@@ -31,13 +31,17 @@ function getCurrentPath(){
     // console.log(e);
 
     let stack = e.stack || e.sourceURL || e.stacktrace,
-    rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/,
-    absPath = rExtractUri.exec(stack);
-    currentScriptPath = absPath[0] || '';
-  }
+    rExtractUri = /(file:\/{3}\w:)(\/[^\/]*){3}\//;
+    // TODO: Fix wrong RegExp: rExtractUri
+    let absPath = rExtractUri.exec(stack);
+    currentScriptPath = absPath[0];
 
-  if (currentScriptPath === null){
-    throw 'Cannot get currentScriptPath for wpPublicPath';
+    if(currentScriptPath === ''){
+      rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/;
+      absPath = rExtractUri.exec(stack);
+      currentScriptPath = absPath[0];
+    }
+
   }
 
   return currentScriptPath;
@@ -49,4 +53,8 @@ function getCurrentPath(){
 __webpack_public_path__ = getCurrentPath();
 if (process.env.NODE_ENV === 'development'){
   console.log(`wpPP: publicPath: ${__webpack_public_path__}`);
+}
+
+export {
+  getCurrentPath,
 }

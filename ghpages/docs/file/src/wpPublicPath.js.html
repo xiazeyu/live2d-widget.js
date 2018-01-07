@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configValidater">configValidater</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
@@ -47,11 +48,18 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/wpPublicPath.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @description Automatic locate the publicPath for webpack
+ * @description Automatic locate the publicPath and set it up for webpack
  */
 
 
 &apos;use strict&apos;;
+
+/**
+ * Get current script path
+ * @return {String} The accessable path of current script
+ * @example
+ * get &apos;dev/&apos; or &apos;https://www.host.com/test/js/&apos;
+ */
 
 function getCurrentPath(){
 
@@ -69,15 +77,20 @@ function getCurrentPath(){
     // IE 10 +, Safari and Opera 9
 
     // console.log(&apos;Stage2&apos;);
-    let stack = e.stack || e.sourceURL || e.stacktrace,
-    rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/,
-    absPath = rExtractUri.exec(stack);
-    currentScriptPath = absPath[0] || &apos;&apos;;
-    currentScriptPath = currentScriptPath.replace(/[^/\\\\]+$/, &apos;&apos;);
-  }
+    // console.log(e);
 
-  if (currentScriptPath === null){
-    throw &apos;Cannot get currentScriptPath for wpPublicPath&apos;;
+    let stack = e.stack || e.sourceURL || e.stacktrace,
+    rExtractUri = /(file:\/{3}\w:)(\/[^\/]*){3}\//;
+    // TODO: Fix wrong RegExp: rExtractUri
+    let absPath = rExtractUri.exec(stack);
+    currentScriptPath = absPath[0];
+
+    if(currentScriptPath === &apos;&apos;){
+      rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/;
+      absPath = rExtractUri.exec(stack);
+      currentScriptPath = absPath[0];
+    }
+
   }
 
   return currentScriptPath;
@@ -86,9 +99,13 @@ function getCurrentPath(){
 
 // expose the path to the global,
 // and wp will finish the following work
-var __webpack_public_path__ = getCurrentPath();
+__webpack_public_path__ = getCurrentPath();
 if (process.env.NODE_ENV === &apos;development&apos;){
   console.log(`wpPP: publicPath: ${__webpack_public_path__}`);
+}
+
+export {
+  getCurrentPath,
 }
 </code></pre>
 
