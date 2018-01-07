@@ -20,12 +20,12 @@ let currConfig = {};
  * @type {Object}
  */
 
-const defaultOptions = {
+const defaultConfig = {
   model: {
     jsonPath: '', // string
     hHeadPos: 0.5, // horizontalHeadPos
     vHeadPos: 0.618, // verticalHeadPos
-    myDefine: {},
+    myDefine: [],
   },
   display: {
     AA: 2, // antialiasing Grade 抗锯齿等级
@@ -73,7 +73,7 @@ function configApplyer(userConfig){
     });
   }
 
-  currConfig = _.defaultsDeep(userConfig, defaultOptions);
+  currConfig = _.defaultsDeep(userConfig, defaultConfig);
 
 }
 
