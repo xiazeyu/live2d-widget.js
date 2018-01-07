@@ -22,24 +22,24 @@ let currConfig = {};
 
 const defaultConfig = {
   model: {
-    jsonPath: '', // string
-    hHeadPos: 0.5, // horizontalHeadPos
-    vHeadPos: 0.618, // verticalHeadPos
+    jsonPath: '',
+    scale: 1,
+    hHeadPos: 0.5,
+    vHeadPos: 0.618,
     myDefine: [],
   },
   display: {
-    AA: 2, // antialiasing Grade 抗锯齿等级
+    AA: 2,
     widght: 150,
     height: 300,
-    scale: 1,
     position: 'right',
-    hOffset: 0, // horizontalOffset
-    vOffset: -20, // verticalOffset
+    hOffset: 0,
+    vOffset: -20,
   },
   mobile: {
     show: true,
     scale: 0.5,
-    motion: false,
+    motion: true,
   },
   name: {
     canvas: 'live2dcanvas',
@@ -48,30 +48,30 @@ const defaultConfig = {
   react: {
     opacityDefault: 0.7,
     opacityOnHover: 0.2,
-    myFunc: (e) => {console.log('(undefined) ┑(￣Д ￣)┍');}, // e means the event
+    myFunc: (e) => {console.log('(undefined) ┑(￣Д ￣)┍');},
   },
   dev: {
     log: false,
     mouseLog: false,
-    mouseFunc: (x, y) => {console.log(`MouseFunc: ${x},${x}`);}, // only works when debug.mouseLog is on
+    mouseFunc: (x, y, ix, iy) => {console.log(`MouseFunc: ${x},${y}; ${ix}, ${iy}`);},
   },
-  _: true,
+  // _: true,
 }
 
 /**
  * Apply users function, make the full settings
- * @param  {Object} userConfig User's custom config
+ * @param  {Object} [userConfig] User's custom config
  */
 
 function configApplyer(userConfig){
 
-  if (_.has(userConfig, '_')){
-    import(/* webpackMode: "lazy" */ './configValidater').then(f => {
-      f.configValidater(userConfig);
-    }).catch(err => {
-      console.error(err);
-    });
-  }
+  // if (_.has(userConfig, '_')){
+  //   import(/* webpackMode: "lazy" */ './configValidater').then(f => {
+  //     f.configValidater(userConfig);
+  //   }).catch(err => {
+  //     console.error(err);
+  //   });
+  // }
 
   currConfig = _.defaultsDeep(userConfig, defaultConfig);
 
