@@ -2,6 +2,8 @@
 
 /**
  * @description The validater function for user's config.
+ * @deprecated Only respond one time when you call it, won't be built in production.
+ * @requires prop-types, use npm i prop-types
  */
 
 
@@ -27,8 +29,8 @@ const configPropTypes = {
     height: PropTypes.number,
     scale: PropTypes.number,
     position: PropTypes.oneOf(['left', 'right']),
-    hOffset: PropTypes.number, // horizontalOffset
-    vOffset: PropTypes.number, // verticalOffset
+    hOffset: PropTypes.number,
+    vOffset: PropTypes.number,
   }),
   mobile: PropTypes.shape({
     show: PropTypes.bool,
@@ -52,8 +54,10 @@ const configPropTypes = {
 }
 /**
  * The validater for user config
- * @param  {Object} userConfig User's config
+ * See https://github.com/facebook/prop-types
+ * @param  {Object} [userConfig] User's config
  * @description Only console.warn
+ * @deprecated Only respond one time when you call it, won't be built in production.
  */
 
 function configValidater(userConfig){

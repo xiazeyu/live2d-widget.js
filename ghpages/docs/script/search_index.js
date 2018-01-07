@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "live2d-widget/src/utils/_modelsettingjson.js~modelsettingjson",
+    "live2d-widget/src/_utils/_modelsettingjson.js~modelsettingjson",
     "function/index.html#static-function-ModelSettingJson",
-    "<span>ModelSettingJson</span> <span class=\"search-result-import-path\">live2d-widget/src/utils/_ModelSettingJson.js</span>",
+    "<span>ModelSettingJson</span> <span class=\"search-result-import-path\">live2d-widget/src/_utils/_ModelSettingJson.js</span>",
     "function"
   ],
   [
@@ -33,12 +33,6 @@ window.esdocSearchIndex = [
     "live2d-widget/src/config/configmgr.js~configapplyer",
     "function/index.html#static-function-configApplyer",
     "<span>configApplyer</span> <span class=\"search-result-import-path\">live2d-widget/src/config/configMgr.js</span>",
-    "function"
-  ],
-  [
-    "live2d-widget/src/config/configvalidater.js~configvalidater",
-    "function/index.html#static-function-configValidater",
-    "<span>configValidater</span> <span class=\"search-result-import-path\">live2d-widget/src/config/configValidater.js</span>",
     "function"
   ],
   [
@@ -396,6 +390,36 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/_lib/_live2dframework.js",
+    "file/src/_lib/_Live2DFramework.js.html",
+    "src/_lib/_Live2DFramework.js",
+    "file"
+  ],
+  [
+    "src/_lib/_live2dframework.official.js",
+    "file/src/_lib/_Live2DFramework.official.js.html",
+    "src/_lib/_Live2DFramework.official.js",
+    "file"
+  ],
+  [
+    "src/_lib/_live2d.min.js",
+    "file/src/_lib/_live2d.min.js.html",
+    "src/_lib/_live2d.min.js",
+    "file"
+  ],
+  [
+    "src/_utils/_matrixstack.js",
+    "file/src/_utils/_MatrixStack.js.html",
+    "src/_utils/_MatrixStack.js",
+    "file"
+  ],
+  [
+    "src/_utils/_modelsettingjson.js",
+    "file/src/_utils/_ModelSettingJson.js.html",
+    "src/_utils/_ModelSettingJson.js",
+    "file"
+  ],
+  [
     "src/_webglcontext.js",
     "file/src/_webglcontext.js.html",
     "src/_webglcontext.js",
@@ -417,36 +441,6 @@ window.esdocSearchIndex = [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
-    "file"
-  ],
-  [
-    "src/lib/_live2dframework.js",
-    "file/src/lib/_Live2DFramework.js.html",
-    "src/lib/_Live2DFramework.js",
-    "file"
-  ],
-  [
-    "src/lib/_live2dframework.official.js",
-    "file/src/lib/_Live2DFramework.official.js.html",
-    "src/lib/_Live2DFramework.official.js",
-    "file"
-  ],
-  [
-    "src/lib/_live2d.min.js",
-    "file/src/lib/_live2d.min.js.html",
-    "src/lib/_live2d.min.js",
-    "file"
-  ],
-  [
-    "src/utils/_matrixstack.js",
-    "file/src/utils/_MatrixStack.js.html",
-    "src/utils/_MatrixStack.js",
-    "file"
-  ],
-  [
-    "src/utils/_modelsettingjson.js",
-    "file/src/utils/_ModelSettingJson.js.html",
-    "src/utils/_ModelSettingJson.js",
     "file"
   ],
   [

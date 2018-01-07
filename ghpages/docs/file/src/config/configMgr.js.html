@@ -39,9 +39,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#-utils">_utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configValidater">configValidater</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -50,7 +49,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Created by xiazeyu.
 
 /**
- * @description The container of configeration.
+ * @description The manager of configeration.
  */
 
 
@@ -58,28 +57,37 @@
 
 import _ from &apos;lodash&apos;;
 
-let currConfig = {};
+/**
+ * The container of current configs
+ * @type {Object}
+ */
 
-const defaultOptions = {
+let currConfig = {};
+/**
+ * Default settings for defaulter
+ * @type {Object}
+ */
+
+const defaultConfig = {
   model: {
-    jsonPath: &apos;&apos;, // string
-    hHeadPos: 0.5, // horizontalHeadPos
-    vHeadPos: 0.618, // verticalHeadPos
-    myDefine: {},
+    jsonPath: &apos;&apos;,
+    scale: 1,
+    hHeadPos: 0.5,
+    vHeadPos: 0.618,
+    myDefine: [],
   },
   display: {
-    AA: 2, // antialiasing Grade &#x6297;&#x952F;&#x9F7F;&#x7B49;&#x7EA7;
+    AA: 2,
     widght: 150,
     height: 300,
-    scale: 1,
     position: &apos;right&apos;,
-    hOffset: 0, // horizontalOffset
-    vOffset: -20, // verticalOffset
+    hOffset: 0,
+    vOffset: -20,
   },
   mobile: {
     show: true,
     scale: 0.5,
-    motion: false,
+    motion: true,
   },
   name: {
     canvas: &apos;live2dcanvas&apos;,
@@ -88,27 +96,32 @@ const defaultOptions = {
   react: {
     opacityDefault: 0.7,
     opacityOnHover: 0.2,
-    myFunc: (e) =&gt; {console.log(&apos;(undefined) &#x2511;(&#xFFE3;&#x414; &#xFFE3;)&#x250D;&apos;);}, // e means the event
+    myFunc: (e) =&gt; {console.log(&apos;(undefined) &#x2511;(&#xFFE3;&#x414; &#xFFE3;)&#x250D;&apos;);},
   },
-  debug: {
+  dev: {
     log: false,
     mouseLog: false,
-    mouseFunc: (x, y) =&gt; {console.log(`MouseFunc: ${x},${x}`);}, // only works when debug.mouseLog is on
+    mouseFunc: (x, y, ix, iy) =&gt; {console.log(`MouseFunc: ${x},${y}; ${ix}, ${iy}`);},
   },
-  _: true,
+  // _: true,
 }
+
+/**
+ * Apply users function, make the full settings
+ * @param  {Object} [userConfig] User&apos;s custom config
+ */
 
 function configApplyer(userConfig){
 
-  if (_.has(userConfig, &apos;_&apos;)){
-    import(/* webpackMode: &quot;lazy&quot; */ &apos;./configValidater&apos;).then(f =&gt; {
-      f.configValidater(userConfig);
-    }).catch(err =&gt; {
-      console.error(err);
-    });
-  }
+  // if (_.has(userConfig, &apos;_&apos;)){
+  //   import(/* webpackMode: &quot;lazy&quot; */ &apos;./configValidater&apos;).then(f =&gt; {
+  //     f.configValidater(userConfig);
+  //   }).catch(err =&gt; {
+  //     console.error(err);
+  //   });
+  // }
 
-  currConfig = _.defaultsDeep(userConfig, defaultOptions);
+  currConfig = _.defaultsDeep(userConfig, defaultConfig);
 
 }
 

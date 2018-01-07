@@ -1,22 +1,21 @@
 {
-  "coverage": "19.07%",
-  "expectCount": 304,
-  "actualCount": 58,
+  "coverage": "19.93%",
+  "expectCount": 306,
+  "actualCount": 61,
   "files": {
     "src/config/configMgr.js": {
       "expectCount": 3,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        12,
-        14,
-        52
+        66
       ]
     },
     "src/config/configValidater.js": {
-      "expectCount": 1,
-      "actualCount": 0,
+      "expectCount": 3,
+      "actualCount": 1,
       "undocumentLines": [
-        13
+        13,
+        63
       ]
     },
     "src/index.js": {
@@ -24,7 +23,83 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/lib/_Live2DFramework.js": {
+    "src/wpPublicPath.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_canvasManager.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        9,
+        14
+      ]
+    },
+    "src/_cDefine.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/_cLive2DApp.js": {
+      "expectCount": 20,
+      "actualCount": 0,
+      "undocumentLines": [
+        45,
+        59,
+        108,
+        124,
+        152,
+        159,
+        181,
+        186,
+        195,
+        259,
+        286,
+        313,
+        344,
+        352,
+        367,
+        380,
+        387,
+        394,
+        400,
+        405
+      ]
+    },
+    "src/_cManager.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        18,
+        28,
+        41,
+        51,
+        64,
+        70,
+        76
+      ]
+    },
+    "src/_cModel.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        24,
+        174,
+        184,
+        200,
+        301,
+        316,
+        325,
+        372,
+        405,
+        417,
+        438
+      ]
+    },
+    "src/_lib/_Live2DFramework.js": {
       "expectCount": 103,
       "actualCount": 1,
       "undocumentLines": [
@@ -132,7 +207,7 @@
         1372
       ]
     },
-    "src/lib/_Live2DFramework.official.js": {
+    "src/_lib/_Live2DFramework.official.js": {
       "expectCount": 109,
       "actualCount": 11,
       "undocumentLines": [
@@ -236,95 +311,19 @@
         1586
       ]
     },
-    "src/utils/_MatrixStack.js": {
-      "expectCount": 7,
-      "actualCount": 7,
-      "undocumentLines": []
-    },
-    "src/utils/_ModelSettingJson.js": {
-      "expectCount": 25,
-      "actualCount": 25,
-      "undocumentLines": []
-    },
-    "src/wpPublicPath.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/_canvasManager.js": {
-      "expectCount": 3,
-      "actualCount": 1,
-      "undocumentLines": [
-        9,
-        14
-      ]
-    },
-    "src/_cDefine.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/_cLive2DApp.js": {
-      "expectCount": 20,
-      "actualCount": 0,
-      "undocumentLines": [
-        45,
-        59,
-        108,
-        124,
-        152,
-        159,
-        181,
-        186,
-        195,
-        259,
-        286,
-        313,
-        344,
-        352,
-        367,
-        380,
-        387,
-        394,
-        400,
-        405
-      ]
-    },
-    "src/_cManager.js": {
-      "expectCount": 8,
-      "actualCount": 0,
-      "undocumentLines": [
-        6,
-        18,
-        28,
-        41,
-        51,
-        64,
-        70,
-        76
-      ]
-    },
-    "src/_cModel.js": {
-      "expectCount": 12,
-      "actualCount": 0,
-      "undocumentLines": [
-        11,
-        24,
-        174,
-        184,
-        200,
-        301,
-        316,
-        325,
-        372,
-        405,
-        417,
-        438
-      ]
-    },
     "src/_PlatformManager.js": {
       "expectCount": 7,
       "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/_utils/_MatrixStack.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/_utils/_ModelSettingJson.js": {
+      "expectCount": 25,
+      "actualCount": 25,
       "undocumentLines": []
     },
     "src/_webglcontext.js": {

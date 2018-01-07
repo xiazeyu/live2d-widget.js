@@ -39,9 +39,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#-utils">_utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configValidater">configValidater</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -50,34 +49,73 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Created by xiazeyu.
 
 /**
- * @description the validater for user&apos;s config
+ * @description The validater function for user&apos;s config.
+ * @deprecated Only respond one time when you call it, won&apos;t be built in production.
+ * @requires prop-types, use npm i prop-types
  */
 
 
 &apos;use strict&apos;;
 
 
-import _ from &apos;lodash&apos;;
+let PropTypes = require(&apos;prop-types&apos;);
+/**
+ * The propTypes configeration of config
+ * @type {Object}
+ */
+
+const configPropTypes = {
+  model: PropTypes.shape({
+    jsonPath: PropTypes.string,
+    hHeadPos: PropTypes.number,
+    vHeadPos: PropTypes.number,
+    myDefine: PropTypes.array,
+  }),
+  display: PropTypes.shape({
+    AA: PropTypes.number,
+    widght: PropTypes.number,
+    height: PropTypes.number,
+    scale: PropTypes.number,
+    position: PropTypes.oneOf([&apos;left&apos;, &apos;right&apos;]),
+    hOffset: PropTypes.number,
+    vOffset: PropTypes.number,
+  }),
+  mobile: PropTypes.shape({
+    show: PropTypes.bool,
+    scale: PropTypes.number,
+    motion: PropTypes.bool,
+  }),
+  name: PropTypes.shape({
+    canvas: PropTypes.string,
+    div: PropTypes.string,
+  }),
+  react: PropTypes.shape({
+    opacityDefault: PropTypes.number,
+    opacityOnHover: PropTypes.number,
+    myFunc: PropTypes.func,
+  }),
+  dev: PropTypes.shape({
+    log: PropTypes.bool,
+    mouseLog: PropTypes.bool,
+    mouseFunc: PropTypes.func,
+  }),
+}
+/**
+ * The validater for user config
+ * See https://github.com/facebook/prop-types
+ * @param  {Object} [userConfig] User&apos;s config
+ * @description Only console.warn
+ * @deprecated Only respond one time when you call it, won&apos;t be built in production.
+ */
 
 function configValidater(userConfig){
-
-  if (process.env.NODE_ENV === &apos;development&apos;) console.log(&apos;config: validating config...&apos;);
-
-  if(_.has(userConfig, &apos;model&apos;)){
-    if(_.has(userConfig.model, &apos;jsonPath&apos;)){
-      if(!_.isString(userConfig.model.jsonPath)){
-        throw &apos;userConfig.model.jsonPath should be a string.&apos;;
-      }
-    }
-    if(_.has(userConfig.model, &apos;hHeadPos&apos;)){
-
-    }
-  }
-
+  PropTypes.checkPropTypes(configPropTypes, userConfig, &apos;config&apos;, &apos;Live2D-widget&apos;);
 }
 
-export {
-  configValidater,
+if (process.env.NODE_ENV === &apos;development&apos;) window.cV = configValidater;
+
+module.exports = {
+  configValidater: configValidater,
 }
 </code></pre>
 
