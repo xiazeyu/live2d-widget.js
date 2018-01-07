@@ -9,6 +9,10 @@
 
 
 let PropTypes = require('prop-types');
+/**
+ * The propTypes configeration of config
+ * @type {Object}
+ */
 
 const configPropTypes = {
   model: PropTypes.shape({
@@ -40,18 +44,23 @@ const configPropTypes = {
     opacityOnHover: PropTypes.number,
     myFunc: PropTypes.func,
   }),
-  debug: PropTypes.shape({
+  dev: PropTypes.shape({
     log: PropTypes.bool,
     mouseLog: PropTypes.bool,
     mouseFunc: PropTypes.func,
   }),
 }
+/**
+ * The validater for user config
+ * @param  {Object} userConfig User's config
+ * @description Only console.warn
+ */
 
 function configValidater(userConfig){
-
   PropTypes.checkPropTypes(configPropTypes, userConfig, 'config', 'Live2D-widget');
-
 }
+
+if (process.env.NODE_ENV === 'development') window.cV = configValidater;
 
 module.exports = {
   configValidater: configValidater,
