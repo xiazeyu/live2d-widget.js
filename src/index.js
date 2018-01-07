@@ -19,6 +19,44 @@ import { config, configApplyer }from './config/configMgr';
  * @param  {Object} userConfig User's custom config
  */
 
+function userConfig({
+  model: {
+    jsonPath, // string
+    hHeadPos, // horizontalHeadPos
+    vHeadPos, // verticalHeadPos
+    myDefine,
+  },
+  display: {
+    AA, // antialiasing Grade 抗锯齿等级
+    widght,
+    height,
+    scale,
+    position,
+    hOffset, // horizontalOffset
+    vOffset, // verticalOffset
+  },
+  mobile: {
+    show,
+    // scale,
+    motion,
+  },
+  name: {
+    canvas,
+    div,
+  },
+  react: {
+    opacityDefault,
+    opacityOnHover,
+    myFunc,
+  },
+  dev: {
+    log,
+    mouseLog,
+    mouseFunc, // only works when debug.mouseLog is on
+  },
+  _,
+}){};
+
 function init(userConfig){
 
   userConfig = typeof userConfig === 'undefined' ? {} : userConfig;

@@ -50,7 +50,7 @@ const defaultConfig = {
     opacityOnHover: 0.2,
     myFunc: (e) => {console.log('(undefined) ┑(￣Д ￣)┍');}, // e means the event
   },
-  debug: {
+  dev: {
     log: false,
     mouseLog: false,
     mouseFunc: (x, y) => {console.log(`MouseFunc: ${x},${x}`);}, // only works when debug.mouseLog is on
