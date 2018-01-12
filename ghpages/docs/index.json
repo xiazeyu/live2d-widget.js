@@ -732,7 +732,7 @@
     "__docId__": 56,
     "kind": "file",
     "name": "src/index.js",
-    "content": "// Created by xiazeyu.\n\n////////////////////////////////////\n// Celebrate for the 3.0 version! //\n////////////////////////////////////\n\n/**\n * @description The entry point of live2d-widget.\n */\n\n\n'use strict';\n\nimport device from 'current-device';\nimport { config, configApplyer }from './config/configMgr';\n\n/**\n * The public entry point\n * @param {Object}   [userConfig] User's custom config\n * @param {String}   [model.jsonPath = ''] Path to Live2D model's main json eg. https://test.com/miku.model.json\n * @param {Number}   [model.scale = 1] Scale between the model and the canvas\n * @param {Number}   [model.hHeadPos = 0.5] Horizontal position of model's head\n * @param {Number}   [model.vHeadPos = 0.618] Vertical position of model's head\n * @param {Array}    [model.myDefine = []] User's custom Defines which will override LDefine\n * @param {Number}   [display.AA = 2] Antialiasing grade\n * @param {Number}   [display.widget = 150] Widget to the canvas which shows the model\n * @param {Number}   [display.height = 300] Height to the canvas which shows the model\n * @param {String}   [display.position = 'right'] Left of right side to show\n * @param {Number}   [display.hOffset = 0] Horizontal offset of the canvas\n * @param {Number}   [display.vOffset = -20] Vertical offset of the canvas\n * @param {Boolean}  [mobile.show = true] Whether to show on mobile device\n * @param {Number}   [mobile.scale = 0.5] Scale on mobile device\n * @param {Boolean}  [mobile.motion = true] Whether to enable motion detection on mobile devices\n * @param {String}   [name.canvas = 'live2dcanvas'] ID name of the canvas\n * @param {String}   [name.div = 'live2d-widget'] ID name of the div\n * @param {Number}   [react.opacityDefault = 0.7] Default opacity\n * @param {Number}   [react.opacityOnHover = 0.2] OnHover opacity\n * @param {Function} [react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type.\n * @param {Boolean}  [dev.log = false] Whether to show log\n * @param {Boolean}  [dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled\n * @param {Function} [dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position\n */\n\nfunction init(userConfig){\n\n  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;\n\n  if (process.env.NODE_ENV === 'development'){\n    console.log('--- --- --- --- ---');\n    console.log('Hey that, notice that you are now in DEV MODE.');\n    console.log('--- --- --- --- ---');\n  }\n\n  configApplyer(userConfig);\n\n  if((!config.mobile.show)&&(device.mobile())){\n    return;\n  }\n\n  import(/* webpackMode: \"lazy\" */ './_cLive2DApp').then(f => {\n    f.default();\n  }).catch(err => {\n    console.error(err);\n  });\n\n}\n\nexport {\n  init,\n}\n",
+    "content": "// Created by xiazeyu.\n\n////////////////////////////////////\n// Celebrate for the 3.0 version! //\n////////////////////////////////////\n\n/**\n * @description The entry point of live2d-widget.\n */\n\n\n'use strict';\n\nimport device from 'current-device';\nimport { config, configApplyer }from './config/configMgr';\n\n/**\n * The public entry point\n * @param {Object}   [userConfig] User's custom config 用户自定义设置\n * @param {String}   [userConfig.model.jsonPath = ''] Path to Live2D model's main json eg. `https://test.com/miku.model.json` model主文件路径\n * @param {Number}   [userConfig.model.scale = 1] Scale between the model and the canvas 模型与canvas的缩放\n * @param {Number}   [userConfig.model.hHeadPos = 0.5] Horizontal position of model's head 模型头部横坐标\n * @param {Number}   [userConfig.model.vHeadPos = 0.618] Vertical position of model's head 模型头部纵坐标\n * @param {Array}    [userConfig.model.myDefine = []] User's custom Defines which will override LDefine 自定义的LDefine\n * @param {Number}   [userConfig.display.AA = 2] Antialiasing grade 抗锯齿\n * @param {Number}   [userConfig.display.widget = 150] Widget to the canvas which shows the model canvas的长度\n * @param {Number}   [userConfig.display.height = 300] Height to the canvas which shows the model canvas的高度\n * @param {String}   [userConfig.display.position = 'right'] Left of right side to show 显示位置：左或右\n * @param {Number}   [userConfig.display.hOffset = 0] Horizontal offset of the canvas canvas水平偏移\n * @param {Number}   [userConfig.display.vOffset = -20] Vertical offset of the canvas canvas垂直偏移\n * @param {Boolean}  [userConfig.mobile.show = true] Whether to show on mobile device 是否在移动设备上显示\n * @param {Number}   [userConfig.mobile.scale = 0.5] Scale on mobile device 移动设备上的缩放\n * @param {Boolean}  [userConfig.mobile.motion = true] Whether to enable motion detection on mobile devices 移动设备是否开启重力感应\n * @param {String}   [userConfig.name.canvas = 'live2dcanvas'] ID name of the canvas canvas元素的ID\n * @param {String}   [userConfig.name.div = 'live2d-widget'] ID name of the div div元素的ID\n * @param {Number}   [userConfig.react.opacityDefault = 0.7] Default opacity 默认透明度\n * @param {Number}   [userConfig.react.opacityOnHover = 0.2] OnHover opacity 鼠标移上透明度\n * @param {Function} [userConfig.react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type. 自定义事件接收器\n * @param {Boolean}  [userConfig.dev.log = false] Whether to show log 显示日志\n * @param {Boolean}  [userConfig.dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled 显示鼠标移动\n * @param {Function} [userConfig.dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position 自定义鼠标移动处理函数\n */\n\nfunction init(userConfig){\n\n  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;\n\n  if (process.env.NODE_ENV === 'development'){\n    console.log('--- --- --- --- ---');\n    console.log('Hey that, notice that you are now in DEV MODE.');\n    console.log('--- --- --- --- ---');\n  }\n\n  configApplyer(userConfig);\n\n  if((!config.mobile.show)&&(device.mobile())){\n    return;\n  }\n\n  import(/* webpackMode: \"lazy\" */ './_cLive2DApp').then(f => {\n    f.default();\n  }).catch(err => {\n    console.error(err);\n  });\n\n}\n\nexport {\n  init,\n}\n",
     "static": true,
     "longname": "D:/git/live2d-widget.js/src/index.js",
     "access": "public",
@@ -763,7 +763,7 @@
         "spread": false,
         "optional": true,
         "name": "userConfig",
-        "description": "User's custom config"
+        "description": "User's custom config 用户自定义设置"
       },
       {
         "nullable": null,
@@ -774,8 +774,8 @@
         "optional": true,
         "defaultValue": " ''",
         "defaultRaw": " ''",
-        "name": "model.jsonPath",
-        "description": "Path to Live2D model's main json eg. https://test.com/miku.model.json"
+        "name": "userConfig.model.jsonPath",
+        "description": "Path to Live2D model's main json eg. `https://test.com/miku.model.json` model主文件路径"
       },
       {
         "nullable": null,
@@ -786,8 +786,8 @@
         "optional": true,
         "defaultValue": " 1",
         "defaultRaw": 1,
-        "name": "model.scale",
-        "description": "Scale between the model and the canvas"
+        "name": "userConfig.model.scale",
+        "description": "Scale between the model and the canvas 模型与canvas的缩放"
       },
       {
         "nullable": null,
@@ -798,8 +798,8 @@
         "optional": true,
         "defaultValue": " 0.5",
         "defaultRaw": 0.5,
-        "name": "model.hHeadPos",
-        "description": "Horizontal position of model's head"
+        "name": "userConfig.model.hHeadPos",
+        "description": "Horizontal position of model's head 模型头部横坐标"
       },
       {
         "nullable": null,
@@ -810,8 +810,8 @@
         "optional": true,
         "defaultValue": " 0.618",
         "defaultRaw": 0.618,
-        "name": "model.vHeadPos",
-        "description": "Vertical position of model's head"
+        "name": "userConfig.model.vHeadPos",
+        "description": "Vertical position of model's head 模型头部纵坐标"
       },
       {
         "nullable": null,
@@ -822,8 +822,8 @@
         "optional": true,
         "defaultValue": " []",
         "defaultRaw": [],
-        "name": "model.myDefine",
-        "description": "User's custom Defines which will override LDefine"
+        "name": "userConfig.model.myDefine",
+        "description": "User's custom Defines which will override LDefine 自定义的LDefine"
       },
       {
         "nullable": null,
@@ -834,8 +834,8 @@
         "optional": true,
         "defaultValue": " 2",
         "defaultRaw": 2,
-        "name": "display.AA",
-        "description": "Antialiasing grade"
+        "name": "userConfig.display.AA",
+        "description": "Antialiasing grade 抗锯齿"
       },
       {
         "nullable": null,
@@ -846,8 +846,8 @@
         "optional": true,
         "defaultValue": " 150",
         "defaultRaw": 150,
-        "name": "display.widget",
-        "description": "Widget to the canvas which shows the model"
+        "name": "userConfig.display.widget",
+        "description": "Widget to the canvas which shows the model canvas的长度"
       },
       {
         "nullable": null,
@@ -858,8 +858,8 @@
         "optional": true,
         "defaultValue": " 300",
         "defaultRaw": 300,
-        "name": "display.height",
-        "description": "Height to the canvas which shows the model"
+        "name": "userConfig.display.height",
+        "description": "Height to the canvas which shows the model canvas的高度"
       },
       {
         "nullable": null,
@@ -870,8 +870,8 @@
         "optional": true,
         "defaultValue": " 'right'",
         "defaultRaw": " 'right'",
-        "name": "display.position",
-        "description": "Left of right side to show"
+        "name": "userConfig.display.position",
+        "description": "Left of right side to show 显示位置：左或右"
       },
       {
         "nullable": null,
@@ -882,8 +882,8 @@
         "optional": true,
         "defaultValue": " 0",
         "defaultRaw": 0,
-        "name": "display.hOffset",
-        "description": "Horizontal offset of the canvas"
+        "name": "userConfig.display.hOffset",
+        "description": "Horizontal offset of the canvas canvas水平偏移"
       },
       {
         "nullable": null,
@@ -894,8 +894,8 @@
         "optional": true,
         "defaultValue": " -20",
         "defaultRaw": -20,
-        "name": "display.vOffset",
-        "description": "Vertical offset of the canvas"
+        "name": "userConfig.display.vOffset",
+        "description": "Vertical offset of the canvas canvas垂直偏移"
       },
       {
         "nullable": null,
@@ -906,8 +906,8 @@
         "optional": true,
         "defaultValue": " true",
         "defaultRaw": true,
-        "name": "mobile.show",
-        "description": "Whether to show on mobile device"
+        "name": "userConfig.mobile.show",
+        "description": "Whether to show on mobile device 是否在移动设备上显示"
       },
       {
         "nullable": null,
@@ -918,8 +918,8 @@
         "optional": true,
         "defaultValue": " 0.5",
         "defaultRaw": 0.5,
-        "name": "mobile.scale",
-        "description": "Scale on mobile device"
+        "name": "userConfig.mobile.scale",
+        "description": "Scale on mobile device 移动设备上的缩放"
       },
       {
         "nullable": null,
@@ -930,8 +930,8 @@
         "optional": true,
         "defaultValue": " true",
         "defaultRaw": true,
-        "name": "mobile.motion",
-        "description": "Whether to enable motion detection on mobile devices"
+        "name": "userConfig.mobile.motion",
+        "description": "Whether to enable motion detection on mobile devices 移动设备是否开启重力感应"
       },
       {
         "nullable": null,
@@ -942,8 +942,8 @@
         "optional": true,
         "defaultValue": " 'live2dcanvas'",
         "defaultRaw": " 'live2dcanvas'",
-        "name": "name.canvas",
-        "description": "ID name of the canvas"
+        "name": "userConfig.name.canvas",
+        "description": "ID name of the canvas canvas元素的ID"
       },
       {
         "nullable": null,
@@ -954,8 +954,8 @@
         "optional": true,
         "defaultValue": " 'live2d-widget'",
         "defaultRaw": " 'live2d-widget'",
-        "name": "name.div",
-        "description": "ID name of the div"
+        "name": "userConfig.name.div",
+        "description": "ID name of the div div元素的ID"
       },
       {
         "nullable": null,
@@ -966,8 +966,8 @@
         "optional": true,
         "defaultValue": " 0.7",
         "defaultRaw": 0.7,
-        "name": "react.opacityDefault",
-        "description": "Default opacity"
+        "name": "userConfig.react.opacityDefault",
+        "description": "Default opacity 默认透明度"
       },
       {
         "nullable": null,
@@ -978,8 +978,8 @@
         "optional": true,
         "defaultValue": " 0.2",
         "defaultRaw": 0.2,
-        "name": "react.opacityOnHover",
-        "description": "OnHover opacity"
+        "name": "userConfig.react.opacityOnHover",
+        "description": "OnHover opacity 鼠标移上透明度"
       },
       {
         "nullable": null,
@@ -990,8 +990,8 @@
         "optional": true,
         "defaultValue": " func(e)",
         "defaultRaw": " func(e)",
-        "name": "react.myFunc",
-        "description": "Custom event handler, won't override main handler, will reveice the event type."
+        "name": "userConfig.react.myFunc",
+        "description": "Custom event handler, won't override main handler, will reveice the event type. 自定义事件接收器"
       },
       {
         "nullable": null,
@@ -1002,8 +1002,8 @@
         "optional": true,
         "defaultValue": " false",
         "defaultRaw": false,
-        "name": "dev.log",
-        "description": "Whether to show log"
+        "name": "userConfig.dev.log",
+        "description": "Whether to show log 显示日志"
       },
       {
         "nullable": null,
@@ -1014,8 +1014,8 @@
         "optional": true,
         "defaultValue": " false",
         "defaultRaw": false,
-        "name": "dev.mouseLog",
-        "description": "Whether to show mouse log (tons of log), only work when dev.log is enabled"
+        "name": "userConfig.dev.mouseLog",
+        "description": "Whether to show mouse log (tons of log), only work when dev.log is enabled 显示鼠标移动"
       },
       {
         "nullable": null,
@@ -1026,8 +1026,8 @@
         "optional": true,
         "defaultValue": " func(x, y, ix, iy)",
         "defaultRaw": " func(x, y, ix, iy)",
-        "name": "dev.mouseFunc",
-        "description": "Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position"
+        "name": "userConfig.dev.mouseFunc",
+        "description": "Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position 自定义鼠标移动处理函数"
       }
     ],
     "return": null
@@ -1036,7 +1036,7 @@
     "__docId__": 58,
     "kind": "file",
     "name": "src/wpPublicPath.js",
-    "content": "/**\n * @description Automatic locate the publicPath and set it up for webpack.\n */\n\n\n'use strict';\n\n/**\n * Get current script path\n * @return {String} The accessable path of current script\n * @example\n * get 'dev/' or 'https://www.host.com/test/js/'\n */\n\nfunction getCurrentPath(){\n\n  let currentScriptPath = null;\n\n  try{\n    // FF, Chrome\n    // use their API to get the path of current script\n\n    // a.b();\n    // console.log('Stage1');\n    let currentScriptElement = document.currentScript;\n    currentScriptPath = currentScriptElement.getAttribute('src').replace(/[^/\\\\\\\\]+$/, '');\n  }catch(e){\n    // IE 10 +, Safari and Opera 9\n\n    // console.log('Stage2');\n    console.log(e);\n\n    let stack = e.stack || e.sourceURL || e.stacktrace,\n    rExtractUri = /(file:\\/{3}\\w:)(\\/[^\\/]*){3}\\//;\n    // TODO: Fix wrong RegExp: rExtractUri\n    let absPath = rExtractUri.exec(stack);\n    currentScriptPath = absPath[0];\n\n    if(currentScriptPath === ''){\n      rExtractUri = /(?:http|https|file):\\/\\/.*?\\/.+?.js/;\n      absPath = rExtractUri.exec(stack);\n      currentScriptPath = absPath[0];\n    }\n\n  }\n\n  return currentScriptPath;\n\n}\n\n// expose the path to the global,\n// and wp will finish the following work\n__webpack_public_path__ = getCurrentPath();\nif (process.env.NODE_ENV === 'development'){\n  console.log(`wpPP: publicPath: ${__webpack_public_path__}`);\n}\n\nexport {\n  getCurrentPath,\n}\n",
+    "content": "/**\n * @description Automatic locate the publicPath and set it up for webpack.\n */\n\n\n'use strict';\n\n/**\n * Get current script path\n * @return {String} The path of current script\n * @example\n * get 'file:///C:/git/live2d-widget/dev/bundle.js' or 'https://www.host.com/test/js/bundle.js'\n */\n\nfunction getCurrentPath(){\n\n  try{\n\n    // FF, Chrome, Modern browsers\n    // use their API to get the path of current script\n\n    // a.b();\n    console.log('wpStage1');\n\n    return document.currentScript.src;\n\n    if(DOC.currentScript){ // FF 4+\n      return DOC.currentScript.src;\n    }\n\n  }catch(e){\n\n    // document.currentScript doesn't supports\n\n    console.log('wpStage2');\n\n    // Method 1\n    // https://github.com/mozilla/pdf.js/blob/e081a708c36cb2aacff7889048863723fcf23671/src/shared/compatibility.js#L97\n    // IE, Chrome < 29\n\n    let scripts = document.getElementsByTagName('script');\n    return scripts[scripts.length - 1].src;\n\n/*\n    // Method 2\n    // parse the error stack trace maually\n    // https://github.com/workhorsy/uncompress.js/blob/master/js/uncompress.js#L25\n\n    let stack = e.stack;\n    let line = null;\n\n    // Chrome and IE\n    if (stack.indexOf('@') !== -1) {\n      line = stack.split('@')[1].split('\\n')[0];\n    // Firefox\n    } else {\n      line = stack.split('(')[1].split(')')[0];\n    }\n    line = line.substring(0, line.lastIndexOf('/')) + '/';\n    return line;\n*/\n/*\n    // Method 3\n    // https://www.cnblogs.com/rubylouvre/archive/2013/01/23/2872618.html\n\n    let stack = e.stack;\n    if(!stack && window.opera){\n      // Opera 9没有e.stack,但有e.Backtrace,但不能直接取得,需要对e对象转字符串进行抽取\n      stack = (String(e).match(/of linked script \\S+/g) || []).join(' ');\n    }\n    if(stack){\n      // e.stack最后一行在所有支持的浏览器大致如下:\n      // chrome23:\n      // @ http://113.93.50.63/data.js:4:1\n      // firefox17:\n      // @http://113.93.50.63/query.js:4\n      // opera12:\n      // @http://113.93.50.63/data.js:4\n      // IE10:\n      // @ Global code (http://113.93.50.63/data.js:4:1)\n      stack = stack.split(/[@ ]/g).pop(); // 取得最后一行,最后一个空格或@之后的部分\n      stack = stack[0] == '(' ? stack.slice(1,-1) : stack;\n      return stack.replace(/(:\\d+)?:\\d+$/i, ''); // 去掉行号与或许存在的出错字符起始位置\n    }\n    let nodes = head.getElementsByTagName('script'); // 只在head标签中寻找\n    for(var i = 0, node; node = nodes[i++];){\n      if(node.readyState === 'interactive'){\n        return node.className = node.src;\n      }\n    }\n*/\n  }\n\n}\n\n// expose the path to the global,\n// and wp will finish the following work\n__webpack_public_path__ = getCurrentPath().replace(/[^/\\\\\\\\]+$/, '');\nif (process.env.NODE_ENV === 'development'){\n  console.log(`wpPP: publicPath: ${__webpack_public_path__}`);\n}\n\nexport {\n  getCurrentPath,\n}\n",
     "static": true,
     "longname": "D:/git/live2d-widget.js/src/wpPublicPath.js",
     "access": "public",
@@ -1058,7 +1058,7 @@
     "importStyle": "{getCurrentPath}",
     "description": "Get current script path",
     "examples": [
-      "get 'dev/' or 'https://www.host.com/test/js/'"
+      "get 'file:///C:/git/live2d-widget/dev/bundle.js' or 'https://www.host.com/test/js/bundle.js'"
     ],
     "lineNumber": 15,
     "return": {
@@ -1067,7 +1067,7 @@
         "String"
       ],
       "spread": false,
-      "description": "The accessable path of current script"
+      "description": "The path of current script"
     },
     "params": []
   },
@@ -10286,7 +10286,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"live2d-widget\",\n  \"version\": \"3.0.0\",\n  \"description\": \"Add the Sseexxyyy live2d to webpages.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"inst:dev\": \"npm install -g webpack&&npm install -g commitizen&&npm install -g cz-conventional-changelog&&npm install -g conventional-changelog-cli&&npm install\",\n    \"build:dev\": \"webpack --progress --colors\",\n    \"build:prod\": \"webpack --env prod --progress --colors\",\n    \"build:doc\": \"./node_modules/.bin/esdoc\",\n    \"commit\": \"git pull&&git-cz\",\n    \"changelog\": \"git pull&&conventional-changelog -i doc/CHANGELOG.md -r 0 -s -u&&git add doc/CHANGELOG.md&&git commit -m \\\"docs: update CHANGELOG\\\"&&git push&&git status\",\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"ghpages\": \"push-gh-pages\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/xiazeyu/live2d-widget.js.git\"\n  },\n  \"author\": \"xiazeyu <xiazeyu_2011@126.com>\",\n  \"contributors\": [\n    \"xiazeyu <xiazeyu_2011@126.com>\",\n    \"EYHN <cneyhn@gmail.com>\"\n  ],\n  \"maintainers\": [\n    \"xiazeyu <xiazeyu_2011@126.com>\",\n    \"EYHN <cneyhn@gmail.com>\"\n  ],\n  \"license\": \"GPL-2.0\",\n  \"bugs\": {\n    \"url\": \"https://github.com/xiazeyu/live2d-widget.js/issues\"\n  },\n  \"homepage\": \"https://github.com/xiazeyu/live2d-widget.js#readme\",\n  \"devDependencies\": {\n    \"babel-core\": \"^6.26.0\",\n    \"babel-loader\": \"^7.1.2\",\n    \"babel-plugin-lodash\": \"^3.3.2\",\n    \"babel-plugin-syntax-dynamic-import\": \"^6.18.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"commitizen\": \"^2.9.6\",\n    \"core-js\": \"^2.5.3\",\n    \"current-device\": \"^0.7.2\",\n    \"cz-conventional-changelog\": \"^2.1.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"html-loader\": \"^0.5.4\",\n    \"lodash\": \"^4.17.4\",\n    \"lodash-webpack-plugin\": \"^0.11.4\",\n    \"path\": \"^0.12.7\",\n    \"uglifyjs-webpack-plugin\": \"^1.1.6\",\n    \"webpack\": \"^3.10.0\",\n    \"webpack-manifest-plugin\": \"^1.3.2\",\n    \"webpack-visualizer-plugin\": \"^0.1.11\"\n  },\n  \"config\": {\n    \"commitizen\": {\n      \"path\": \"./node_modules/cz-conventional-changelog\"\n    }\n  }\n}\n",
+    "content": "{\n  \"name\": \"live2d-widget\",\n  \"version\": \"3.0.0\",\n  \"description\": \"Add the Sseexxyyy live2d to webpages.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"inst:dev\": \"npm install -g webpack&&npm install -g commitizen&&npm install -g cz-conventional-changelog&&npm install -g conventional-changelog-cli&&npm install\",\n    \"build:dev\": \"webpack --progress --colors\",\n    \"build:prod\": \"webpack --env prod --progress --colors\",\n    \"build:doc\": \"./node_modules/.bin/esdoc\",\n    \"commit\": \"git pull&&git-cz\",\n    \"changelog\": \"git pull&&conventional-changelog -i doc/CHANGELOG.md -r 0 -s -u&&git add doc/CHANGELOG.md&&git commit -m \\\"docs: update CHANGELOG\\\"&&git push&&git status\",\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"ghpages\": \"push-gh-pages\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/xiazeyu/live2d-widget.js.git\"\n  },\n  \"author\": \"xiazeyu <xiazeyu_2011@126.com>\",\n  \"contributors\": [\n    \"xiazeyu <xiazeyu_2011@126.com>\",\n    \"EYHN <cneyhn@gmail.com>\"\n  ],\n  \"maintainers\": [\n    \"xiazeyu <xiazeyu_2011@126.com>\",\n    \"EYHN <cneyhn@gmail.com>\"\n  ],\n  \"license\": \"GPL-2.0\",\n  \"bugs\": {\n    \"url\": \"https://github.com/xiazeyu/live2d-widget.js/issues\"\n  },\n  \"homepage\": \"https://github.com/xiazeyu/live2d-widget.js#readme\",\n  \"devDependencies\": {\n    \"babel-core\": \"~6.26.0\",\n    \"babel-loader\": \"~7.1.2\",\n    \"babel-plugin-lodash\": \"~3.3.2\",\n    \"babel-plugin-syntax-dynamic-import\": \"~6.18.0\",\n    \"babel-preset-env\": \"~1.6.1\",\n    \"commitizen\": \"~2.9.6\",\n    \"core-js\": \"~2.5.3\",\n    \"current-device\": \"~0.7.2\",\n    \"cz-conventional-changelog\": \"~2.1.0\",\n    \"esdoc\": \"~1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"~1.0.0\",\n    \"esdoc-standard-plugin\": \"~1.0.0\",\n    \"html-loader\": \"~0.5.4\",\n    \"lodash\": \"~4.17.4\",\n    \"lodash-webpack-plugin\": \"~0.11.4\",\n    \"path\": \"~0.12.7\",\n    \"uglifyjs-webpack-plugin\": \"~1.1.6\",\n    \"webpack\": \"~3.10.0\",\n    \"webpack-manifest-plugin\": \"~1.3.2\",\n    \"webpack-visualizer-plugin\": \"~0.1.11\"\n  },\n  \"config\": {\n    \"commitizen\": {\n      \"path\": \"./node_modules/cz-conventional-changelog\"\n    }\n  }\n}\n",
     "longname": "D:\\git\\live2d-widget.js\\package.json",
     "name": "package.json",
     "static": true,

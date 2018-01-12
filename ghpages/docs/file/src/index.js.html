@@ -64,29 +64,29 @@ import { config, configApplyer }from &apos;./config/configMgr&apos;;
 
 /**
  * The public entry point
- * @param {Object}   [userConfig] User&apos;s custom config
- * @param {String}   [model.jsonPath = &apos;&apos;] Path to Live2D model&apos;s main json eg. https://test.com/miku.model.json
- * @param {Number}   [model.scale = 1] Scale between the model and the canvas
- * @param {Number}   [model.hHeadPos = 0.5] Horizontal position of model&apos;s head
- * @param {Number}   [model.vHeadPos = 0.618] Vertical position of model&apos;s head
- * @param {Array}    [model.myDefine = []] User&apos;s custom Defines which will override LDefine
- * @param {Number}   [display.AA = 2] Antialiasing grade
- * @param {Number}   [display.widget = 150] Widget to the canvas which shows the model
- * @param {Number}   [display.height = 300] Height to the canvas which shows the model
- * @param {String}   [display.position = &apos;right&apos;] Left of right side to show
- * @param {Number}   [display.hOffset = 0] Horizontal offset of the canvas
- * @param {Number}   [display.vOffset = -20] Vertical offset of the canvas
- * @param {Boolean}  [mobile.show = true] Whether to show on mobile device
- * @param {Number}   [mobile.scale = 0.5] Scale on mobile device
- * @param {Boolean}  [mobile.motion = true] Whether to enable motion detection on mobile devices
- * @param {String}   [name.canvas = &apos;live2dcanvas&apos;] ID name of the canvas
- * @param {String}   [name.div = &apos;live2d-widget&apos;] ID name of the div
- * @param {Number}   [react.opacityDefault = 0.7] Default opacity
- * @param {Number}   [react.opacityOnHover = 0.2] OnHover opacity
- * @param {Function} [react.myFunc = func(e)] Custom event handler, won&apos;t override main handler, will reveice the event type.
- * @param {Boolean}  [dev.log = false] Whether to show log
- * @param {Boolean}  [dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled
- * @param {Function} [dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position
+ * @param {Object}   [userConfig] User&apos;s custom config &#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8BBE;&#x7F6E;
+ * @param {String}   [userConfig.model.jsonPath = &apos;&apos;] Path to Live2D model&apos;s main json eg. `https://test.com/miku.model.json` model&#x4E3B;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;
+ * @param {Number}   [userConfig.model.scale = 1] Scale between the model and the canvas &#x6A21;&#x578B;&#x4E0E;canvas&#x7684;&#x7F29;&#x653E;
+ * @param {Number}   [userConfig.model.hHeadPos = 0.5] Horizontal position of model&apos;s head &#x6A21;&#x578B;&#x5934;&#x90E8;&#x6A2A;&#x5750;&#x6807;
+ * @param {Number}   [userConfig.model.vHeadPos = 0.618] Vertical position of model&apos;s head &#x6A21;&#x578B;&#x5934;&#x90E8;&#x7EB5;&#x5750;&#x6807;
+ * @param {Array}    [userConfig.model.myDefine = []] User&apos;s custom Defines which will override LDefine &#x81EA;&#x5B9A;&#x4E49;&#x7684;LDefine
+ * @param {Number}   [userConfig.display.AA = 2] Antialiasing grade &#x6297;&#x952F;&#x9F7F;
+ * @param {Number}   [userConfig.display.widget = 150] Widget to the canvas which shows the model canvas&#x7684;&#x957F;&#x5EA6;
+ * @param {Number}   [userConfig.display.height = 300] Height to the canvas which shows the model canvas&#x7684;&#x9AD8;&#x5EA6;
+ * @param {String}   [userConfig.display.position = &apos;right&apos;] Left of right side to show &#x663E;&#x793A;&#x4F4D;&#x7F6E;&#xFF1A;&#x5DE6;&#x6216;&#x53F3;
+ * @param {Number}   [userConfig.display.hOffset = 0] Horizontal offset of the canvas canvas&#x6C34;&#x5E73;&#x504F;&#x79FB;
+ * @param {Number}   [userConfig.display.vOffset = -20] Vertical offset of the canvas canvas&#x5782;&#x76F4;&#x504F;&#x79FB;
+ * @param {Boolean}  [userConfig.mobile.show = true] Whether to show on mobile device &#x662F;&#x5426;&#x5728;&#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x4E0A;&#x663E;&#x793A;
+ * @param {Number}   [userConfig.mobile.scale = 0.5] Scale on mobile device &#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x7F29;&#x653E;
+ * @param {Boolean}  [userConfig.mobile.motion = true] Whether to enable motion detection on mobile devices &#x79FB;&#x52A8;&#x8BBE;&#x5907;&#x662F;&#x5426;&#x5F00;&#x542F;&#x91CD;&#x529B;&#x611F;&#x5E94;
+ * @param {String}   [userConfig.name.canvas = &apos;live2dcanvas&apos;] ID name of the canvas canvas&#x5143;&#x7D20;&#x7684;ID
+ * @param {String}   [userConfig.name.div = &apos;live2d-widget&apos;] ID name of the div div&#x5143;&#x7D20;&#x7684;ID
+ * @param {Number}   [userConfig.react.opacityDefault = 0.7] Default opacity &#x9ED8;&#x8BA4;&#x900F;&#x660E;&#x5EA6;
+ * @param {Number}   [userConfig.react.opacityOnHover = 0.2] OnHover opacity &#x9F20;&#x6807;&#x79FB;&#x4E0A;&#x900F;&#x660E;&#x5EA6;
+ * @param {Function} [userConfig.react.myFunc = func(e)] Custom event handler, won&apos;t override main handler, will reveice the event type. &#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x63A5;&#x6536;&#x5668;
+ * @param {Boolean}  [userConfig.dev.log = false] Whether to show log &#x663E;&#x793A;&#x65E5;&#x5FD7;
+ * @param {Boolean}  [userConfig.dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled &#x663E;&#x793A;&#x9F20;&#x6807;&#x79FB;&#x52A8;
+ * @param {Function} [userConfig.dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position &#x81EA;&#x5B9A;&#x4E49;&#x9F20;&#x6807;&#x79FB;&#x52A8;&#x5904;&#x7406;&#x51FD;&#x6570;
  */
 
 function init(userConfig){

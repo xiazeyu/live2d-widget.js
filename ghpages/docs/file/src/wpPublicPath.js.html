@@ -55,50 +55,95 @@
 
 /**
  * Get current script path
- * @return {String} The accessable path of current script
+ * @return {String} The path of current script
  * @example
- * get &apos;dev/&apos; or &apos;https://www.host.com/test/js/&apos;
+ * get &apos;file:///C:/git/live2d-widget/dev/bundle.js&apos; or &apos;https://www.host.com/test/js/bundle.js&apos;
  */
 
 function getCurrentPath(){
 
-  let currentScriptPath = null;
-
   try{
-    // FF, Chrome
+
+    // FF, Chrome, Modern browsers
     // use their API to get the path of current script
 
     // a.b();
-    // console.log(&apos;Stage1&apos;);
-    let currentScriptElement = document.currentScript;
-    currentScriptPath = currentScriptElement.getAttribute(&apos;src&apos;).replace(/[^/\\\\]+$/, &apos;&apos;);
-  }catch(e){
-    // IE 10 +, Safari and Opera 9
+    console.log(&apos;wpStage1&apos;);
 
-    // console.log(&apos;Stage2&apos;);
-    console.log(e);
+    return document.currentScript.src;
 
-    let stack = e.stack || e.sourceURL || e.stacktrace,
-    rExtractUri = /(file:\/{3}\w:)(\/[^\/]*){3}\//;
-    // TODO: Fix wrong RegExp: rExtractUri
-    let absPath = rExtractUri.exec(stack);
-    currentScriptPath = absPath[0];
-
-    if(currentScriptPath === &apos;&apos;){
-      rExtractUri = /(?:http|https|file):\/\/.*?\/.+?.js/;
-      absPath = rExtractUri.exec(stack);
-      currentScriptPath = absPath[0];
+    if(DOC.currentScript){ // FF 4+
+      return DOC.currentScript.src;
     }
 
-  }
+  }catch(e){
 
-  return currentScriptPath;
+    // document.currentScript doesn&apos;t supports
+
+    console.log(&apos;wpStage2&apos;);
+
+    // Method 1
+    // https://github.com/mozilla/pdf.js/blob/e081a708c36cb2aacff7889048863723fcf23671/src/shared/compatibility.js#L97
+    // IE, Chrome &lt; 29
+
+    let scripts = document.getElementsByTagName(&apos;script&apos;);
+    return scripts[scripts.length - 1].src;
+
+/*
+    // Method 2
+    // parse the error stack trace maually
+    // https://github.com/workhorsy/uncompress.js/blob/master/js/uncompress.js#L25
+
+    let stack = e.stack;
+    let line = null;
+
+    // Chrome and IE
+    if (stack.indexOf(&apos;@&apos;) !== -1) {
+      line = stack.split(&apos;@&apos;)[1].split(&apos;\n&apos;)[0];
+    // Firefox
+    } else {
+      line = stack.split(&apos;(&apos;)[1].split(&apos;)&apos;)[0];
+    }
+    line = line.substring(0, line.lastIndexOf(&apos;/&apos;)) + &apos;/&apos;;
+    return line;
+*/
+/*
+    // Method 3
+    // https://www.cnblogs.com/rubylouvre/archive/2013/01/23/2872618.html
+
+    let stack = e.stack;
+    if(!stack &amp;&amp; window.opera){
+      // Opera 9&#x6CA1;&#x6709;e.stack,&#x4F46;&#x6709;e.Backtrace,&#x4F46;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x53D6;&#x5F97;,&#x9700;&#x8981;&#x5BF9;e&#x5BF9;&#x8C61;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x62BD;&#x53D6;
+      stack = (String(e).match(/of linked script \S+/g) || []).join(&apos; &apos;);
+    }
+    if(stack){
+      // e.stack&#x6700;&#x540E;&#x4E00;&#x884C;&#x5728;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x5927;&#x81F4;&#x5982;&#x4E0B;:
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// chrome23:
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;// @ http://113.93.50.63/data.js:4:1
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;firefox17:
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;@http://113.93.50.63/query.js:4
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;opera12:
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;@http://113.93.50.63/data.js:4
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;IE10:
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;//&#xA0;@ Global code (http://113.93.50.63/data.js:4:1)
+&#xA0;&#xA0;&#xA0;&#xA0;  stack = stack.split(/[@ ]/g).pop(); // &#x53D6;&#x5F97;&#x6700;&#x540E;&#x4E00;&#x884C;,&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7A7A;&#x683C;&#x6216;@&#x4E4B;&#x540E;&#x7684;&#x90E8;&#x5206;
+      stack = stack[0] == &apos;(&apos; ? stack.slice(1,-1) : stack;
+      return stack.replace(/(:\d+)?:\d+$/i, &apos;&apos;); // &#x53BB;&#x6389;&#x884C;&#x53F7;&#x4E0E;&#x6216;&#x8BB8;&#x5B58;&#x5728;&#x7684;&#x51FA;&#x9519;&#x5B57;&#x7B26;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;
+    }
+    let nodes = head.getElementsByTagName(&apos;script&apos;); // &#x53EA;&#x5728;head&#x6807;&#x7B7E;&#x4E2D;&#x5BFB;&#x627E;
+    for(var i = 0, node; node = nodes[i++];){
+      if(node.readyState === &apos;interactive&apos;){
+        return node.className = node.src;
+      }
+    }
+*/
+  }
 
 }
 
 // expose the path to the global,
 // and wp will finish the following work
-__webpack_public_path__ = getCurrentPath();
+__webpack_public_path__ = getCurrentPath().replace(/[^/\\\\]+$/, &apos;&apos;);
 if (process.env.NODE_ENV === &apos;development&apos;){
   console.log(`wpPP: publicPath: ${__webpack_public_path__}`);
 }
