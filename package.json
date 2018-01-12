@@ -9,7 +9,8 @@
     "build:prod": "webpack --env prod --progress --colors",
     "build:doc": "./node_modules/.bin/esdoc",
     "commit": "git pull&&git-cz",
-    "changelog": "git pull&&./node_modules/.bin/conventional-changelog -i doc/CHANGELOG.md -r 0 -s -u&&git add doc/CHANGELOG.md&&git commit -m \"docs: update CHANGELOG\"&&git push&&git status",
+    "_changelog": "./node_modules/.bin/conventional-changelog -i doc/CHANGELOG.md -r 0 -s -u",
+    "changelog": "git pull&&npm run _changelog&&git add doc/CHANGELOG.md&&git commit -m \"docs: update CHANGELOG\"&&git push&&git status",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ghpages": "push-gh-pages"
   },
