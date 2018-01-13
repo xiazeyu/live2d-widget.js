@@ -80,7 +80,7 @@ module.exports = env => {return{
         use: [{
           loader: 'babel-loader',
         }],
-      },/*
+      },
       {test: /\.html$/,
         use: [{
           loader: 'html-loader',
@@ -88,7 +88,7 @@ module.exports = env => {return{
             minimize: true,
           },
         }],
-      },*/
+      },
     ]
   },
 }}
