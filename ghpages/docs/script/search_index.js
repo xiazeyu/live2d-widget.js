@@ -12,9 +12,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "live2d-widget/src/_clive2dapp.js~_clive2dapp",
-    "function/index.html#static-function-_cLive2DApp",
-    "<span>_cLive2DApp</span> <span class=\"search-result-import-path\">live2d-widget/src/_cLive2DApp.js</span>",
+    "live2d-widget/src/clive2dapp.js~clive2dapp",
+    "function/index.html#static-function-cLive2DApp",
+    "<span>cLive2DApp</span> <span class=\"search-result-import-path\">live2d-widget/src/cLive2DApp.js</span>",
     "function"
   ],
   [
@@ -36,16 +36,16 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "live2d-widget/src/_canvasmanager.js~createcanvas",
-    "function/index.html#static-function-createCanvas",
-    "<span>createCanvas</span> <span class=\"search-result-import-path\">live2d-widget/src/_canvasManager.js</span>",
+    "live2d-widget/src/elementmanager.js~createelement",
+    "function/index.html#static-function-createElement",
+    "<span>createElement</span> <span class=\"search-result-import-path\">live2d-widget/src/elementManager.js</span>",
     "function"
   ],
   [
-    "live2d-widget/src/_webglcontext.js~getcontext",
-    "function/index.html#static-function-getContext",
-    "<span>getContext</span> <span class=\"search-result-import-path\">live2d-widget/src/_webglcontext.js</span>",
-    "function"
+    "live2d-widget/src/elementmanager.js~currwebgl",
+    "variable/index.html#static-variable-currWebGL",
+    "<span>currWebGL</span> <span class=\"search-result-import-path\">live2d-widget/src/elementManager.js</span>",
+    "variable"
   ],
   [
     "live2d-widget/src/wppublicpath.js~getcurrentpath",
@@ -57,18 +57,6 @@ window.esdocSearchIndex = [
     "live2d-widget/src/index.js~init",
     "function/index.html#static-function-init",
     "<span>init</span> <span class=\"search-result-import-path\">live2d-widget/src/index.js</span>",
-    "function"
-  ],
-  [
-    "live2d-widget/src/_canvasmanager.js~initcanvas",
-    "function/index.html#static-function-initCanvas",
-    "<span>initCanvas</span> <span class=\"search-result-import-path\">live2d-widget/src/_canvasManager.js</span>",
-    "function"
-  ],
-  [
-    "live2d-widget/src/_webglcontext.js~setcontext",
-    "function/index.html#static-function-setContext",
-    "<span>setContext</span> <span class=\"search-result-import-path\">live2d-widget/src/_webglcontext.js</span>",
     "function"
   ],
   [
@@ -366,12 +354,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/_clive2dapp.js",
-    "file/src/_cLive2DApp.js.html",
-    "src/_cLive2DApp.js",
-    "file"
-  ],
-  [
     "src/_cmanager.js",
     "file/src/_cManager.js.html",
     "src/_cManager.js",
@@ -381,30 +363,6 @@ window.esdocSearchIndex = [
     "src/_cmodel.js",
     "file/src/_cModel.js.html",
     "src/_cModel.js",
-    "file"
-  ],
-  [
-    "src/_canvasmanager.js",
-    "file/src/_canvasManager.js.html",
-    "src/_canvasManager.js",
-    "file"
-  ],
-  [
-    "src/_lib/_live2dframework.js",
-    "file/src/_lib/_Live2DFramework.js.html",
-    "src/_lib/_Live2DFramework.js",
-    "file"
-  ],
-  [
-    "src/_lib/_live2dframework.official.js",
-    "file/src/_lib/_Live2DFramework.official.js.html",
-    "src/_lib/_Live2DFramework.official.js",
-    "file"
-  ],
-  [
-    "src/_lib/_live2d.min.js",
-    "file/src/_lib/_live2d.min.js.html",
-    "src/_lib/_live2d.min.js",
     "file"
   ],
   [
@@ -420,9 +378,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/_webglcontext.js",
-    "file/src/_webglcontext.js.html",
-    "src/_webglcontext.js",
+    "src/clive2dapp.js",
+    "file/src/cLive2DApp.js.html",
+    "src/cLive2DApp.js",
     "file"
   ],
   [
@@ -438,9 +396,33 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/elementmanager.js",
+    "file/src/elementManager.js.html",
+    "src/elementManager.js",
+    "file"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
+    "file"
+  ],
+  [
+    "src/lib/_live2dframework.js",
+    "file/src/lib/_Live2DFramework.js.html",
+    "src/lib/_Live2DFramework.js",
+    "file"
+  ],
+  [
+    "src/lib/_live2dframework.official.js",
+    "file/src/lib/_Live2DFramework.official.js.html",
+    "src/lib/_Live2DFramework.official.js",
+    "file"
+  ],
+  [
+    "src/lib/live2d.core.js",
+    "file/src/lib/live2d.core.js.html",
+    "src/lib/live2d.core.js",
     "file"
   ],
   [

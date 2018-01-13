@@ -30,15 +30,13 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_cLive2DApp">_cLive2DApp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cManager">cManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cModel">cModel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createCanvas">createCanvas</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCanvas">initCanvas</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#-utils">_utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
 </ul>
@@ -100,6 +98,35 @@
         
         
         <div data-ice="description"><p>Define the variable type of PlatformManager</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Main function of live2d-widget</p>
 </div>
       </div>
     </td>
@@ -206,41 +233,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-createCanvas">createCanvas</a></span></span><span class="code" data-ice="signature">(canvasID: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span><span class="code" data-ice="signature">(null: <span>*</span>): <span>Element</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>return the current WebGL context</p>
+        <div data-ice="description"><p>Create the canvas and styles using DOM</p>
 </div>
       </div>
     </td>
@@ -292,7 +291,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span><span class="code" data-ice="signature">(userConfig: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span><span class="code" data-ice="signature">(userConfig: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
         </p>
       </div>
       <div>
@@ -300,97 +299,6 @@
         
         <div data-ice="description"><p>The public entry point</p>
 </div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-initCanvas">initCanvas</a></span></span><span class="code" data-ice="signature">(canvasId: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span><span class="code" data-ice="signature">(msg: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span>Element</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>record the current WebGL context</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-<table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Static Private Summary</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">private</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_cLive2DApp">_cLive2DApp</a></span></span><span class="code" data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
       </div>
     </td>
     <td>
@@ -550,6 +458,62 @@
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-cLive2DApp">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">cLive2DApp</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/cLive2DApp.js.html#lineNumber52">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cLive2DApp from &apos;<span><a href="file/src/cLive2DApp.js.html#lineNumber52">live2d-widget/src/cLive2DApp.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Main function of live2d-widget</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-cManager">
     <span class="access" data-ice="access">public</span>
     
@@ -647,11 +611,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/config/configMgr.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/config/configMgr.js.html#lineNumber68">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {configApplyer} from &apos;<span><a href="file/src/config/configMgr.js.html#lineNumber66">live2d-widget/src/config/configMgr.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {configApplyer} from &apos;<span><a href="file/src/config/configMgr.js.html#lineNumber68">live2d-widget/src/config/configMgr.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -695,105 +659,30 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-createCanvas">
+  <h3 data-ice="anchor" id="static-function-createElement">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">createCanvas</span><span class="code" data-ice="signature">(canvasID: <span>*</span>)</span>
+    <span class="code" data-ice="name">createElement</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/_canvasManager.js.html#lineNumber9">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/elementManager.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createCanvas} from &apos;<span><a href="file/src/_canvasManager.js.html#lineNumber9">live2d-widget/src/_canvasManager.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createElement} from &apos;<span><a href="file/src/elementManager.js.html#lineNumber28">live2d-widget/src/elementManager.js</a></span>&apos;</code></pre></div>
   
   
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">canvasID</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
+  <div data-ice="description"><p>Create the canvas and styles using DOM</p>
 </div>
 
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-getContext">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">getContext</span><span class="code" data-ice="signature">(null: <span>*</span>): <span>Element</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/_webglcontext.js.html#lineNumber28">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getContext} from &apos;<span><a href="file/src/_webglcontext.js.html#lineNumber28">live2d-widget/src/_webglcontext.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>return the current WebGL context</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">null</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
+  <div data-ice="properties">
 </div>
 
   <div class="return-params" data-ice="returnParams">
@@ -801,9 +690,8 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>Element</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>current webGL context</p>
-</td>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
+          
         </tr>
       </tbody>
     </table>
@@ -898,15 +786,15 @@
     
     
     
-    <span class="code" data-ice="name">init</span><span class="code" data-ice="signature">(userConfig: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
+    <span class="code" data-ice="name">init</span><span class="code" data-ice="signature">(userConfig: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber50">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {init} from &apos;<span><a href="file/src/index.js.html#lineNumber44">live2d-widget/src/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {init} from &apos;<span><a href="file/src/index.js.html#lineNumber50">live2d-widget/src/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>The public entry point</p>
@@ -970,11 +858,11 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="2">
-      <td data-ice="name" class="code" data-depth="2">userConfig.display.AA</td>
+      <td data-ice="name" class="code" data-depth="2">userConfig.display.antialias</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default:  2</li></ul></td>
-      <td data-ice="description"><p>Antialiasing grade &#x6297;&#x952F;&#x9F7F;</p>
+      <td data-ice="description"><p>Antialiasing grade &#x6297;&#x952F;&#x9F7F;&#x7EA7;&#x522B;</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="2">
@@ -1090,6 +978,14 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="2">
+      <td data-ice="name" class="code" data-depth="2">userConfig.dev.border</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default:  false</li></ul></td>
+      <td data-ice="description"><p>Whether to show border around the canvas &#x5728;canvas&#x5468;&#x56F4;&#x663E;&#x793A;&#x8FB9;&#x754C;</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="2">
       <td data-ice="name" class="code" data-depth="2">userConfig.dev.mouseLog</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
@@ -1110,185 +1006,19 @@
 </div>
 </div>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-initCanvas">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">initCanvas</span><span class="code" data-ice="signature">(canvasId: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/_canvasManager.js.html#lineNumber14">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {initCanvas} from &apos;<span><a href="file/src/_canvasManager.js.html#lineNumber14">live2d-widget/src/_canvasManager.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">canvasId</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-setContext">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">setContext</span><span class="code" data-ice="signature">(msg: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span>Element</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/_webglcontext.js.html#lineNumber17">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setContext} from &apos;<span><a href="file/src/_webglcontext.js.html#lineNumber17">live2d-widget/src/_webglcontext.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>record the current WebGL context</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">msg</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Message to log</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>Element</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>webGL context being captured</p>
-</td>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
+          
         </tr>
       </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<h2 data-ice="title">Static Private </h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-_cLive2DApp">
-    <span class="access" data-ice="access">private</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">_cLive2DApp</span><span class="code" data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/_cLive2DApp.js.html#lineNumber45">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _cLive2DApp from &apos;<span><a href="file/src/_cLive2DApp.js.html#lineNumber45">live2d-widget/src/_cLive2DApp.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
 
   
 

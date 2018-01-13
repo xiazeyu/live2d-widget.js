@@ -30,15 +30,13 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_cLive2DApp">_cLive2DApp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cManager">cManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cModel">cModel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createCanvas">createCanvas</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-initCanvas">initCanvas</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getContext">getContext</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setContext">setContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#-utils">_utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
 </ul>
@@ -62,6 +60,10 @@
 import device from &apos;current-device&apos;;
 import { config, configApplyer }from &apos;./config/configMgr&apos;;
 
+if (process.env.NODE_ENV === &apos;development&apos;){
+  console.log(&apos;--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---&apos;);
+}
+
 /**
  * The public entry point
  * @param {Object}   [userConfig] User&apos;s custom config &#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8BBE;&#x7F6E;
@@ -70,7 +72,7 @@ import { config, configApplyer }from &apos;./config/configMgr&apos;;
  * @param {Number}   [userConfig.model.hHeadPos = 0.5] Horizontal position of model&apos;s head &#x6A21;&#x578B;&#x5934;&#x90E8;&#x6A2A;&#x5750;&#x6807;
  * @param {Number}   [userConfig.model.vHeadPos = 0.618] Vertical position of model&apos;s head &#x6A21;&#x578B;&#x5934;&#x90E8;&#x7EB5;&#x5750;&#x6807;
  * @param {Array}    [userConfig.model.myDefine = []] User&apos;s custom Defines which will override LDefine &#x81EA;&#x5B9A;&#x4E49;&#x7684;LDefine
- * @param {Number}   [userConfig.display.AA = 2] Antialiasing grade &#x6297;&#x952F;&#x9F7F;
+ * @param {Number}   [userConfig.display.antialias = 2] Antialiasing grade &#x6297;&#x952F;&#x9F7F;&#x7EA7;&#x522B;
  * @param {Number}   [userConfig.display.widget = 150] Widget to the canvas which shows the model canvas&#x7684;&#x957F;&#x5EA6;
  * @param {Number}   [userConfig.display.height = 300] Height to the canvas which shows the model canvas&#x7684;&#x9AD8;&#x5EA6;
  * @param {String}   [userConfig.display.position = &apos;right&apos;] Left of right side to show &#x663E;&#x793A;&#x4F4D;&#x7F6E;&#xFF1A;&#x5DE6;&#x6216;&#x53F3;
@@ -85,19 +87,15 @@ import { config, configApplyer }from &apos;./config/configMgr&apos;;
  * @param {Number}   [userConfig.react.opacityOnHover = 0.2] OnHover opacity &#x9F20;&#x6807;&#x79FB;&#x4E0A;&#x900F;&#x660E;&#x5EA6;
  * @param {Function} [userConfig.react.myFunc = func(e)] Custom event handler, won&apos;t override main handler, will reveice the event type. &#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x63A5;&#x6536;&#x5668;
  * @param {Boolean}  [userConfig.dev.log = false] Whether to show log &#x663E;&#x793A;&#x65E5;&#x5FD7;
+ * @param {Boolean}  [userConfig.dev.border = false] Whether to show border around the canvas &#x5728;canvas&#x5468;&#x56F4;&#x663E;&#x793A;&#x8FB9;&#x754C;
  * @param {Boolean}  [userConfig.dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled &#x663E;&#x793A;&#x9F20;&#x6807;&#x79FB;&#x52A8;
  * @param {Function} [userConfig.dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position &#x81EA;&#x5B9A;&#x4E49;&#x9F20;&#x6807;&#x79FB;&#x52A8;&#x5904;&#x7406;&#x51FD;&#x6570;
+ * @return {null}
  */
 
 function init(userConfig){
 
   userConfig = typeof userConfig === &apos;undefined&apos; ? {} : userConfig;
-
-  if (process.env.NODE_ENV === &apos;development&apos;){
-    console.log(&apos;--- --- --- --- ---&apos;);
-    console.log(&apos;Hey that, notice that you are now in DEV MODE.&apos;);
-    console.log(&apos;--- --- --- --- ---&apos;);
-  }
 
   configApplyer(userConfig);
 
@@ -105,7 +103,7 @@ function init(userConfig){
     return;
   }
 
-  import(/* webpackMode: &quot;lazy&quot; */ &apos;./_cLive2DApp&apos;).then(f =&gt; {
+  import(/* webpackMode: &quot;lazy&quot; */ &apos;./cLive2DApp&apos;).then(f =&gt; {
     f.default();
   }).catch(err =&gt; {
     console.error(err);
