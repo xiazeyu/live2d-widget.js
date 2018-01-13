@@ -20,7 +20,7 @@ function getCurrentPath(){
     // use their API to get the path of current script
 
     // a.b();
-    console.log('wpStage1');
+    // console.log('wpStage1');
 
     return document.currentScript.src;
 
@@ -32,7 +32,7 @@ function getCurrentPath(){
 
     // document.currentScript doesn't supports
 
-    console.log('wpStage2');
+    // console.log('wpStage2');
 
     // Method 1
     // https://github.com/mozilla/pdf.js/blob/e081a708c36cb2aacff7889048863723fcf23671/src/shared/compatibility.js#L97

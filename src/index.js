@@ -14,6 +14,10 @@
 import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
 
+if (process.env.NODE_ENV === 'development'){
+  console.log('--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
+}
+
 /**
  * The public entry point
  * @param {Object}   [userConfig] User's custom config 用户自定义设置
@@ -37,19 +41,15 @@ import { config, configApplyer }from './config/configMgr';
  * @param {Number}   [userConfig.react.opacityOnHover = 0.2] OnHover opacity 鼠标移上透明度
  * @param {Function} [userConfig.react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type. 自定义事件接收器
  * @param {Boolean}  [userConfig.dev.log = false] Whether to show log 显示日志
+ * @param {Boolean}  [userConfig.dev.border = false] Whether to show border around the canvas 在canvas周围显示边界
  * @param {Boolean}  [userConfig.dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled 显示鼠标移动
  * @param {Function} [userConfig.dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position 自定义鼠标移动处理函数
+ * @return {null}
  */
 
 function init(userConfig){
 
   userConfig = typeof userConfig === 'undefined' ? {} : userConfig;
-
-  if (process.env.NODE_ENV === 'development'){
-    console.log('--- --- --- --- ---');
-    console.log('Hey that, notice that you are now in DEV MODE.');
-    console.log('--- --- --- --- ---');
-  }
 
   configApplyer(userConfig);
 
@@ -57,7 +57,7 @@ function init(userConfig){
     return;
   }
 
-  import(/* webpackMode: "lazy" */ './_cLive2DApp').then(f => {
+  import(/* webpackMode: "lazy" */ './cLive2DApp').then(f => {
     f.default();
   }).catch(err => {
     console.error(err);
