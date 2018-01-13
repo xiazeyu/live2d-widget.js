@@ -29,7 +29,7 @@ const defaultConfig = {
     myDefine: [],
   },
   display: {
-    AA: 2,
+    antialias: 2,
     widght: 150,
     height: 300,
     position: 'right',
