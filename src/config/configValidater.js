@@ -24,7 +24,7 @@ const configPropTypes = {
     myDefine: PropTypes.array,
   }),
   display: PropTypes.shape({
-    AA: PropTypes.number,
+    antialias: PropTypes.number,
     widght: PropTypes.number,
     height: PropTypes.number,
     scale: PropTypes.number,

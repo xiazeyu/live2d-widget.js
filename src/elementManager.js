@@ -4,60 +4,68 @@
 
 
 import { config } from './config/configMgr';
-import { htmlTemplate } from './tmplate/innerHTML';
+import htmlTemplate from './tmplate/innerHTML';
+
+/**
+ * The current WebGL element
+ * @type {RenderingContext}
+ */
 
 let currWebGL = undefined;
+
+/**
+ * The current canvas element
+ * @type {DOMString}
+ */
+
 let currCanvas;
 
-function createCanvas(){
+/**
+ * Create the canvas and styles using DOM
+ * @return {null}
+ */
+
+function createElement(){
 
   let newElem = document.createElement('div');
   newElem.id = config.name.div;
   newElem.innerHTML = htmlTemplate(config);
   document.body.appendChild(newElem);
+  currCanvas = document.getElementById(config.name.canvas);
+  initWebGL();
 
-}
-
-function getCurrCanvas(){
-  return currCanvas;
 }
 
 /**
- * set the current WebGL element to the container
- * @param {RenderingContext } e The WebGL element to be set
+ * Find and set the current WebGL element to the container
  * @return {null}
  */
 
-function setCurrWebGL(e){
-  currWebGL = e;
-}
+function initWebGL(){
 
-/**
- * get the current WebGL element in the container
- * @return {RenderingContext} The current WebGL element
- */
-
-function getCurrWebGL(){
-  return currWebGL;
-}
-
-function getWebGLContext()
-{
-    var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
-    for( var i = 0; i < NAMES.length; i++ ){
-        try{
-            var ctx = canvas.getContext(NAMES[i], {premultipliedAlpha : true});
-            if(ctx) return ctx;
-        }
-        catch(e){}
+  var NAMES = ['webgl2', 'webgl', 'experimental-webgl2', 'experimental-webgl', 'webkit-3d', 'moz-webgl'];
+  for(let i = 0; i < NAMES.length; i++){
+    try{
+      let ctx = currCanvas.getContext(NAMES[i], {
+        alpha: true,
+        antialias: true,
+        premultipliedAlpha: true,
+        failIfMajorPerformanceCaveat: false,
+      });
+      if(ctx) currWebGL = ctx;
+    }catch(e){}
+  }
+  if(!gl){
+    console.error('Live2D widgets: Failed to create WebGL context.');
+    if(!window.WebGLRenderingContext){
+      console.error('Your browser may not support WebGL, check https://get.webgl.org/ for futher information.');
     }
-    return null;
+    return;
+  }
 };
 
 
 export{
-  createCanvas,
-  getCurrCanvas,
-  setCurrWebGL,
-  getCurrWebGL,
+  createElement,
+  currWebGL,
 }
