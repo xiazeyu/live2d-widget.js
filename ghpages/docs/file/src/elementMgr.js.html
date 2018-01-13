@@ -100,8 +100,8 @@ function createElement(){
   newElem.innerHTML = htmlTemplate;
     let newCanvasElem = document.createElement(&apos;canvas&apos;);
     newCanvasElem.setAttribute(&apos;id&apos;, config.name.canvas);
-    newCanvasElem.setAttribute(&apos;width&apos;, config.display.width * config.display.antialias);
-    newCanvasElem.setAttribute(&apos;height&apos;, config.display.height * config.display.antialias);
+    newCanvasElem.setAttribute(&apos;width&apos;, config.display.width * config.display.superSample);
+    newCanvasElem.setAttribute(&apos;height&apos;, config.display.height * config.display.superSample);
     newCanvasElem.style.setProperty(&apos;position&apos;, &apos;fixed&apos;);
     newCanvasElem.style.setProperty(&apos;width&apos;, config.display.width);
     newCanvasElem.style.setProperty(&apos;height&apos;, config.display.height);

@@ -37,8 +37,8 @@ function createElement(){
   newElem.innerHTML = htmlTemplate;
     let newCanvasElem = document.createElement('canvas');
     newCanvasElem.setAttribute('id', config.name.canvas);
-    newCanvasElem.setAttribute('width', config.display.width * config.display.antialias);
-    newCanvasElem.setAttribute('height', config.display.height * config.display.antialias);
+    newCanvasElem.setAttribute('width', config.display.width * config.display.superSample);
+    newCanvasElem.setAttribute('height', config.display.height * config.display.superSample);
     newCanvasElem.style.setProperty('position', 'fixed');
     newCanvasElem.style.setProperty('width', config.display.width);
     newCanvasElem.style.setProperty('height', config.display.height);
