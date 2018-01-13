@@ -420,12 +420,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/lib/live2d.core.js",
-    "file/src/lib/live2d.core.js.html",
-    "src/lib/live2d.core.js",
-    "file"
-  ],
-  [
     "src/wppublicpath.js",
     "file/src/wpPublicPath.js.html",
     "src/wpPublicPath.js",
