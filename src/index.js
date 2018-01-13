@@ -18,6 +18,13 @@ if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
 }
 
+let coreApp;
+/**
+ * The main entry point, which ... is nothing
+ */
+
+function L2Dwidget(){};
+
 /**
  * The public entry point
  * @param {Object}   [userConfig] User's custom config 用户自定义设置
@@ -47,7 +54,7 @@ if (process.env.NODE_ENV === 'development'){
  * @return {null}
  */
 
-function init(userConfig){
+L2Dwidget.init = (userConfig) => {
 
   userConfig = typeof userConfig === 'undefined' ? {} : userConfig;
 
@@ -58,13 +65,31 @@ function init(userConfig){
   }
 
   import(/* webpackMode: "lazy" */ './cLive2DApp').then(f => {
-    f.default();
+    coreApp = f;
+    coreApp.theRealInit();
   }).catch(err => {
     console.error(err);
   });
 
 }
 
+/**
+ * Return the data URI of current frame, MINE type is image/png.
+ * @return {DOMString} Which contains data URI, MINE type is image/png
+ * @example
+ * You can use codes below to let the user download the current frame
+ *
+ * let link = document.createElement('a');
+ * link.innerHTML = 'Download image';
+ * link.href = L2Dwidget.captureFrame();
+ * link.download = 'live2d.png';
+ * link.click();
+ *
+ * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
+ */
+
+L2Dwidget.captureFrame = () => {return coreApp.captureFrame()};
+
 export {
-  init,
+  L2Dwidget,
 }
