@@ -1,7 +1,7 @@
 {
-  "coverage": "19.1%",
-  "expectCount": 314,
-  "actualCount": 60,
+  "coverage": "19.36%",
+  "expectCount": 315,
+  "actualCount": 61,
   "files": {
     "src/cDefine.js": {
       "expectCount": 1,
@@ -9,8 +9,8 @@
       "undocumentLines": []
     },
     "src/cLive2DApp.js": {
-      "expectCount": 31,
-      "actualCount": 1,
+      "expectCount": 32,
+      "actualCount": 2,
       "undocumentLines": [
         28,
         29,
@@ -24,24 +24,24 @@
         37,
         38,
         39,
-        84,
-        97,
-        113,
-        141,
-        148,
-        170,
-        175,
-        184,
-        248,
-        275,
-        302,
-        333,
-        341,
-        356,
-        369,
-        376,
-        383,
-        389
+        103,
+        116,
+        132,
+        160,
+        167,
+        189,
+        194,
+        203,
+        267,
+        294,
+        321,
+        352,
+        360,
+        375,
+        388,
+        395,
+        402,
+        408
       ]
     },
     "src/cManager.js": {
@@ -64,16 +64,16 @@
       "undocumentLines": [
         25,
         38,
-        188,
-        198,
-        214,
-        315,
-        330,
-        339,
-        386,
-        419,
-        431,
-        452
+        191,
+        201,
+        217,
+        318,
+        333,
+        342,
+        389,
+        422,
+        434,
+        455
       ]
     },
     "src/config/configMgr.js": {

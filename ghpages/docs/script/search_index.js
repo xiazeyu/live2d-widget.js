@@ -78,6 +78,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "live2d-widget/src/index.js~l2dwidget",
+    "function/index.html#static-function-L2Dwidget",
+    "<span>L2Dwidget</span> <span class=\"search-result-import-path\">live2d-widget/src/index.js</span>",
+    "function"
+  ],
+  [
     "live2d-widget/src/lib/live2dframework.js~live2dframework",
     "function/index.html#static-function-Live2DFramework",
     "<span>Live2DFramework</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
@@ -108,12 +114,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "live2d-widget/src/clive2dapp.js~clive2dapp",
-    "function/index.html#static-function-cLive2DApp",
-    "<span>cLive2DApp</span> <span class=\"search-result-import-path\">live2d-widget/src/cLive2DApp.js</span>",
-    "function"
-  ],
-  [
     "live2d-widget/src/cmanager.js~cmanager",
     "function/index.html#static-function-cManager",
     "<span>cManager</span> <span class=\"search-result-import-path\">live2d-widget/src/cManager.js</span>",
@@ -123,6 +123,12 @@ window.esdocSearchIndex = [
     "live2d-widget/src/cmodel.js~cmodel",
     "function/index.html#static-function-cModel",
     "<span>cModel</span> <span class=\"search-result-import-path\">live2d-widget/src/cModel.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/clive2dapp.js~captureframe",
+    "function/index.html#static-function-captureFrame",
+    "<span>captureFrame</span> <span class=\"search-result-import-path\">live2d-widget/src/cLive2DApp.js</span>",
     "function"
   ],
   [
@@ -150,9 +156,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "live2d-widget/src/index.js~init",
-    "function/index.html#static-function-init",
-    "<span>init</span> <span class=\"search-result-import-path\">live2d-widget/src/index.js</span>",
+    "live2d-widget/src/clive2dapp.js~therealinit",
+    "function/index.html#static-function-theRealInit",
+    "<span>theRealInit</span> <span class=\"search-result-import-path\">live2d-widget/src/cLive2DApp.js</span>",
     "function"
   ],
   [

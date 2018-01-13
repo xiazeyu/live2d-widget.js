@@ -30,11 +30,12 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-captureFrame">captureFrame</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-theRealInit">theRealInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cManager">cManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cModel">cModel</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2Dwidget">L2Dwidget</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cDefine">cDefine</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
@@ -80,6 +81,13 @@ if (process.env.NODE_ENV === &apos;development&apos;){
   console.log(&apos;--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---&apos;);
 }
 
+let coreApp;
+/**
+ * The main entry point, which ... is nothing
+ */
+
+function L2Dwidget(){};
+
 /**
  * The public entry point
  * @param {Object}   [userConfig] User&apos;s custom config &#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8BBE;&#x7F6E;
@@ -109,7 +117,7 @@ if (process.env.NODE_ENV === &apos;development&apos;){
  * @return {null}
  */
 
-function init(userConfig){
+L2Dwidget.init = (userConfig) =&gt; {
 
   userConfig = typeof userConfig === &apos;undefined&apos; ? {} : userConfig;
 
@@ -120,15 +128,33 @@ function init(userConfig){
   }
 
   import(/* webpackMode: &quot;lazy&quot; */ &apos;./cLive2DApp&apos;).then(f =&gt; {
-    f.default();
+    coreApp = f;
+    coreApp.theRealInit();
   }).catch(err =&gt; {
     console.error(err);
   });
 
 }
 
+/**
+ * Return the data URI of current frame, MINE type is image/png.
+ * @return {DOMString} Which contains data URI, MINE type is image/png
+ * @example
+ * You can use codes below to let the user download the current frame
+ *
+ * let link = document.createElement(&apos;a&apos;);
+ * link.innerHTML = &apos;Download image&apos;;
+ * link.href = L2Dwidget.captureFrame();
+ * link.download = &apos;live2d.png&apos;;
+ * link.click();
+ *
+ * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
+ */
+
+L2Dwidget.captureFrame = () =&gt; {return coreApp.captureFrame()};
+
 export {
-  init,
+  L2Dwidget,
 }
 </code></pre>
 
