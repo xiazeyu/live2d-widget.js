@@ -1,3 +1,8 @@
+/**
+ * @description The main part of live2d-widget
+ */
+
+
 /*import {
   UtSystem,
   UtDebug,
@@ -16,12 +21,10 @@
   ParamID
 } from './lib/live2d.min';*//*
 import './lib/live2d.min.js';
-import { createCanvas, initCanvas } from "./lib/canvasManager";
 import { device } from 'current-device';
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
 import cManager from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
-import { setContext } from "./lib/webGLContext";
 import { cDefine } from "./cDefine";
 
 const live2DMgr = new cManager();
@@ -40,23 +43,37 @@ let opacityDefault = 0.7;
 let opacityHover = 1;
 */
 
-import { config }from './config/configMgr.js';
+import { config } from './config/configMgr';
+import { createCanvas, setCurrWebGL, getCurrWebGL } from './elementManager';
+
+/**
+ * Main function of live2d-widget
+ * @return {null}
+ */
 
 export default () => {
-  console.log('config:');
-  console.log(config);
-/*
-    headPos = typeof iHeadPos === 'undefined' ? 0.5 : iHeadPos;
-    opacityDefault = typeof iOpacityDefault === 'undefined' ? 0.7 : iOpacityDefault;
-    opacityHover = typeof iOpacityHover === 'undefined' ? 1 : iOpacityHover;
-    initSettings();
-    createCanvas(iID);
-    initCanvas(iID);
-    init(iModelUrl);*/
+
+  createCanvas();
+  // initL2D();
+
 }
 
 
-function init(modelUrl) {
+function initCanvas(){/*
+  canvas = document.getElementById(canvasId);
+  if (canvas.addEventListener) {
+    window.addEventListener("click", mouseEvent);
+    window.addEventListener("mousedown", mouseEvent);
+    window.addEventListener("mousemove", mouseEvent);
+    window.addEventListener("mouseup", mouseEvent);
+    document.addEventListener("mouseleave", mouseEvent);
+    window.addEventListener("touchstart", touchEvent);
+    window.addEventListener("touchend", touchEvent);
+    window.addEventListener("touchmove", touchEvent);
+  }*/
+}
+
+function initL2D() {
   // 此处获取的是canvas的大小 即绘制大小，与实际显示大小无关
   let width = canvas.width;
   let height = canvas.height;
@@ -401,16 +418,3 @@ function transformScreenY(deviceY)
 {
     return deviceToScreen.transformY(deviceY);
 }
-
-function getWebGLContext()
-{
-    var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
-    for( var i = 0; i < NAMES.length; i++ ){
-        try{
-            var ctx = canvas.getContext(NAMES[i], {premultipliedAlpha : true});
-            if(ctx) return ctx;
-        }
-        catch(e){}
-    }
-    return null;
-};

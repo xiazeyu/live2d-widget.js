@@ -1,0 +1,20 @@
+function htmlTemplate(config){
+  return `<canvas id="${config.name.canvas}" width="${config.display.widget * config.display.AA}" height="${config.display.height * config.display.AA}"></canvas>
+<style>
+  #${config.name.canvas}{
+    position: fixed;
+    width: ${config.display.widget};
+    height: ${config.display.height};
+    opacity: ${config.react.opacityDefault};
+    ${config.display.position}: ${config.display.hOffset};
+    bottom: ${config.display.vOffset};
+    z-index: 99999;
+    pointer-events: none;
+    ${config.dev.border ? 'border: dashed 1px #CCC;' : ''}
+  }
+</style>`
+}
+
+export {
+  htmlTemplate,
+}

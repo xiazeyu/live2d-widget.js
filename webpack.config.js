@@ -70,7 +70,7 @@ module.exports = env => {return{
   ],
 
   resolve: {
-    extensions: ['.js', '.webpack.js', '.web.js'],
+    extensions: ['.js','.html', '.webpack.js', '.web.js'],
   },
 
   module: {
@@ -80,7 +80,7 @@ module.exports = env => {return{
         use: [{
           loader: 'babel-loader',
         }],
-      },
+      },/*
       {test: /\.html$/,
         use: [{
           loader: 'html-loader',
@@ -88,7 +88,7 @@ module.exports = env => {return{
             minimize: true,
           },
         }],
-      },
+      },*/
     ]
   },
 }}

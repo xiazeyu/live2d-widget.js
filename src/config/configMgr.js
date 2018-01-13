@@ -52,6 +52,7 @@ const defaultConfig = {
   },
   dev: {
     log: false,
+    border: false,
     mouseLog: false,
     mouseFunc: (x, y, ix, iy) => {console.log(`MouseFunc: ${x},${y}; ${ix}, ${iy}`);},
   },
@@ -61,6 +62,7 @@ const defaultConfig = {
 /**
  * Apply users function, make the full settings
  * @param  {Object} [userConfig] User's custom config
+ * @return {null}
  */
 
 function configApplyer(userConfig){

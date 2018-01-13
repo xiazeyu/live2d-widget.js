@@ -48,6 +48,7 @@ const configPropTypes = {
   }),
   dev: PropTypes.shape({
     log: PropTypes.bool,
+    border: PropTypes.bool,
     mouseLog: PropTypes.bool,
     mouseFunc: PropTypes.func,
   }),
@@ -58,6 +59,7 @@ const configPropTypes = {
  * @param  {Object} [userConfig] User's config
  * @description Only console.warn
  * @deprecated Only respond one time when you call it, won't be built in production.
+ * @return {null}
  */
 
 function configValidater(userConfig){
