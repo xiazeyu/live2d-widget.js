@@ -3,7 +3,7 @@ import PlatformManager from "./lib/PlatformManager";
 import { cModel } from "./cModel";
 import { cDefine } from "./cDefine";
 
-export default function cManager() {
+function cManager() {
   // console.log("--> cManager()");
 
   this.models = [];
@@ -98,3 +98,7 @@ cManager.prototype.tapEvent = function (x, y) {
 
   return true;
 };
+
+export{
+  cManager,
+}
