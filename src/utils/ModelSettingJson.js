@@ -12,7 +12,7 @@ import { Live2DFramework } from "../lib/Live2DFramework"
 * @param null
 * @returns {Structure} ModelSettingJson
 */
-export default function ModelSettingJson()
+export function ModelSettingJson()
 {   // Define the index in the json file.
     this.NAME = "name";
     this.ID = "id";

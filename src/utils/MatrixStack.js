@@ -18,7 +18,7 @@
 * @desc A matrix stack releated to draw the model
 */
 
-function MatrixStack() {}
+export function MatrixStack() {}
 
 MatrixStack.matrixStack = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
 MatrixStack.depth = 0;
@@ -132,5 +132,3 @@ MatrixStack.multMatrix = function(matNew)
     thisRef.currentMatrix[i] = thisRef.tmp[i];
   }
 }
-
-module.exports = MatrixStack;

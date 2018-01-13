@@ -20,7 +20,9 @@ Add the Sseexxyyy live2d to your webpages!
 
 [TOC]
 
-Demo: [TBD.](javascript:void(0);)
+Demo: [Still working, but you can have a look~](https://xiazeyu.github.io/live2d-widget.js/dev.html)
+
+Docs(including APIs): [Click me!](https://xiazeyu.github.io/live2d-widget.js/)
 
 Online generator: [TBD.](javascript:void(0);)
 

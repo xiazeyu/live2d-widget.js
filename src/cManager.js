@@ -1,5 +1,5 @@
 import { Live2DFramework } from "./lib/Live2DFramework";
-import { PlatformManager } from "./lib/PlatformManager";
+import { PlatformManager } from "./PlatformManager";
 import { cModel } from "./cModel";
 import { cDefine } from "./cDefine";
 
@@ -10,8 +10,7 @@ function cManager() {
   this.count = -1;
   this.reloadFlg = false;
 
-  Live2D.init();
-  Live2DFramework.setPlatformManager(new PlatformManager);
+  Live2DFramework.setPlatformManager(new PlatformManager());
 
 }
 

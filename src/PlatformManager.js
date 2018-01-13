@@ -127,6 +127,11 @@ PlatformManager.prototype.loadTexture     = function(model/*ALive2DModel*/, no/*
 {
     // load textures
     var loadedImage = new Image();
+    // Thanks to @mashirozx & @fghrsh
+    // Issues:
+    // @https://github.com/journey-ad/live2d_src/issues/1
+    // @https://github.com/journey-ad/live2d_src/issues/3
+    loadedImage.crossOrigin = 'Anonymous';
     loadedImage.src = path;
     loadedImage.onload = onload;
     loadedImage.onerror = onerror;

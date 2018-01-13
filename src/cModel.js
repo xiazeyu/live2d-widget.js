@@ -2,13 +2,27 @@ import { Live2DFramework, L2DBaseModel, L2DEyeBlink } from "./lib/Live2DFramewor
 import { ModelSettingJson } from "./utils/ModelSettingJson";
 import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
-
+import { UtSystem,/*
+         UtDebug,
+         LDTransform,
+         LDGL,
+         Live2D,
+         Live2DModelWebGL,
+         Live2DModelJS,
+         Live2DMotion,
+         MotionQueueManager,
+         PhysicsHair,
+         AMotion,
+         PartsDataID,
+         DrawDataID,
+         BaseDataID,
+         ParamID*/ } from './lib/live2d.core';
 //============================================================
 //============================================================
 //  class cModel     extends L2DBaseModel
 //============================================================
 //============================================================
-export default function cModel()
+export function cModel()
 {
     //L2DBaseModel.apply(this, arguments);
     L2DBaseModel.prototype.constructor.call(this);

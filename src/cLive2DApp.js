@@ -4,7 +4,7 @@
 
 
 import { config } from './config/configMgr';
-import { createElement, currWebGL } from './elementMgr';
+import { createElement, currWebGL, currCanvas } from './elementMgr';
 import { UtSystem,
          UtDebug,
          LDTransform,
@@ -23,8 +23,9 @@ import { UtSystem,
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
 import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
-import cDefine from "./cDefine";
+import { cDefine } from "./cDefine";
 
+let live2DMgr = new cManager();
 let isDrawStart = false;
 let dragMgr = null;
 let viewMatrix = null;
