@@ -3,7 +3,7 @@
  */
 
 
-/*import {
+import {
   UtSystem,
   UtDebug,
   LDTransform,
@@ -19,8 +19,7 @@
   DrawDataID,
   BaseDataID,
   ParamID
-} from './lib/live2d.min';*//*
-import './lib/live2d.min.js';
+} from './lib/live2d.core';/*
 import { device } from 'current-device';
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
 import cManager from "./cManager";
@@ -29,7 +28,6 @@ import { cDefine } from "./cDefine";
 
 const live2DMgr = new cManager();
 let isDrawStart = false;
-let gl = null;
 let canvas = null;
 let dragMgr = null;
 let viewMatrix = null;
@@ -44,7 +42,7 @@ let opacityHover = 1;
 */
 
 import { config } from './config/configMgr';
-import { createCanvas, setCurrWebGL, getCurrWebGL } from './elementManager';
+import { createElement, currWebGL } from './elementManager';
 
 /**
  * Main function of live2d-widget
@@ -53,32 +51,10 @@ import { createCanvas, setCurrWebGL, getCurrWebGL } from './elementManager';
 
 export default () => {
 
-  createCanvas();
-  // initL2D();
+  createElement();
 
-}
-
-
-function initCanvas(){/*
-  canvas = document.getElementById(canvasId);
-  if (canvas.addEventListener) {
-    window.addEventListener("click", mouseEvent);
-    window.addEventListener("mousedown", mouseEvent);
-    window.addEventListener("mousemove", mouseEvent);
-    window.addEventListener("mouseup", mouseEvent);
-    document.addEventListener("mouseleave", mouseEvent);
-    window.addEventListener("touchstart", touchEvent);
-    window.addEventListener("touchend", touchEvent);
-    window.addEventListener("touchmove", touchEvent);
-  }*/
-}
-
-function initL2D() {
-  // 此处获取的是canvas的大小 即绘制大小，与实际显示大小无关
   let width = canvas.width;
   let height = canvas.height;
-  // 以下为实际显示大小
-  // #32
   let sWidth = parseInt(canvas.style.width);
   let sHeight = parseInt(canvas.style.height);
 
@@ -107,19 +83,27 @@ function initL2D() {
   deviceToScreen.multTranslate(-sWidth / 2.0, -sHeight / 2.0);  // #32
   deviceToScreen.multScale(2 / sWidth, -2 / sHeight);  // #32
 
-  gl = getWebGLContext();
-  setContext(gl);
-  if (!gl) { // Check if WebGL element is created successfully.
-    console.error("Failed to create WebGL context.");
-    if(!window.WebGLRenderingContext){
-      console.error("Your browser don't support WebGL, check https://get.webgl.org/ for futher information.");
-    }
-    return;
-  }
-  window.Live2D.setGL(gl);
-  gl.clearColor(0.0, 0.0, 0.0, 0.0);
-  changeModel(modelUrl);
+
+  Live2D.setGL(currWebGL);
+  currWebGL.clearColor(0.0, 0.0, 0.0, 0.0);
+  changeModel(config.model.jsonPath);
   startDraw();
+
+}
+
+
+function initEvent(){/*
+  canvas = document.getElementById(canvasId);
+  if (canvas.addEventListener) {
+    window.addEventListener("click", mouseEvent);
+    window.addEventListener("mousedown", mouseEvent);
+    window.addEventListener("mousemove", mouseEvent);
+    window.addEventListener("mouseup", mouseEvent);
+    document.addEventListener("mouseleave", mouseEvent);
+    window.addEventListener("touchstart", touchEvent);
+    window.addEventListener("touchend", touchEvent);
+    window.addEventListener("touchmove", touchEvent);
+  }*/
 }
 
 function startDraw() {
@@ -145,7 +129,7 @@ function draw()
     dragMgr.update();
     live2DMgr.setDrag(dragMgr.getX(), dragMgr.getY());
 
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    currWebGL.clear(currWebGL.COLOR_BUFFER_BIT);
 
     MatrixStack.multMatrix(projMatrix.getArray());
     MatrixStack.multMatrix(viewMatrix.getArray());
@@ -160,7 +144,7 @@ function draw()
         if (model.initialized && !model.updating)
         {
             model.update();
-            model.draw(gl);
+            model.draw(currWebGL);
         }
     }
     MatrixStack.pop();
@@ -170,7 +154,7 @@ function changeModel(modelurl) // 更换模型
 {
     live2DMgr.reloadFlg = true;
     live2DMgr.count++; // 现在仍有多模型支持，稍后可以精简
-    live2DMgr.changeModel(gl, modelurl);
+    live2DMgr.changeModel(currWebGL, modelurl);
 }
 
 function modelScaling(scale) {
