@@ -36,6 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cDefine">cDefine</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-EYE_STATE">EYE_STATE</a></span></span></li>
@@ -52,7 +53,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DTargetPoint">L2DTargetPoint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DViewMatrix">L2DViewMatrix</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Live2DFramework">Live2DFramework</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MatrixStack">MatrixStack</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -64,7 +66,7 @@
 * @desc The definitions of values releated to model react
 */
 
-var cDefine = {
+export const cDefine = {
   // above are viewMatrix value settings
   VIEW_LOGICAL_LEFT : -1, // -1, the left abscissa of viewMatrix
   VIEW_LOGICAL_RIGHT : 1, // 1, the right abscissa of viewMatrix
@@ -93,8 +95,6 @@ var cDefine = {
   HIT_AREA_HEAD : &quot;head&quot;,
   HIT_AREA_BODY : &quot;body&quot;
 };
-
-module.exports = cDefine;
 </code></pre>
 
 </div>

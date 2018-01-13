@@ -18,6 +18,22 @@
 * @desc Basic functions releated to model react
 */
 
+import { UtSystem,
+         UtDebug,
+         LDTransform,
+         LDGL,
+         Live2D,
+         Live2DModelWebGL,
+         Live2DModelJS,
+         Live2DMotion,
+         MotionQueueManager,
+         PhysicsHair,
+         AMotion,
+         PartsDataID,
+         DrawDataID,
+         BaseDataID,
+         ParamID } from './live2d.core';
+
 //============================================================
 //============================================================
 //  class L2DBaseModel
@@ -1142,7 +1158,7 @@ function L2DTargetPoint() {
 }
 
 //============================================================
-L2DTargetPoint.FRAME_RATE = 30;
+L2DTargetPoint.FRAME_RATE = 60;
 
 //============================================================
 //    L2DTargetPoint # set()
@@ -1374,18 +1390,18 @@ Live2DFramework.setPlatformManager = function (platformManager /*IPlatformManage
 }
 
 export{
-    L2DTargetPoint,
-    Live2DFramework,
-    L2DViewMatrix,
-    L2DPose,
-    L2DPartsParam,
-    L2DPhysics,
-    L2DMotionManager,
-    L2DModelMatrix,
-    L2DMatrix44,
-    EYE_STATE,
-    L2DEyeBlink,
-    L2DExpressionParam,
-    L2DExpressionMotion,
-    L2DBaseModel,
+  L2DTargetPoint,
+  Live2DFramework,
+  L2DViewMatrix,
+  L2DPose,
+  L2DPartsParam,
+  L2DPhysics,
+  L2DMotionManager,
+  L2DModelMatrix,
+  L2DMatrix44,
+  EYE_STATE,
+  L2DEyeBlink,
+  L2DExpressionParam,
+  L2DExpressionMotion,
+  L2DBaseModel,
 }

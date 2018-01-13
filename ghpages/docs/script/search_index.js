@@ -84,6 +84,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "live2d-widget/src/utils/matrixstack.js~matrixstack",
+    "function/index.html#static-function-MatrixStack",
+    "<span>MatrixStack</span> <span class=\"search-result-import-path\">live2d-widget/src/utils/MatrixStack.js</span>",
+    "function"
+  ],
+  [
     "live2d-widget/src/utils/modelsettingjson.js~modelsettingjson",
     "function/index.html#static-function-ModelSettingJson",
     "<span>ModelSettingJson</span> <span class=\"search-result-import-path\">live2d-widget/src/utils/ModelSettingJson.js</span>",
@@ -94,6 +100,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-PlatformManager",
     "<span>PlatformManager</span> <span class=\"search-result-import-path\">live2d-widget/src/PlatformManager.js</span>",
     "function"
+  ],
+  [
+    "live2d-widget/src/cdefine.js~cdefine",
+    "variable/index.html#static-variable-cDefine",
+    "<span>cDefine</span> <span class=\"search-result-import-path\">live2d-widget/src/cDefine.js</span>",
+    "variable"
   ],
   [
     "live2d-widget/src/clive2dapp.js~clive2dapp",

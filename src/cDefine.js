@@ -4,7 +4,7 @@
 * @desc The definitions of values releated to model react
 */
 
-var cDefine = {
+export const cDefine = {
   // above are viewMatrix value settings
   VIEW_LOGICAL_LEFT : -1, // -1, the left abscissa of viewMatrix
   VIEW_LOGICAL_RIGHT : 1, // 1, the right abscissa of viewMatrix
@@ -33,5 +33,3 @@ var cDefine = {
   HIT_AREA_HEAD : "head",
   HIT_AREA_BODY : "body"
 };
-
-module.exports = cDefine;

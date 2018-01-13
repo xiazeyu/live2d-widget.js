@@ -27,6 +27,11 @@ let currCanvas;
 
 function createElement(){
 
+  let e = document.getElementById(config.name.div)
+  if (e !== null){
+    document.body.removeChild(e);
+  }
+
   let newElem = document.createElement('div');
   newElem.id = config.name.div;
   newElem.innerHTML = htmlTemplate;
@@ -84,4 +89,5 @@ function initWebGL(){
 export{
   createElement,
   currWebGL,
+  currCanvas,
 }

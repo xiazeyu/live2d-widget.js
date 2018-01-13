@@ -36,6 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cDefine">cDefine</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-EYE_STATE">EYE_STATE</a></span></span></li>
@@ -52,7 +53,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DTargetPoint">L2DTargetPoint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DViewMatrix">L2DViewMatrix</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Live2DFramework">Live2DFramework</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-MatrixStack">MatrixStack</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -110,8 +112,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Basic functions releated to model react</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -469,6 +470,35 @@
           
           
           
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-MatrixStack">MatrixStack</a></span></span><span class="code" data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>A matrix stack releated to draw the model</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span><span class="code" data-ice="signature">(null: <span>*</span>): <span>Structure</span></span>
         </p>
       </div>
@@ -730,11 +760,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber521">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber537">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {EYE_STATE} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber521">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {EYE_STATE} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber537">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -773,15 +803,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber26">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DBaseModel} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber26">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DBaseModel} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber42">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Basic functions releated to model react</p>
-</div>
+  
 
   
 
@@ -817,11 +846,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber321">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber337">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DExpressionMotion} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber321">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DExpressionMotion} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber337">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -860,11 +889,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber417">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber433">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DExpressionParam} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber417">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DExpressionParam} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber433">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -903,11 +932,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber428">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber444">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DEyeBlink} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber428">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DEyeBlink} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber444">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -946,11 +975,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber534">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber550">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DMatrix44} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber534">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DMatrix44} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber550">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -989,11 +1018,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber682">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber698">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DModelMatrix} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber682">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DModelMatrix} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber698">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1054,11 +1083,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber790">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber806">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DMotionManager} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber790">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DMotionManager} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber806">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1097,11 +1126,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1112">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1128">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPartsParam} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1112">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPartsParam} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1128">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1156,11 +1185,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber867">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber883">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPhysics} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber867">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPhysics} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber883">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1199,11 +1228,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber952">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber968">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPose} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber952">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DPose} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber968">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1242,11 +1271,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1133">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1149">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DTargetPoint} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1133">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DTargetPoint} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1149">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1285,11 +1314,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1219">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1235">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DViewMatrix} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1219">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {L2DViewMatrix} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1235">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1328,14 +1357,58 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1356">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1372">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Live2DFramework} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1356">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Live2DFramework} from &apos;<span><a href="file/src/lib/Live2DFramework.js.html#lineNumber1372">live2d-widget/src/lib/Live2DFramework.js</a></span>&apos;</code></pre></div>
   
   
   
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-MatrixStack">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">MatrixStack</span><span class="code" data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utils/MatrixStack.js.html#lineNumber21">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MatrixStack} from &apos;<span><a href="file/src/utils/MatrixStack.js.html#lineNumber21">live2d-widget/src/utils/MatrixStack.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>A matrix stack releated to draw the model</p>
+</div>
 
   
 
@@ -1375,7 +1448,7 @@
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import ModelSettingJson from &apos;<span><a href="file/src/utils/ModelSettingJson.js.html#lineNumber15">live2d-widget/src/utils/ModelSettingJson.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ModelSettingJson} from &apos;<span><a href="file/src/utils/ModelSettingJson.js.html#lineNumber15">live2d-widget/src/utils/ModelSettingJson.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>return the struct of ModelSettingJson</p>
@@ -1517,11 +1590,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/cLive2DApp.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/cLive2DApp.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cLive2DApp from &apos;<span><a href="file/src/cLive2DApp.js.html#lineNumber47">live2d-widget/src/cLive2DApp.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cLive2DApp from &apos;<span><a href="file/src/cLive2DApp.js.html#lineNumber48">live2d-widget/src/cLive2DApp.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Main function of live2d-widget</p>
@@ -1616,11 +1689,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/cModel.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/cModel.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cModel from &apos;<span><a href="file/src/cModel.js.html#lineNumber11">live2d-widget/src/cModel.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {cModel} from &apos;<span><a href="file/src/cModel.js.html#lineNumber25">live2d-widget/src/cModel.js</a></span>&apos;</code></pre></div>
   
   
   
