@@ -23,7 +23,7 @@ import { UtSystem,
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
 import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
-import { cDefine } from "./cDefine";
+import cDefine from "./cDefine";
 
 let isDrawStart = false;
 let dragMgr = null;
@@ -48,8 +48,8 @@ export default () => {
 
   createElement();
 
-  let dragMgr = new L2DTargetPoint();
-  let ratio = height / width;
+  dragMgr = new L2DTargetPoint();
+  let ratio = config.display.height / config.display.width;
   let left = cDefine.VIEW_LOGICAL_LEFT;
   let right = cDefine.VIEW_LOGICAL_RIGHT;
   let bottom = -ratio;
@@ -65,13 +65,11 @@ export default () => {
     cDefine.VIEW_LOGICAL_MAX_TOP);
 
   projMatrix = new L2DMatrix44();
-  projMatrix.multScale(1, (width / height));
+  projMatrix.multScale(1, (config.display.width / config.display.height));
 
   deviceToScreen = new L2DMatrix44();
-  // deviceToScreen.multTranslate(-width / 2.0, -height / 2.0); // old codes
-  // deviceToScreen.multScale(2 / width, -2 / width); // old codes
-  deviceToScreen.multTranslate(-sWidth / 2.0, -sHeight / 2.0);  // #32
-  deviceToScreen.multScale(2 / sWidth, -2 / sHeight);  // #32
+  deviceToScreen.multTranslate(-config.display.width / 2.0, -config.display.height / 2.0);  // #32
+  deviceToScreen.multScale(2 / config.display.width, -2 / config.display.height);  // #32
 
 
   Live2D.setGL(currWebGL);

@@ -13,9 +13,8 @@
 * @desc A library that provide basic IO and json function
 */
 
-
-import { getContext } from "./webGLContext";
-import { Live2DModelWebGL } from "./live2d.core";
+import { currWebGL } from './elementMgr';
+import { Live2DModelWebGL } from "./lib/live2d.core";
 
 
 //============================================================
@@ -30,7 +29,7 @@ import { Live2DModelWebGL } from "./live2d.core";
 * @param null
 * @returns {Structure} PlatformManager
 */
-export default function PlatformManager()
+export function PlatformManager()
 {
 
 }
@@ -135,7 +134,7 @@ PlatformManager.prototype.loadTexture     = function(model/*ALive2DModel*/, no/*
     // var thisRef = this;
     loadedImage.onload = function() {
         // create texture
-        var gl = getContext();
+        var gl = currWebGL;
         var texture = gl.createTexture();
         if (!texture){ console.error("Failed to generate gl texture name."); return -1; }
 

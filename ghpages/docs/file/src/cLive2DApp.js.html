@@ -30,15 +30,29 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cManager">cManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cModel">cModel</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cLive2DApp">cLive2DApp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-init">init</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#-utils">_utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configApplyer">configApplyer</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-EYE_STATE">EYE_STATE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DBaseModel">L2DBaseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DExpressionMotion">L2DExpressionMotion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DExpressionParam">L2DExpressionParam</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DEyeBlink">L2DEyeBlink</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DMatrix44">L2DMatrix44</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DModelMatrix">L2DModelMatrix</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DMotionManager">L2DMotionManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DPartsParam">L2DPartsParam</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DPhysics">L2DPhysics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DPose">L2DPose</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DTargetPoint">L2DTargetPoint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2DViewMatrix">L2DViewMatrix</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Live2DFramework">Live2DFramework</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ModelSettingJson">ModelSettingJson</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -49,32 +63,29 @@
  */
 
 
-import {
-  UtSystem,
-  UtDebug,
-  LDTransform,
-  LDGL,
-  Live2D,
-  Live2DModelWebGL,
-  Live2DModelJS,
-  Live2DMotion,
-  MotionQueueManager,
-  PhysicsHair,
-  AMotion,
-  PartsDataID,
-  DrawDataID,
-  BaseDataID,
-  ParamID
-} from &apos;./lib/live2d.core&apos;;/*
-import { device } from &apos;current-device&apos;;
+import { config } from &apos;./config/configMgr&apos;;
+import { createElement, currWebGL } from &apos;./elementMgr&apos;;
+import { UtSystem,
+         UtDebug,
+         LDTransform,
+         LDGL,
+         Live2D,
+         Live2DModelWebGL,
+         Live2DModelJS,
+         Live2DMotion,
+         MotionQueueManager,
+         PhysicsHair,
+         AMotion,
+         PartsDataID,
+         DrawDataID,
+         BaseDataID,
+         ParamID } from &apos;./lib/live2d.core&apos;;
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from &quot;./lib/Live2DFramework&quot;;
-import cManager from &quot;./cManager&quot;;
+import { cManager } from &quot;./cManager&quot;;
 import { MatrixStack } from &quot;./utils/MatrixStack&quot;;
-import { cDefine } from &quot;./cDefine&quot;;
+import cDefine from &quot;./cDefine&quot;;
 
-const live2DMgr = new cManager();
 let isDrawStart = false;
-let canvas = null;
 let dragMgr = null;
 let viewMatrix = null;
 let projMatrix = null;
@@ -85,10 +96,8 @@ let lastMouseY = 0;
 let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
-*/
 
-import { config } from &apos;./config/configMgr&apos;;
-import { createElement, currWebGL } from &apos;./elementMgr&apos;;
+
 
 /**
  * Main function of live2d-widget
@@ -99,13 +108,8 @@ export default () =&gt; {
 
   createElement();
 
-  let width = canvas.width;
-  let height = canvas.height;
-  let sWidth = parseInt(canvas.style.width);
-  let sHeight = parseInt(canvas.style.height);
-
   dragMgr = new L2DTargetPoint();
-  let ratio = height / width;
+  let ratio = config.display.height / config.display.width;
   let left = cDefine.VIEW_LOGICAL_LEFT;
   let right = cDefine.VIEW_LOGICAL_RIGHT;
   let bottom = -ratio;
@@ -121,13 +125,11 @@ export default () =&gt; {
     cDefine.VIEW_LOGICAL_MAX_TOP);
 
   projMatrix = new L2DMatrix44();
-  projMatrix.multScale(1, (width / height));
+  projMatrix.multScale(1, (config.display.width / config.display.height));
 
   deviceToScreen = new L2DMatrix44();
-  // deviceToScreen.multTranslate(-width / 2.0, -height / 2.0); // old codes
-  // deviceToScreen.multScale(2 / width, -2 / width); // old codes
-  deviceToScreen.multTranslate(-sWidth / 2.0, -sHeight / 2.0);  // #32
-  deviceToScreen.multScale(2 / sWidth, -2 / sHeight);  // #32
+  deviceToScreen.multTranslate(-config.display.width / 2.0, -config.display.height / 2.0);  // #32
+  deviceToScreen.multScale(2 / config.display.width, -2 / config.display.height);  // #32
 
 
   Live2D.setGL(currWebGL);
@@ -139,8 +141,7 @@ export default () =&gt; {
 
 
 function initEvent(){/*
-  canvas = document.getElementById(canvasId);
-  if (canvas.addEventListener) {
+  if (currCanvas.addEventListener) {
     window.addEventListener(&quot;click&quot;, mouseEvent);
     window.addEventListener(&quot;mousedown&quot;, mouseEvent);
     window.addEventListener(&quot;mousemove&quot;, mouseEvent);
@@ -163,7 +164,7 @@ function startDraw() {
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
 
-      requestAnimationFrame(tick, canvas);
+      requestAnimationFrame(tick, currCanvas);
     })();
   }
 }
@@ -307,7 +308,7 @@ function modelTurnHead(event)
 {
     drag = true;
 
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
@@ -334,7 +335,7 @@ function modelTapEvent(event)
 {
     drag = true;
 
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
@@ -359,7 +360,7 @@ function modelTapEvent(event)
 
 function followPointer(event)
 {
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);

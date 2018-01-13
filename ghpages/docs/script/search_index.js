@@ -1,14 +1,98 @@
 window.esdocSearchIndex = [
   [
-    "live2d-widget/src/_utils/_modelsettingjson.js~modelsettingjson",
-    "function/index.html#static-function-ModelSettingJson",
-    "<span>ModelSettingJson</span> <span class=\"search-result-import-path\">live2d-widget/src/_utils/_ModelSettingJson.js</span>",
+    "live2d-widget/src/lib/live2dframework.js~eye_state",
+    "function/index.html#static-function-EYE_STATE",
+    "<span>EYE_STATE</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
     "function"
   ],
   [
-    "live2d-widget/src/_platformmanager.js~platformmanager",
+    "live2d-widget/src/lib/live2dframework.js~l2dbasemodel",
+    "function/index.html#static-function-L2DBaseModel",
+    "<span>L2DBaseModel</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dexpressionmotion",
+    "function/index.html#static-function-L2DExpressionMotion",
+    "<span>L2DExpressionMotion</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dexpressionparam",
+    "function/index.html#static-function-L2DExpressionParam",
+    "<span>L2DExpressionParam</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2deyeblink",
+    "function/index.html#static-function-L2DEyeBlink",
+    "<span>L2DEyeBlink</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dmatrix44",
+    "function/index.html#static-function-L2DMatrix44",
+    "<span>L2DMatrix44</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dmodelmatrix",
+    "function/index.html#static-function-L2DModelMatrix",
+    "<span>L2DModelMatrix</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dmotionmanager",
+    "function/index.html#static-function-L2DMotionManager",
+    "<span>L2DMotionManager</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dpartsparam",
+    "function/index.html#static-function-L2DPartsParam",
+    "<span>L2DPartsParam</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dphysics",
+    "function/index.html#static-function-L2DPhysics",
+    "<span>L2DPhysics</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dpose",
+    "function/index.html#static-function-L2DPose",
+    "<span>L2DPose</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dtargetpoint",
+    "function/index.html#static-function-L2DTargetPoint",
+    "<span>L2DTargetPoint</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~l2dviewmatrix",
+    "function/index.html#static-function-L2DViewMatrix",
+    "<span>L2DViewMatrix</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/lib/live2dframework.js~live2dframework",
+    "function/index.html#static-function-Live2DFramework",
+    "<span>Live2DFramework</span> <span class=\"search-result-import-path\">live2d-widget/src/lib/Live2DFramework.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/utils/modelsettingjson.js~modelsettingjson",
+    "function/index.html#static-function-ModelSettingJson",
+    "<span>ModelSettingJson</span> <span class=\"search-result-import-path\">live2d-widget/src/utils/ModelSettingJson.js</span>",
+    "function"
+  ],
+  [
+    "live2d-widget/src/platformmanager.js~platformmanager",
     "function/index.html#static-function-PlatformManager",
-    "<span>PlatformManager</span> <span class=\"search-result-import-path\">live2d-widget/src/_PlatformManager.js</span>",
+    "<span>PlatformManager</span> <span class=\"search-result-import-path\">live2d-widget/src/PlatformManager.js</span>",
     "function"
   ],
   [
@@ -18,15 +102,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "live2d-widget/src/_cmanager.js~cmanager",
+    "live2d-widget/src/cmanager.js~cmanager",
     "function/index.html#static-function-cManager",
-    "<span>cManager</span> <span class=\"search-result-import-path\">live2d-widget/src/_cManager.js</span>",
+    "<span>cManager</span> <span class=\"search-result-import-path\">live2d-widget/src/cManager.js</span>",
     "function"
   ],
   [
-    "live2d-widget/src/_cmodel.js~cmodel",
+    "live2d-widget/src/cmodel.js~cmodel",
     "function/index.html#static-function-cModel",
-    "<span>cModel</span> <span class=\"search-result-import-path\">live2d-widget/src/_cModel.js</span>",
+    "<span>cModel</span> <span class=\"search-result-import-path\">live2d-widget/src/cModel.js</span>",
     "function"
   ],
   [
@@ -342,45 +426,33 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/_platformmanager.js",
-    "file/src/_PlatformManager.js.html",
-    "src/_PlatformManager.js",
+    "src/platformmanager.js",
+    "file/src/PlatformManager.js.html",
+    "src/PlatformManager.js",
     "file"
   ],
   [
-    "src/_cdefine.js",
-    "file/src/_cDefine.js.html",
-    "src/_cDefine.js",
-    "file"
-  ],
-  [
-    "src/_cmanager.js",
-    "file/src/_cManager.js.html",
-    "src/_cManager.js",
-    "file"
-  ],
-  [
-    "src/_cmodel.js",
-    "file/src/_cModel.js.html",
-    "src/_cModel.js",
-    "file"
-  ],
-  [
-    "src/_utils/_matrixstack.js",
-    "file/src/_utils/_MatrixStack.js.html",
-    "src/_utils/_MatrixStack.js",
-    "file"
-  ],
-  [
-    "src/_utils/_modelsettingjson.js",
-    "file/src/_utils/_ModelSettingJson.js.html",
-    "src/_utils/_ModelSettingJson.js",
+    "src/cdefine.js",
+    "file/src/cDefine.js.html",
+    "src/cDefine.js",
     "file"
   ],
   [
     "src/clive2dapp.js",
     "file/src/cLive2DApp.js.html",
     "src/cLive2DApp.js",
+    "file"
+  ],
+  [
+    "src/cmanager.js",
+    "file/src/cManager.js.html",
+    "src/cManager.js",
+    "file"
+  ],
+  [
+    "src/cmodel.js",
+    "file/src/cModel.js.html",
+    "src/cModel.js",
     "file"
   ],
   [
@@ -408,15 +480,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/lib/_live2dframework.js",
-    "file/src/lib/_Live2DFramework.js.html",
-    "src/lib/_Live2DFramework.js",
+    "src/lib/live2dframework.js",
+    "file/src/lib/Live2DFramework.js.html",
+    "src/lib/Live2DFramework.js",
     "file"
   ],
   [
     "src/lib/_live2dframework.official.js",
     "file/src/lib/_Live2DFramework.official.js.html",
     "src/lib/_Live2DFramework.official.js",
+    "file"
+  ],
+  [
+    "src/utils/matrixstack.js",
+    "file/src/utils/MatrixStack.js.html",
+    "src/utils/MatrixStack.js",
+    "file"
+  ],
+  [
+    "src/utils/modelsettingjson.js",
+    "file/src/utils/ModelSettingJson.js.html",
+    "src/utils/ModelSettingJson.js",
     "file"
   ],
   [
