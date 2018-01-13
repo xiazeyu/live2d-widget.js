@@ -1373,19 +1373,19 @@ Live2DFramework.setPlatformManager = function (platformManager /*IPlatformManage
     Live2DFramework.platformManager = platformManager;
 }
 
-module.exports = {
-    L2DTargetPoint: L2DTargetPoint,
-    Live2DFramework: Live2DFramework,
-    L2DViewMatrix: L2DViewMatrix,
-    L2DPose: L2DPose,
-    L2DPartsParam: L2DPartsParam,
-    L2DPhysics: L2DPhysics,
-    L2DMotionManager: L2DMotionManager,
-    L2DModelMatrix: L2DModelMatrix,
-    L2DMatrix44: L2DMatrix44,
-    EYE_STATE: EYE_STATE,
-    L2DEyeBlink: L2DEyeBlink,
-    L2DExpressionParam: L2DExpressionParam,
-    L2DExpressionMotion: L2DExpressionMotion,
-    L2DBaseModel: L2DBaseModel
+export{
+    L2DTargetPoint,
+    Live2DFramework,
+    L2DViewMatrix,
+    L2DPose,
+    L2DPartsParam,
+    L2DPhysics,
+    L2DMotionManager,
+    L2DModelMatrix,
+    L2DMatrix44,
+    EYE_STATE,
+    L2DEyeBlink,
+    L2DExpressionParam,
+    L2DExpressionMotion,
+    L2DBaseModel,
 }

@@ -3,32 +3,29 @@
  */
 
 
-import {
-  UtSystem,
-  UtDebug,
-  LDTransform,
-  LDGL,
-  Live2D,
-  Live2DModelWebGL,
-  Live2DModelJS,
-  Live2DMotion,
-  MotionQueueManager,
-  PhysicsHair,
-  AMotion,
-  PartsDataID,
-  DrawDataID,
-  BaseDataID,
-  ParamID
-} from './lib/live2d.core';/*
-import { device } from 'current-device';
+import { config } from './config/configMgr';
+import { createElement, currWebGL } from './elementMgr';
+import { UtSystem,
+         UtDebug,
+         LDTransform,
+         LDGL,
+         Live2D,
+         Live2DModelWebGL,
+         Live2DModelJS,
+         Live2DMotion,
+         MotionQueueManager,
+         PhysicsHair,
+         AMotion,
+         PartsDataID,
+         DrawDataID,
+         BaseDataID,
+         ParamID } from './lib/live2d.core';
 import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
-import cManager from "./cManager";
+import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
 
-const live2DMgr = new cManager();
 let isDrawStart = false;
-let canvas = null;
 let dragMgr = null;
 let viewMatrix = null;
 let projMatrix = null;
@@ -39,10 +36,8 @@ let lastMouseY = 0;
 let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
-*/
 
-import { config } from './config/configMgr';
-import { createElement, currWebGL } from './elementMgr';
+
 
 /**
  * Main function of live2d-widget
@@ -53,12 +48,7 @@ export default () => {
 
   createElement();
 
-  let width = canvas.width;
-  let height = canvas.height;
-  let sWidth = parseInt(canvas.style.width);
-  let sHeight = parseInt(canvas.style.height);
-
-  dragMgr = new L2DTargetPoint();
+  let dragMgr = new L2DTargetPoint();
   let ratio = height / width;
   let left = cDefine.VIEW_LOGICAL_LEFT;
   let right = cDefine.VIEW_LOGICAL_RIGHT;
@@ -93,8 +83,7 @@ export default () => {
 
 
 function initEvent(){/*
-  canvas = document.getElementById(canvasId);
-  if (canvas.addEventListener) {
+  if (currCanvas.addEventListener) {
     window.addEventListener("click", mouseEvent);
     window.addEventListener("mousedown", mouseEvent);
     window.addEventListener("mousemove", mouseEvent);
@@ -117,7 +106,7 @@ function startDraw() {
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
 
-      requestAnimationFrame(tick, canvas);
+      requestAnimationFrame(tick, currCanvas);
     })();
   }
 }
@@ -261,7 +250,7 @@ function modelTurnHead(event)
 {
     drag = true;
 
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
@@ -288,7 +277,7 @@ function modelTapEvent(event)
 {
     drag = true;
 
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
@@ -313,7 +302,7 @@ function modelTapEvent(event)
 
 function followPointer(event)
 {
-    let rect = canvas.getBoundingClientRect();
+    let rect = currCanvas.getBoundingClientRect();
 
     let sx = transformScreenX(event.clientX - rect.left);
     let sy = transformScreenY(event.clientY - rect.top);
