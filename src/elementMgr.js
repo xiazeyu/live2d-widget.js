@@ -15,7 +15,7 @@ let currWebGL = undefined;
 
 /**
  * The current canvas element
- * @type {DOMString}
+ * @type {HTMLElement}
  */
 
 let currCanvas;
@@ -29,9 +29,25 @@ function createElement(){
 
   let newElem = document.createElement('div');
   newElem.id = config.name.div;
-  newElem.innerHTML = htmlTemplate(config);
+  newElem.innerHTML = htmlTemplate;
+    let newCanvasElem = document.createElement('canvas');
+    newCanvasElem.setAttribute('id', config.name.canvas);
+    newCanvasElem.setAttribute('width', config.display.width * config.display.antialias);
+    newCanvasElem.setAttribute('height', config.display.height * config.display.antialias);
+    newCanvasElem.style.setProperty('position', 'fixed');
+    newCanvasElem.style.setProperty('width', config.display.width);
+    newCanvasElem.style.setProperty('height', config.display.height);
+    newCanvasElem.style.setProperty('opacity', config.react.opacityDefault);
+    newCanvasElem.style.setProperty(config.display.position, config.display.hOffset + 'px');
+    newCanvasElem.style.setProperty('bottom', config.display.vOffset + 'px');
+    newCanvasElem.style.setProperty('z-index', 99999);
+    newCanvasElem.style.setProperty('pointer-events', 'none');
+    if(config.dev.border) newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
+    newElem.appendChild(newCanvasElem);
+
   document.body.appendChild(newElem);
   currCanvas = document.getElementById(config.name.canvas);
+
   initWebGL();
 
 }
@@ -55,7 +71,7 @@ function initWebGL(){
       if(ctx) currWebGL = ctx;
     }catch(e){}
   }
-  if(!gl){
+  if(!currWebGL){
     console.error('Live2D widgets: Failed to create WebGL context.');
     if(!window.WebGLRenderingContext){
       console.error('Your browser may not support WebGL, check https://get.webgl.org/ for futher information.');

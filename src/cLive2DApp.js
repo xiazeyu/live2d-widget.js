@@ -42,7 +42,7 @@ let opacityHover = 1;
 */
 
 import { config } from './config/configMgr';
-import { createElement, currWebGL } from './elementManager';
+import { createElement, currWebGL } from './elementMgr';
 
 /**
  * Main function of live2d-widget
