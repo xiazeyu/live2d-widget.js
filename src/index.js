@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development'){
  * @param {Number}   [userConfig.model.vHeadPos = 0.618] Vertical position of model's head 模型头部纵坐标
  * @param {Array}    [userConfig.model.myDefine = []] User's custom Defines which will override LDefine 自定义的LDefine
  * @param {Number}   [userConfig.display.antialias = 2] Antialiasing grade 抗锯齿级别
- * @param {Number}   [userConfig.display.widget = 150] Widget to the canvas which shows the model canvas的长度
+ * @param {Number}   [userConfig.display.width = 150] Width to the canvas which shows the model canvas的长度
  * @param {Number}   [userConfig.display.height = 300] Height to the canvas which shows the model canvas的高度
  * @param {String}   [userConfig.display.position = 'right'] Left of right side to show 显示位置：左或右
  * @param {Number}   [userConfig.display.hOffset = 0] Horizontal offset of the canvas canvas水平偏移

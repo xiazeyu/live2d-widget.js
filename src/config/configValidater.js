@@ -25,7 +25,7 @@ const configPropTypes = {
   }),
   display: PropTypes.shape({
     antialias: PropTypes.number,
-    widght: PropTypes.number,
+    width: PropTypes.number,
     height: PropTypes.number,
     scale: PropTypes.number,
     position: PropTypes.oneOf(['left', 'right']),
