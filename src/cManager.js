@@ -1,5 +1,5 @@
 import { Live2DFramework } from "./lib/Live2DFramework";
-import PlatformManager from "./lib/PlatformManager";
+import { PlatformManager } from "./lib/PlatformManager";
 import { cModel } from "./cModel";
 import { cDefine } from "./cDefine";
 
