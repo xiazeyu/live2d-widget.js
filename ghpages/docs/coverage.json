@@ -42,7 +42,7 @@
         65
       ]
     },
-    "src/elementManager.js": {
+    "src/elementMgr.js": {
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []

@@ -36,15 +36,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "live2d-widget/src/elementmanager.js~createelement",
+    "live2d-widget/src/elementmgr.js~createelement",
     "function/index.html#static-function-createElement",
-    "<span>createElement</span> <span class=\"search-result-import-path\">live2d-widget/src/elementManager.js</span>",
+    "<span>createElement</span> <span class=\"search-result-import-path\">live2d-widget/src/elementMgr.js</span>",
     "function"
   ],
   [
-    "live2d-widget/src/elementmanager.js~currwebgl",
+    "live2d-widget/src/elementmgr.js~currwebgl",
     "variable/index.html#static-variable-currWebGL",
-    "<span>currWebGL</span> <span class=\"search-result-import-path\">live2d-widget/src/elementManager.js</span>",
+    "<span>currWebGL</span> <span class=\"search-result-import-path\">live2d-widget/src/elementMgr.js</span>",
     "variable"
   ],
   [
@@ -396,9 +396,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/elementmanager.js",
-    "file/src/elementManager.js.html",
-    "src/elementManager.js",
+    "src/elementmgr.js",
+    "file/src/elementMgr.js.html",
+    "src/elementMgr.js",
     "file"
   ],
   [

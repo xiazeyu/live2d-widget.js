@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Variable | live2d-widget.js</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/elementMgr.js | live2d-widget.js</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -43,90 +43,96 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">Variable</h1>
-<div data-ice="summaries"><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Static Public Summary</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span><span class="code" data-ice="signature">: <span>RenderingContext</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>The current WebGL element</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
-<div data-ice="details"><h2 data-ice="title">Static Public </h2>
+<div class="content" data-ice="content"><h1 data-ice="title">src/elementMgr.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @description The container and manager for all the DOM and WebGL emelents.
+ */
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-currWebGL">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">currWebGL</span><span class="code" data-ice="signature">: <span>RenderingContext</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/elementMgr.js.html#lineNumber14">source</a></span></span>
-    </span>
-  </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {currWebGL} from &apos;<span><a href="file/src/elementMgr.js.html#lineNumber14">live2d-widget/src/elementMgr.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>The current WebGL element</p>
-</div>
+import { config } from &apos;./config/configMgr&apos;;
+import htmlTemplate from &apos;./tmplate/innerHTML&apos;;
 
-  
+/**
+ * The current WebGL element
+ * @type {RenderingContext}
+ */
 
-  <div data-ice="properties">
-</div>
+let currWebGL = undefined;
 
-  
+/**
+ * The current canvas element
+ * @type {HTMLElement}
+ */
 
-  
+let currCanvas;
 
-  
+/**
+ * Create the canvas and styles using DOM
+ * @return {null}
+ */
 
-  
+function createElement(){
 
-  
+  let newElem = document.createElement(&apos;div&apos;);
+  newElem.id = config.name.div;
+  newElem.innerHTML = htmlTemplate;
+    let newCanvasElem = document.createElement(&apos;canvas&apos;);
+    newCanvasElem.setAttribute(&apos;id&apos;, config.name.canvas);
+    newCanvasElem.setAttribute(&apos;width&apos;, config.display.width * config.display.antialias);
+    newCanvasElem.setAttribute(&apos;height&apos;, config.display.height * config.display.antialias);
+    newCanvasElem.style.setProperty(&apos;position&apos;, &apos;fixed&apos;);
+    newCanvasElem.style.setProperty(&apos;width&apos;, config.display.width);
+    newCanvasElem.style.setProperty(&apos;height&apos;, config.display.height);
+    newCanvasElem.style.setProperty(&apos;opacity&apos;, config.react.opacityDefault);
+    newCanvasElem.style.setProperty(config.display.position, config.display.hOffset + &apos;px&apos;);
+    newCanvasElem.style.setProperty(&apos;bottom&apos;, config.display.vOffset + &apos;px&apos;);
+    newCanvasElem.style.setProperty(&apos;z-index&apos;, 99999);
+    newCanvasElem.style.setProperty(&apos;pointer-events&apos;, &apos;none&apos;);
+    if(config.dev.border) newCanvasElem.style.setProperty(&apos;border&apos;, &apos;dashed 1px #CCC&apos;);
+    newElem.appendChild(newCanvasElem);
 
-  
+  document.body.appendChild(newElem);
+  currCanvas = document.getElementById(config.name.canvas);
 
-  
+  initWebGL();
 
-  
-  
-</div>
-</div>
+}
+
+/**
+ * Find and set the current WebGL element to the container
+ * @return {null}
+ */
+
+function initWebGL(){
+
+  var NAMES = [&apos;webgl2&apos;, &apos;webgl&apos;, &apos;experimental-webgl2&apos;, &apos;experimental-webgl&apos;, &apos;webkit-3d&apos;, &apos;moz-webgl&apos;];
+  for(let i = 0; i &lt; NAMES.length; i++){
+    try{
+      let ctx = currCanvas.getContext(NAMES[i], {
+        alpha: true,
+        antialias: true,
+        premultipliedAlpha: true,
+        failIfMajorPerformanceCaveat: false,
+      });
+      if(ctx) currWebGL = ctx;
+    }catch(e){}
+  }
+  if(!currWebGL){
+    console.error(&apos;Live2D widgets: Failed to create WebGL context.&apos;);
+    if(!window.WebGLRenderingContext){
+      console.error(&apos;Your browser may not support WebGL, check https://get.webgl.org/ for futher information.&apos;);
+    }
+    return;
+  }
+};
+
+
+export{
+  createElement,
+  currWebGL,
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">

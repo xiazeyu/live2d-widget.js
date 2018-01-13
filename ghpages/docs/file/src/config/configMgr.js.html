@@ -68,7 +68,7 @@ let currConfig = {};
 
 const defaultConfig = {
   model: {
-    jsonPath: &apos;&apos;,
+    jsonPath: &apos;https://unpkg.com/live2d-widget-model-shizuku@1.0.0/assets/shizuku.model.json&apos;,
     scale: 1,
     hHeadPos: 0.5,
     vHeadPos: 0.618,
@@ -76,7 +76,7 @@ const defaultConfig = {
   },
   display: {
     antialias: 2,
-    widght: 150,
+    width: 150,
     height: 300,
     position: &apos;right&apos;,
     hOffset: 0,
@@ -98,7 +98,7 @@ const defaultConfig = {
   },
   dev: {
     log: false,
-    border: false,
+    border: (process.env.NODE_ENV === &apos;development&apos; ? true : false),
     mouseLog: false,
     mouseFunc: (x, y, ix, iy) =&gt; {console.log(`MouseFunc: ${x},${y}; ${ix}, ${iy}`);},
   },
@@ -122,6 +122,7 @@ function configApplyer(userConfig){
   // }
 
   currConfig = _.defaultsDeep(userConfig, defaultConfig);
+  console.log(&apos;currConfig:&apos;, currConfig);
 
 }
 
