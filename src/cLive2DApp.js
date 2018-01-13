@@ -45,7 +45,7 @@ let opacityHover = 1;
  * @return {null}
  */
 
-export default () => {
+function theRealInit (){
 
   createElement();
 
@@ -79,7 +79,26 @@ export default () => {
   startDraw();
 
 }
+/**
+ * Return the data URI of current frame, MINE type is image/png.
+ * @return {DOMString} Which contains data URI, MINE type is image/png
+ * @example
+ * You can use codes below to let the user download the current frame
+ *
+ * let link = document.createElement('a');
+ * document.body.appendChild(link);
+ * link.setAttribute('type', 'hidden');
+ * link.href = L2Dwidget.captureFrame();
+ * link.download = 'live2d.png';
+ * link.click();
+ *
+ * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
+ * @todo Seems feedback empty image only
+ */
 
+function captureFrame(){
+  return currCanvas.toDataURL();
+}
 
 function initEvent(){/*
   if (currCanvas.addEventListener) {
@@ -389,4 +408,9 @@ function transformScreenX(deviceX)
 function transformScreenY(deviceY)
 {
     return deviceToScreen.transformY(deviceY);
+}
+
+export{
+  theRealInit,
+  captureFrame,
 }

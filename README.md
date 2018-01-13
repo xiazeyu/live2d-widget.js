@@ -27,7 +27,7 @@ Docs(including APIs): [Click me!](https://xiazeyu.github.io/live2d-widget.js/)
 Online generator: [TBD.](javascript:void(0);)
 
 
-## Installation
+## Useage
 
 ### Hexo
 
@@ -38,7 +38,7 @@ Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d) fo
 Install the module:
 
 ```
-npm install --save live2d-widet.js
+npm install --save live2d-widget.js
 ```
 
 Import the module:
@@ -51,7 +51,7 @@ import 'live2d-widget.js';
 Then call the function along with your config.
 
 ```js
-initL2Dwidget({
+L2Dwidget.init({
   'config1': 'value1',
   'config2': 'value2',
 });
@@ -159,6 +159,13 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 ## Imported
 
 [![current-device][current-device]][current-device-url]
+
+## Special Thanks
+
+- @mashirozx 
+- @fghrsh
+- @journey-ad
+- @gwzz
 
 <br>
 

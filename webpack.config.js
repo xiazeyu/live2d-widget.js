@@ -19,8 +19,8 @@ module.exports = env => {return{
     filename: 'clL2D.min.js',
     // YOU MUST INSTALL babel-plugin-syntax-dynamic-import FIRST TO ENABLE CODE SPLITTING!
     chunkFilename: 'clL2D.[id].min.js',
-    library: 'initL2Dwidget',
-    libraryExport: 'init',
+    library: 'L2Dwidget',
+    libraryExport: 'L2Dwidget',
     libraryTarget: 'var',
     path: path.resolve(__dirname, (isProd(env) ? 'lib' : 'dev')),
     pathinfo: (isProd(env) ? false : true),
