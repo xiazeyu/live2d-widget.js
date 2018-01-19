@@ -71,7 +71,7 @@ https://www.cnblogs.com/pcyy/p/5655542.html
 
 ## Settings
 
-See the document.
+See the [document](https://xiazeyu.github.io/live2d-widget.js/docs/class/src/index.js~L2Dwidget.html#instance-method-init).
 
 <details><summary>Current supported models:</summary><br>
 
