@@ -2,7 +2,6 @@
   "name": "live2d-widget",
   "version": "3.0.0",
   "description": "Add the Sseexxyyy live2d to webpages.",
-  "main": "index.js",
   "scripts": {
     "inst:dev": "npm install -g commitizen&&npm install",
     "build:dev": "webpack --progress --colors",
