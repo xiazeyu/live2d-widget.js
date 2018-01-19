@@ -64,7 +64,7 @@ L2Dwidget.init = (userConfig) => {
     return;
   }
 
-  import(/* webpackMode: "lazy" */ './cLive2DApp').then(f => {
+  import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
     coreApp = f;
     coreApp.theRealInit();
   }).catch(err => {

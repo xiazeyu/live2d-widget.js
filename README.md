@@ -16,9 +16,7 @@
 
 # live2d-widget.js
 
-Add the Sseexxyyy live2d to your webpages!
-
-[TOC]
+Add the Sseexxyyy live2d to your webpages! Seperated from [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d).
 
 Demo: [Still working, but you can have a look~](https://xiazeyu.github.io/live2d-widget.js/dev.html)
 
@@ -33,19 +31,24 @@ Online generator: [TBD.](javascript:void(0);)
 
 Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d) for the hexo plugin.
 
-### Webpack
+### Webpages
 
-Install the module:
+#### File on your server
 
-```
-npm install --save live2d-widget.js
-```
+Download the [latest release](https://github.com/xiazeyu/live2d-widget.js/releases),
 
-Import the module:
+and then copy and extract the `lib` folder to your website.
 
-```js
-// using as es modules
-import 'live2d-widget.js';
+Use [online generator](javascript:void(0);) **(recommended)** to generate codes.
+
+<details><summary>However, if you want to do it manually, follow the instruction below:</summary><br>
+
+import the js:
+
+```html
+
+<script src = "( your script path here )"></script>
+
 ```
 
 Then call the function along with your config.
@@ -57,15 +60,18 @@ L2Dwidget.init({
 });
 ```
 
-### Online
+</details>
 
-https://github.com/jsdelivr/jsdelivr/
+### Bookmark (any pages)
 
 TBD.
 
+https://www.cnblogs.com/pcyy/p/5655542.html
+
+
 ## Settings
 
-See src/SettingTip.txt
+See the document.
 
 <details><summary>Current supported models:</summary><br>
 
@@ -138,22 +144,30 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 
 - [Cubism SDK WebGL 2.1](http://sites.cybernoids.jp/cubism-sdk2_e/webgl2-1)
 
+- [live2d-widget.js](https://github.com/xiazeyu/live2d-widget.js)
+
+- [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
+
 - [pixi-live2d](https://github.com/avgjs/pixi-live2d)
 
 - [CubismJsComponents](https://github.com/Live2D/CubismJsComponents)
 
-- [live2d-widget.js](https://github.com/xiazeyu/live2d-widget.js)
-
-- [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
 
 
 ## About me
 
 [![Author][author]][author-url]
 
-[![QQ][qq]][qq-url]
+[![Author QQ][author-qq]][author-qq-url]
 
-[![Email][email]][email-url]
+[![Author Email][author-email]][author-email-url]
+
+
+[![Collaborator 0][collaborator0]][collaborator0-url]
+
+[![Collaborator 0 QQ][collaborator0-qq]][collaborator0-qq-url]
+
+[![Collaborator 0 Email][collaborator0-email]][collaborator0-email-url]
 
 
 ## Imported
@@ -171,47 +185,56 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 
 Open sourced under the GPL v2.0 license.
 
-[npm]: https://badge.fury.io/js/hexo-helper-live2d.svg?label=hexo-helper-live2d
-[npm-url]: https://www.npmjs.com/package/hexo-helper-live2d
+[npm]: https://badge.fury.io/js/live2d-widget.svg?label=live2d-widget
+[npm-url]: https://www.npmjs.com/package/live2d-widget
 
-[deps]: https://img.shields.io/david/EYHN/hexo-helper-live2d.svg
+[deps]: https://img.shields.io/david/xiazeyu/live2d-widget.js.svg
 [deps-url]: javascript:void(0);
 
-[devdeps]:  https://img.shields.io/david/dev/EYHN/hexo-helper-live2d.svg
+[devdeps]:  https://img.shields.io/david/dev/xiazeyu/live2d-widget.js.svg
 [devdeps-url]: javascript:void(0);
 
-[license]: https://img.shields.io/github/license/EYHN/hexo-helper-live2d.svg
-[license-url]: https://github.com/EYHN/hexo-helper-live2d/blob/master/LICENSE
+[license]: https://img.shields.io/github/license/xiazeyu/live2d-widget.js.svg
+[license-url]: https://github.com/xiazeyu/live2d-widget.js/blob/master/LICENSE
 
 [PRs Welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [PRs Welcome-url]: http://makeapullrequest.com
 
-[downloads]:  https://img.shields.io/npm/dt/hexo-helper-live2d.svg
-[downloads-url]: https://www.npmjs.com/package/hexo-helper-live2d
+[downloads]:  https://img.shields.io/npm/dt/live2d-widget.svg
+[downloads-url]: https://www.npmjs.com/package/live2d-widget
 
-[downloads-month]: https://img.shields.io/npm/dm/hexo-helper-live2d.svg
-[downloads-month-url]: https://www.npmjs.com/package/hexo-helper-live2d
+[downloads-month]: https://img.shields.io/npm/dm/live2d-widget.svg
+[downloads-month-url]: https://www.npmjs.com/package/live2d-widget
 
 [Commitizen friendly]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [Commitizen friendly-url]: http://commitizen.github.io/cz-cli/
 
-[GitHub stars]: https://img.shields.io/github/stars/EYHN/hexo-helper-live2d.svg
-[GitHub stars-url]: https://github.com/EYHN/hexo-helper-live2d/stargazers
+[GitHub stars]: https://img.shields.io/github/stars/xiazeyu/live2d-widget.js.svg
+[GitHub stars-url]: https://github.com/xiazeyu/live2d-widget.js/stargazers
 
-[GitHub forks]: https://img.shields.io/github/forks/EYHN/hexo-helper-live2d.svg
-[GitHub forks-url]: https://github.com/EYHN/hexo-helper-live2d/network
+[GitHub forks]: https://img.shields.io/github/forks/xiazeyu/live2d-widget.js.svg
+[GitHub forks-url]: https://github.com/xiazeyu/live2d-widget.js/network
 
-[GitHub issues]: https://img.shields.io/github/issues/EYHN/hexo-helper-live2d.svg
-[GitHub issues-url]: https://github.com/EYHN/hexo-helper-live2d/issues
+[GitHub issues]: https://img.shields.io/github/issues/xiazeyu/live2d-widget.js.svg
+[GitHub issues-url]: https://github.com/xiazeyu/live2d-widget.js/issues
 
 [author]: https://img.shields.io/badge/author-cneyhn-green.svg
 [author-url]: https://delusion.coding.me/
 
-[qq]: https://img.shields.io/badge/QQ-1106996185-blue.svg
-[qq-url]: http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes
+[author-qq]: https://img.shields.io/badge/QQ-1106996185-blue.svg
+[author-qq-url]: tencent://message/?uin=1106996185&Site=Senlon.Net&Menu=yes
 
-[email]: https://img.shields.io/badge/Emali%20me-cneyhn@gmail.com-green.svg
-[email-url]: mailto:cneyhn@gmail.com
+[author-email]: https://img.shields.io/badge/Emali%20me-cneyhn@gmail.com-green.svg
+[author-email-url]: mailto:cneyhn@gmail.com
+
+[collaborator0]: https://img.shields.io/badge/author-xiazeyu-green.svg
+[collaborator0-url]: https://xiazeyu.coding.me/
+
+[collaborator0-qq]: https://img.shields.io/badge/QQ-2320732807-blue.svg
+[collaborator0-qq-url]: tencent://message/?uin=2320732807&Site=Senlon.Net&Menu=yes
+
+[collaborator0-email]: https://img.shields.io/badge/Emali%20me-xiazeyu_2011@126.com-green.svg
+[collaborator0-email-url]: mailto:xiazeyu_2011@126.com
 
 [current-device]: https://img.shields.io/npm/v/current-device.svg?label=current-device
 [current-device-url]: https://github.com/matthewhudson/current-device
