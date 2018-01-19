@@ -22,7 +22,7 @@ let currConfig = {};
 
 const defaultConfig = {
   model: {
-    jsonPath: 'https://unpkg.com/live2d-widget-model-shizuku@1.0.0/assets/shizuku.model.json',
+    jsonPath: 'https://unpkg.com/live2d-widget-model-shizuku@latest/assets/shizuku.model.json',
     scale: 1,
     hHeadPos: 0.5,
     vHeadPos: 0.618,
@@ -76,7 +76,7 @@ function configApplyer(userConfig){
   // }
 
   currConfig = _.defaultsDeep(userConfig, defaultConfig);
-  console.log('currConfig:', currConfig);
+  // console.log('Live2Dwidget: currConfig', currConfig);
 
 }
 

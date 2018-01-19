@@ -26,6 +26,7 @@ import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
 
 let live2DMgr = new cManager();
+let captureFrameCB = undefined;
 let isDrawStart = false;
 let dragMgr = null;
 let viewMatrix = null;
@@ -48,9 +49,10 @@ let opacityHover = 1;
 function theRealInit (){
 
   createElement();
+  initEvent();
 
   dragMgr = new L2DTargetPoint();
-  let ratio = config.display.height / config.display.width;
+  let ratio = currCanvas.height / currCanvas.width;
   let left = cDefine.VIEW_LOGICAL_LEFT;
   let right = cDefine.VIEW_LOGICAL_RIGHT;
   let bottom = -ratio;
@@ -66,11 +68,11 @@ function theRealInit (){
     cDefine.VIEW_LOGICAL_MAX_TOP);
 
   projMatrix = new L2DMatrix44();
-  projMatrix.multScale(1, (config.display.width / config.display.height));
+  projMatrix.multScale(1, (currCanvas.width / currCanvas.height));
 
   deviceToScreen = new L2DMatrix44();
-  deviceToScreen.multTranslate(-config.display.width / 2.0, -config.display.height / 2.0);  // #32
-  deviceToScreen.multScale(2 / config.display.width, -2 / config.display.height);  // #32
+  deviceToScreen.multTranslate(-currCanvas.width / 2.0, -currCanvas.height / 2.0);  // #32
+  deviceToScreen.multScale(2 / currCanvas.width, -2 / currCanvas.height);  // #32
 
 
   Live2D.setGL(currWebGL);
@@ -78,29 +80,35 @@ function theRealInit (){
   changeModel(config.model.jsonPath);
   startDraw();
 
+
 }
+
 /**
- * Return the data URI of current frame, MINE type is image/png.
- * @return {DOMString} Which contains data URI, MINE type is image/png
+ * Capture current frame to png file
+ * @param  {Function} callback The callback function which will receive the current frame
+ * @return {null}
  * @example
  * You can use codes below to let the user download the current frame
  *
- * let link = document.createElement('a');
- * document.body.appendChild(link);
- * link.setAttribute('type', 'hidden');
- * link.href = L2Dwidget.captureFrame();
- * link.download = 'live2d.png';
- * link.click();
+ * L2Dwidget.captureFrame(
+ *   function(e){
+ *     let link = document.createElement('a');
+ *     document.body.appendChild(link);
+ *     link.setAttribute('type', 'hidden');
+ *     link.href = e;
+ *     link.download = 'live2d.png';
+ *     link.click();
+ *   }
+ * );
  *
  * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
- * @todo Seems feedback empty image only
  */
 
-function captureFrame(){
-  return currCanvas.toDataURL();
+function captureFrame(callback){
+  captureFrameCB = callback;
 }
 
-function initEvent(){/*
+function initEvent(){
   if (currCanvas.addEventListener) {
     window.addEventListener("click", mouseEvent);
     window.addEventListener("mousedown", mouseEvent);
@@ -110,7 +118,7 @@ function initEvent(){/*
     window.addEventListener("touchstart", touchEvent);
     window.addEventListener("touchend", touchEvent);
     window.addEventListener("touchmove", touchEvent);
-  }*/
+  }
 }
 
 function startDraw() {
@@ -125,6 +133,10 @@ function startDraw() {
         window.msRequestAnimationFrame;
 
       requestAnimationFrame(tick, currCanvas);
+      if(captureFrameCB !== undefined){
+        captureFrameCB(currCanvas.toDataURL());
+        captureFrameCB = undefined;
+      }
     })();
   }
 }
