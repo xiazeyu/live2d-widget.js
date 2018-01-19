@@ -1,70 +1,15 @@
-<a name="Unreleased"></a>
-# Unreleased (2018-01-19)
-
-
-
-
 <a name="3.0.1"></a>
 ## 3.0.1 (2018-01-19)
 
-* 3.0.1 ([34a76c8](https://github.com/xiazeyu/live2d-widget.js/commit/34a76c8))
-* docs: relink js to unpkg CDN ([bde33f6](https://github.com/xiazeyu/live2d-widget.js/commit/bde33f6))
-* fix: achieve frameshot, recover event system ([155d46b](https://github.com/xiazeyu/live2d-widget.js/commit/155d46b))
-* style: change L2Dwidget into Class ([c98040a](https://github.com/xiazeyu/live2d-widget.js/commit/c98040a))
-* build: add script to bump version better ([c304bc2](https://github.com/xiazeyu/live2d-widget.js/commit/c304bc2))
-
-
-
-<a name="3.0.6"></a>
-## 3.0.6 (2018-01-19)
-
-* 3.0.6 ([15ebe5d](https://github.com/xiazeyu/live2d-widget.js/commit/15ebe5d))
-
-
-
-<a name="3.0.5"></a>
-## 3.0.5 (2018-01-19)
-
-* 3.0.5 ([34514d6](https://github.com/xiazeyu/live2d-widget.js/commit/34514d6))
-
-
-
-<a name="3.0.4"></a>
-## 3.0.4 (2018-01-19)
-
-* 3.0.4 ([d66ab98](https://github.com/xiazeyu/live2d-widget.js/commit/d66ab98))
-
-
-
-<a name="3.0.4-0"></a>
-## 3.0.4-0 (2018-01-19)
-
-* 3.0.4-0 ([2c919c8](https://github.com/xiazeyu/live2d-widget.js/commit/2c919c8))
-
-
-
-<a name="3.0.3-0"></a>
-## 3.0.3-0 (2018-01-19)
-
-* 3.0.3-0 ([70cfeda](https://github.com/xiazeyu/live2d-widget.js/commit/70cfeda))
-
-
-
-<a name="3.0.2-0"></a>
-## 3.0.2-0 (2018-01-19)
-
-* 3.0.2-0 ([3d4f065](https://github.com/xiazeyu/live2d-widget.js/commit/3d4f065))
-
-
-
-<a name="3.0.1-0"></a>
-## 3.0.1-0 (2018-01-19)
-
-* 3.0.1-0 ([8458a4f](https://github.com/xiazeyu/live2d-widget.js/commit/8458a4f))
-* build(fix changelog script path problem): ([67c56ee](https://github.com/xiazeyu/live2d-widget.js/commit/67c56ee))
-* chore(update dependency settings): ([7796aac](https://github.com/xiazeyu/live2d-widget.js/commit/7796aac))
+* feat: new build ([f70a36c](https://github.com/xiazeyu/live2d-widget.js/commit/f70a36c))
+* docs: relink js to unpkg CDN ([0bd9cdf](https://github.com/xiazeyu/live2d-widget.js/commit/0bd9cdf))
 * docs: update CHANGELOG ([c840cfa](https://github.com/xiazeyu/live2d-widget.js/commit/c840cfa))
 * docs(method of execute): finish the doc of launch it (use var) ([1b43dc0](https://github.com/xiazeyu/live2d-widget.js/commit/1b43dc0))
+* fix: achieve frameshot, recover event system ([aed9c26](https://github.com/xiazeyu/live2d-widget.js/commit/aed9c26))
+* style: change L2Dwidget into Class ([59909df](https://github.com/xiazeyu/live2d-widget.js/commit/59909df))
+* build(add script to bump version better): ([a2d04e8](https://github.com/xiazeyu/live2d-widget.js/commit/a2d04e8))
+* build(fix changelog script path problem): ([67c56ee](https://github.com/xiazeyu/live2d-widget.js/commit/67c56ee))
+* chore(update dependency settings): ([7796aac](https://github.com/xiazeyu/live2d-widget.js/commit/7796aac))
 * build: remove ghpages from npm publish ([7401ffe](https://github.com/xiazeyu/live2d-widget.js/commit/7401ffe))
 
 

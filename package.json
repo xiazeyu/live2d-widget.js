@@ -9,7 +9,7 @@
     "build:doc": "./node_modules/.bin/esdoc",
     "commit": "git pull&&git-cz",
     "_changelog": "./node_modules/.bin/conventional-changelog -i docsrc/CHANGELOG.md -r 0 -s -u",
-    "changelog": "git pull&&npm run _changelog&&git add docsrc/CHANGELOG.md&&git commit -m \"docs: update CHANGELOG\"&&git push&&git status",
+    "changelog": "git pull&&npm run _changelog&&git add docsrc/CHANGELOG.md",
     "v:major": "npm version major",
     "v:pmajor": "npm version premajor",
     "v:minor": "npm version minor",
