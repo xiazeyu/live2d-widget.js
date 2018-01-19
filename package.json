@@ -1,6 +1,6 @@
 {
   "name": "live2d-widget",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Add the Sseexxyyy live2d to webpages.",
   "scripts": {
     "inst:dev": "npm install -g commitizen&&npm install",
@@ -10,6 +10,12 @@
     "commit": "git pull&&git-cz",
     "_changelog": "./node_modules/.bin/conventional-changelog -i docsrc/CHANGELOG.md -r 0 -s -u",
     "changelog": "git pull&&npm run _changelog&&git add docsrc/CHANGELOG.md&&git commit -m \"docs: update CHANGELOG\"&&git push&&git status",
+    "v:major": "npm version major",
+    "v:pmajor": "npm version premajor",
+    "v:minor": "npm version minor",
+    "v:pminor": "npm version preminor",
+    "v:patch": "npm version patch",
+    "v:ppatch": "npm version prepatch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ghpages": "push-gh-pages"
   },
