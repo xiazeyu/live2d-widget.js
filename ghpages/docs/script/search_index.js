@@ -79,9 +79,9 @@ window.esdocSearchIndex = [
   ],
   [
     "live2d-widget/src/index.js~l2dwidget",
-    "function/index.html#static-function-L2Dwidget",
+    "class/src/index.js~L2Dwidget.html",
     "<span>L2Dwidget</span> <span class=\"search-result-import-path\">live2d-widget/src/index.js</span>",
-    "function"
+    "class"
   ],
   [
     "live2d-widget/src/lib/live2dframework.js~live2dframework",
@@ -496,6 +496,24 @@ window.esdocSearchIndex = [
     "file/src/index.js.html",
     "src/index.js",
     "file"
+  ],
+  [
+    "src/index.js~l2dwidget#captureframe",
+    "class/src/index.js~L2Dwidget.html#instance-method-captureFrame",
+    "src/index.js~L2Dwidget#captureFrame",
+    "method"
+  ],
+  [
+    "src/index.js~l2dwidget#downloadframe",
+    "class/src/index.js~L2Dwidget.html#instance-method-downloadFrame",
+    "src/index.js~L2Dwidget#downloadFrame",
+    "method"
+  ],
+  [
+    "src/index.js~l2dwidget#init",
+    "class/src/index.js~L2Dwidget.html#instance-method-init",
+    "src/index.js~L2Dwidget#init",
+    "method"
   ],
   [
     "src/lib/live2dframework.js",

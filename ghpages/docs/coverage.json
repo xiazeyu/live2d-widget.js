@@ -1,7 +1,7 @@
 {
-  "coverage": "19.36%",
-  "expectCount": 315,
-  "actualCount": 61,
+  "coverage": "20%",
+  "expectCount": 320,
+  "actualCount": 64,
   "files": {
     "src/cDefine.js": {
       "expectCount": 1,
@@ -9,7 +9,7 @@
       "undocumentLines": []
     },
     "src/cLive2DApp.js": {
-      "expectCount": 32,
+      "expectCount": 33,
       "actualCount": 2,
       "undocumentLines": [
         28,
@@ -24,24 +24,25 @@
         37,
         38,
         39,
-        103,
-        116,
-        132,
-        160,
-        167,
-        189,
-        194,
-        203,
-        267,
-        294,
-        321,
-        352,
-        360,
-        375,
-        388,
-        395,
-        402,
-        408
+        40,
+        111,
+        124,
+        144,
+        172,
+        179,
+        201,
+        206,
+        215,
+        279,
+        306,
+        333,
+        364,
+        372,
+        387,
+        400,
+        407,
+        414,
+        420
       ]
     },
     "src/cManager.js": {
@@ -97,9 +98,11 @@
       "undocumentLines": []
     },
     "src/index.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "expectCount": 5,
+      "actualCount": 4,
+      "undocumentLines": [
+        101
+      ]
     },
     "src/lib/Live2DFramework.js": {
       "expectCount": 103,

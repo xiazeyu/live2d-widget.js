@@ -29,13 +29,13 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~L2Dwidget.html">L2Dwidget</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-PlatformManager">PlatformManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-captureFrame">captureFrame</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-theRealInit">theRealInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cManager">cManager</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cModel">cModel</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createElement">createElement</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-L2Dwidget">L2Dwidget</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCurrentPath">getCurrentPath</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cDefine">cDefine</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-currWebGL">currWebGL</a></span></span></li>
@@ -78,18 +78,18 @@ import device from &apos;current-device&apos;;
 import { config, configApplyer }from &apos;./config/configMgr&apos;;
 
 if (process.env.NODE_ENV === &apos;development&apos;){
-  console.log(&apos;--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---&apos;);
+  console.log(&apos;--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---&apos;);
 }
 
 let coreApp;
 /**
- * The main entry point, which ... is nothing
+ * The main entry point, which is ... nothing
  */
 
-function L2Dwidget(){};
+class L2Dwidget{
 
 /**
- * The public entry point
+ * The init function
  * @param {Object}   [userConfig] User&apos;s custom config &#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8BBE;&#x7F6E;
  * @param {String}   [userConfig.model.jsonPath = &apos;&apos;] Path to Live2D model&apos;s main json eg. `https://test.com/miku.model.json` model&#x4E3B;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;
  * @param {Number}   [userConfig.model.scale = 1] Scale between the model and the canvas &#x6A21;&#x578B;&#x4E0E;canvas&#x7684;&#x7F29;&#x653E;
@@ -117,44 +117,55 @@ function L2Dwidget(){};
  * @return {null}
  */
 
-L2Dwidget.init = (userConfig) =&gt; {
-
-  userConfig = typeof userConfig === &apos;undefined&apos; ? {} : userConfig;
-
-  configApplyer(userConfig);
-
-  if((!config.mobile.show)&amp;&amp;(device.mobile())){
-    return;
+  init(userConfig = {}){
+    configApplyer(userConfig);
+    if((!config.mobile.show)&amp;&amp;(device.mobile())){
+      return;
+    }
+    import(/* webpackMode: &apos;lazy&apos; */ &apos;./cLive2DApp&apos;).then(f =&gt; {
+      coreApp = f;
+      coreApp.theRealInit();
+    }).catch(err =&gt; {
+      console.error(err);
+    });
   }
 
-  import(/* webpackMode: &quot;lazy&quot; */ &apos;./cLive2DApp&apos;).then(f =&gt; {
-    coreApp = f;
-    coreApp.theRealInit();
-  }).catch(err =&gt; {
-    console.error(err);
-  });
-
-}
 
 /**
- * Return the data URI of current frame, MINE type is image/png.
- * @return {DOMString} Which contains data URI, MINE type is image/png
- * @example
- * You can use codes below to let the user download the current frame
- *
- * let link = document.createElement(&apos;a&apos;);
- * link.innerHTML = &apos;Download image&apos;;
- * link.href = L2Dwidget.captureFrame();
- * link.download = &apos;live2d.png&apos;;
- * link.click();
- *
- * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
+ * Capture current frame to png file {@link captureFrame}
+ * @param  {Function} callback The callback function which will receive the current frame
+ * @return {null}
  */
 
-L2Dwidget.captureFrame = () =&gt; {return coreApp.captureFrame()};
+  captureFrame(callback){
+    return coreApp.captureFrame(callback);
+  }
+
+/**
+ * download current frame {@link L2Dwidget.captureFrame}
+ * @return {null}
+ */
+
+  downloadFrame(){
+    this.captureFrame(
+      function(e){
+        let link = document.createElement(&apos;a&apos;);
+        document.body.appendChild(link);
+        link.setAttribute(&apos;type&apos;, &apos;hidden&apos;);
+        link.href = e;
+        link.download = &apos;live2d.png&apos;;
+        link.click();
+      }
+    );
+  }
+
+};
+
+let _ = new L2Dwidget();
+
 
 export {
-  L2Dwidget,
+  _ as L2Dwidget,
 }
 </code></pre>
 
