@@ -15,18 +15,18 @@ import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
 
 if (process.env.NODE_ENV === 'development'){
-  console.log('--- --- --- --- ---\nHey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
+  console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
 }
 
 let coreApp;
 /**
- * The main entry point, which ... is nothing
+ * The main entry point, which is ... nothing
  */
 
-function L2Dwidget(){};
+class L2Dwidget{
 
 /**
- * The public entry point
+ * The init function
  * @param {Object}   [userConfig] User's custom config 用户自定义设置
  * @param {String}   [userConfig.model.jsonPath = ''] Path to Live2D model's main json eg. `https://test.com/miku.model.json` model主文件路径
  * @param {Number}   [userConfig.model.scale = 1] Scale between the model and the canvas 模型与canvas的缩放
@@ -54,42 +54,53 @@ function L2Dwidget(){};
  * @return {null}
  */
 
-L2Dwidget.init = (userConfig) => {
-
-  userConfig = typeof userConfig === 'undefined' ? {} : userConfig;
-
-  configApplyer(userConfig);
-
-  if((!config.mobile.show)&&(device.mobile())){
-    return;
+  init(userConfig = {}){
+    configApplyer(userConfig);
+    if((!config.mobile.show)&&(device.mobile())){
+      return;
+    }
+    import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
+      coreApp = f;
+      coreApp.theRealInit();
+    }).catch(err => {
+      console.error(err);
+    });
   }
 
-  import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
-    coreApp = f;
-    coreApp.theRealInit();
-  }).catch(err => {
-    console.error(err);
-  });
-
-}
 
 /**
- * Return the data URI of current frame, MINE type is image/png.
- * @return {DOMString} Which contains data URI, MINE type is image/png
- * @example
- * You can use codes below to let the user download the current frame
- *
- * let link = document.createElement('a');
- * link.innerHTML = 'Download image';
- * link.href = L2Dwidget.captureFrame();
- * link.download = 'live2d.png';
- * link.click();
- *
- * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
+ * Capture current frame to png file {@link captureFrame}
+ * @param  {Function} callback The callback function which will receive the current frame
+ * @return {null}
  */
 
-L2Dwidget.captureFrame = () => {return coreApp.captureFrame()};
+  captureFrame(callback){
+    return coreApp.captureFrame(callback);
+  }
+
+/**
+ * download current frame {@link L2Dwidget.captureFrame}
+ * @return {null}
+ */
+
+  downloadFrame(){
+    this.captureFrame(
+      function(e){
+        let link = document.createElement('a');
+        document.body.appendChild(link);
+        link.setAttribute('type', 'hidden');
+        link.href = e;
+        link.download = 'live2d.png';
+        link.click();
+      }
+    );
+  }
+
+};
+
+let _ = new L2Dwidget();
+
 
 export {
-  L2Dwidget,
+  _ as L2Dwidget,
 }
