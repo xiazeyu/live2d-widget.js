@@ -480,9 +480,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/config/configvalidater.js",
-    "file/src/config/configValidater.js.html",
-    "src/config/configValidater.js",
+    "src/config/defaultconfig.js",
+    "file/src/config/defaultConfig.js.html",
+    "src/config/defaultConfig.js",
     "file"
   ],
   [

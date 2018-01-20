@@ -1,6 +1,6 @@
 {
-  "coverage": "20%",
-  "expectCount": 320,
+  "coverage": "20.18%",
+  "expectCount": 317,
   "actualCount": 64,
   "files": {
     "src/cDefine.js": {
@@ -78,19 +78,14 @@
       ]
     },
     "src/config/configMgr.js": {
-      "expectCount": 3,
+      "expectCount": 2,
       "actualCount": 2,
-      "undocumentLines": [
-        68
-      ]
+      "undocumentLines": []
     },
-    "src/config/configValidater.js": {
-      "expectCount": 3,
+    "src/config/defaultConfig.js": {
+      "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": [
-        13,
-        65
-      ]
+      "undocumentLines": []
     },
     "src/elementMgr.js": {
       "expectCount": 3,

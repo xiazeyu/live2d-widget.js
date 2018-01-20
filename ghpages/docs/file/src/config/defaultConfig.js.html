@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/config/configValidater.js | live2d-widget.js</title>
+  <title data-ice="title">src/config/defaultConfig.js | live2d-widget.js</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -60,80 +60,55 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/config/configValidater.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Created by xiazeyu.
-
-/**
- * @description The validater function for user&apos;s config.
- * @deprecated Only respond one time when you call it, won&apos;t be built in production.
- * @requires prop-types, use npm i prop-types
+<div class="content" data-ice="content"><h1 data-ice="title">src/config/defaultConfig.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @description The storage of configs. Intend to unify serverJs and clientJs&apos;s config
  */
 
-
-&apos;use strict&apos;;
-
-
-let PropTypes = require(&apos;prop-types&apos;);
 /**
- * The propTypes configeration of config
+ * Default settings for defaulter
  * @type {Object}
  */
 
-const configPropTypes = {
-  model: PropTypes.shape({
-    jsonPath: PropTypes.string,
-    hHeadPos: PropTypes.number,
-    vHeadPos: PropTypes.number,
-    myDefine: PropTypes.array,
-  }),
-  display: PropTypes.shape({
-    superSample: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    scale: PropTypes.number,
-    position: PropTypes.oneOf([&apos;left&apos;, &apos;right&apos;]),
-    hOffset: PropTypes.number,
-    vOffset: PropTypes.number,
-  }),
-  mobile: PropTypes.shape({
-    show: PropTypes.bool,
-    scale: PropTypes.number,
-    motion: PropTypes.bool,
-  }),
-  name: PropTypes.shape({
-    canvas: PropTypes.string,
-    div: PropTypes.string,
-  }),
-  react: PropTypes.shape({
-    opacityDefault: PropTypes.number,
-    opacityOnHover: PropTypes.number,
-    myFunc: PropTypes.func,
-  }),
-  dev: PropTypes.shape({
-    log: PropTypes.bool,
-    border: PropTypes.bool,
-    mouseLog: PropTypes.bool,
-    mouseFunc: PropTypes.func,
-  }),
-}
-/**
- * The validater for user config
- * See https://github.com/facebook/prop-types
- * @param  {Object} [userConfig] User&apos;s config
- * @description Only console.warn
- * @deprecated Only respond one time when you call it, won&apos;t be built in production.
- * @return {null}
- */
-
-function configValidater(userConfig){
-  PropTypes.checkPropTypes(configPropTypes, userConfig, &apos;config&apos;, &apos;Live2D-widget&apos;);
+const defaultConfig = {
+  model: {
+    jsonPath: &apos;https://unpkg.com/live2d-widget-model-shizuku@latest/assets/shizuku.model.json&apos;,
+    scale: 1,
+    hHeadPos: 0.5,
+    vHeadPos: 0.618,
+    myDefine: [],
+  },
+  display: {
+    superSample: 2,
+    width: 150,
+    height: 300,
+    position: &apos;right&apos;,
+    hOffset: 0,
+    vOffset: -20,
+  },
+  mobile: {
+    show: true,
+    scale: 0.5,
+    motion: true,
+  },
+  name: {
+    canvas: &apos;live2dcanvas&apos;,
+    div: &apos;live2d-widget&apos;,
+  },
+  react: {
+    opacityDefault: 0.7,
+    opacityOnHover: 0.2,
+    myFunc: (e) =&gt; {console.log(&apos;(undefined) &#x2511;(&#xFFE3;&#x414; &#xFFE3;)&#x250D;&apos;);},
+  },
+  dev: {
+    log: false,
+    border: (process.env.NODE_ENV === &apos;development&apos; ? true : false),
+    mouseLog: false,
+    mouseFunc: (x, y, ix, iy) =&gt; {console.log(`MouseFunc: ${x},${y}; ${ix}, ${iy}`);},
+  },
 }
 
-if (process.env.NODE_ENV === &apos;development&apos;) window.cV = configValidater;
-
-module.exports = {
-  configValidater: configValidater,
-}
+module.exports = defaultConfig;
 </code></pre>
 
 </div>
