@@ -1,6 +1,6 @@
 {
   "name": "live2d-widget",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "main": "./src",
   "description": "Add the Sseexxyyy live2d to webpages.",
   "scripts": {
