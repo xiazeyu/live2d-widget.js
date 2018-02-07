@@ -17,8 +17,7 @@
     "v:pminor": "npm version preminor",
     "v:patch": "npm version patch",
     "v:ppatch": "npm version prepatch",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ghpages": "push-gh-pages"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
