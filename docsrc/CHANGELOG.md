@@ -1,6 +1,10 @@
-<a name="Unreleased"></a>
-# Unreleased (2018-01-20)
+<a name="3.0.4"></a>
+## 3.0.4 (2018-02-07)
 
+* 3.0.4 ([d71c60b](https://github.com/xiazeyu/live2d-widget.js/commit/d71c60b))
+* docs: migrate documents to live2d-widget.js-doc ([90b9894](https://github.com/xiazeyu/live2d-widget.js/commit/90b9894))
+* build: remove lib from github, rename output file ([efc0f53](https://github.com/xiazeyu/live2d-widget.js/commit/efc0f53))
+* build(entry): add entry point in package.json ([b7240fb](https://github.com/xiazeyu/live2d-widget.js/commit/b7240fb))
 
 
 
