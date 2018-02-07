@@ -1,10 +1,26 @@
+<a name="Unreleased"></a>
+# Unreleased (2018-01-20)
+
+
+
+
+<a name="3.0.2"></a>
+## 3.0.2 (2018-01-20)
+
+* 3.0.2 ([1bd3909](https://github.com/xiazeyu/live2d-widget.js/commit/1bd3909))
+* docs(update doc): ([423465f](https://github.com/xiazeyu/live2d-widget.js/commit/423465f))
+* feat: seperate defaultConfig for supporting helper ([5fa4587](https://github.com/xiazeyu/live2d-widget.js/commit/5fa4587))
+
+
+
 <a name="3.0.1"></a>
 ## 3.0.1 (2018-01-19)
 
-* feat: new build ([f70a36c](https://github.com/xiazeyu/live2d-widget.js/commit/f70a36c))
 * docs: relink js to unpkg CDN ([0bd9cdf](https://github.com/xiazeyu/live2d-widget.js/commit/0bd9cdf))
 * docs: update CHANGELOG ([c840cfa](https://github.com/xiazeyu/live2d-widget.js/commit/c840cfa))
+* docs: update docs ([188368a](https://github.com/xiazeyu/live2d-widget.js/commit/188368a))
 * docs(method of execute): finish the doc of launch it (use var) ([1b43dc0](https://github.com/xiazeyu/live2d-widget.js/commit/1b43dc0))
+* feat: new build ([f70a36c](https://github.com/xiazeyu/live2d-widget.js/commit/f70a36c))
 * fix: achieve frameshot, recover event system ([aed9c26](https://github.com/xiazeyu/live2d-widget.js/commit/aed9c26))
 * style: change L2Dwidget into Class ([59909df](https://github.com/xiazeyu/live2d-widget.js/commit/59909df))
 * build(add script to bump version better): ([a2d04e8](https://github.com/xiazeyu/live2d-widget.js/commit/a2d04e8))
