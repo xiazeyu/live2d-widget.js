@@ -1,6 +1,6 @@
 {
   "name": "live2d-widget",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "main": "./lib/L2Dwidget.min.js",
   "description": "Add the Sseexxyyy live2d to webpages.",
   "scripts": {
