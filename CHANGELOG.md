@@ -1,11 +1,4 @@
-<a name="Unreleased"></a>
-# Unreleased (2018-02-15)
-
-* docs: add git module of ghpages ([8492034](https://github.com/xiazeyu/live2d-widget.js/commit/8492034))
-* docs: ghpages ([103b1dc](https://github.com/xiazeyu/live2d-widget.js/commit/103b1dc))
-* docs: use submodule to store docs ([0e25ac7](https://github.com/xiazeyu/live2d-widget.js/commit/0e25ac7))
-
-
+#Changelog
 
 <a name="3.0.4"></a>
 ## 3.0.4 (2018-02-07)
