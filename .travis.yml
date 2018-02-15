@@ -1,0 +1,24 @@
+language: node_js
+node_js: node
+git:
+  depth: 2
+  submodules: false
+branches:
+  only:
+  - master
+cache:
+  directories:
+  - node_modules
+before_install:
+  - openssl aes-256-cbc -K $encrypted_03124c7c4b3f_key -iv $encrypted_03124c7c4b3f_iv -in id_rsa.enc -out id_rsa -d
+  - chmod 600 ~./.ssh/id_rsa
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp .travis/ssh_config ~/.ssh/config
+  - git config --global user.name 'xiazeyu'
+  - git config --global user.email xiazeyu_2011@126.com
+install:
+  - npm install
+script:
+  # - npm run lint
+  - npm run build:prod && npm run build:esdoc && npm run deploy:doc
