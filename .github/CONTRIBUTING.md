@@ -69,7 +69,7 @@ work is not in vain.
 - **Use `npm run build:prod` to build final client js.**
 **Important!!! The step must be done before commit!!!**
 
-- Use `git add *`, or choose the file you want to commit.
+- Use `git add .`, or choose the file you want to commit.
 
 - Use `npm run commit` to commit, **Never use `git commit`!!!**
 
@@ -77,14 +77,11 @@ work is not in vain.
 
 - Use `git push` to push the changes to the github server.
 
-### 6. Push to the webbranch
-
-- Use `push-gh-pages.bat` or `push-gh-pages.sh`
-
 
 ## Workflow(author): Release a new version
 
 *Let the Collaborator or author do it.*
+
 
 ### 1. Bump the version
 
@@ -94,17 +91,17 @@ work is not in vain.
 
 - run `npm install` to generate new `package-lock.json`
 
-### 2. Commit package.json and package-lock.json
+### 2. Build the library
+
+- `npm run deploy`
+
+### 3. Commit package.json and package-lock.json
 
 - Use `npm run commit` to commit, **Never use `git commit`!!!**
 
-### 3. Tag and release a new version
+### 4. Tag and release a new version
 
 - In the Github page.
-
-### 4. Update changelog
-
-- Use `npm run changelog`
 
 ### 5. Publish the package to npm.
 
