@@ -1,0 +1,3 @@
+[submodule "ghpages"]
+	path = ghpages
+	url = git@github.com:xiazeyu/live2d-widget.js-doc.git
