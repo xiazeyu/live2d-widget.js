@@ -3,6 +3,7 @@
 
 * docs: add git module of ghpages ([8492034](https://github.com/xiazeyu/live2d-widget.js/commit/8492034))
 * docs: ghpages ([103b1dc](https://github.com/xiazeyu/live2d-widget.js/commit/103b1dc))
+* docs: use submodule to store docs ([0e25ac7](https://github.com/xiazeyu/live2d-widget.js/commit/0e25ac7))
 
 
 
