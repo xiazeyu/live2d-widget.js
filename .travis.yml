@@ -2,7 +2,7 @@ language: node_js
 node_js: node
 git:
   depth: 2
-  submodules: true
+  submodules: false
 branches:
   only:
   - master
@@ -11,12 +11,13 @@ cache:
   - node_modules
 before_install:
 - cp .travis/id_rsa ~/.ssh/id_rsa
-- chmod 600 ~/.ssh/id_rsa
+- chmod 600 ~/.ssh/id_rsa'
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/id_rsa
 - cp .travis/ssh_config ~/.ssh/config
 - git config --global user.name 'xiazeyu'
 - git config --global user.email xiazeyu_2011@126.com
+- git submodule update --init --recursive
 install:
 - npm install
 script:
