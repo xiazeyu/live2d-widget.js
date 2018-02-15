@@ -20,9 +20,10 @@
         "manual": {
         "index": "./README.md",
         "globalIndex": true,
-        "asset": "./docsrc/manual/asset",
+        "asset": "./ghpages/assets/",
         "files": [
-          "./docsrc/CHANGELOG.md"
+          "./README.md",
+          "./CHANGELOG.md"
         ]
         }
       }
