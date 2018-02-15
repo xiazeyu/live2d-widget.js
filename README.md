@@ -125,6 +125,8 @@ Up to now, there should be `mymiku.model.json` in the directory of `/live2d_mode
 
 <br>
 
+See [WEBPACK VISUALIZER](https://l2dwidget.js.org/stats.html)
+
 Enjoy!:beer:
 
 > This is my first hexo plugin, star :star: and watch :eyeglasses:, pull request is also welcomed.
