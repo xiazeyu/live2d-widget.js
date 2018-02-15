@@ -12,7 +12,7 @@
     "build:prod": "webpack --env prod --progress --colors",
     "build:docs": "git pull && npm run _changelog && git add CHANGELOG.md && npm run update:submodule && git add ghpages",
     "build:esdoc": "build_esdoc",
-    "deploy:doc": "cd ghpages/ && git status && git add * && git commit -m \"Update docs\" && git push --force && cd ..",
+    "deploy:doc": "cd ghpages/ && git status && git add . && git commit -m \"Update docs\" && git push --force && cd ..",
     "lint": "eslint --ext .js ./src",
     "commit": "git pull && git-cz",
     "v:major": "npm version major",
