@@ -1,5 +1,3 @@
-// Created by xiazeyu.
-
 /**
  * @description The manager of configeration.
  */
@@ -9,6 +7,7 @@
 
 import _ from 'lodash';
 import defaultConfig from './defaultConfig';
+
 
 /**
  * The container of current configs

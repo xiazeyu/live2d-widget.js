@@ -1,23 +1,3 @@
-/**
- *
- *  You can modify and use this source freely
- *  only for the development of application related Live2D.
- *
- *  (c) Live2D Inc. All rights reserved.
- */
-
-/**
- * EYHN 基于 live2d 官方 Live2DFramework.js 修改
- *
- * Copyright © 2016 - 2017 EYHN
- */
-
-// Modified by xiazeyu.
-
-/**
-* @desc Basic functions releated to model react
-*/
-
 import { UtSystem,
          UtDebug,
          LDTransform,
