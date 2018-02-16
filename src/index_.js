@@ -2,13 +2,20 @@
  * @description The entry point of live2d-widget.js
  */
 
+
 'use strict';
 
 import device from 'current-device';
 import {
-  config,
-  configApplyer,
+  currConfig,
+  configDefaulter,
 } from './config/configMgr';
+import {
+  currElement,
+  currCanvas,
+  currWebGL,
+  bindElement,
+} from './elementMgr';
 
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
@@ -17,13 +24,10 @@ if (process.env.NODE_ENV === 'development'){
 let coreApp = null;
 
 class L2Dwidget{
-  constructor(userConfig = {}, loadNow = true){
+  constructor(...argvs){
     const isLoaded = Symbol('isLoaded');
-    const canvas = Symbol('canvas');
-    const config = Symbol('config');
     this[isLoaded] = false;
-    this[canvas] = null;
-    // TBD.
+    this.init(...argvs);
   }
   get isLoaded() {
     return this[isLoaded];
@@ -31,19 +35,35 @@ class L2Dwidget{
   set isLoaded(value) {
     throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
   }
+  get element() {
+    return currElement;
+  }
+  set element(value) {
+    if(currElement === null){
+      bindElement(value);
+    }else{
+      throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+    }
+  }
   get canvas() {
-    return this[canvas];
+    return currCanvas;
   }
   set canvas(value) {
     throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
   }
+  get WebGL() {
+    return WebGL;
+  }
+  set WebGL(value) {
+    throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+  }
   get config() {
-    return this[config];
+    return currConfig;
   }
   set config(value) {
-    this[config] = configApplyer(value);
+    configDefaulter(value);
   }
-  init(userConfig = {}) {
+  init(userConfig = {}, loadNow = true) {
     this.config = userConfig;
     this.load();
     // TBD.
