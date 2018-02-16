@@ -4,7 +4,7 @@
 
 /**
  * Default settings for defaulter
- * @type {Object}
+ * @type {Config}
  */
 
 const defaultConfig = {

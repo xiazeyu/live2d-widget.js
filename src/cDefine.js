@@ -1,5 +1,3 @@
-// Modified by xiazeyu.
-
 /**
 * @desc The definitions of values releated to model react
 */
