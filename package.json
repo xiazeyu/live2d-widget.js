@@ -7,7 +7,7 @@
     "update:submodule": "git submodule foreach git pull",
     "_esdoc": "./node_modules/.bin/esdoc",
     "_changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
-    "_titlechangelog": "sed -i '1i\\#Changelog\\n\\n' CHANGELOG.md",
+    "_titlechangelog": "sed -i '1i\\# Changelog\\n\\n' CHANGELOG.md",
     "inst:dev": "npm install -g commitizen && npm install -g conventional-changelog-cli && npm install",
     "build:dev": "./node_modules/.bin/webpack --progress --colors",
     "build:prod": "./node_modules/.bin/webpack --env prod --progress --colors",
