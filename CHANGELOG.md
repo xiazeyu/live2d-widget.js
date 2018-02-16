@@ -1,3 +1,28 @@
+<a name="3.0.5"></a>
+## 3.0.5 (2018-02-15)
+
+* chore: bump version, upload production lib ([d321872](https://github.com/xiazeyu/live2d-widget.js/commit/d321872))
+* ci: add support for Travis ([b575b69](https://github.com/xiazeyu/live2d-widget.js/commit/b575b69))
+* ci: config travis ([870f27a](https://github.com/xiazeyu/live2d-widget.js/commit/870f27a))
+* ci: fix config error ([dc2ebd5](https://github.com/xiazeyu/live2d-widget.js/commit/dc2ebd5))
+* ci: fix config errors ([7c9b867](https://github.com/xiazeyu/live2d-widget.js/commit/7c9b867))
+* ci: fix errors ([43d8a10](https://github.com/xiazeyu/live2d-widget.js/commit/43d8a10))
+* ci: fix travis bug ([99f392f](https://github.com/xiazeyu/live2d-widget.js/commit/99f392f))
+* ci: modify npm script 'build:esdoc' for linux-only-use ([f8905f9](https://github.com/xiazeyu/live2d-widget.js/commit/f8905f9))
+* ci: remove encrypt, since this is only used to access ghpage ([e2cf234](https://github.com/xiazeyu/live2d-widget.js/commit/e2cf234))
+* ci: travis bugs ([1d3db7b](https://github.com/xiazeyu/live2d-widget.js/commit/1d3db7b))
+* ci: travis errors ([6aefd13](https://github.com/xiazeyu/live2d-widget.js/commit/6aefd13))
+* ci: try...to...fix... travis error ([0e9c1b5](https://github.com/xiazeyu/live2d-widget.js/commit/0e9c1b5))
+* style: add eslint ([9080413](https://github.com/xiazeyu/live2d-widget.js/commit/9080413))
+* style: npm script style ([0ef7538](https://github.com/xiazeyu/live2d-widget.js/commit/0ef7538))
+* build: update CHANGELOG build flow ([17de15a](https://github.com/xiazeyu/live2d-widget.js/commit/17de15a))
+* docs: add git module of ghpages ([8492034](https://github.com/xiazeyu/live2d-widget.js/commit/8492034))
+* docs: ghpages ([103b1dc](https://github.com/xiazeyu/live2d-widget.js/commit/103b1dc))
+* docs: update build:docs ([9b1ce55](https://github.com/xiazeyu/live2d-widget.js/commit/9b1ce55))
+* docs: use submodule to store docs ([0e25ac7](https://github.com/xiazeyu/live2d-widget.js/commit/0e25ac7))
+
+
+
 <a name="3.0.4"></a>
 ## 3.0.4 (2018-02-07)
 
