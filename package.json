@@ -4,7 +4,7 @@
   "main": "./lib/L2Dwidget.min.js",
   "description": "Add the Sseexxyyy live2d to webpages.",
   "scripts": {
-    "update:submodule": "git submodule foreach git pull",
+    "update:submodule": "git submodule foreach git pull origin master",
     "_esdoc": "./node_modules/.bin/esdoc",
     "_changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
     "_titlechangelog": "sed -i '1i\\# Changelog\\n\\n' CHANGELOG.md",
