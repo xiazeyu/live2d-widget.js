@@ -3,7 +3,7 @@
  */
 
 
-import { config } from './config/configMgr';
+import { currConfig } from './config/configMgr';
 import htmlTemplate from './tmplate/innerHTML';
 
 /**
@@ -18,7 +18,8 @@ let currWebGL = undefined;
  * @type {HTMLElement}
  */
 
-let currCanvas;
+let currElement = null;
+let currCanvas = null;
 
 /**
  * Create the canvas and styles using DOM
@@ -57,6 +58,10 @@ function createElement(){
 
 }
 
+function bindElement(HTMLElement){
+
+}
+
 /**
  * Find and set the current WebGL element to the container
  * @return {null}
@@ -88,6 +93,8 @@ function initWebGL(){
 
 export{
   createElement,
+  bindElement,
+  currElement,
   currWebGL,
   currCanvas,
 }
