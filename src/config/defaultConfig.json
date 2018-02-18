@@ -1,0 +1,29 @@
+{
+  "model": {
+    "jsonPath": "https://unpkg.com/live2d-widget-model-shizuku@latest/assets/shizuku.model.json",
+    "hHeadPos": 0.5,
+    "vHeadPos": 0.618,
+    "scale": 1
+  },
+  "display": {
+    "width": 150,
+    "height": 300,
+    "position": "right",
+    "superSample": 2,
+    "hOffset": 0,
+    "vOffset": -20
+  },
+  "mobile": {
+    "show": true,
+    "scale": 0.5,
+    "motion": true
+  },
+  "react": {
+    "opacityDefault": 0.7,
+    "opacityOnHover": 0.2
+  },
+  "dev": {
+    "log": false,
+    "mouseLog": false
+  }
+}

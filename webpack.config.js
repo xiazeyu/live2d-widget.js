@@ -109,6 +109,7 @@ module.exports = (env) => ({
     'extensions': [
       '.js',
       '.html',
+      '.json',
       '.webpack.js',
       '.web.js',
     ],

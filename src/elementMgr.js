@@ -48,7 +48,7 @@ function createElement(){
     newCanvasElem.style.setProperty('bottom', config.display.vOffset + 'px');
     newCanvasElem.style.setProperty('z-index', 99999);
     newCanvasElem.style.setProperty('pointer-events', 'none');
-    if(config.dev.border) newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
+    if(process.env.NODE_ENV === 'development') newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
     newElem.appendChild(newCanvasElem);
 
   document.body.appendChild(newElem);
