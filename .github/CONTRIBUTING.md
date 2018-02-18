@@ -7,9 +7,9 @@
 
 - **Search on the internet** and **among closed issues** in advance would do a great help for us.
 
-- Please **keep focus on the topic** of any issue, and use **English** as far as possible so that everyone will understand you.
+- Please **keep focus on the topic** of any issue~~, and use **English** as far as possible so that everyone will understand you.~~
 
-- **If you have discovered a bug or have a feature suggestion, feel free to create an issue on Github.**
+- **If you have discovered a bug or have a feature suggestion, feel free to create an issue or pull request on Github.**
 
 
 ## Contributing directly to the source code
@@ -29,6 +29,7 @@ your pull request should be accepted quickly.
 Some things that will increase the chance that your pull request is accepted:
 
 - Follow the existing coding style
+- run `npm run lint` before you commit it.
 - Write a good commit message use `npm run commit`
 - Make sure that your code can work properly.
 
@@ -52,9 +53,11 @@ work is not in vain.
 
 - Please use the latest version of Node.js to work with.
 
+### 0. Fork at first
+
 ### 1. Install environments
 
-- Use `npm run inst:dev` to install all the environments.
+- Use `npm run inst:dev` to **install all the environments**.
 
 ### 2. Make changes
 
@@ -66,12 +69,13 @@ work is not in vain.
 
 ### 4. Commit those changes
 
-- **Use `npm run build:prod` to build final client js.**
-**Important!!! The step must be done before commit!!!**
+- Use `npm run lint` to check your code first.
 
-- Use `git add .`, or choose the file you want to commit.
+- Use `npm run build:prod` to build final client js.
 
-- Use `npm run commit` to commit, **Never use `git commit`!!!**
+- Use `git add --all`, or choose the file you want to commit.
+
+- We recommend `npm run commit` to commit, **please follow the Angular style**
 
 ### 5. Push the changes
 
@@ -97,7 +101,7 @@ work is not in vain.
 
 ### 3. Commit package.json and package-lock.json
 
-- Use `npm run commit` to commit, **Never use `git commit`!!!**
+- Use `npm run commit` to commit
 
 ### 4. Tag and release a new version
 

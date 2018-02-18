@@ -1,28 +1,29 @@
-[![npm][npm]][npm-url]
-[![deps][deps]][deps-url]
-[![devdeps][devdeps]][devdeps-url]
+# live2d-widget.js
 
-[![downloads][downloads]][downloads-url]
+[![npm package][npm-package]][npm-package-url]
+[![dependencies][dependencies]][dependencies-url]
+[![devDependencies][devDependencies]][devDependencies-url]
+[![build][build]][build-url]
+
+[![downloads-total][downloads-total]][downloads-total-url]
 [![downloads-month][downloads-month]][downloads-month-url]
 
-[![GitHub stars][GitHub stars]][GitHub stars-url]
-[![GitHub forks][GitHub forks]][GitHub forks-url]
-[![GitHub issues][GitHub issues]][GitHub issues-url]
+[![stars][stars]][stars-url]
+[![forks][forks]][forks-url]
+[![issues][issues]][issues-url]
 
-[![Commitizen friendly][Commitizen friendly]][Commitizen friendly-url]
-[![PRs Welcome][PRs Welcome]][PRs Welcome-url]
+[![commitizen][commitizen]][commitizen-url]
+[![PRs][PRs]][PRs-url]
 [![license][license]][license-url]
 
 
-# live2d-widget.js
-
 Add the Sseexxyyy live2d to your webpages! Seperated from [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d).
 
-Demo: [Still working, but you can have a look~](https://xiazeyu.github.io/live2d-widget.js/dev.html)
+Demo: [Still working, but you can have a look~](https://l2dwidget.js.org/dev.html)
 
-Docs(including APIs): [Click me!](https://xiazeyu.github.io/live2d-widget.js/)
+Docs(including APIs): [Click me!](l2dwidget.js.org)
 
-Online generator: [TBD.](javascript:void(0);)
+Online generator: [WIP.](javascript:void(0);)
 
 
 ## Useage
@@ -33,38 +34,50 @@ Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d) fo
 
 ### Webpages
 
-#### File on your server
+#### Store script on your server
 
 Download the [latest release](https://github.com/xiazeyu/live2d-widget.js/releases),
 
-and then copy and extract the `lib` folder to your website.
+then extract and copy the `lib` folder to your website.
 
-Use [online generator](javascript:void(0);) **(recommended)** to generate codes.
+Insert codes into your HTML files using [online generator](javascript:void(0);) **(recommended)**.
 
-<details><summary>However, if you want to do it manually, follow the instruction below:</summary><br>
+<details><summary>Manually, follow the instruction below:</summary><br>
 
 import the js:
 
 ```html
-
 <script src = "( your script path here )"></script>
-
 ```
 
 Then call the function along with your config.
 
 ```js
-L2Dwidget.init({
+var currL2Dwidget = new L2Dwidget({
   'config1': 'value1',
-  'config2': 'value2',
+  'config2': 'value2'
 });
 ```
 
 </details>
 
+#### Using CDN
+
+We have
+
+- Jsdelivr(Recommended)
+`https://cdn.jsdelivr.net/npm/live2d-widget@4.x/lib/L2Dwidget.min.js`
+
+- Unkpg
+`https://unpkg.com/live2d-widget@4.x/lib/L2Dwidget.min.js`
+
 ### Bookmark (any pages)
 
-TBD.
+`data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js></script><script>L2Dwidget.init()</script>`
+
+`javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js", function(){L2Dwidget.init();});`
+
+WIP.
 
 https://www.cnblogs.com/pcyy/p/5655542.html
 
@@ -73,103 +86,39 @@ https://www.cnblogs.com/pcyy/p/5655542.html
 
 See the [document](https://xiazeyu.github.io/live2d-widget.js/docs/class/src/index.js~L2Dwidget.html#instance-method-init).
 
-<details><summary>Current supported models:</summary><br>
-
-  - `chitose`
-  - `Epsilon2.1`
-  - `Gantzert_Felixander`
-  - `haru01`
-  - `haru02`
-  - `haruto`
-  - `hibiki`
-  - `hijiki`
-  - `izumi`
-  - `koharu`
-  - `miku`
-  - `nico`
-  - `ni-j`
-  - `nipsilon`
-  - `nito`
-  - `shizuku`
-  - `tororo`
-  - `tsumiki`
-  - `Unitychan`
-  - `wanko`
-  - `z16`
-
-</details>
-
-## Custom model
-
-1. Create a `live2d_models` folder at your blog's root directory.
-
-2. Create a folder by the name of your model.
-
-3. Copy your model to this folder.
-
-**Attention! The path of the model's json must be  `/live2d_models/{name}/{name}.model.json`**
-
-<details><summary>An Example:</summary><br>
-
-Your model is named `mymiku`.
-
-Then, create a folder at  `/` (Which should exists `_config.yml` 、`sources` 、 `themes` ) named `mymiku`.
-
-Copy your model to `/live2d_models/mymiku/`.
-
-Up to now, there should be `mymiku.model.json` in the directory of `/live2d_models/mymiku/`.
-
-</details>
-
-<br>~The problem was once releated to [(#22)](https://github.com/EYHN/hexo-helper-live2d/issues/22).~
-
-<br>
-
-See [WEBPACK VISUALIZER](https://l2dwidget.js.org/stats.html)
-
 Enjoy!:beer:
 
-> This is my first hexo plugin, star :star: and watch :eyeglasses:, pull request is also welcomed.
+> This is my first npm plugin, star :star: and watch :eyeglasses:, pull request is also welcomed.
 
-Github: [https://github.com/EYHN/hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
+Github: [https://github.com/xiazeyu/live2d-widget.js](https://github.com/xiazeyu/live2d-widget.js)
 
-issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/EYHN/hexo-helper-live2d/issues)
+issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/xiazeyu/live2d-widget.js/issues)
 
 
 ## Contribute
 
 **Please pay enough attention to this document if you want to commit your changes or submit issues.**
 
-[CONTRIBUTING](./CONTRIBUTING.md)
+[CONTRIBUTING](.github/CONTRIBUTING.md)
 
 ## Releated projects
 
-- [Cubism SDK WebGL 2.1](http://sites.cybernoids.jp/cubism-sdk2_e/webgl2-1)
-
-- [live2d-widget.js](https://github.com/xiazeyu/live2d-widget.js)
-
 - [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
 
-- [pixi-live2d](https://github.com/avgjs/pixi-live2d)
+- [live2d-widget-models](https://github.com/xiazeyu/live2d-widget-models)
 
-- [CubismJsComponents](https://github.com/Live2D/CubismJsComponents)
-
+- [Cubism SDK WebGL 2.1](http://sites.cybernoids.jp/cubism-sdk2_e/webgl2-1)
 
 
 ## About me
 
-[![Author][author]][author-url]
+[![author][author]][author-url]
+[![author QQ][author-qq]][author-qq-url]
+[![author email][author-email]][author-email-url]
 
-[![Author QQ][author-qq]][author-qq-url]
-
-[![Author Email][author-email]][author-email-url]
-
-
-[![Collaborator 0][collaborator0]][collaborator0-url]
-
-[![Collaborator 0 QQ][collaborator0-qq]][collaborator0-qq-url]
-
-[![Collaborator 0 Email][collaborator0-email]][collaborator0-email-url]
+[![collaborator0][collaborator0]][collaborator0-url]
+[![collaborator0 QQ][collaborator0-qq]][collaborator0-qq-url]
+[![collaborator0 email][collaborator0-email]][collaborator0-email-url]
 
 
 ## Imported
@@ -178,47 +127,50 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 
 ## Special Thanks
 
-- @mashirozx 
-- @fghrsh
-- @journey-ad
-- @gwzz
+- [@mashirozx](https://github.com/mashirozx)
+- [@fghrsh](https://github.com/fghrsh)
+- [@journey-ad](https://github.com/journey-ad)
+- [@gwzz](https://github.com/gwzz)
 
 <br>
 
 Open sourced under the GPL v2.0 license.
 
-[npm]: https://badge.fury.io/js/live2d-widget.svg?label=live2d-widget
-[npm-url]: https://www.npmjs.com/package/live2d-widget
+[build]: https://www.travis-ci.org/xiazeyu/live2d-widget.js.svg?branch=master
+[build-url]: https://www.travis-ci.org/xiazeyu/live2d-widget.js.svg?branch=master
 
-[deps]: https://img.shields.io/david/xiazeyu/live2d-widget.js.svg
-[deps-url]: javascript:void(0);
+[npm-package]: https://badge.fury.io/js/live2d-widget.svg?label=live2d-widget
+[npm-package-url]: https://www.npmjs.com/package/live2d-widget
 
-[devdeps]:  https://img.shields.io/david/dev/xiazeyu/live2d-widget.js.svg
-[devdeps-url]: javascript:void(0);
+[dependencies]: https://img.shields.io/david/xiazeyu/live2d-widget.js.svg
+[dependencies-url]: javascript:void(0);
 
-[license]: https://img.shields.io/github/license/xiazeyu/live2d-widget.js.svg
-[license-url]: https://github.com/xiazeyu/live2d-widget.js/blob/master/LICENSE
+[devDependencies]:  https://img.shields.io/david/dev/xiazeyu/live2d-widget.js.svg
+[devDependencies-url]: javascript:void(0);
 
-[PRs Welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
-[PRs Welcome-url]: http://makeapullrequest.com
-
-[downloads]:  https://img.shields.io/npm/dt/live2d-widget.svg
-[downloads-url]: https://www.npmjs.com/package/live2d-widget
+[downloads-total]:  https://img.shields.io/npm/dt/live2d-widget.svg
+[downloads-total-url]: https://www.npmjs.com/package/live2d-widget
 
 [downloads-month]: https://img.shields.io/npm/dm/live2d-widget.svg
 [downloads-month-url]: https://www.npmjs.com/package/live2d-widget
 
-[Commitizen friendly]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
-[Commitizen friendly-url]: http://commitizen.github.io/cz-cli/
+[stars]: https://img.shields.io/github/stars/xiazeyu/live2d-widget.js.svg
+[stars-url]: https://github.com/xiazeyu/live2d-widget.js/stargazers
 
-[GitHub stars]: https://img.shields.io/github/stars/xiazeyu/live2d-widget.js.svg
-[GitHub stars-url]: https://github.com/xiazeyu/live2d-widget.js/stargazers
+[forks]: https://img.shields.io/github/forks/xiazeyu/live2d-widget.js.svg
+[forks-url]: https://github.com/xiazeyu/live2d-widget.js/network
 
-[GitHub forks]: https://img.shields.io/github/forks/xiazeyu/live2d-widget.js.svg
-[GitHub forks-url]: https://github.com/xiazeyu/live2d-widget.js/network
+[issues]: https://img.shields.io/github/issues/xiazeyu/live2d-widget.js.svg
+[issues-url]: https://github.com/xiazeyu/live2d-widget.js/issues
 
-[GitHub issues]: https://img.shields.io/github/issues/xiazeyu/live2d-widget.js.svg
-[GitHub issues-url]: https://github.com/xiazeyu/live2d-widget.js/issues
+[commitizen]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+[commitizen-url]: http://commitizen.github.io/cz-cli/
+
+[PRs]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[PRs-url]: http://makeapullrequest.com
+
+[license]: https://img.shields.io/github/license/xiazeyu/live2d-widget.js.svg
+[license-url]: https://github.com/xiazeyu/live2d-widget.js/blob/master/LICENSE
 
 [author]: https://img.shields.io/badge/author-cneyhn-green.svg
 [author-url]: https://delusion.coding.me/
