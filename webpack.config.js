@@ -26,7 +26,7 @@ module.exports = (env) => ({
     'core-js/fn/promise',
     'core-js/fn/symbol',
     './src/wpPublicPath.js',
-    './src/index_.js',
+    './src/index.js',
   ],
 
   'module': {
