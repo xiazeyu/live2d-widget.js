@@ -1,6 +1,7 @@
 # live2d-widget.js
 
 [![npm package][npm-package]][npm-package-url]
+[![jsDelivr][jsDelivr]][jsdelivr-url]
 [![dependencies][dependencies]][dependencies-url]
 [![devDependencies][devDependencies]][devDependencies-url]
 [![build][build]][build-url]
@@ -141,6 +142,9 @@ Open sourced under the GPL v2.0 license.
 
 [npm-package]: https://badge.fury.io/js/live2d-widget.svg?label=live2d-widget
 [npm-package-url]: https://www.npmjs.com/package/live2d-widget
+
+[jsDelivr]: https://data.jsdelivr.com/v1/package/npm/live2d-widget/badge
+[jsDelivr-url]: https://www.jsdelivr.com/package/npm/live2d-widget
 
 [dependencies]: https://img.shields.io/david/xiazeyu/live2d-widget.js.svg
 [dependencies-url]: javascript:void(0);
