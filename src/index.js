@@ -4,8 +4,8 @@
 
 /* global process */
 
-import './lib/polyfill';
-import './lib/wpPublicPath';
+import './lib/polyfill.nodoc';
+import './lib/wpPublicPath.nodoc';
 import device from 'current-device';
 import {
   configDefaulter,
@@ -147,6 +147,7 @@ class L2Dwidget {
    * > balabala
    */
   get element () {
+
     if(this[iElement] === null) {
 
       throw new Error('Live2d-widget: no element defined. Please bind one first.');
@@ -200,6 +201,7 @@ class L2Dwidget {
    * > balabala
    */
   get canvas () {
+
     if(this[iCanvas] === null) {
 
       throw new Error('Live2d-widget: no canvas defined. Please bind element first.');
@@ -234,6 +236,7 @@ class L2Dwidget {
    * > balabala
    */
   get WebGL () {
+
     if(this[iWebGL] === null) {
 
       throw new Error('Live2d-widget: no WebGL defined. Please bind element first.');
