@@ -31,31 +31,31 @@ let mainFunc = null; // eslint-disable-line prefer-const
  * @private
  * @type  {Symbol}
  */
-const sCanvas = Symbol('canvas');
+const iCanvas = Symbol('canvas');
 /**
  * The index for private property 'config'
  * @private
  * @type  {Symbol}
  */
-const sConfig = Symbol('config');
+const iConfig = Symbol('config');
 /**
  * The index for private property 'element'
  * @private
  * @type  {Symbol}
  */
-const sElement = Symbol('element');
+const iElement = Symbol('element');
 /**
  * The index for private property 'isActive'
  * @private
  * @type {Symbol}
  */
-const sIsActive = Symbol('isActive');
+const iIsActive = Symbol('isActive');
 /**
  * The index for private property 'WebGL'
  * @private
  * @type  {Symbol}
  */
-const sWebGL = Symbol('WebGL');
+const iWebGL = Symbol('WebGL');
 
 class L2Dwidget {
 
@@ -73,31 +73,32 @@ class L2Dwidget {
      * @type {HTMLElement}
      * @private
      */
-    this[sCanvas] = null;
+    this[iCanvas] = null;
     /**
      * The container to store config
      * @type {Config}
      * @private
      */
-    this[sConfig] = null;
+    this[iConfig] = null;
+    this.config = {};
     /**
      * The container to store element
      * @type {HTMLElement}
      * @private
      */
-    this[sElement] = null;
+    this[iElement] = null;
     /**
      * The container to store active status
      * @type {Boolean}
      * @private
      */
-    this[sIsActive] = false;
+    this[iIsActive] = false;
     /**
      * The container to store WebGL
      * @type {RenderingContext}
      * @private
      */
-    this[sWebGL] = null;
+    this[iWebGL] = null;
     return this;
 
   }
@@ -112,12 +113,12 @@ class L2Dwidget {
    */
   get isActive () {
 
-    return this[sIsActive];
+    return this[iIsActive];
 
   }
 
   /**
-   * Throw an error when you try to set {@link L2Dwidget#isActive}
+   * Throw an error when you try to set {@link L2Dwidget#isActive}.
    * @param {Boolean} value  Nothing
    * @example
    * var t = new L2Dwidget();
@@ -131,16 +132,24 @@ class L2Dwidget {
   }
 
   /**
-   * Get the current HTML Element that L2Dwidget is now using
+   * Get the current HTML Element that L2Dwidget is now using,
+   * throw an Error if it is not defined.
    * @return {HTMLELement} The HTMLElement L2Dwidget is now using
    * @example
    * var t = new L2Dwidget();
    * t.element
+   * > Error: Live2d-widget: no element defined. Please bind one first.
+   * t.element = balabala;
+   * t.element
    * > balabala
    */
   get element () {
+    if(this[iElement] === null) {
 
-    return this[sElement];
+      throw new Error('Live2d-widget: no element defined. Please bind one first.');
+
+    }
+    return this[iElement];
 
   }
 
@@ -157,9 +166,17 @@ class L2Dwidget {
    */
   set element (value) {
 
-    if(this[sElement] === null) {
+    if(this[iElement] === null) {
 
-      this[sElement] = initElement(value);
+      const {
+        element,
+        WebGL,
+        canvas,
+      } = initElement(value, this.config);
+
+      this[iElement] = element;
+      this[iWebGL] = WebGL;
+      this[iCanvas] = canvas;
 
     }else{
 
@@ -170,16 +187,22 @@ class L2Dwidget {
   }
 
   /**
-   * Get the current canvas element L2Dwidget is now using
+   * Get the current canvas element L2Dwidget is now using,
+   * throw an Error if not found.
    * @return {HTMLElement} The canvas element L2Dwidget is now using
    * @example
    * var t = new L2Dwidget();
+   * t.element = miaomiaomiao;
    * t.canvas
    * > balabala
    */
   get canvas () {
+    if(this[iCanvas] === null) {
 
-    return this[sCanvas];
+      throw new Error('Live2d-widget: no canvas defined. Please bind element first.');
+
+    }
+    return this[iCanvas];
 
   }
 
@@ -198,16 +221,22 @@ class L2Dwidget {
   }
 
   /**
-   * Get the current WebGL content L2Dwidget is now using
+   * Get the current WebGL content L2Dwidget is now using,
+   * throw an Error if not found.
    * @return {RenderingContext} The WebGL content L2Dwidget is now using
    * @example
    * var t = new L2Dwidget();
-   * t.WegGL
+   * t.element = miaomiaomiao;
+   * t.WebGL
    * > balabala
    */
   get WebGL () {
+    if(this[iWebGL] === null) {
 
-    return this[sWebGL];
+      throw new Error('Live2d-widget: no WebGL defined. Please bind element first.');
+
+    }
+    return this[iWebGL];
 
   }
 
@@ -235,7 +264,7 @@ class L2Dwidget {
    */
   get config () {
 
-    return this[sConfig];
+    return this[iConfig];
 
   }
 
@@ -255,7 +284,7 @@ class L2Dwidget {
    */
   set config (value) {
 
-    this[sConfig] = configDefaulter(value);
+    this[iConfig] = configDefaulter(value);
 
   }
 
@@ -270,11 +299,11 @@ class L2Dwidget {
    * @param   {Boolean}  options.loadNow  If the widget is display instantly
    * @return  {Function}                  The instance function itself
    */
-  init (userConfig = {}, { loadNow, } = { 'loadNow': true, }) {
+  init (userConfig = {}, options = { 'loadNow': true, }) {
 
-    this.element = nLive2Dwidget.createElement();
+    this.element = L2Dwidget.createElement();
     this.config = userConfig;
-    if(loadNow) {
+    if(options.loadNow) {
 
       this.load();
 
@@ -315,7 +344,7 @@ class L2Dwidget {
     import('./main').then(f => {
       mainFunc = f;
       mainFunc.loadL2DWidget({ WebGL: this.WebGL, config: this.config });
-      this[sIsActive] = true;
+      this[iIsActive] = true;
     }).catch(err => {
       console.error(err);
     });
@@ -337,7 +366,7 @@ class L2Dwidget {
 
     }
     // TBD.
-    this[sIsActive] = false;
+    this[iIsActive] = false;
     return this;
 
   }
@@ -360,12 +389,14 @@ class L2Dwidget {
   /**
    * To create a new HTML Element.
    * May automatically detect if the browser supports ShadowDOM.
-   * @param   {String}  divName  The div name of the element
+   * @param   {String}  tagName  The tag name of the element
    * @return  {Function}         The instance function itself
+   * @example
+   * var newElement = L2Dwidget.createElement();
    */
-  static createElement (divName = 'live2d-widget') {
+  static createElement (tagName = 'live2d-widget') {
 
-    return _createElement(divName);
+    return _createElement(tagName);
 
   }
 

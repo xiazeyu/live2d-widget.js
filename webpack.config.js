@@ -1,7 +1,6 @@
 /* global __dirname */
 const webpack = require('webpack');
 const path = require('path');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const visualizer = require('webpack-visualizer-plugin');
 const manifestPlugin = require('webpack-manifest-plugin');
@@ -25,8 +24,9 @@ module.exports = (env) => ({
   'entry': [
     'core-js/fn/promise',
     'core-js/fn/symbol',
-    './src/wpPublicPath.js',
-    './src/index.js',
+    'core-js/fn/object/assign',
+    './src/wpPublicPath',
+    './src/index',
   ],
 
   'module': {
@@ -71,7 +71,6 @@ module.exports = (env) => ({
 
   'plugins': [
     new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify(isProd(env) ? 'production' : 'development'), }, }),
-    new LodashModuleReplacementPlugin(),
     new UglifyJsPlugin({
       'cache': false,
       'parallel': true,

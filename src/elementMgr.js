@@ -1,9 +1,19 @@
-function createElement(){
-  return 'Hello world';
+import htmlTemplate from './tmplate/innerHTML';
+
+function createCanvas(config) {
+
 }
 
-function initElement(elem){
-  return elem;
+function createElement(tagName){
+  let element = document.createElement(tagName);
+}
+
+function initElement(elem, config){
+  return {
+    element,
+    WebGL,
+    canvas,
+  }
 }
 
 export {

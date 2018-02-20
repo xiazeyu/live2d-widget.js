@@ -3,47 +3,37 @@
  */
 
 
-import _ from 'lodash';
 import defaultConfig from './defaultConfig';
 
 /**
  * @typedef {Object} Config
- * @property {String}   [model.jsonPath = '']                Path to Live2D model's main json eg. `https://test.com/miku.model.json` model主文件路径
- * @property {Number}   [model.hHeadPos = 0.5]               Horizontal position of model's head 模型头部横坐标
- * @property {Number}   [model.vHeadPos = 0.618]             Vertical position of model's head 模型头部纵坐标
- * @property {Number}   [model.scale = 1]                    Scale between the model and the canvas 模型与canvas的缩放
- * @property {Number}   [display.width = 150]                Width to the canvas which shows the model canvas的长度
- * @property {Number}   [display.height = 300]               Height to the canvas which shows the model canvas的高度
- * @property {String}   [display.position = 'right']         Left of right side to show 显示位置：左或右
- * @property {Number}   [display.superSample = 2]            rate for super sampling rate 超采样等级
- * @property {Number}   [display.hOffset = 0]                Horizontal offset of the canvas canvas水平偏移
- * @property {Number}   [display.vOffset = -20]              Vertical offset of the canvas canvas垂直偏移
- * @property {Boolean}  [mobile.show = true]                 Whether to show on mobile device 是否在移动设备上显示
- * @property {Number}   [mobile.scale = 0.5]                 Scale on mobile device 移动设备上的缩放
- * @property {Boolean}  [mobile.motion = true]               Whether to enable motion detection on mobile devices 移动设备是否开启重力感应
- * @property {Number}   [react.opacityDefault = 0.7]         Default opacity 默认透明度
- * @property {Number}   [react.opacityOnHover = 0.2]         OnHover opacity 鼠标移上透明度
- * @property {Boolean}  [dev.log = false]                    Whether to show log 显示日志
- * @property {Boolean}  [dev.mouseLog = false]               Whether to show mouse log (tons of log), only work when dev.log is enabled 显示鼠标移动
+ * @property {String}   modelJsonPath        Path to model.json eg. `https://test.com/miku.model.json`  模型model.json文件路径
+ * @property {Number}   modelHeadPosH        Horizontal position of model's head  模型头部横坐标
+ * @property {Number}   modelHeadPosV        Vertical position of model's head  模型头部纵坐标
+ * @property {Number}   modelScale           Scale rate between model and canvas  模型与canvas缩放比例
+ * @property {Number}   displayWidth         Width of canvas  canvas宽度
+ * @property {Number}   displayHeight        Height of canvas  canvas高度
+ * @property {String}   displayPosition      Which(left or right) side to show  左右侧显示位置
+ * @property {Number}   displaySampleLevel   Sampling level  采样等级
+ * @property {Number}   displayOffsetH       Horizontal offset of canvas  canvas水平偏移
+ * @property {Number}   displayOffsetV       Vertical offset of canvas  canvas垂直偏移
+ * @property {Boolean}  mobileShow           If show on mobile device  是否在移动设备上显示
+ * @property {Number}   mobileScale          Scale rate on mobile device  移动设备上缩放比例
+ * @property {Boolean}  mobileMotion         If enable motion reaction on mobile devices  是否在移动设备上开启运动响应
+ * @property {Number}   reactOpacityDefault  Default opacity  默认透明度
+ * @property {Number}   reactOpacityOnHover  OnHover opacity  鼠标移上透明度
+ * @property {Boolean}  devLog               If show log  显示日志
+ * @property {Boolean}  devMouseLog          If show mouse log  显示鼠标日志
  */
-
-/* Deprecated configs:
-property {Function} [react.myFunc = func(e)]             Custom event handler, won't override main handler, will reveice the event type. 自定义事件接收器
-property {Array}    [model.myDefine = []]                User's custom Defines which will override LDefine 自定义的LDefine
-property {String}   [name.canvas = 'live2dcanvas']       ID name of the canvas canvas元素的ID
-property {String}   [name.div = 'live2d-widget']         ID name of the div div元素的ID
-property {Boolean}  [dev.border = false]                 Whether to show border around the canvas 在canvas周围显示边界
-property {Function} [dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position 自定义鼠标移动处理函数
-*/
 
 /**
  * Default config according to user's config and default config
- * @param  {Config} userConfig User's custom config
- * @return {Config}            Config that has been defaulted
+ * @param  {Config} userConfig  User's custom config
+ * @return {Config}             Config that has been defaulted
  */
 function configDefaulter (userConfig) {
 
-  return _.defaultsDeep({}, userConfig, defaultConfig);
+  return Object.assign({}, userConfig, defaultConfig);
 
 }
 
