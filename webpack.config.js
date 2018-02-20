@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const visualizer = require('webpack-visualizer-plugin');
 const manifestPlugin = require('webpack-manifest-plugin');
 const nowDate = new Date();
+const pkgInfo = require('./package');
 
 /**
  * To check is this build the production build
@@ -21,13 +22,7 @@ module.exports = (env) => ({
 
   'devtool': 'source-map',
 
-  'entry': [
-    'core-js/fn/promise',
-    'core-js/fn/symbol',
-    'core-js/fn/object/assign',
-    './src/wpPublicPath',
-    './src/index',
-  ],
+  'entry': './src/index',
 
   'module': {
     'rules': [
@@ -89,7 +84,7 @@ module.exports = (env) => ({
       },
     }),
     // Banner must be put below UglifyJsPlugin, or it won't work.
-    new webpack.BannerPlugin(`${isProd(env) ? '' : '___DEV___'}https://github.com/xiazeyu/live2d-widget.js built@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
+    new webpack.BannerPlugin(`${isProd(env) ? '' : '___DEV___'}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
 
     /**
      * Webpack Manifest Plugin

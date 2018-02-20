@@ -4,6 +4,8 @@
 
 /* global process */
 
+import './lib/polyfill';
+import './lib/wpPublicPath';
 import device from 'current-device';
 import {
   configDefaulter,
@@ -80,6 +82,7 @@ class L2Dwidget {
      * @private
      */
     this[iConfig] = null;
+    // Use setter to set default config
     this.config = {};
     /**
      * The container to store element
@@ -334,7 +337,7 @@ class L2Dwidget {
       return this;
 
     }
-    if(!this.config.mobile.show && device.mobile()) {
+    if(!this.config.mobileShow && device.mobile()) {
 
       return this;
 
