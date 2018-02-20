@@ -1,6 +1,6 @@
 import htmlTemplate from './tmplate/innerHTML';
 
-function createCanvas(config) {
+function createCanvasElement(config) {
 
 }
 
