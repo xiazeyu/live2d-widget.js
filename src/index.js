@@ -262,7 +262,7 @@ class L2Dwidget {
   /**
    * The function to help you initialize the widget one-key
    * It is equal to:
-   * this.element = this.createElement();
+   * this.element = L2Dwidget.createElement();
    * this.config = userConfig;
    * this.load();(if loadNow is enabled)
    * @param   {Config}   userConfig       Your config
@@ -272,7 +272,7 @@ class L2Dwidget {
    */
   init (userConfig = {}, { loadNow, } = { 'loadNow': true, }) {
 
-    this.element = this.createElement();
+    this.element = nLive2Dwidget.createElement();
     this.config = userConfig;
     if(loadNow) {
 
@@ -363,7 +363,7 @@ class L2Dwidget {
    * @param   {String}  divName  The div name of the element
    * @return  {Function}         The instance function itself
    */
-  createElement (divName = 'live2d-widget') {
+  static createElement (divName = 'live2d-widget') {
 
     return _createElement(divName);
 
