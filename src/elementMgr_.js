@@ -27,15 +27,6 @@ let currCanvas = null;
  */
 
 function createElement(){
-
-  let e = document.getElementById(config.name.div)
-  if (e !== null){
-    document.body.removeChild(e);
-  }
-
-  let newElem = document.createElement('div');
-  newElem.id = config.name.div;
-  newElem.innerHTML = htmlTemplate;
     let newCanvasElem = document.createElement('canvas');
     newCanvasElem.setAttribute('id', config.name.canvas);
     newCanvasElem.setAttribute('width', config.display.width * config.display.superSample);
@@ -50,10 +41,6 @@ function createElement(){
     newCanvasElem.style.setProperty('pointer-events', 'none');
     if(process.env.NODE_ENV === 'development') newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
     newElem.appendChild(newCanvasElem);
-
-  document.body.appendChild(newElem);
-  currCanvas = document.getElementById(config.name.canvas);
-
   initWebGL();
 
 }

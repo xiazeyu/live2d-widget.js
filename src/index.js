@@ -17,7 +17,7 @@ import {
 
 if (process.env.NODE_ENV === 'development') {
 
-  console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
+  console.log('--- --- --- --- ---\nlive2d-widget: Hey, this is a dev build.\n--- --- --- --- ---');
 
 }
 
@@ -27,37 +27,6 @@ if (process.env.NODE_ENV === 'development') {
  * @type {Function}
  */
 let mainFunc = null; // eslint-disable-line prefer-const
-
-/**
- * The index for private property 'canvas'
- * @private
- * @type  {Symbol}
- */
-const iCanvas = Symbol('canvas');
-/**
- * The index for private property 'config'
- * @private
- * @type  {Symbol}
- */
-const iConfig = Symbol('config');
-/**
- * The index for private property 'element'
- * @private
- * @type  {Symbol}
- */
-const iElement = Symbol('element');
-/**
- * The index for private property 'isActive'
- * @private
- * @type {Symbol}
- */
-const iIsActive = Symbol('isActive');
-/**
- * The index for private property 'WebGL'
- * @private
- * @type  {Symbol}
- */
-const iWebGL = Symbol('WebGL');
 
 class L2Dwidget {
 
@@ -71,37 +40,23 @@ class L2Dwidget {
   constructor () {
 
     /**
-     * The container to store canvas
-     * @type {HTMLElement}
+     * The container for private varibles
      * @private
+     * @type  {Object}
      */
-    this[iCanvas] = null;
-    /**
-     * The container to store config
-     * @type {Config}
-     * @private
-     */
-    this[iConfig] = null;
+    this._private = {
+      'canvas': null,
+      'config': null,
+      'element': null,
+      'isActive': false,
+      'webGL': null,
+      'hasCanvas': () => this._private.canvas !== null,
+      'hasElement': () => this._private.element !== null,
+      'hasWebGL': () => this._private.webGL !== null,
+    };
     // Use setter to set default config
     this.config = {};
-    /**
-     * The container to store element
-     * @type {HTMLElement}
-     * @private
-     */
-    this[iElement] = null;
-    /**
-     * The container to store active status
-     * @type {Boolean}
-     * @private
-     */
-    this[iIsActive] = false;
-    /**
-     * The container to store WebGL
-     * @type {RenderingContext}
-     * @private
-     */
-    this[iWebGL] = null;
+
     return this;
 
   }
@@ -116,7 +71,7 @@ class L2Dwidget {
    */
   get isActive () {
 
-    return this[iIsActive];
+    return this._private.isActive;
 
   }
 
@@ -130,7 +85,7 @@ class L2Dwidget {
    */
   set isActive (value) {
 
-    throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
 
   }
 
@@ -141,50 +96,51 @@ class L2Dwidget {
    * @example
    * var t = new L2Dwidget();
    * t.element
-   * > Error: Live2d-widget: no element defined. Please bind one first.
+   * > Error: No element defined. Please bind one first.
    * t.element = balabala;
    * t.element
    * > balabala
    */
   get element () {
 
-    if(this[iElement] === null) {
+    if(!this._private.hasElement()) {
 
-      throw new Error('Live2d-widget: no element defined. Please bind one first.');
+      throw new Error('live2d-widget: No element defined. Please bind one first.');
 
     }
-    return this[iElement];
+    return this._private.element;
 
   }
 
   /**
-   * Bind and initialize an HTMLElement that belongs to this instance,
-   * throw an error if this instance alreday hava an HTMLElement binded
+   * Bind and initialize an HTMLElement that belongs to this instance.
+   * May automatically detect if the browser supports ShadowDOM.
+   * Throw an error if this instance alreday hava an HTMLElement binded
    * @param {HTMLElement} value  An empty HTMLElement to bind and initialize
    * @return {HTMLElement}       The HTMLElement you provided
    * @example
    * t.element = balabala;
    * > balabala(now is initialized and binded with this instance)
    * t.element = bilibili;
-   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet.
+   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet. Element alreday defined.
    */
   set element (value) {
 
-    if(this[iElement] === null) {
+    if(!this._private.hasElement()) {
 
       const {
         element,
-        WebGL,
+        webGL,
         canvas,
       } = initElement(value, this.config);
 
-      this[iElement] = element;
-      this[iWebGL] = WebGL;
-      this[iCanvas] = canvas;
+      this._private.element = element;
+      this._private.webGL = webGL;
+      this._private.canvas = canvas;
 
     }else{
 
-      throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+      throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet. Element alreday defined.');
 
     }
 
@@ -196,18 +152,20 @@ class L2Dwidget {
    * @return {HTMLElement} The canvas element L2Dwidget is now using
    * @example
    * var t = new L2Dwidget();
+   * t.canvas
+   * > Error: No canvas defined. Please bind element first.
    * t.element = miaomiaomiao;
    * t.canvas
    * > balabala
    */
   get canvas () {
 
-    if(this[iCanvas] === null) {
+    if(!this._private.hasCanvas()) {
 
-      throw new Error('Live2d-widget: no canvas defined. Please bind element first.');
+      throw new Error('live2d-widget: No canvas defined. Please bind element first.');
 
     }
-    return this[iCanvas];
+    return this._private.canvas;
 
   }
 
@@ -221,7 +179,7 @@ class L2Dwidget {
    */
   set canvas (value) {
 
-    throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
 
   }
 
@@ -231,32 +189,34 @@ class L2Dwidget {
    * @return {RenderingContext} The WebGL content L2Dwidget is now using
    * @example
    * var t = new L2Dwidget();
+   * t.webGL
+   * > Error: No webGL defined. Please bind element first.
    * t.element = miaomiaomiao;
-   * t.WebGL
+   * t.webGL
    * > balabala
    */
-  get WebGL () {
+  get webGL () {
 
-    if(this[iWebGL] === null) {
+    if(!this._private.hasWebGL()) {
 
-      throw new Error('Live2d-widget: no WebGL defined. Please bind element first.');
+      throw new Error('live2d-widget: No webGL defined. Please bind element first.');
 
     }
-    return this[iWebGL];
+    return this._private.webGL;
 
   }
 
   /**
-   * Throw an error when you try to set {@link L2Dwidget#WebGL}
+   * Throw an error when you try to set {@link L2Dwidget#webGL}
    * @param {RenderingContext} value  Nothing
    * @example
    * var t = new L2Dwidget();
-   * t.WebGL = balabala;
+   * t.webGL = balabala;
    * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet.
    */
-  set WebGL (value) {
+  set webGL (value) {
 
-    throw new Error('Uncaught ReferenceError: Invalid varible in asnsignmet.');
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
 
   }
 
@@ -270,7 +230,7 @@ class L2Dwidget {
    */
   get config () {
 
-    return this[iConfig];
+    return this._private.config;
 
   }
 
@@ -290,7 +250,7 @@ class L2Dwidget {
    */
   set config (value) {
 
-    this[iConfig] = configDefaulter(value);
+    this._private.config = configDefaulter(value);
 
   }
 
@@ -307,7 +267,11 @@ class L2Dwidget {
    */
   init (userConfig = {}, options = { 'loadNow': true, }) {
 
-    this.element = L2Dwidget.createElement();
+    if(!this._private.hasElement()) {
+
+      this.element = L2Dwidget.createElement();
+
+    }
     this.config = userConfig;
     if(options.loadNow) {
 
@@ -324,35 +288,39 @@ class L2Dwidget {
    */
   load () {
 
-    if(this.element === null) {
+    if(!this._private.hasElement()) {
 
-      throw new Error('Live2d-widget: no element defined. Please bind one first.');
-
-    }
-    if(this.config === null) {
-
-      throw new Error('Live2d-widget: no config defined. Please define one first.');
+      throw new Error('live2d-widget: No element defined. Please bind one first.');
 
     }
     if(this.isActive) {
 
-      console.log('Live2d-widget: alreday loaded, use unload() or reload().');
+      console.log('live2d-widget: Instance alreday loaded, use unload() or reload().');
       return this;
 
     }
     if(!this.config.mobileShow && device.mobile()) {
 
+      console.log('live2d-widget: Mobile device detected, not load.');
       return this;
 
     }
+    this._private.isActive = true;
     /* eslint-disable */
 
     import('./main').then(f => {
+
       mainFunc = f;
-      mainFunc.loadL2DWidget({ WebGL: this.WebGL, config: this.config });
-      this[iIsActive] = true;
+      mainFunc.loadL2DWidget({
+        webGL: this.webGL,
+        config: this.config,
+      });
+
     }).catch(err => {
-      console.error(err);
+
+      this._private.isActive = true;
+      throw err;
+
     });
 
     /* eslint-enable */
@@ -368,11 +336,11 @@ class L2Dwidget {
 
     if(!this.isActive) {
 
-      throw new Error('Live2d-widget: must be loaded first.');
+      throw new Error('live2d-widget: Instance must be loaded.');
 
     }
     // TBD.
-    this[iIsActive] = false;
+    this._private.isActive = false;
     return this;
 
   }
@@ -393,16 +361,16 @@ class L2Dwidget {
   }
 
   /**
-   * To create a new HTML Element.
-   * May automatically detect if the browser supports ShadowDOM.
+   * To create a new HTML Element and append it to HTML.
    * @param   {String}  tagName  The tag name of the element
+   * @param   {String}  id       The id of the element
    * @return  {Function}         The instance function itself
    * @example
    * var newElement = L2Dwidget.createElement();
    */
-  static createElement (tagName = 'live2d-widget') {
+  static createElement (tagName = 'live2d-widget', id = null) {
 
-    return _createElement(tagName);
+    return _createElement(tagName, id);
 
   }
 
