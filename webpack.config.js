@@ -75,11 +75,6 @@ module.exports = (env) => ({
       'parallel': true,
       'sourceMap': true,
       'uglifyOptions': {
-
-        /*
-         * The L2D core library was droped too much,
-         * so the warnings is useless recently.
-         */
         'warnings': false,
         'mangle': true,
         'compress': {

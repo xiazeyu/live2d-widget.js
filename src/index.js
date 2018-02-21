@@ -1,8 +1,7 @@
 /* global process */
 
-import './lib/polyfill.nodoc';
+import './lib/setEnv.nodoc';
 import './lib/wpPublicPath.nodoc';
-import device from 'current-device';
 import {
   configDefaulter,
 } from './config/configMgr';
