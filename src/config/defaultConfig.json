@@ -5,7 +5,7 @@
   "modelScale": 1,
   "displayWidth": 150,
   "displayHeight": 300,
-  "displayPosition": "right",
+  "displaySide": "right",
   "displaySampleLevel": 2,
   "displayOffsetH": 0,
   "displayOffsetV": -20,
