@@ -1,8 +1,3 @@
-/**
- * @description The manager of configeration.
- */
-
-
 import defaultConfig from './defaultConfig';
 
 /**
@@ -13,7 +8,7 @@ import defaultConfig from './defaultConfig';
  * @property {Number}   modelScale           Scale rate between model and canvas  模型与canvas缩放比例
  * @property {Number}   displayWidth         Width of canvas  canvas宽度
  * @property {Number}   displayHeight        Height of canvas  canvas高度
- * @property {String}   displayPosition      Which(left or right) side to show  左右侧显示位置
+ * @property {String}   displaySide          Which side(left or right) to show  左右侧显示位置
  * @property {Number}   displaySampleLevel   Sampling level  采样等级
  * @property {Number}   displayOffsetH       Horizontal offset of canvas  canvas水平偏移
  * @property {Number}   displayOffsetV       Vertical offset of canvas  canvas垂直偏移

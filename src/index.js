@@ -1,7 +1,3 @@
-/**
- * @description The entry point of live2d-widget.js
- */
-
 /* global process */
 
 import './lib/polyfill.nodoc';
@@ -331,6 +327,7 @@ class L2Dwidget {
   /**
    * To unload the widget, throw an error if it is not loaded.
    * @return  {Function}  The instance function itself
+   * @todo Finish program
    */
   unload () {
 
@@ -339,7 +336,7 @@ class L2Dwidget {
       throw new Error('live2d-widget: Instance must be loaded.');
 
     }
-    // TBD.
+    // todo
     this._private.isActive = false;
     return this;
 
@@ -362,9 +359,9 @@ class L2Dwidget {
 
   /**
    * To create a new HTML Element and append it to HTML.
-   * @param   {String}  tagName  The tag name of the element
-   * @param   {String}  id       The id of the element
-   * @return  {Function}         The instance function itself
+   * @param   {String}  tagName  Tag name of element
+   * @param   {String}  id       Id of element
+   * @return  {HTMLElement}         Element created
    * @example
    * var newElement = L2Dwidget.createElement();
    */
