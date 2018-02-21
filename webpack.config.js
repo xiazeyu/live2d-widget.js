@@ -65,7 +65,11 @@ module.exports = (env) => ({
   },
 
   'plugins': [
-    new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify(isProd(env) ? 'production' : 'development'), }, }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(isProd(env) ? 'production' : 'development'),
+      },
+    }),
     new UglifyJsPlugin({
       'cache': false,
       'parallel': true,

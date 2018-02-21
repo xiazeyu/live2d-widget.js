@@ -1,5 +1,5 @@
-function loadL2DWidget({ WebGL, config, }){
-  console.log(WebGL, config);
+function loadL2DWidget({ webGL, config, }){
+  console.log(webGL, config);
 }
 
 function captureFrame(callback, { type, encoderOptions, }){
