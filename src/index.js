@@ -1,4 +1,4 @@
-/* global process */
+/* global process, device */
 
 import './lib/setEnv.nodoc';
 import './lib/wpPublicPath.nodoc';
@@ -335,7 +335,7 @@ class L2Dwidget {
       throw new Error('live2d-widget: Instance must be loaded.');
 
     }
-    // todo
+    // Todo
     this._private.isActive = false;
     return this;
 
