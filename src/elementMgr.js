@@ -1,7 +1,6 @@
 /* global process */
 
 import htmlTemplate from './tmplate/innerHTML';
-import device from 'current-device';
 
 /**
  * Find and init webGL RenderingContext according to canvas element
@@ -17,12 +16,31 @@ function initWebGL (canvas) {
     'experimental-webgl',
     'webkit-3d',
     'moz-webgl',
-  ];
+  ];/*
   for(const i of contextTypes) {
 
     try{
 
       const ctx = canvas.getContext(i, {
+        'alpha': true,
+        'antialias': true,
+        'premultipliedAlpha': true,
+        'failIfMajorPerformanceCaveat': false,
+      });
+      if(ctx) {
+
+        return ctx;
+
+      }
+
+    }catch(e) {} // eslint-disable-line no-empty
+
+  }*/
+  for(const i in contextTypes) {
+
+    try{
+
+      const ctx = canvas.getContext(contextTypes[i], {
         'alpha': true,
         'antialias': true,
         'premultipliedAlpha': true,
