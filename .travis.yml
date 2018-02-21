@@ -22,4 +22,4 @@ before_install:
 install:
 - npm install
 script:
-- npm run build:prod && npm run build:esdoc && npm run deploy:doc
+- npm run build:esdoc && npm run deploy:ghpages

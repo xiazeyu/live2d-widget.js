@@ -37,3 +37,21 @@ fs.copyFile(path.resolve(projPath, 'lib/stats.html'), path.resolve(projPath, 'gh
   console.error('succeeded copying stats.html');
 
 });
+
+// Add Title for CHANGELOG.md
+fs.readFile(path.resolve(projPath, './CHANGELOG.md'), (readErr, data) => {
+
+  if(readErr) {
+
+    console.error('Failed reading CHANGELOG.md');
+    throw readErr;
+
+  }
+  fs.writeFile(path.resolve(projPath, './CHANGELOG.md'), `# Changelog\n${data}`, (writeErr) => {
+
+    console.error('Failed writing CHANGELOG.md');
+    throw writeErr;
+
+  });
+
+});
