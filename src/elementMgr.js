@@ -1,4 +1,4 @@
-/* global process */
+/* global process, device */
 
 import htmlTemplate from './tmplate/innerHTML';
 
@@ -16,26 +16,7 @@ function initWebGL (canvas) {
     'experimental-webgl',
     'webkit-3d',
     'moz-webgl',
-  ];/*
-  for(const i of contextTypes) {
-
-    try{
-
-      const ctx = canvas.getContext(i, {
-        'alpha': true,
-        'antialias': true,
-        'premultipliedAlpha': true,
-        'failIfMajorPerformanceCaveat': false,
-      });
-      if(ctx) {
-
-        return ctx;
-
-      }
-
-    }catch(e) {} // eslint-disable-line no-empty
-
-  }*/
+  ];
   for(const i in contextTypes) {
 
     try{
