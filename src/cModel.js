@@ -240,8 +240,13 @@ cModel.prototype.update = function()
   if (this.mainMotionManager.isFinished())
   {
 
+<<<<<<< HEAD
     this.startRandomMotion(cDefine.MOTION_GROUP_IDLE, cDefine.PRIORITY_IDLE);
   }
+=======
+        this.startRandomMotion('idle', config.reactPriorityIdle);
+    }
+>>>>>>> 1bb9ee5... fix: bugs
 
   //-----------------------------------------------------------------
 
@@ -370,8 +375,21 @@ cModel.prototype.startMotion = function(name, no, priority)
     return;
   }
 
+<<<<<<< HEAD
   var thisRef = this;
   var motion;
+=======
+    if (priority == config.reactPriorityForce)
+    {
+        this.mainMotionManager.setReservePriority(priority);
+    }
+    else if (!this.mainMotionManager.reserveMotion(priority))
+    {
+        if (cDefine.DEBUG_LOG)
+            console.log("Motion is running.")
+        return;
+    }
+>>>>>>> 1bb9ee5... fix: bugs
 
   if (this.motions[name] == null)
   {

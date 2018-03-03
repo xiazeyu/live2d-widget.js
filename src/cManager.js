@@ -78,20 +78,20 @@ cManager.prototype.tapEvent = function (x, y) {
 
   for (var i = 0; i < this.models.length; i++) {
 
-    if (this.models[i].hitTest(cDefine.HIT_AREA_HEAD, x, y)) {
+    if (this.models[i].hitTest('head', x, y)) {
 
       if (cDefine.DEBUG_LOG)
         console.log("Tap face.");
 
       this.models[i].setRandomExpression();
     }
-    else if (this.models[i].hitTest(cDefine.HIT_AREA_BODY, x, y)) {
+    else if (this.models[i].hitTest('body', x, y)) {
 
       if (cDefine.DEBUG_LOG)
         console.log("Tap body." + " models[" + i + "]");
 
-      this.models[i].startRandomMotion(cDefine.MOTION_GROUP_TAP_BODY,
-        cDefine.PRIORITY_NORMAL);
+      this.models[i].startRandomMotion('tap_body',
+        config.reactPriorityNormal);
     }
   }
 

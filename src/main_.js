@@ -39,8 +39,8 @@ function theRealInit (){
 
   dragMgr = new L2DTargetPoint();
   let ratio = currCanvas.height / currCanvas.width;
-  let left = cDefine.VIEW_LOGICAL_LEFT;
-  let right = cDefine.VIEW_LOGICAL_RIGHT;
+  let left = -1;
+  let right = 1;
   let bottom = -ratio;
   let top = ratio;
 
@@ -48,10 +48,10 @@ function theRealInit (){
 
   viewMatrix.setScreenRect(left, right, bottom, top);
 
-  viewMatrix.setMaxScreenRect(cDefine.VIEW_LOGICAL_MAX_LEFT,
-    cDefine.VIEW_LOGICAL_MAX_RIGHT,
-    cDefine.VIEW_LOGICAL_MAX_BOTTOM,
-    cDefine.VIEW_LOGICAL_MAX_TOP);
+  viewMatrix.setMaxScreenRect(-2,
+    2,
+    -2,
+    2);
 
   projMatrix = new L2DMatrix44();
   projMatrix.multScale(1, (currCanvas.width / currCanvas.height));
