@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 /**
- * The container for main.js
+ * The container for main.js.
  * @private
  * @type {Function}
  */
@@ -26,8 +26,8 @@ let mainFunc = null; // eslint-disable-line prefer-const
 class L2Dwidget {
 
   /**
-   * The constructor of L2Dwidget
-   * @return {Function}  The instance function itself
+   * The constructor of L2Dwidget.
+   * @return {Function}  The instance function itself.
    * @example
    * Use codes below to one-key initialize:
    * var t = new L2Dwidget().init();
@@ -35,7 +35,7 @@ class L2Dwidget {
   constructor () {
 
     /**
-     * The container for private varibles
+     * The container for private varibles.
      * @private
      * @type  {Object}
      */
@@ -48,8 +48,9 @@ class L2Dwidget {
       'hasCanvas': () => this._private.canvas !== null,
       'hasElement': () => this._private.element !== null,
       'hasWebGL': () => this._private.webGL !== null,
+	  'data1': null,
     };
-    // Use setter to set default config
+    // Use setter to set default config.
     this.config = {};
 
     return this;
@@ -57,7 +58,7 @@ class L2Dwidget {
   }
 
   /**
-   * Check if Live2D widget is active
+   * Check if Live2D widget is active.
    * @return {Boolean} If Live2D widget is active
    * @example
    * var t = new L2Dwidget();
@@ -72,7 +73,7 @@ class L2Dwidget {
 
   /**
    * Throw an error when you try to set {@link L2Dwidget#isActive}.
-   * @param {Boolean} value  Nothing
+   * @param {Boolean} value  Everything.
    * @example
    * var t = new L2Dwidget();
    * t.isActive = balabala;
@@ -87,7 +88,7 @@ class L2Dwidget {
   /**
    * Get the current HTML Element that L2Dwidget is now using,
    * throw an Error if it is not defined.
-   * @return {HTMLELement} The HTMLElement L2Dwidget is now using
+   * @return {HTMLELement} The HTMLElement L2Dwidget is now using.
    * @example
    * var t = new L2Dwidget();
    * t.element
@@ -110,9 +111,9 @@ class L2Dwidget {
   /**
    * Bind and initialize an HTMLElement that belongs to this instance.
    * May automatically detect if the browser supports ShadowDOM.
-   * Throw an error if this instance alreday hava an HTMLElement binded
-   * @param {HTMLElement} value  An empty HTMLElement to bind and initialize
-   * @return {HTMLElement}       The HTMLElement you provided
+   * Throw an error if this instance alreday hava an HTMLElement binded.
+   * @param {HTMLElement} value  An empty HTMLElement to bind and initialize.
+   * @return {HTMLElement}       The HTMLElement you provided.
    * @example
    * t.element = balabala;
    * > balabala(now is initialized and binded with this instance)
@@ -144,7 +145,7 @@ class L2Dwidget {
   /**
    * Get the current canvas element L2Dwidget is now using,
    * throw an Error if not found.
-   * @return {HTMLElement} The canvas element L2Dwidget is now using
+   * @return {HTMLElement} The canvas element L2Dwidget is now using.
    * @example
    * var t = new L2Dwidget();
    * t.canvas
@@ -165,8 +166,8 @@ class L2Dwidget {
   }
 
   /**
-   * Throw an error when you try to set {@link L2Dwidget#canvas}
-   * @param {HTMLElement} value  Nothing
+   * Throw an error when you try to set {@link L2Dwidget#canvas}.
+   * @param {HTMLElement} value  Everything.
    * @example
    * var t = new L2Dwidget();
    * t.canvas = balabala;
@@ -181,7 +182,7 @@ class L2Dwidget {
   /**
    * Get the current WebGL content L2Dwidget is now using,
    * throw an Error if not found.
-   * @return {RenderingContext} The WebGL content L2Dwidget is now using
+   * @return {RenderingContext} The WebGL content L2Dwidget is now using.
    * @example
    * var t = new L2Dwidget();
    * t.webGL
@@ -202,8 +203,8 @@ class L2Dwidget {
   }
 
   /**
-   * Throw an error when you try to set {@link L2Dwidget#webGL}
-   * @param {RenderingContext} value  Nothing
+   * Throw an error when you try to set {@link L2Dwidget#webGL}.
+   * @param {RenderingContext} value  Everything.
    * @example
    * var t = new L2Dwidget();
    * t.webGL = balabala;
@@ -216,8 +217,8 @@ class L2Dwidget {
   }
 
   /**
-   * Get the current config L2Dwidget is now using
-   * @return {Config} The config L2Dwidget is now using
+   * Get the current config L2Dwidget is now using.
+   * @return {Config} The config L2Dwidget is now using.
    * @example
    * var t = new L2Dwidget();
    * t.config
@@ -230,11 +231,11 @@ class L2Dwidget {
   }
 
   /**
-   * Set your config for current L2Dwidget instance
+   * Set your config for current L2Dwidget instance.
    * Mention that: changing config itself doesn't influence the content that is displaying.
-   * You should use {@link L2Dwidget#reload} to reload the page
-   * @param {Config} value  Config to apply
-   * @return {Config}       The config you provided
+   * You should use {@link L2Dwidget#reload} to reload the page.
+   * @param {Config} value  Config to apply.
+   * @return {Config}       The config you provided.
    * @example
    * t.config = balabala;
    * > balabala(now is applied to this instance)
@@ -250,15 +251,15 @@ class L2Dwidget {
   }
 
   /**
-   * The function to help you initialize the widget one-key
+   * The function to help you initialize the widget one-key.
    * It is equal to:
    * this.element = L2Dwidget.createElement();
    * this.config = userConfig;
    * this.load();(if loadNow is enabled)
-   * @param   {Config}   userConfig       Your config
-   * @param   {Object}   options          An object to pass in options, keeps for future APIs
-   * @param   {Boolean}  options.loadNow  If the widget is display instantly
-   * @return  {Function}                  The instance function itself
+   * @param   {Config}   userConfig       Your config.
+   * @param   {Object}   options          An object to pass in options, keeps for future APIs.
+   * @param   {Boolean}  options.loadNow  If the widget is display instantly.
+   * @return  {Function}                  The instance function itself.
    */
   init (userConfig = {}, options = { 'loadNow': true, }) {
 
@@ -278,8 +279,8 @@ class L2Dwidget {
   }
 
   /**
-   * To load the widget, need to set the element and config first
-   * @return  {Function}  The instance function itself
+   * To load the widget, need to set the element and config first.
+   * @return  {Function}  The instance function itself.
    */
   load () {
 
@@ -300,20 +301,20 @@ class L2Dwidget {
       return this;
 
     }
-    this._private.isActive = true;
     /* eslint-disable */
 
     import('./main').then(f => {
 
       mainFunc = f;
-      mainFunc.loadL2DWidget({
+      const {data1} = mainFunc.loadL2DWidget({
         webGL: this.webGL,
         config: this.config,
       });
+	  this.data1 = data1;
+	  this._private.isActive = true;
 
     }).catch(err => {
 
-      this._private.isActive = true;
       throw err;
 
     });
@@ -325,7 +326,7 @@ class L2Dwidget {
 
   /**
    * To unload the widget, throw an error if it is not loaded.
-   * @return  {Function}  The instance function itself
+   * @return  {Function}  The instance function itself.
    * @todo Finish program
    */
   unload () {
@@ -358,8 +359,8 @@ class L2Dwidget {
 
   /**
    * To create a new HTML Element and append it to HTML.
-   * @param   {String}  tagName  Tag name of element
-   * @param   {String}  id       Id of element
+   * @param   {String}  tagName  Tag name of element.
+   * @param   {String}  id       Id of element.
    * @return  {HTMLElement}         Element created
    * @example
    * var newElement = L2Dwidget.createElement();
@@ -371,12 +372,12 @@ class L2Dwidget {
   }
 
   /**
-   * To capture current frame
-   * @param   {Function}  callback                Callback function that receive the image
-   * @param   {Object}    options                 An object to pass in options, keeps for future APIs
-   * @param   {String}    options.type            A DOMString indicating the image format
-   * @param   {Number}    options.encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp
-   * @return  {Function}                          The instance function itself
+   * To capture current frame.
+   * @param   {Function}  callback                Callback function that receive the image.
+   * @param   {Object}    options                 An object to pass in options, keeps for future APIs.
+   * @param   {String}    options.type            A DOMString indicating the image format.
+   * @param   {Number}    options.encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
+   * @return  {Function}                          The instance function itself.
    */
   captureFrame (callback, { type, encoderOptions, } = { 'type': 'image/png', 'encoderOptions': 0.92, }) { // eslint-disable-line no-magic-numbers
 
@@ -391,10 +392,10 @@ class L2Dwidget {
   }
 
   /**
-   * To download current frame
-   * @param   {String}  type            A DOMString indicating the image format
-   * @param   {Number}  encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp
-   * @return  {Function}                The instance function itself
+   * To download current frame.
+   * @param   {String}  type            A DOMString indicating the image format.
+   * @param   {Number}  encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
+   * @return  {Function}                The instance function itself.
    */
   downloadFrame (type = 'image/png', encoderOptions = 0.92) { // eslint-disable-line no-magic-numbers
 

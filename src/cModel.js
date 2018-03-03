@@ -171,7 +171,7 @@ cModel.prototype.load = function(gl, modelSettingPath, callback)
                         // thisRef.live2DModel.setGL(gl);
 
 
-                        thisRef.preloadMotionGroup(cDefine.MOTION_GROUP_IDLE);
+                        thisRef.preloadMotionGroup('idle');
                         thisRef.mainMotionManager.stopAllMotions();
 
                         thisRef.setUpdating(false);
@@ -233,7 +233,7 @@ cModel.prototype.update = function()
     if (this.mainMotionManager.isFinished())
     {
 
-        this.startRandomMotion(cDefine.MOTION_GROUP_IDLE, cDefine.PRIORITY_IDLE);
+        this.startRandomMotion('idle', config.reactPriorityIdle);
     }
 
     //-----------------------------------------------------------------
@@ -352,7 +352,7 @@ cModel.prototype.startMotion = function(name, no, priority)
         return;
     }
 
-    if (priority == cDefine.PRIORITY_FORCE)
+    if (priority == config.reactPriorityForce)
     {
         this.mainMotionManager.setReservePriority(priority);
     }
