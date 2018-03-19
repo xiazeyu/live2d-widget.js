@@ -1,28 +1,24 @@
 /* global __dirname */
 const webpack = require('webpack');
-const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const visualizer = require('webpack-visualizer-plugin');
-const manifestPlugin = require('webpack-manifest-plugin');
+const path = require('path');
+const Visualizer = require('webpack-visualizer-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const nowDate = new Date();
 const pkgInfo = require('./package');
 
 /**
- * To check is this build the production build
- * @param  {String}  e  Build type
- * @return {Boolean}    If the build is production build
+ * Webpack config
+ * @param   {String}  env  Environment varibles, must be 'development' or 'production'
+ * @return  {Object}       The config object
  */
-function isProd (e) {
-
-  return e === 'prod';
-
-}
-
 module.exports = (env) => ({
 
   'devtool': 'source-map',
 
   'entry': './src/index',
+
+  'mode': env,
 
   'module': {
     'rules': [
@@ -49,53 +45,55 @@ module.exports = (env) => ({
     ],
   },
 
+  'optimization': {
+    'minimizer': [
+      new UglifyJsPlugin({
+        'cache': false,
+        'parallel': true,
+        'sourceMap': true,
+        'uglifyOptions': {
+          'compress': {
+            'drop_console': false,
+            'passes': 2,
+          },
+          'mangle': true,
+          'warnings': false,
+        },
+      }),
+    ],
+  },
+
   'output': {
 
     /*
-     * YOU MUST INSTALL babel-plugin-syntax-dynamic-import FIRST TO ENABLE CODE SPLITTING!
-     * May change in Webpack@4
+     * Babel-plugin-syntax-dynamic-import must be installed to allow code splitting using import()
      */
+
     'chunkFilename': 'L2Dwidget.[id].min.js',
     'filename': 'L2Dwidget.min.js',
     'library': 'L2Dwidget',
     'libraryExport': 'L2Dwidget',
     'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'lib'),
-    'pathinfo': !isProd(env),
   },
 
   'plugins': [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(isProd(env) ? 'production' : 'development'),
-      },
-    }),
-    new UglifyJsPlugin({
-      'cache': false,
-      'parallel': true,
-      'sourceMap': true,
-      'uglifyOptions': {
-        'warnings': false,
-        'mangle': true,
-        'compress': {
-          'drop_console': false,
-        },
-      },
-    }),
+
     // Banner must be put below UglifyJsPlugin, or it won't work.
-    new webpack.BannerPlugin(`${isProd(env) ? '' : '___DEV___'}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
+    new webpack.BannerPlugin(`${env !== 'production' ? '___DEV___' : ''}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
 
     /**
      * Webpack Manifest Plugin
      * https://github.com/danethurber/webpack-manifest-plugin
      */
-    new manifestPlugin(),
+    new ManifestPlugin(),
 
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
-    new visualizer(),
+    new Visualizer(),
+
   ],
 
   'resolve': {
@@ -110,5 +108,6 @@ module.exports = (env) => ({
 
   'target': 'web',
 
-  'watch': !isProd(env),
+  'watch': env !== 'production',
+
 });
