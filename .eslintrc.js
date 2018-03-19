@@ -203,5 +203,21 @@ module.exports = {
     'padded-blocks': [
       'warn',
     ],
+    'sort-keys': [
+      'warn',
+    ],
+    'object-curly-spacing': [
+      'warn',
+    ],
+    'array-bracket-spacing': [
+      'warn',
+    ],
+    'new-cap': [
+      'warn',
+    ],
+    'multiline-ternary': [
+      'warn',
+      'never',
+    ],
   },
 };
