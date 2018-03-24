@@ -13,10 +13,10 @@
 [![forks][forks]][forks-url]
 [![issues][issues]][issues-url]
 
+[![Maintainability][Maintainability]][Maintainability-url]
 [![commitizen][commitizen]][commitizen-url]
 [![PRs][PRs]][PRs-url]
 [![license][license]][license-url]
-
 
 Add the Sseexxyyy live2d to your webpages! Seperated from [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d).
 
@@ -26,12 +26,12 @@ Docs(including APIs): [Click me!](l2dwidget.js.org)
 
 Online generator: [WIP.](javascript:void(0);)
 
-
 ## Useage
 
 ### Hexo
 
-Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d) for the hexo plugin.
+Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
+for the hexo plugin.
 
 ### Webpages
 
@@ -67,21 +67,22 @@ var currL2Dwidget = new L2Dwidget({
 We have
 
 - Jsdelivr(Recommended)
-`https://cdn.jsdelivr.net/npm/live2d-widget@4.x/lib/L2Dwidget.min.js`
+  `https://cdn.jsdelivr.net/npm/live2d-widget@4.x/lib/L2Dwidget.min.js`
 
 - Unkpg
-`https://unpkg.com/live2d-widget@4.x/lib/L2Dwidget.min.js`
+  `https://unpkg.com/live2d-widget@4.x/lib/L2Dwidget.min.js`
 
 ### Bookmark (any pages)
 
 `data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js></script><script>L2Dwidget.init()</script>`
 
-`javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js", function(){L2Dwidget.init();});`
+```js
+javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js",function(){L2Dwidget.init();});
+```
 
 WIP.
 
-https://www.cnblogs.com/pcyy/p/5655542.html
-
+<https://www.cnblogs.com/pcyy/p/5655542.html/>.
 
 ## Settings
 
@@ -95,10 +96,9 @@ Github: [https://github.com/xiazeyu/live2d-widget.js](https://github.com/xiazeyu
 
 issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/xiazeyu/live2d-widget.js/issues)
 
-
 ## Contribute
 
-**Please pay enough attention to this document if you want to commit your changes or submit issues.**
+### Please pay enough attention to this document if you want to commit your changes or submit issues
 
 [CONTRIBUTING](.github/CONTRIBUTING.md)
 
@@ -110,7 +110,6 @@ issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/
 
 - [Cubism SDK WebGL 2.1](http://sites.cybernoids.jp/cubism-sdk2_e/webgl2-1)
 
-
 ## About me
 
 [![author][author]][author-url]
@@ -120,7 +119,6 @@ issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/
 [![collaborator0][collaborator0]][collaborator0-url]
 [![collaborator0 QQ][collaborator0-qq]][collaborator0-qq-url]
 [![collaborator0 email][collaborator0-email]][collaborator0-email-url]
-
 
 ## Imported
 
@@ -166,6 +164,9 @@ Open sourced under the GPL v2.0 license.
 
 [issues]: https://img.shields.io/github/issues/xiazeyu/live2d-widget.js.svg
 [issues-url]: https://github.com/xiazeyu/live2d-widget.js/issues
+
+[Maintainability]: https://api.codeclimate.com/v1/badges/8d737c43dabeb0f75348/maintainability
+[Maintainability-url]: https://codeclimate.com/github/xiazeyu/live2d-widget.js/maintainability
 
 [commitizen]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [commitizen-url]: http://commitizen.github.io/cz-cli/
