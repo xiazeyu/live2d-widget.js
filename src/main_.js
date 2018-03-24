@@ -1,16 +1,3 @@
-/**
- * @description The main part of live2d-widget
- */
-
-
-import './lib/live2d.core';
-import { config } from './config/configMgr';
-import { createElement, currWebGL, currCanvas } from './elementMgr';
-import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
-import { cManager } from "./cManager";
-import { MatrixStack } from "./utils/MatrixStack";
-import { cDefine } from "./cDefine";
-
 let live2DMgr = new cManager();
 let captureFrameCB = undefined;
 let isDrawStart = false;
