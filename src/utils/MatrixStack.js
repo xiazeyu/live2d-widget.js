@@ -1,22 +1,3 @@
-/**
- *
- *  You can modify and use this source freely
- *  only for the development of application related Live2D.
- *
- *  (c) Live2D Inc. All rights reserved.
- */
-
-/**
- * EYHN 修改
- *
- * Copyright © 2016 - 2017 EYHN
- */
-
-// Modified by xiazeyu.
-
-/**
-* @desc A matrix stack releated to draw the model
-*/
 
 export function MatrixStack() {}
 
@@ -58,19 +39,18 @@ MatrixStack.loadIdentity = function(){
 * @memberOf MatrixStack
 */
 MatrixStack.push = function(){
-  var thisRef = this;
   // var offset = thisRef.depth * 16;
-  var nextOffset = (thisRef.depth + 1) * 16;
+  var nextOffset = (this.depth + 1) * 16;
 
-  if (thisRef.matrixStack.length < nextOffset + 16){
-    thisRef.matrixStack.length = nextOffset + 16;
+  if (this.matrixStack.length < nextOffset + 16){
+    this.matrixStack.length = nextOffset + 16;
   }
 
   for (var i = 0; i < 16; i++){
-    thisRef.matrixStack[nextOffset + i] = thisRef.currentMatrix[i];
+    this.matrixStack[nextOffset + i] = this.currentMatrix[i];
   }
 
-  thisRef.depth++;
+  this.depth++;
 }
 
 /**
