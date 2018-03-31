@@ -1,9 +1,36 @@
 /* eslint-disable no-magic-numbers */
 
-// HACK?
-// Something wrong with tree shaking..
-// import { mat4, glMatrix } from 'gl-matrix'
-// is to import all the functions into it.
+// HACK
+//
+// Something wrong with tree shaking.
+// Following codes won't be tree shaken,
+// which will import all functions into bundles.
+//
+// HACK:
+//   L2Dwidget.min.js  4.81 KiB
+//   L2Dwidget.min.js.map    66 KiB
+//
+// FAILED:
+//   L2Dwidget.min.js  53.1 KiB
+//   L2Dwidget.min.js.map   253 KiB
+//
+
+// FAILED STARTS
+/*
+import {
+  mat4,
+  glMatrix,
+} from 'gl-matrix';
+const create = mat4.create;
+const multiply = mat4.multiply;
+const identity = mat4.identity;
+const clone = mat4.clone;
+const copy = mat4.copy;
+const ARRAY_TYPE = glMatrix.ARRAY_TYPE;
+*/
+// FAILED ENDS
+
+// HACK STARTS
 
 import {
   create,
@@ -16,6 +43,8 @@ import {
 import {
   ARRAY_TYPE,
 } from 'gl-matrix/src/gl-matrix/common';
+
+// HACK ENDS
 
 class MatrixStack {
 
