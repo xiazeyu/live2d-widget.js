@@ -1,17 +1,29 @@
 /* eslint-disable no-magic-numbers */
 
+// HACK?
+// Something wrong with tree shaking..
+// import { mat4, glMatrix } from 'gl-matrix'
+// is to import all the functions into it.
+
 import {
-  glMatrix,
-  mat4,
-} from 'gl-matrix/src/gl-matrix';
+  create,
+  multiply,
+  identity,
+  clone,
+  copy,
+} from 'gl-matrix/src/gl-matrix/mat4';
+
+import {
+  ARRAY_TYPE,
+} from 'gl-matrix/src/gl-matrix/common';
 
 class MatrixStack {
 
   constructor () {
 
-    this.currentMatrix = mat4.create();
+    this.currentMatrix = create();
     this.depth = 0;
-    this.matrixStack = mat4.create();
+    this.matrixStack = create();
 
   }
 
@@ -32,7 +44,7 @@ class MatrixStack {
    */
   loadIdentity () {
 
-    this.currentMatrix = mat4.create();
+    this.currentMatrix = create();
     return this;
 
   }
@@ -53,7 +65,7 @@ class MatrixStack {
 
       // TypedArray.length is read only.
       const newLength = offset + 16;
-      const newMatrixStack = new glMatrix.ARRAY_TYPE(newLength);
+      const newMatrixStack = new ARRAY_TYPE(newLength);
       newMatrixStack.set(this.matrixStack);
       this.matrixStack = newMatrixStack;
 
@@ -109,7 +121,7 @@ class MatrixStack {
    */
   multMatrix (operMat) {
 
-    this.currentMatrix = mat4.multiply(this.currentMatrix, this.currentMatrix, operMat);
+    this.currentMatrix = multiply(this.currentMatrix, this.currentMatrix, operMat);
     return this;
 
   }
@@ -135,7 +147,7 @@ class Matrix44 {
    */
   static mul (a, b, out) {
 
-    return mat4.multiply(out, a, b);
+    return multiply(out, a, b);
 
   }
 
@@ -145,7 +157,7 @@ class Matrix44 {
    */
   identity () {
 
-    this.tr = mat4.identity(this.tr);
+    this.tr = identity(this.tr);
     return this;
 
   }
@@ -166,7 +178,7 @@ class Matrix44 {
    */
   getCopyMatrix () {
 
-    return mat4.clone(this.tr);
+    return clone(this.tr);
 
   }
   /**
@@ -176,7 +188,7 @@ class Matrix44 {
    */
   setMatrix (tr) {
 
-    this.tr = mat4.copy(this.tr, tr);
+    this.tr = copy(this.tr, tr);
     return this;
 
   }
@@ -276,7 +288,7 @@ class Matrix44 {
    */
   multTranslate (shiftX, shiftY) {
 
-    const oper = mat4.create();
+    const oper = create();
     oper[12] = shiftX;
     oper[13] = shiftY;
     this.tr = Matrix44.mul(oper, this.tr, this.tr);
@@ -328,7 +340,7 @@ class Matrix44 {
    */
   multScale (scaleX, scaleY) {
 
-    const oper = mat4.create();
+    const oper = create();
     oper[0] = scaleX;
     oper[5] = scaleY;
     this.tr = Matrix44.mul(oper, this.tr, this.tr);

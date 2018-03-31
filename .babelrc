@@ -1,7 +1,8 @@
 {
   "presets": [
     ["env",{
-      "debug": false
+      "debug": false,
+      "modules": false
     }]
   ],
   "plugins": [
