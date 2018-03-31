@@ -3,16 +3,15 @@
 import {
   glMatrix,
   mat4,
-} from 'gl-matrix';
+} from 'gl-matrix/src/gl-matrix';
 
 class MatrixStack {
 
   constructor () {
 
-    this.matrixStack = mat4.create();
-    this.depth = 0;
     this.currentMatrix = mat4.create();
-    this.tmp = new glMatrix.ARRAY_TYPE(16);
+    this.depth = 0;
+    this.matrixStack = mat4.create();
 
   }
 
@@ -52,14 +51,14 @@ class MatrixStack {
     const offset = (this.depth + 1) * 16;
     if(this.matrixStack.length < offset + 16) {
 
-      this.matrixStack.length = offset + 16;
+      // TypedArray.length is read only.
+      const newLength = offset + 16;
+      const newMatrixStack = new glMatrix.ARRAY_TYPE(newLength);
+      newMatrixStack.set(this.matrixStack);
+      this.matrixStack = newMatrixStack;
 
     }
-    for(let i = 0; i < 16; i++) {
-
-      this.matrixStack[offset + i] = this.currentMatrix[i];
-
-    }
+    this.matrixStack.set(this.currentMatrix, offset);
     this.depth++;
     return this;
 
@@ -82,17 +81,13 @@ class MatrixStack {
     this.depth--;
     if(this.depth < 0) {
 
-      console.error('Matrix stack underflow.', this.matrixStack);
+      console.error('Matrix stack underflow.');
       this.depth = 0;
       return this;
 
     }
-    const offset = this.depth * 16;
-    for(let i = 0; i < 16; i++) {
-
-      this.currentMatrix[i] = this.matrixStack[offset + i];
-
-    }
+    const offset = (this.depth + 1) * 16;
+    this.currentMatrix = this.matrixStack.slice(offset, offset + 16);
     return this;
 
   }
@@ -207,9 +202,29 @@ class Matrix44 {
   }
 
   /**
-   * Returns the X-transformed X-operand.
-   * @param   {Number}  src  Number to operate X.
-   * @return  {Number}       X-transformed result.
+   * Returns current X translate.
+   * @return  {Number}  Current X translate.
+   */
+  getTransX () {
+
+    return this.tr[12];
+
+  }
+
+  /**
+   * Returns current Y translate.
+   * @return  {Number}  Current Y translate.
+   */
+  getTransY () {
+
+    return this.tr[13];
+
+  }
+
+  /**
+   * Returns X transformed by current matrix.
+   * @param   {Number}  src  Number to be transformed.
+   * @return  {Number}       X-transformed number.
    */
   transformX (src) {
 
@@ -220,9 +235,9 @@ class Matrix44 {
   }
 
   /**
-   * Returns the Y-transformed Y-operand.
-   * @param   {Number}  src  Number to operate Y.
-   * @return  {Number}       Y-transformed result.
+   * Returns Y transformed by current matrix.
+   * @param   {Number}  src  Number to be transformed.
+   * @return  {Number}       Y-transformed number.
    */
   transformY (src) {
 
@@ -254,7 +269,7 @@ class Matrix44 {
   }
 
   /**
-   * Translate current matrix44 by given X and Y shift.
+   * Multiply current matrix44 by given X and Y translate.
    * @param   {Number}  shiftX  X Shift to translate.
    * @param   {Number}  shiftY  Y shift to translate.
    * @return  {Function}        The instance function itself.
@@ -329,7 +344,7 @@ class Matrix44 {
    */
   scale (x, y) {
 
-    return this.scaleX(x).scale(y);
+    return this.scaleX(x).scaleY(y);
 
   }
 
@@ -366,4 +381,5 @@ window.MatrixStack = MatrixStack;
 
 export {
   MatrixStack,
+  Matrix44,
 };
