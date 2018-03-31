@@ -16,8 +16,8 @@ module.exports = (env) => ({
 
   'devtool': 'source-map',
 
-  // 'entry': './src/index',
   // DEBUG
+  // 'entry': './src/index',
   'entry': './src/utils/Matrix',
 
   'mode': env,
@@ -75,9 +75,7 @@ module.exports = (env) => ({
     'filename': 'L2Dwidget.min.js',
     // DEBUG
     // 'library': 'L2Dwidget',
-    // DEBUG
     // 'libraryExport': 'L2Dwidget',
-    // DEBUG
     // 'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'lib'),
   },
