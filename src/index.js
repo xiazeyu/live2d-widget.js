@@ -113,7 +113,7 @@ class L2Dwidget {
    * May automatically detect if the browser supports ShadowDOM.
    * Throw an error if this instance alreday hava an HTMLElement binded.
    * @param {HTMLElement} value  An empty HTMLElement to bind and initialize.
-   * @return {HTMLElement}       The HTMLElement you provided.
+   * @return {HTMLElement}       The HTMLElement given.
    * @example
    * t.element = balabala;
    * > balabala(now is initialized and binded with this instance)
@@ -235,7 +235,7 @@ class L2Dwidget {
    * Mention that: changing config itself doesn't influence the content that is displaying.
    * You should use {@link L2Dwidget#reload} to reload the page.
    * @param {Config} value  Config to apply.
-   * @return {Config}       The config you provided.
+   * @return {Config}       The config you given.
    * @example
    * t.config = balabala;
    * > balabala(now is applied to this instance)
