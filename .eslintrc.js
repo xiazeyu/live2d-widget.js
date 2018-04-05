@@ -101,9 +101,6 @@ module.exports = {
     'global-require': [
       'error',
     ],
-    'array-bracket-newline': [
-      'warn',
-    ],
     'array-bracket-spacing': [
       'error',
     ],
