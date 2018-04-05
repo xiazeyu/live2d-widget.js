@@ -5,9 +5,9 @@ import {
   ModelMatrix,
   ViewMatrix,
 } from './utils/Matrix';
-import {
-  PlatformManager,
-} from './PlatformManager';
+// import {
+//   PlatformManager,
+// } from './PlatformManager';
 // import { L2DTargetPoint } from './lib/TargetPoint';
 // import { ModelManager } from './ModelManager';
 

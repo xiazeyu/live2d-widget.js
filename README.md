@@ -67,17 +67,17 @@ var currL2Dwidget = new L2Dwidget({
 We have
 
 - Jsdelivr(Recommended)
-  `https://cdn.jsdelivr.net/npm/live2d-widget@4.x/lib/L2Dwidget.min.js`
+  `https://cdn.jsdelivr.net/npm/live2d-widget@4.x/dist/L2Dwidget.min.js`
 
 - Unkpg
-  `https://unpkg.com/live2d-widget@4.x/lib/L2Dwidget.min.js`
+  `https://unpkg.com/live2d-widget@4.x/dist/L2Dwidget.min.js`
 
 ### Bookmark (any pages)
 
-`data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js></script><script>L2Dwidget.init()</script>`
+`data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget/dist/L2Dwidget.min.js></script><script>L2Dwidget.init()</script>`
 
 ```js
-javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/lib/L2Dwidget.min.js",function(){L2Dwidget.init();});
+javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/dist/L2Dwidget.min.js",function(){L2Dwidget.init();});
 ```
 
 WIP.

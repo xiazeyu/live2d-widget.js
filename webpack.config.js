@@ -17,8 +17,7 @@ module.exports = (env) => ({
   'devtool': 'source-map',
 
   // DEBUG
-  // 'entry': './src/index',
-  'entry': './src/utils/ModelSettingJson',
+  'entry': './src/index',
 
   'mode': env,
 
@@ -74,10 +73,10 @@ module.exports = (env) => ({
     'chunkFilename': 'L2Dwidget.[id].min.js',
     'filename': 'L2Dwidget.min.js',
     // DEBUG
-    // 'library': 'L2Dwidget',
-    // 'libraryExport': 'L2Dwidget',
-    // 'libraryTarget': 'var',
-    'path': path.resolve(__dirname, 'lib'),
+    'library': 'L2Dwidget',
+    'libraryExport': 'L2Dwidget',
+    'libraryTarget': 'var',
+    'path': path.resolve(__dirname, 'dist'),
   },
 
   'plugins': [
