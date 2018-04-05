@@ -1,3 +1,4 @@
+/* global process */
 /* eslint-disable no-magic-numbers */
 
 import {
@@ -823,6 +824,15 @@ class ViewMatrix extends Matrix44 {
     return this.maxTop;
 
   }
+
+}
+
+if (process.env.NODE_ENV === 'development') {
+
+  window.MatrixStack = MatrixStack;
+  window.Matrix44 = Matrix44;
+  window.ModelMatrix = ModelMatrix;
+  window.ViewMatrix = ViewMatrix;
 
 }
 

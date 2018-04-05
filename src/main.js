@@ -1,17 +1,20 @@
 import './lib/live2d.core.nodoc';
 import {
-  // ViewMatrix,
-  // Matrix44,
   MatrixStack,
+  Matrix44,
+  ModelMatrix,
+  ViewMatrix,
 } from './utils/Matrix';
+import {
+  PlatformManager,
+} from './PlatformManager';
 // import { L2DTargetPoint } from './lib/TargetPoint';
 // import { ModelManager } from './ModelManager';
 
-function loadL2DWidget({ webGL, config, }){
-  console.log(webGL, config);
-  let data1 = 'Test data1';
+function loadL2DWidget({ webGL, config, pfMgr }){
+  const platformManager = pfMgr || new PlatformManager();
   return {
-    data1,
+    platformManager,
   };
 }
 
