@@ -2,6 +2,19 @@
 const _ = require('lodash');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const uglifyJs = new UglifyJsPlugin({
+  'cache': false,
+  'parallel': true,
+  'sourceMap': true,
+  'uglifyOptions': {
+    'compress': {
+      'drop_console': false,
+      'passes': 2,
+    },
+    'mangle': true,
+    'warnings': false,
+  },
+});
 const path = require('path');
 const Visualizer = require('webpack-visualizer-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -49,19 +62,7 @@ module.exports = (env) => ({
 
   'optimization': {
     'minimizer': [
-      new UglifyJsPlugin({
-        'cache': false,
-        'parallel': true,
-        'sourceMap': true,
-        'uglifyOptions': {
-          'compress': {
-            'drop_console': false,
-            'passes': 2,
-          },
-          'mangle': true,
-          'warnings': false,
-        },
-      }),
+      uglifyJs,
     ],
   },
 
@@ -80,7 +81,9 @@ module.exports = (env) => ({
     'path': path.resolve(__dirname, 'dist'),
   },
 
-  'plugins': _.concat([
+  'plugins': _.concat(env !== 'production' ? [
+    uglifyJs,
+  ] : [], [
 
     // Banner must be put below UglifyJsPlugin, or it won't work.
     new webpack.BannerPlugin(`${env !== 'production' ? '___DEV___' : ''}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
@@ -91,7 +94,7 @@ module.exports = (env) => ({
      */
     new ManifestPlugin(),
 
-  ], (env !== 'production' ? [
+  ], env !== 'production' ? [
 
     /**
      * Webpack Visualizer
@@ -99,7 +102,7 @@ module.exports = (env) => ({
      */
     new Visualizer(),
 
-  ] : [])),
+  ] : []),
 
   'resolve': {
     'extensions': [
