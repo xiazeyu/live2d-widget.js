@@ -13,6 +13,7 @@ import {
 
 function loadL2DWidget({ webGL, config, pfMgr }){
   const platformManager = pfMgr || new PlatformManager();
+  const matrixStack = new MatrixStack();
   return {
     platformManager,
   };
