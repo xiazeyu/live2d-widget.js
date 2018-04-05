@@ -18,7 +18,7 @@ module.exports = (env) => ({
 
   // DEBUG
   // 'entry': './src/index',
-  'entry': './src/utils/Matrix',
+  'entry': './src/utils/ModelSettingJson',
 
   'mode': env,
 

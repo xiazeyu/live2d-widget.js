@@ -48,7 +48,7 @@ class L2Dwidget {
       'hasCanvas': () => this._private.canvas !== null,
       'hasElement': () => this._private.element !== null,
       'hasWebGL': () => this._private.webGL !== null,
-	  'data1': null,
+      'platformManager': null,
     };
     // Use setter to set default config.
     this.config = {};
@@ -306,11 +306,14 @@ class L2Dwidget {
     import('./main').then(f => {
 
       mainFunc = f;
-      const {data1} = mainFunc.loadL2DWidget({
+      const {
+        platformManager,
+      } = mainFunc.loadL2DWidget({
+        pfMgr: this.platformManager,
         webGL: this.webGL,
         config: this.config,
       });
-	  this.data1 = data1;
+	  this.platformManager = platformManager;
 	  this._private.isActive = true;
 
     }).catch(err => {
