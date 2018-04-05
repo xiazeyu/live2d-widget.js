@@ -558,7 +558,8 @@ class ViewMatrix extends Matrix44 {
    * Constructor to ViewMatrix
    * @return  {Function}  The instance function itself.
    */
-  constructor(){
+  constructor () {
+
     super();
     this.screenLeft = null;
     this.screenRight = null;
@@ -571,22 +572,27 @@ class ViewMatrix extends Matrix44 {
     this.max = Number.MAX_VALUE;
     this.min = 0;
     return this;
+
   }
 
   /**
    * Get max scale of matrix.
    * @return  {Number}  Max scale.
    */
-  getMaxScale(){
+  getMaxScale () {
+
     return this.max;
+
   }
 
   /**
    * Get min scale of matrix.
    * @return  {Number}  Min scale.
    */
-  getMinScale(){
+  getMinScale () {
+
     return this.min;
+
   }
 
   /**
@@ -594,9 +600,11 @@ class ViewMatrix extends Matrix44 {
    * @param  {Number}  value  Max scale.
    * @return {Function}       The instance function itself.
    */
-  setMaxScale(value){
+  setMaxScale (value) {
+
     this.max = value;
     return this;
+
   }
 
   /**
@@ -604,25 +612,31 @@ class ViewMatrix extends Matrix44 {
    * @param  {Number}  value  Min scale.
    * @return {Function}       The instance function itself.
    */
-  setMinScale(value){
+  setMinScale (value) {
+
     this.min = value;
     return this;
+
   }
 
   /**
    * If current scale is max.
    * @return  {Boolean}  If current scale is max.
    */
-  isMaxScale(){
+  isMaxScale () {
+
     return this.getScaleX() === this.getMaxScale();
+
   }
 
   /**
    * If current scale is min.
    * @return  {Boolean}  If current scale is min.
    */
-  isMinScale(){
+  isMinScale () {
+
     return this.getScaleX() === this.getMinScale();
+
   }
 
   /**
@@ -631,20 +645,35 @@ class ViewMatrix extends Matrix44 {
    * @param   {Number}  shiftY  Y shift.
    * @return  {Function}        The instance function itself.
    */
-  adjustTranslate(shiftX, shiftY){
-    if (this.getScaleX() * this.maxLeft + (this.getTransX() + shiftX) > this.screenLeft){
-      shiftX = this.screenLeft - this.getScaleX() * this.maxLeft - this.getTransX();
+  adjustTranslate (shiftX, shiftY) {
+
+    const tLeft = this.getScaleX() * this.getMaxLeft();
+    const tRight = this.getScaleX() * this.getMaxRight();
+    const tTop = this.getScaleY() * this.getMaxTop();
+    const tBottom = this.getScaleY() * this.getMaxBottom();
+
+    if (tLeft + this.getTransX() + shiftX > this.getScreenLeft()) {
+
+      shiftX = this.getScreenLeft() - tLeft - this.getTransX();
+
     }
-    if (this.getScaleX() * this.maxRight + (this.getTransX() + shiftX) < this.screenRight){
-      shiftX = this.screenRight - this.getScaleX() * this.maxRight - this.getTransX();
+    if (tRight + this.getTransX() + shiftX < this.getScreenRight()) {
+
+      shiftX = this.getScreenRight() - tRight - this.getTransX();
+
     }
-    if (this.getScaleY() * this.maxTop + (this.getTransY() + shiftY) < this.screenTop){
-      shiftY = this.screenTop - this.getScaleY() * this.maxTop - this.getTransY();
+    if (tTop + this.getTransY() + shiftY < this.getScreenTop()) {
+
+      shiftY = this.getScreenTop() - tTop - this.getTransY();
+
     }
-    if (this.getScaleY() * this.maxBottom + (this.getTransY() + shiftY) > this.screenBottom){
-      shiftY = this.screenBottom - this.getScaleY() * this.maxBottom - this.getTransY();
+    if (tBottom + this.getTransY() + shiftY > this.getScreenBottom()) {
+
+      shiftY = this.getScreenBottom() - tBottom - this.getTransY();
+
     }
     return this.multTranslate(shiftX, shiftY);
+
   }
 
   /**
@@ -654,18 +683,29 @@ class ViewMatrix extends Matrix44 {
    * @param   {Number}  scale  Scale.
    * @return  {Function}       The instance function itself.
    */
-  adjustScale(cx, cy, scale){
+  adjustScale (cx, cy, scale) {
+
     const targetScale = scale * this.getScaleX();
-    if(targetScale < this.getMinScale()){
-      if (this.getScaleX() > 0){
+
+    if(targetScale < this.getMinScale()) {
+
+      if (this.getScaleX() > 0) {
+
         scale = this.getMinScale() / this.getScaleX();
+
       }
-    } else if (targetScale > this.getMaxScale()){
-      if(this.getScaleX() > 0){
+
+    } else if (targetScale > this.getMaxScale()) {
+
+      if(this.getScaleX() > 0) {
+
         scale = this.getMaxScale() / this.getScaleX();
+
       }
+
     }
     return this.multTranslate(-cx, -cy).multScale(scale, scale).multTranslate(cx, cy);
+
   }
 
   /**
@@ -676,12 +716,14 @@ class ViewMatrix extends Matrix44 {
    * @param  {Number}  top     Top.
    * @return {Function}        The instance function itself.
    */
-  setScreenRect(left, right, bottom, top){
+  setScreenRect (left, right, bottom, top) {
+
     this.screenLeft = left;
     this.screenRight = right;
     this.screenTop = top;
     this.screenBottom = bottom;
     return this;
+
   }
 
   /**
@@ -692,76 +734,94 @@ class ViewMatrix extends Matrix44 {
    * @param  {Number}  top     Top.
    * @return {Function}        The instance function itself.
    */
-  setMaxScreenRect(left, right, bottom, top){
+  setMaxScreenRect (left, right, bottom, top) {
+
     this.maxLeft = left;
     this.maxRight = right;
     this.maxTop = top;
     this.maxBottom = bottom;
     return this;
+
   }
 
   /**
    * Get screen left.
    * @return  {Number}  Screen left.
    */
-  getScreenLeft(){
+  getScreenLeft () {
+
     return this.screenLeft;
+
   }
 
   /**
    * Get screen right.
    * @return  {Number}  Screen right.
    */
-  getScreenRight(){
+  getScreenRight () {
+
     return this.screenRight;
+
   }
 
   /**
    * Get screen bottom.
    * @return  {Number}  Screen bottom.
    */
-  getScreenBottom(){
+  getScreenBottom () {
+
     return this.screenBottom;
+
   }
 
   /**
    * Get screen top.
    * @return  {Number}  Screen top.
    */
-  getScreenTop(){
+  getScreenTop () {
+
     return this.screenTop;
+
   }
 
   /**
    * Get max left.
    * @return  {Number}  Max left.
    */
-  getMaxLeft(){
+  getMaxLeft () {
+
     return this.maxLeft;
+
   }
 
   /**
    * Get max right.
    * @return  {Number}  Max right.
    */
-  getMaxRight(){
+  getMaxRight () {
+
     return this.maxRight;
+
   }
 
   /**
    * Get max bottom.
    * @return  {Number}  Max bottom.
    */
-  getMaxBottom(){
+  getMaxBottom () {
+
     return this.maxBottom;
+
   }
 
   /**
    * Get max top.
    * @return  {Number}  Max top.
    */
-  getMaxTop(){
+  getMaxTop () {
+
     return this.maxTop;
+
   }
 
 }
