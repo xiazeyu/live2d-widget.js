@@ -12,10 +12,12 @@ import {
   ARRAY_TYPE,
 } from 'gl-matrix/src/gl-matrix/common';
 
-// HACK ENDS
-
 class MatrixStack {
 
+  /**
+   * Constructor to MatrixStack
+   * @return  {Function}  The instance function itself.
+   */
   constructor () {
 
     this.currentMatrix = create();
@@ -127,9 +129,13 @@ class MatrixStack {
 
 class Matrix44 {
 
+  /**
+   * Constructor to Matrix44
+   * @return  {Function}  The instance function itself.
+   */
   constructor () {
 
-    this.tr = new glMatrix.ARRAY_TYPE(16);
+    this.tr = new ARRAY_TYPE(16);
     this.identity();
     return this;
 
@@ -181,7 +187,7 @@ class Matrix44 {
   /**
    * Copy the value from provided matrix44 to current one.
    * @param  {Array}  tr  The source matrix44.
-   * @return {Function} The instance function itself.
+   * @return {Function}   The instance function itself.
    */
   setMatrix (tr) {
 
@@ -297,7 +303,7 @@ class Matrix44 {
    * Set X and Y translate to current matrix44.
    * @param   {Number}  x  X operand.
    * @param   {Number}  y  Y operand.
-   * @return  {Function}     The instance function itself.
+   * @return  {Function}   The instance function itself.
    */
   translate (x, y) {
 
@@ -308,7 +314,7 @@ class Matrix44 {
   /**
    * Set X translate to current matrix44.
    * @param   {Number}  x  X operand.
-   * @return  {Function}     The instance function itself.
+   * @return  {Function}   The instance function itself.
    */
   translateX (x) {
 
@@ -320,7 +326,7 @@ class Matrix44 {
   /**
    * Set Y translate to current matrix44.
    * @param   {Number}  y  Y operand.
-   * @return  {Function}     The instance function itself.
+   * @return  {Function}   The instance function itself.
    */
   translateY (y) {
 
@@ -333,7 +339,7 @@ class Matrix44 {
    * Multiply current matrix44 by given X and Y scale.
    * @param   {Number}  scaleX  X scale to multiply.
    * @param   {Number}  scaleY  Y scale to multiply.
-   * @return  {Function}          The instance function itself.
+   * @return  {Function}        The instance function itself.
    */
   multScale (scaleX, scaleY) {
 
@@ -349,7 +355,7 @@ class Matrix44 {
    * Scale X and Y scale to current matrix44.
    * @param   {Number}  x  X operand.
    * @param   {Number}  y  Y operand.
-   * @return  {Function}     The instance function itself.
+   * @return  {Function}   The instance function itself.
    */
   scale (x, y) {
 
@@ -360,7 +366,7 @@ class Matrix44 {
   /**
    * Set Y scale to current matrix44.
    * @param   {Number}  x  X operand.
-   * @return  {Function}     The instance function itself.
+   * @return  {Function}   The instance function itself.
    */
   scaleX (x) {
 
@@ -383,7 +389,386 @@ class Matrix44 {
 
 }
 
+class ModelMatrix extends Matrix44 {
+
+  /**
+   * Constructor to ModelMatrix.
+   * @param   {Number}  width   Width.
+   * @param   {Number}  height  Height.
+   * @return  {Function}        The instance function itself.
+   */
+  constructor (width, height) {
+
+    super();
+    this.width = width;
+    this.height = height;
+    return this;
+
+  }
+
+  /**
+   * Set model position.
+   * @param  {Number}  x  X position.
+   * @param  {Number}  y  Y position.
+   * @return {Function}   The instance function itself.
+   */
+  setPosition (x, y) {
+
+    return this.translate(x, y);
+
+  }
+
+  /**
+   * Set model center position.
+   * @param  {Number}  x  X position of model center.
+   * @param  {Number}  y  Y position of model center
+   * @return {Function}   The instance function itself.
+   */
+  setCenterPosition (x, y) {
+
+    const operW = this.width * this.getScaleX() / 2;
+    const operH = this.height * this.getScaleY() / 2;
+    return this.translate(x - operW, y - operH);
+
+  }
+
+  /**
+   * Set model top position.
+   * @param   {Number}  y  Top position.
+   * @return  {Function}   The instance function itself.
+   */
+  top (y) {
+
+    return this.setY(y);
+
+  }
+
+  /**
+   * Set model bottom position.
+   * @param   {Number}  y  Bottom position.
+   * @return  {Function}   The instance function itself.
+   */
+  bottom (y) {
+
+    const h = this.height * this.getScaleY();
+    return this.translateY(y - h);
+
+  }
+
+  /**
+   * Set model left position.
+   * @param   {Number}  x  Left position.
+   * @return  {Function}   The instance function itself.
+   */
+  left (x) {
+
+    return this.setX(x);
+
+  }
+
+  /**
+   * Set model right position.
+   * @param   {Number}  x  Right position.
+   * @return  {Function}   The instance function itself.
+   */
+  right (x) {
+
+    const w = this.width * this.getScaleX();
+    return this.translateX(x - w);
+
+  }
+
+  /**
+   * Set X center.
+   * @param   {Number}  x  X position of center.
+   * @return  {Function}   The instance function itself.
+   */
+  centerX (x) {
+
+    const operW = this.width * this.getScaleX() / 2;
+    return this.translateX(x - operW);
+
+  }
+
+  /**
+   * Set Y center.
+   * @param   {Number}  y  Y position of center.
+   * @return  {Function}   The instance function itself.
+   */
+  centerY (y) {
+
+    const operH = this.height * this.getScaleY() / 2;
+    return this.translateY(y - operH);
+
+  }
+
+  /**
+   * Set X position.
+   * @param  {Number}  x  X position.
+   * @return {Function}   The instance function iteself.
+   */
+  setX (x) {
+
+    return this.translateX(x);
+
+  }
+
+  /**
+   * Set Y position.
+   * @param  {Number}  y  Y position.
+   * @return {Function}   The instance function itself.
+   */
+  setY (y) {
+
+    return this.translateY(y);
+
+  }
+
+  /**
+   * Set model height.
+   * @param  {Number}  h  Height.
+   * @return {Function}   The instance function itself.
+   */
+  setHeight (h) {
+
+    const scaleX = h / this.height;
+    const scaleY = -scaleX;
+    return this.scale(scaleX, scaleY);
+
+  }
+
+  /**
+   * Set model width.
+   * @param  {Number}  w  Width.
+   * @return {Function}   The instance function itself.
+   */
+  setWidth (w) {
+
+    const scaleX = w / this.width;
+    const scaleY = -scaleX;
+    return this.scale(scaleX, scaleY);
+
+  }
+
+}
+
+class ViewMatrix extends Matrix44 {
+
+  /**
+   * Constructor to ViewMatrix
+   * @return  {Function}  The instance function itself.
+   */
+  constructor(){
+    super();
+    this.screenLeft = null;
+    this.screenRight = null;
+    this.screenTop = null;
+    this.screenBottom = null;
+    this.maxLeft = null;
+    this.maxRight = null;
+    this.maxTop = null;
+    this.maxBottom = null;
+    this.max = Number.MAX_VALUE;
+    this.min = 0;
+    return this;
+  }
+
+  /**
+   * Get max scale of matrix.
+   * @return  {Number}  Max scale.
+   */
+  getMaxScale(){
+    return this.max;
+  }
+
+  /**
+   * Get min scale of matrix.
+   * @return  {Number}  Min scale.
+   */
+  getMinScale(){
+    return this.min;
+  }
+
+  /**
+   * Set max scale of matrix.
+   * @param  {Number}  value  Max scale.
+   * @return {Function}       The instance function itself.
+   */
+  setMaxScale(value){
+    this.max = value;
+    return this;
+  }
+
+  /**
+   * Set min scale of matrix.
+   * @param  {Number}  value  Min scale.
+   * @return {Function}       The instance function itself.
+   */
+  setMinScale(value){
+    this.min = value;
+    return this;
+  }
+
+  /**
+   * If current scale is max.
+   * @return  {Boolean}  If current scale is max.
+   */
+  isMaxScale(){
+    return this.getScaleX() === this.getMaxScale();
+  }
+
+  /**
+   * If current scale is min.
+   * @return  {Boolean}  If current scale is min.
+   */
+  isMinScale(){
+    return this.getScaleX() === this.getMinScale();
+  }
+
+  /**
+   * Translate matrix.
+   * @param   {Number}  shiftX  X shift.
+   * @param   {Number}  shiftY  Y shift.
+   * @return  {Function}        The instance function itself.
+   */
+  adjustTranslate(shiftX, shiftY){
+    if (this.getScaleX() * this.maxLeft + (this.getTransX() + shiftX) > this.screenLeft){
+      shiftX = this.screenLeft - this.getScaleX() * this.maxLeft - this.getTransX();
+    }
+    if (this.getScaleX() * this.maxRight + (this.getTransX() + shiftX) < this.screenRight){
+      shiftX = this.screenRight - this.getScaleX() * this.maxRight - this.getTransX();
+    }
+    if (this.getScaleY() * this.maxTop + (this.getTransY() + shiftY) < this.screenTop){
+      shiftY = this.screenTop - this.getScaleY() * this.maxTop - this.getTransY();
+    }
+    if (this.getScaleY() * this.maxBottom + (this.getTransY() + shiftY) > this.screenBottom){
+      shiftY = this.screenBottom - this.getScaleY() * this.maxBottom - this.getTransY();
+    }
+    return this.multTranslate(shiftX, shiftY);
+  }
+
+  /**
+   * Scale matrix.
+   * @param   {Number}  cx     Cx.
+   * @param   {Number}  cy     Cy.
+   * @param   {Number}  scale  Scale.
+   * @return  {Function}       The instance function itself.
+   */
+  adjustScale(cx, cy, scale){
+    const targetScale = scale * this.getScaleX();
+    if(targetScale < this.getMinScale()){
+      if (this.getScaleX() > 0){
+        scale = this.getMinScale() / this.getScaleX();
+      }
+    } else if (targetScale > this.getMaxScale()){
+      if(this.getScaleX() > 0){
+        scale = this.getMaxScale() / this.getScaleX();
+      }
+    }
+    return this.multTranslate(-cx, -cy).multScale(scale, scale).multTranslate(cx, cy);
+  }
+
+  /**
+   * Set screen rect.
+   * @param  {Number}  left    Left.
+   * @param  {Number}  right   Right.
+   * @param  {Number}  bottom  Bottom.
+   * @param  {Number}  top     Top.
+   * @return {Function}        The instance function itself.
+   */
+  setScreenRect(left, right, bottom, top){
+    this.screenLeft = left;
+    this.screenRight = right;
+    this.screenTop = top;
+    this.screenBottom = bottom;
+    return this;
+  }
+
+  /**
+   * Set max screent rect
+   * @param  {Number}  left    Left.
+   * @param  {Number}  right   Right.
+   * @param  {Number}  bottom  Bottom.
+   * @param  {Number}  top     Top.
+   * @return {Function}        The instance function itself.
+   */
+  setMaxScreenRect(left, right, bottom, top){
+    this.maxLeft = left;
+    this.maxRight = right;
+    this.maxTop = top;
+    this.maxBottom = bottom;
+    return this;
+  }
+
+  /**
+   * Get screen left.
+   * @return  {Number}  Screen left.
+   */
+  getScreenLeft(){
+    return this.screenLeft;
+  }
+
+  /**
+   * Get screen right.
+   * @return  {Number}  Screen right.
+   */
+  getScreenRight(){
+    return this.screenRight;
+  }
+
+  /**
+   * Get screen bottom.
+   * @return  {Number}  Screen bottom.
+   */
+  getScreenBottom(){
+    return this.screenBottom;
+  }
+
+  /**
+   * Get screen top.
+   * @return  {Number}  Screen top.
+   */
+  getScreenTop(){
+    return this.screenTop;
+  }
+
+  /**
+   * Get max left.
+   * @return  {Number}  Max left.
+   */
+  getMaxLeft(){
+    return this.maxLeft;
+  }
+
+  /**
+   * Get max right.
+   * @return  {Number}  Max right.
+   */
+  getMaxRight(){
+    return this.maxRight;
+  }
+
+  /**
+   * Get max bottom.
+   * @return  {Number}  Max bottom.
+   */
+  getMaxBottom(){
+    return this.maxBottom;
+  }
+
+  /**
+   * Get max top.
+   * @return  {Number}  Max top.
+   */
+  getMaxTop(){
+    return this.maxTop;
+  }
+
+}
+
 export {
   MatrixStack,
   Matrix44,
+  ModelMatrix,
+  ViewMatrix,
 };
