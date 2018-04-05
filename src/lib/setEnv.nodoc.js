@@ -1,4 +1,5 @@
 import 'current-device';
+import 'whatwg-fetch'
 import 'es6-promise/auto';
 
 // eslint-disable-next-line capitalized-comments
