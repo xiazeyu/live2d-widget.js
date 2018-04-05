@@ -41,28 +41,11 @@ class ModelSettingJson {
    */
   load (path, pfMgr) {
 
-    /* Test case:
-
-    k = new ModelSettingJson();
-    pfMgr = {
-      'loadBytes': (path) => {
-        return new Promise((resolve) => {
-          fetch(path).then((response) => {
-            resolve(response.arrayBuffer());
-          })
-        })
-      }
-    }
-    k.load('https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@latest/assets/shizuku.model.json', pfMgr);
-
-*/
-
     return new Promise((resolve, reject) => {
 
       pfMgr.loadBytes(path).then((buffer) => {
 
-        const Uint8Str = String.fromCharCode.apply(null, new Uint8Array(buffer));
-        this.json = JSON.parse(Uint8Str);
+        this.json = pfMgr.jsonParseFromBytes(buffer);
         if (process.env.NODE_ENV === 'development') {
 
           console.log(this.json);
