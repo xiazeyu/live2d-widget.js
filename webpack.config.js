@@ -1,4 +1,5 @@
 /* global __dirname */
+const _ = require('lodash');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
@@ -79,7 +80,7 @@ module.exports = (env) => ({
     'path': path.resolve(__dirname, 'dist'),
   },
 
-  'plugins': [
+  'plugins': _.concat([
 
     // Banner must be put below UglifyJsPlugin, or it won't work.
     new webpack.BannerPlugin(`${env !== 'production' ? '___DEV___' : ''}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
@@ -90,13 +91,15 @@ module.exports = (env) => ({
      */
     new ManifestPlugin(),
 
+  ], (env !== 'production' ? [
+
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
     new Visualizer(),
 
-  ],
+  ] : [])),
 
   'resolve': {
     'extensions': [
@@ -110,6 +113,6 @@ module.exports = (env) => ({
 
   'target': 'web',
 
-  'watch': env !== 'production',
+  'watch': false,
 
 });

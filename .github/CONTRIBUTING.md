@@ -71,7 +71,7 @@ work is not in vain.
 
 - Use `npm run lint` to check your code first.
 
-- Use `npm run build:prod` to build final client js.
+- Use `npm run build` to build final client js.
 
 - Use `git add --all`, or choose the file you want to commit.
 

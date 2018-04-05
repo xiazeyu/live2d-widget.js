@@ -10,9 +10,10 @@
     "_esdoc": "./node_modules/.bin/esdoc",
     "_changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
     "inst:dev": "npm install -g commitizen && npm install -g conventional-changelog-cli && npm install",
-    "build:dev": "./node_modules/.bin/webpack --colors --display-error-details --env \"development\" --progress",
-    "build:prod": "./node_modules/.bin/webpack --colors --display-error-details --display-optimization-bailout --env \"production\" --progress",
-    "build": "git pull && npm run _changelog && npm run build:prod && npm run _afterbuild && git add --all && npm run update:submodule && git add ghpages",
+    "build:stats": "./node_modules/.bin/webpack --colors --display-error-details --env \"development\" --progress",
+    "build:dev": "./node_modules/.bin/webpack --colors --display-error-details --env \"development\" --progress --watch",
+    "build:prod": "./node_modules/.bin/webpack --colors --display-error-details --env \"production\" --progress",
+    "build": "git pull && npm run _changelog && npm run build:stats && npm run build:prod && npm run _afterbuild && git add --all && npm run update:submodule && git add ghpages",
     "build:esdoc": "build:prod && npm run _afterbuild && npm run _esdoc",
     "deploy:ghpages": "git pull && git checkout master && cd ghpages/ && git status && git add --all && git commit -m \"Update docs\" && git push origin HEAD:master --force && cd ..",
     "lint": "eslint --ext .js ./",
@@ -56,14 +57,15 @@
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.19.1",
-    "gl-matrix": "^2.4.0",
     "html-loader": "^0.5.5",
+    "lodash": "^4.17.5",
     "path": "^0.12.7",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-manifest-plugin": "^2.0.0-rc.2",
-    "webpack-visualizer-plugin": "^0.1.11"
+    "webpack-visualizer-plugin": "^0.1.11",
+    "whatwg-fetch": "^2.0.4"
   },
   "config": {
     "commitizen": {
