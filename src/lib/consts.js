@@ -7,3 +7,7 @@ EYE_STATE.STATE_INTERVAL = "STATE_INTERVAL"
 EYE_STATE.STATE_CLOSING = "STATE_CLOSING"
 EYE_STATE.STATE_CLOSED = "STATE_CLOSED"
 EYE_STATE.STATE_OPENING = "STATE_OPENING"
+
+config.reactPriorityIdle = 1
+config.reactPriorityNormal = 2
+config.reactPriorityForce = 3
