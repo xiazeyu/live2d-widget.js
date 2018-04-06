@@ -172,7 +172,7 @@ L2DBaseModel.prototype.loadModelData = function (path/*String*/, callback) {
 //============================================================
 //    L2DBaseModel # loadTexture()
 //============================================================
-L2DBaseModel.prototype.loadTexture = function (no/*int*/, path/*String*/, callback) {
+L2DBaseModel.prototype.loadTexture = function (no/*int*/, path/*String*/, homeDir, callback) {
     texCounter++;
 
     var pm = Live2DFramework.getPlatformManager(); //IPlatformManager
@@ -180,7 +180,7 @@ L2DBaseModel.prototype.loadTexture = function (no/*int*/, path/*String*/, callba
     if (this.debugMode) pm.log("Load Texture : " + path);
 
     var thisRef = this;
-    pm.loadTexture(this.live2DModel, no, path, function () {
+    pm.loadTexture(this.live2DModel, no, path, homeDir, function () {
         texCounter--;
         if (texCounter == 0) thisRef.isTexLoaded = true;
         if (typeof callback == "function") callback();
@@ -191,7 +191,7 @@ L2DBaseModel.prototype.loadTexture = function (no/*int*/, path/*String*/, callba
 //============================================================
 //    L2DBaseModel # loadMotion()
 //============================================================
-L2DBaseModel.prototype.loadMotion = function (name/*String*/, path /*String*/, callback) {
+L2DBaseModel.prototype.loadMotion = function (name/*String*/, path /*String*/,homeDir, callback) {
     var pm = Live2DFramework.getPlatformManager(); //IPlatformManager
 
     if (this.debugMode) pm.log("Load Motion : " + path);
@@ -199,7 +199,7 @@ L2DBaseModel.prototype.loadMotion = function (name/*String*/, path /*String*/, c
     var motion = null; //Live2DMotion
 
     var thisRef = this;
-    pm.loadBytes(path, function (buf) {
+    pm.loadBytes(path, homeDir, function (buf) {
         motion = Live2DMotion.loadMotion(buf);
         if (name != null) {
             thisRef.motions[name] = motion;
@@ -212,13 +212,13 @@ L2DBaseModel.prototype.loadMotion = function (name/*String*/, path /*String*/, c
 //============================================================
 //    L2DBaseModel # loadExpression()
 //============================================================
-L2DBaseModel.prototype.loadExpression = function (name/*String*/, path /*String*/, callback) {
+L2DBaseModel.prototype.loadExpression = function (name/*String*/, path /*String*/, homeDir, callback) {
     var pm = Live2DFramework.getPlatformManager(); //IPlatformManager
 
     if (this.debugMode) pm.log("Load Expression : " + path);
 
     var thisRef = this;
-    pm.loadBytes(path, function (buf) {
+    pm.loadBytes(path, homeDir, function (buf) {
         if (name != null) {
             thisRef.expressions[name] = L2DExpressionMotion.loadJson(buf);
         }
@@ -229,12 +229,12 @@ L2DBaseModel.prototype.loadExpression = function (name/*String*/, path /*String*
 //============================================================
 //    L2DBaseModel # loadPose()
 //============================================================
-L2DBaseModel.prototype.loadPose = function (path /*String*/, callback) {
+L2DBaseModel.prototype.loadPose = function (path /*String*/, homeDir, callback) {
     var pm = Live2DFramework.getPlatformManager(); //IPlatformManager
     if (this.debugMode) pm.log("Load Pose : " + path);
     var thisRef = this;
     try {
-        pm.loadBytes(path, function (buf) {
+        pm.loadBytes(path, homeDir, function (buf) {
             thisRef.pose = L2DPose.load(buf);
             if (typeof callback == "function") callback();
         });
@@ -247,12 +247,12 @@ L2DBaseModel.prototype.loadPose = function (path /*String*/, callback) {
 //============================================================
 //    L2DBaseModel # loadPhysics()
 //============================================================
-L2DBaseModel.prototype.loadPhysics = function (path/*String*/) {
+L2DBaseModel.prototype.loadPhysics = function (path/*String*/, homeDir) {
     var pm = Live2DFramework.getPlatformManager(); //IPlatformManager
     if (this.debugMode) pm.log("Load Physics : " + path);
     var thisRef = this;
     try {
-        pm.loadBytes(path, function (buf) {
+        pm.loadBytes(path, homeDir, function (buf) {
             thisRef.physics = L2DPhysics.load(buf);
         });
     }

@@ -5,14 +5,21 @@ class PlatformManager {
 
   /**
    * Get arrayBuffer of provided path.
-   * @param   {String}  path  Path to load.
-   * @return  {Promise}       Promise to operate whose resolve is a ArrayBuffer.
+   * @param   {String}  path    Path to load.
+   * @param   {String}  homeDir Root if path is relative.
+   * @return  {Promise}         Promise to operate whose resolve is a ArrayBuffer.
    */
-  loadBytes (path) {
+  loadBytes (path, homeDir = '') {
+
+    let loadPath = path;
+
+    if(!(/^http/.test(path) || /^file/.test(path))){
+      loadPath = homeDir + path;
+    }
 
     return new Promise((resolve) => {
 
-      fetch(path).then((response) => {
+      fetch(loadPath).then((response) => {
 
         if(response.ok) {
 
@@ -61,7 +68,13 @@ class PlatformManager {
    * @param   {RenderingContext} gl     WebGL to operate.
    * @return  {Promise}                 A Promise.
    */
-  loadTexture (model, no, path, gl) {
+  loadTexture (model, no, path, homeDir, gl) {
+
+    let loadPath = path;
+
+    if(!(/^http/.test(path) || /^file/.test(path))){
+      loadPath = homeDir + path;
+    }
 
     return new Promise((resolve) => {
 
@@ -96,10 +109,28 @@ class PlatformManager {
       };
       loadedImage.onerror = () => {
 
-        console.log(`live2d-widget: Failed to load image: ${path}`);
+        console.log(`live2d-widget: Failed to load image: ${loadPath}`);
 
       };
-      loadedImage.src = path;
+      loadedImage.src = loadPath;
+      resolve();
+
+    });
+
+  }
+
+  loadSound(path, homeDir){
+
+    let loadPath = path;
+
+    if(!(/^http/.test(path) || /^file/.test(path))){
+      loadPath = homeDir + path;
+    }
+
+    return new Promise((resolve) => {
+
+      const sndElem = document.createElement('audio');
+      sndElem.src = loadPath;
       resolve();
 
     });
