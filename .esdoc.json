@@ -1,7 +1,7 @@
 {
   "source": "./src",
   "destination": "./ghpages/docs",
-  "excludes": ["\\.core\\.js$"],
+  "excludes": ["\\.nodoc\\.js$"],
   "plugins": [
     {
       "name": "esdoc-standard-plugin",

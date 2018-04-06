@@ -1,11 +1,11 @@
 {
   "presets": [
     ["env",{
-      "debug": true
+      "debug": false,
+      "modules": false
     }]
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "lodash"
+    "syntax-dynamic-import"
   ],
 }

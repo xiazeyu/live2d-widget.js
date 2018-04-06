@@ -1,0 +1,11 @@
+# /node_modules/* and /bower_components/* ignored by default
+
+# Offcial core library
+src/lib/live2d.core.js
+
+# Build files
+lib/*
+
+# Files that don't support.
+# Don't support import() which may throw an Error
+src/index.js

@@ -1,5 +1,62 @@
+<a name="4.0.0"></a>
+## 4.0.0 (2018-04-05)
+
+* ci: add eslint step ([1996a91](https://github.com/xiazeyu/live2d-widget.js/commit/1996a91))
+* ci: add markdownlint ([8c32097](https://github.com/xiazeyu/live2d-widget.js/commit/8c32097))
+* ci: auto add title on CHANGELOG.md ([b8e187d](https://github.com/xiazeyu/live2d-widget.js/commit/b8e187d))
+* ci: encrypt new ssh key ([5e49a05](https://github.com/xiazeyu/live2d-widget.js/commit/5e49a05))
+* ci: fix error ([357391e](https://github.com/xiazeyu/live2d-widget.js/commit/357391e))
+* ci: fix error ([7f504ef](https://github.com/xiazeyu/live2d-widget.js/commit/7f504ef))
+* ci: fix secure errors for prs ([c311bd8](https://github.com/xiazeyu/live2d-widget.js/commit/c311bd8))
+* ci: fix typo ([b41562f](https://github.com/xiazeyu/live2d-widget.js/commit/b41562f))
+* ci: move compiled folder from lib to dist ([a4228fb](https://github.com/xiazeyu/live2d-widget.js/commit/a4228fb))
+* ci: update for codeclimate ([de79a34](https://github.com/xiazeyu/live2d-widget.js/commit/de79a34)), closes [#21](https://github.com/xiazeyu/live2d-widget.js/issues/21)
+* refactor: daily update ([9f28e25](https://github.com/xiazeyu/live2d-widget.js/commit/9f28e25))
+* refactor: matrix: ViewMatrix, ModelMatrix ([6c364b0](https://github.com/xiazeyu/live2d-widget.js/commit/6c364b0))
+* refactor: ModelSettingJson ([2caa709](https://github.com/xiazeyu/live2d-widget.js/commit/2caa709))
+* refactor: refector config ([8c0e004](https://github.com/xiazeyu/live2d-widget.js/commit/8c0e004))
+* refactor: rewrite index.js for class support ([c23f6aa](https://github.com/xiazeyu/live2d-widget.js/commit/c23f6aa))
+* style: change createElement to static ([343690b](https://github.com/xiazeyu/live2d-widget.js/commit/343690b))
+* style: change defaultConfig.js to defaultConfig.json ([5185ecf](https://github.com/xiazeyu/live2d-widget.js/commit/5185ecf))
+* style: lint code ([71087a6](https://github.com/xiazeyu/live2d-widget.js/commit/71087a6))
+* style: lint Matrix.js ([e047dde](https://github.com/xiazeyu/live2d-widget.js/commit/e047dde))
+* style: new private varible method ([766d4c0](https://github.com/xiazeyu/live2d-widget.js/commit/766d4c0))
+* style: seperate class into seperated files ([e9ca56b](https://github.com/xiazeyu/live2d-widget.js/commit/e9ca56b))
+* build: greater build flow ([4a99b1c](https://github.com/xiazeyu/live2d-widget.js/commit/4a99b1c))
+* build: move copy from npm script to node.js script ([b4540b8](https://github.com/xiazeyu/live2d-widget.js/commit/b4540b8))
+* build: update build logic ([816889e](https://github.com/xiazeyu/live2d-widget.js/commit/816889e))
+* build: update build logic, use npm run build to get final build ([b76e065](https://github.com/xiazeyu/live2d-widget.js/commit/b76e065))
+* build: update dependcies ([b608753](https://github.com/xiazeyu/live2d-widget.js/commit/b608753))
+* build: update dependcies ([5f72d27](https://github.com/xiazeyu/live2d-widget.js/commit/5f72d27)), closes [#6](https://github.com/xiazeyu/live2d-widget.js/issues/6)
+* fix: bugs ([1bb9ee5](https://github.com/xiazeyu/live2d-widget.js/commit/1bb9ee5))
+* fix: fix bugs ([fc1d6d0](https://github.com/xiazeyu/live2d-widget.js/commit/fc1d6d0))
+* fix: fix matrix bugs ([df437f1](https://github.com/xiazeyu/live2d-widget.js/commit/df437f1))
+* fix: use custom "tree shaking" instead of webpack ones ([86b9c59](https://github.com/xiazeyu/live2d-widget.js/commit/86b9c59)), closes [#22](https://github.com/xiazeyu/live2d-widget.js/issues/22)
+* chore: add note for hacking ([8783aae](https://github.com/xiazeyu/live2d-widget.js/commit/8783aae))
+* chore: bump version to 4.0.0 ([d5f51f9](https://github.com/xiazeyu/live2d-widget.js/commit/d5f51f9))
+* chore: use offcial live2d.core.js ([6aa27a0](https://github.com/xiazeyu/live2d-widget.js/commit/6aa27a0))
+* feat: finish element manager, change config ([dd31caa](https://github.com/xiazeyu/live2d-widget.js/commit/dd31caa))
+* feat: matrix works saving ([4174b54](https://github.com/xiazeyu/live2d-widget.js/commit/4174b54))
+* feat: working saving - matrixStack ([36517e9](https://github.com/xiazeyu/live2d-widget.js/commit/36517e9))
+* perf: remove lodash and use Object.assign() instead ([fa85b84](https://github.com/xiazeyu/live2d-widget.js/commit/fa85b84))
+* perf: use custom Object.assign ([d776e70](https://github.com/xiazeyu/live2d-widget.js/commit/d776e70))
+* perf: use smaller polyfill ([aabc8b1](https://github.com/xiazeyu/live2d-widget.js/commit/aabc8b1))
+* docs: update docs ([d14a789](https://github.com/xiazeyu/live2d-widget.js/commit/d14a789))
+* docs: update submodule ([c47dcac](https://github.com/xiazeyu/live2d-widget.js/commit/c47dcac))
+* docs: update submodule, fix errors ([892fdbe](https://github.com/xiazeyu/live2d-widget.js/commit/892fdbe))
+* docs: use @typedef to define Config ([c611b72](https://github.com/xiazeyu/live2d-widget.js/commit/c611b72))
+
+
+### BREAKING CHANGE
+
+* change defaultConfig.js into defaultConfig.json
+* config: displayPosition to displaySide
+* Please use /dist/L2Dwidget.min.js instead of using /lib/L2Dwidget.min.js
+* see new config: defaultConfig.json
+
+
 <a name="3.0.5"></a>
-## 3.0.5 (2018-02-15)
+## <small>3.0.5 (2018-02-15)</small>
 
 * chore: bump version, upload production lib ([d321872](https://github.com/xiazeyu/live2d-widget.js/commit/d321872))
 * ci: add support for Travis ([b575b69](https://github.com/xiazeyu/live2d-widget.js/commit/b575b69))
@@ -24,7 +81,7 @@
 
 
 <a name="3.0.4"></a>
-## 3.0.4 (2018-02-07)
+## <small>3.0.4 (2018-02-07)</small>
 
 * docs: migrate documents to live2d-widget.js-doc ([90b9894](https://github.com/xiazeyu/live2d-widget.js/commit/90b9894))
 * docs: update CHANGELOG ([9ae492e](https://github.com/xiazeyu/live2d-widget.js/commit/9ae492e))
@@ -35,7 +92,7 @@
 
 
 <a name="3.0.2"></a>
-## 3.0.2 (2018-01-20)
+## <small>3.0.2 (2018-01-20)</small>
 
 * 3.0.2 ([1bd3909](https://github.com/xiazeyu/live2d-widget.js/commit/1bd3909))
 * docs(update doc): ([423465f](https://github.com/xiazeyu/live2d-widget.js/commit/423465f))
@@ -44,7 +101,7 @@
 
 
 <a name="3.0.1"></a>
-## 3.0.1 (2018-01-19)
+## <small>3.0.1 (2018-01-19)</small>
 
 * docs: relink js to unpkg CDN ([0bd9cdf](https://github.com/xiazeyu/live2d-widget.js/commit/0bd9cdf))
 * docs: update CHANGELOG ([c840cfa](https://github.com/xiazeyu/live2d-widget.js/commit/c840cfa))
@@ -61,7 +118,7 @@
 
 
 <a name="3.0.0"></a>
-# 3.0.0 (2018-01-13)
+## 3.0.0 (2018-01-13)
 
 * feat: 3.0 API now is fixed. reday to publish ([32a7b6d](https://github.com/xiazeyu/live2d-widget.js/commit/32a7b6d))
 * feat: API chanes again ! get current frame ([cc76f02](https://github.com/xiazeyu/live2d-widget.js/commit/cc76f02))

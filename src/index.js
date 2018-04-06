@@ -1,106 +1,430 @@
-// Created by xiazeyu.
+/* global process, device */
 
-////////////////////////////////////
-// Celebrate for the 3.0 version! //
-////////////////////////////////////
+import './lib/setEnv.nodoc';
+import './lib/wpPublicPath.nodoc';
+import {
+  configDefaulter,
+} from './config/configMgr';
+import {
+  createElement as _createElement,
+  initElement,
+} from './elementMgr';
 
-/**
- * @description The entry point of live2d-widget.
- */
+import './ModelManager';
 
+if (process.env.NODE_ENV === 'development') {
 
-'use strict';
+  console.log('--- --- --- --- ---\nlive2d-widget: Hey, this is a dev build.\n--- --- --- --- ---');
 
-import device from 'current-device';
-import { config, configApplyer }from './config/configMgr';
-
-if (process.env.NODE_ENV === 'development'){
-  console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
 }
 
-let coreApp;
 /**
- * The main entry point, which is ... nothing
+ * The container for main.js.
+ * @private
+ * @type {Function}
  */
+let mainFunc = null; // eslint-disable-line prefer-const
 
-class L2Dwidget{
+class L2Dwidget {
 
-/**
- * The init function
- * @param {Object}   [userConfig] User's custom config 用户自定义设置
- * @param {String}   [userConfig.model.jsonPath = ''] Path to Live2D model's main json eg. `https://test.com/miku.model.json` model主文件路径
- * @param {Number}   [userConfig.model.scale = 1] Scale between the model and the canvas 模型与canvas的缩放
- * @param {Number}   [userConfig.model.hHeadPos = 0.5] Horizontal position of model's head 模型头部横坐标
- * @param {Number}   [userConfig.model.vHeadPos = 0.618] Vertical position of model's head 模型头部纵坐标
- * @param {Array}    [userConfig.model.myDefine = []] User's custom Defines which will override LDefine 自定义的LDefine
- * @param {Number}   [userConfig.display.superSample = 2] rate for super sampling rate 超采样等级
- * @param {Number}   [userConfig.display.width = 150] Width to the canvas which shows the model canvas的长度
- * @param {Number}   [userConfig.display.height = 300] Height to the canvas which shows the model canvas的高度
- * @param {String}   [userConfig.display.position = 'right'] Left of right side to show 显示位置：左或右
- * @param {Number}   [userConfig.display.hOffset = 0] Horizontal offset of the canvas canvas水平偏移
- * @param {Number}   [userConfig.display.vOffset = -20] Vertical offset of the canvas canvas垂直偏移
- * @param {Boolean}  [userConfig.mobile.show = true] Whether to show on mobile device 是否在移动设备上显示
- * @param {Number}   [userConfig.mobile.scale = 0.5] Scale on mobile device 移动设备上的缩放
- * @param {Boolean}  [userConfig.mobile.motion = true] Whether to enable motion detection on mobile devices 移动设备是否开启重力感应
- * @param {String}   [userConfig.name.canvas = 'live2dcanvas'] ID name of the canvas canvas元素的ID
- * @param {String}   [userConfig.name.div = 'live2d-widget'] ID name of the div div元素的ID
- * @param {Number}   [userConfig.react.opacityDefault = 0.7] Default opacity 默认透明度
- * @param {Number}   [userConfig.react.opacityOnHover = 0.2] OnHover opacity 鼠标移上透明度
- * @param {Function} [userConfig.react.myFunc = func(e)] Custom event handler, won't override main handler, will reveice the event type. 自定义事件接收器
- * @param {Boolean}  [userConfig.dev.log = false] Whether to show log 显示日志
- * @param {Boolean}  [userConfig.dev.border = false] Whether to show border around the canvas 在canvas周围显示边界
- * @param {Boolean}  [userConfig.dev.mouseLog = false] Whether to show mouse log (tons of log), only work when dev.log is enabled 显示鼠标移动
- * @param {Function} [userConfig.dev.mouseFunc = func(x, y, ix, iy)] Custom logger, only work when dev.log is enabled, will receive (x, y, ix, iy), which presents the actucally position and vitural position 自定义鼠标移动处理函数
- * @return {null}
- */
+  /**
+   * The constructor of L2Dwidget.
+   * @return {Function}  The instance function itself.
+   * @example
+   * Use codes below to one-key initialize:
+   * var t = new L2Dwidget().init();
+   */
+  constructor () {
 
-  init(userConfig = {}){
-    configApplyer(userConfig);
-    if((!config.mobile.show)&&(device.mobile())){
-      return;
+    /**
+     * The container for private varibles.
+     * @private
+     * @type  {Object}
+     */
+    this._private = {
+      'canvas': null,
+      'config': null,
+      'element': null,
+      'isActive': false,
+      'webGL': null,
+      'hasCanvas': () => this._private.canvas !== null,
+      'hasElement': () => this._private.element !== null,
+      'hasWebGL': () => this._private.webGL !== null,
+      'platformManager': null,
+    };
+    // Use setter to set default config.
+    this.config = {};
+
+    return this;
+
+  }
+
+  /**
+   * Check if Live2D widget is active.
+   * @return {Boolean} If Live2D widget is active
+   * @example
+   * var t = new L2Dwidget();
+   * t.isActive
+   * > true
+   */
+  get isActive () {
+
+    return this._private.isActive;
+
+  }
+
+  /**
+   * Throw an error when you try to set {@link L2Dwidget#isActive}.
+   * @param {Boolean} value  Everything.
+   * @example
+   * var t = new L2Dwidget();
+   * t.isActive = balabala;
+   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet.
+   */
+  set isActive (value) {
+
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
+
+  }
+
+  /**
+   * Get the current HTML Element that L2Dwidget is now using,
+   * throw an Error if it is not defined.
+   * @return {HTMLELement} The HTMLElement L2Dwidget is now using.
+   * @example
+   * var t = new L2Dwidget();
+   * t.element
+   * > Error: No element defined. Please bind one first.
+   * t.element = balabala;
+   * t.element
+   * > balabala
+   */
+  get element () {
+
+    if(!this._private.hasElement()) {
+
+      throw new Error('live2d-widget: No element defined. Please bind one first.');
+
     }
-    import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
-      coreApp = f;
-      coreApp.theRealInit();
+    return this._private.element;
+
+  }
+
+  /**
+   * Bind and initialize an HTMLElement that belongs to this instance.
+   * May automatically detect if the browser supports ShadowDOM.
+   * Throw an error if this instance alreday hava an HTMLElement binded.
+   * @param {HTMLElement} value  An empty HTMLElement to bind and initialize.
+   * @return {HTMLElement}       The HTMLElement given.
+   * @example
+   * t.element = balabala;
+   * > balabala(now is initialized and binded with this instance)
+   * t.element = bilibili;
+   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet. Element alreday defined.
+   */
+  set element (value) {
+
+    if(!this._private.hasElement()) {
+
+      const {
+        element,
+        webGL,
+        canvas,
+      } = initElement(value, this.config);
+
+      this._private.element = element;
+      this._private.webGL = webGL;
+      this._private.canvas = canvas;
+
+    }else{
+
+      throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet. Element alreday defined.');
+
+    }
+
+  }
+
+  /**
+   * Get the current canvas element L2Dwidget is now using,
+   * throw an Error if not found.
+   * @return {HTMLElement} The canvas element L2Dwidget is now using.
+   * @example
+   * var t = new L2Dwidget();
+   * t.canvas
+   * > Error: No canvas defined. Please bind element first.
+   * t.element = miaomiaomiao;
+   * t.canvas
+   * > balabala
+   */
+  get canvas () {
+
+    if(!this._private.hasCanvas()) {
+
+      throw new Error('live2d-widget: No canvas defined. Please bind element first.');
+
+    }
+    return this._private.canvas;
+
+  }
+
+  /**
+   * Throw an error when you try to set {@link L2Dwidget#canvas}.
+   * @param {HTMLElement} value  Everything.
+   * @example
+   * var t = new L2Dwidget();
+   * t.canvas = balabala;
+   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet.
+   */
+  set canvas (value) {
+
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
+
+  }
+
+  /**
+   * Get the current WebGL content L2Dwidget is now using,
+   * throw an Error if not found.
+   * @return {RenderingContext} The WebGL content L2Dwidget is now using.
+   * @example
+   * var t = new L2Dwidget();
+   * t.webGL
+   * > Error: No webGL defined. Please bind element first.
+   * t.element = miaomiaomiao;
+   * t.webGL
+   * > balabala
+   */
+  get webGL () {
+
+    if(!this._private.hasWebGL()) {
+
+      throw new Error('live2d-widget: No webGL defined. Please bind element first.');
+
+    }
+    return this._private.webGL;
+
+  }
+
+  /**
+   * Throw an error when you try to set {@link L2Dwidget#webGL}.
+   * @param {RenderingContext} value  Everything.
+   * @example
+   * var t = new L2Dwidget();
+   * t.webGL = balabala;
+   * > Error: Uncaught ReferenceError: Invalid varible in asnsignmet.
+   */
+  set webGL (value) {
+
+    throw new Error('live2d-widget: Uncaught ReferenceError: Invalid varible in asnsignmet.');
+
+  }
+
+  /**
+   * Get the current config L2Dwidget is now using.
+   * @return {Config} The config L2Dwidget is now using.
+   * @example
+   * var t = new L2Dwidget();
+   * t.config
+   * > balabala
+   */
+  get config () {
+
+    return this._private.config;
+
+  }
+
+  /**
+   * Set your config for current L2Dwidget instance.
+   * Mention that: changing config itself doesn't influence the content that is displaying.
+   * You should use {@link L2Dwidget#reload} to reload the page.
+   * @param {Config} value  Config to apply.
+   * @return {Config}       The config you given.
+   * @example
+   * t.config = balabala;
+   * > balabala(now is applied to this instance)
+   * t.config = bilibili;
+   * > bilibili(now is applied to this instance)
+   * t.reload()
+   * > (The changes may apply)
+   */
+  set config (value) {
+
+    this._private.config = configDefaulter(value);
+
+  }
+
+  /**
+   * The function to help you initialize the widget one-key.
+   * It is equal to:
+   * this.element = L2Dwidget.createElement();
+   * this.config = userConfig;
+   * this.load();(if loadNow is enabled)
+   * @param   {Config}   userConfig       Your config.
+   * @param   {Object}   options          An object to pass in options, keeps for future APIs.
+   * @param   {Boolean}  options.loadNow  If the widget is display instantly.
+   * @return  {Function}                  The instance function itself.
+   */
+  init (userConfig = {}, options = { 'loadNow': true, }) {
+
+    if(!this._private.hasElement()) {
+
+      this.element = L2Dwidget.createElement();
+
+    }
+    this.config = userConfig;
+    if(options.loadNow) {
+
+      this.load();
+
+    }
+    return this;
+
+  }
+
+  /**
+   * To load the widget, need to set the element and config first.
+   * @return  {Function}  The instance function itself.
+   */
+  load () {
+
+    if(!this._private.hasElement()) {
+
+      throw new Error('live2d-widget: No element defined. Please bind one first.');
+
+    }
+    if(this.isActive) {
+
+      console.log('live2d-widget: Instance alreday loaded, use unload() or reload().');
+      return this;
+
+    }
+    if(!this.config.mobileShow && device.mobile()) {
+
+      console.log('live2d-widget: Mobile device detected, not load.');
+      return this;
+
+    }
+    /* eslint-disable */
+
+    import('./main').then(f => {
+
+      mainFunc = f;
+      const {
+        platformManager,
+      } = mainFunc.loadL2DWidget({
+        pfMgr: this.platformManager,
+        webGL: this.webGL,
+        config: this.config,
+      });
+	  this.platformManager = platformManager;
+	  this._private.isActive = true;
+
     }).catch(err => {
-      console.error(err);
+
+      throw err;
+
     });
+
+    /* eslint-enable */
+    return this;
+
   }
 
+  /**
+   * To unload the widget, throw an error if it is not loaded.
+   * @return  {Function}  The instance function itself.
+   * @todo Finish program
+   */
+  unload () {
 
-/**
- * Capture current frame to png file {@link captureFrame}
- * @param  {Function} callback The callback function which will receive the current frame
- * @return {null}
- */
+    if(!this.isActive) {
 
-  captureFrame(callback){
-    return coreApp.captureFrame(callback);
+      throw new Error('live2d-widget: Instance must be loaded.');
+
+    }
+    // Todo
+    this._private.isActive = false;
+    return this;
+
   }
 
-/**
- * download current frame {@link L2Dwidget.captureFrame}
- * @return {null}
- */
+  /**
+   * To reload the widget.
+   * Equal to:
+   * unload();
+   * load();
+   * @return  {Function}  The instance function itself
+   */
+  reload () {
 
-  downloadFrame(){
-    this.captureFrame(
-      function(e){
-        let link = document.createElement('a');
-        document.body.appendChild(link);
-        link.setAttribute('type', 'hidden');
-        link.href = e;
-        link.download = 'live2d.png';
-        link.click();
-      }
-    );
+    this.unload();
+    this.load();
+    return this;
+
   }
 
-};
+  /**
+   * To create a new HTML Element and append it to HTML.
+   * @param   {String}  tagName  Tag name of element.
+   * @param   {String}  id       Id of element.
+   * @return  {HTMLElement}         Element created
+   * @example
+   * var newElement = L2Dwidget.createElement();
+   */
+  static createElement (tagName = 'live2d-widget', id = null) {
 
-let _ = new L2Dwidget();
+    return _createElement(tagName, id);
 
+  }
+
+  /**
+   * To capture current frame.
+   * @param   {Function}  callback                Callback function that receive the image.
+   * @param   {Object}    options                 An object to pass in options, keeps for future APIs.
+   * @param   {String}    options.type            A DOMString indicating the image format.
+   * @param   {Number}    options.encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
+   * @return  {Function}                          The instance function itself.
+   */
+  captureFrame (callback, { type, encoderOptions, } = { 'type': 'image/png', 'encoderOptions': 0.92, }) { // eslint-disable-line no-magic-numbers
+
+    if(!this.isActive) {
+
+      throw new Error('Live2d-widget: must be loaded first.');
+
+    }
+    mainFunc.captureFrame(callback, { type, encoderOptions, });
+    return this;
+
+  }
+
+  /**
+   * To download current frame.
+   * @param   {String}  type            A DOMString indicating the image format.
+   * @param   {Number}  encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
+   * @return  {Function}                The instance function itself.
+   */
+  downloadFrame (type = 'image/png', encoderOptions = 0.92) { // eslint-disable-line no-magic-numbers
+
+    if(!this.isActive) {
+
+      throw new Error('Live2d-widget: must be loaded first.');
+
+    }
+    this.captureFrame(function downloadFrameBrowser (e) {
+
+      const link = document.createElement('a');
+      document.body.appendChild(link);
+      link.setAttribute('type', 'hidden');
+      link.href = e;
+      link.download = 'live2d.png';
+      link.click();
+
+    }, {type, encoderOptions, });
+    return this;
+
+  }
+
+}
 
 export {
-  _ as L2Dwidget,
-}
+  L2Dwidget,
+};
