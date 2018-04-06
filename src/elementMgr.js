@@ -1,93 +1,141 @@
-/**
- * @description The container and manager for all the DOM and WebGL emelents.
- */
+/* global process, device */
 
-
-import { config } from './config/configMgr';
 import htmlTemplate from './tmplate/innerHTML';
 
 /**
- * The current WebGL element
- * @type {RenderingContext}
+ * Find and init webGL RenderingContext according to canvas element
+ * @param   {HTMLElement}  canvas  Canvas element
+ * @return  {RenderingContext}          The webGL RenderingContext
  */
+function initWebGL (canvas) {
 
-let currWebGL = undefined;
+  const contextTypes = [
+    'webgl2',
+    'webgl',
+    'experimental-webgl2',
+    'experimental-webgl',
+    'webkit-3d',
+    'moz-webgl',
+  ];
+  for(const i in contextTypes) {
 
-/**
- * The current canvas element
- * @type {HTMLElement}
- */
-
-let currCanvas;
-
-/**
- * Create the canvas and styles using DOM
- * @return {null}
- */
-
-function createElement(){
-
-  let e = document.getElementById(config.name.div)
-  if (e !== null){
-    document.body.removeChild(e);
-  }
-
-  let newElem = document.createElement('div');
-  newElem.id = config.name.div;
-  newElem.innerHTML = htmlTemplate;
-    let newCanvasElem = document.createElement('canvas');
-    newCanvasElem.setAttribute('id', config.name.canvas);
-    newCanvasElem.setAttribute('width', config.display.width * config.display.superSample);
-    newCanvasElem.setAttribute('height', config.display.height * config.display.superSample);
-    newCanvasElem.style.setProperty('position', 'fixed');
-    newCanvasElem.style.setProperty('width', config.display.width);
-    newCanvasElem.style.setProperty('height', config.display.height);
-    newCanvasElem.style.setProperty('opacity', config.react.opacityDefault);
-    newCanvasElem.style.setProperty(config.display.position, config.display.hOffset + 'px');
-    newCanvasElem.style.setProperty('bottom', config.display.vOffset + 'px');
-    newCanvasElem.style.setProperty('z-index', 99999);
-    newCanvasElem.style.setProperty('pointer-events', 'none');
-    if(config.dev.border) newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
-    newElem.appendChild(newCanvasElem);
-
-  document.body.appendChild(newElem);
-  currCanvas = document.getElementById(config.name.canvas);
-
-  initWebGL();
-
-}
-
-/**
- * Find and set the current WebGL element to the container
- * @return {null}
- */
-
-function initWebGL(){
-
-  var NAMES = ['webgl2', 'webgl', 'experimental-webgl2', 'experimental-webgl', 'webkit-3d', 'moz-webgl'];
-  for(let i = 0; i < NAMES.length; i++){
     try{
-      let ctx = currCanvas.getContext(NAMES[i], {
-        alpha: true,
-        antialias: true,
-        premultipliedAlpha: true,
-        failIfMajorPerformanceCaveat: false,
+
+      const ctx = canvas.getContext(contextTypes[i], {
+        'alpha': true,
+        'antialias': true,
+        'premultipliedAlpha': true,
+        'failIfMajorPerformanceCaveat': false,
       });
-      if(ctx) currWebGL = ctx;
-    }catch(e){}
-  }
-  if(!currWebGL){
-    console.error('Live2D widgets: Failed to create WebGL context.');
-    if(!window.WebGLRenderingContext){
-      console.error('Your browser may not support WebGL, check https://get.webgl.org/ for futher information.');
-    }
-    return;
-  }
-};
+      if(ctx) {
 
+        return ctx;
 
-export{
-  createElement,
-  currWebGL,
-  currCanvas,
+      }
+
+    }catch(e) {} // eslint-disable-line no-empty
+
+  }
+  if(!window.WebGLRenderingContext) {
+
+    console.error('Your browser may not support webGL, check https://get.webgl.org/.');
+
+  }
+  throw new Error('live2d-widget: Failed to create WebGL context.');
+
 }
+/**
+ * Create and init canvas for live2d-widget use.
+ * @param   {Config}  config  Config
+ * @return  {HTMLElement}     Canvas processed
+ * @todo Finish program
+ */
+function createCanvasElement (config) {
+
+  const newCanvasElem = document.createElement('canvas');
+  const canvasAttributes = {
+    'width': config.displayWidth * config.displaySampleLevel * (device.mobile() ? config.mobileScale : 1), // eslint-disable-line no-magic-numbers
+    'height': config.displayHeight * config.displaySampleLevel * (device.mobile() ? config.mobileScale : 1), // eslint-disable-line no-magic-numbers
+  };
+  const canvasStyleAttributes = {
+    'position': 'fixed',
+    'width': `${config.displayWidth}px`,
+    'height': `${config.displayHeight}px`,
+    'opacity': config.reactOpacityDefault,
+    [config.displaySide]: `${config.displayOffsetH}px`,
+    'bottom': `${config.displayOffsetV}px`,
+    'z-index':  473193,
+    'pointer-events': 'none',
+    'border': process.env.NODE_ENV === 'development' ? 'dashed 1px #CCC' : null,
+  };
+  for(const i in canvasAttributes) {
+
+    newCanvasElem.setAttribute(i, canvasAttributes[i]);
+
+  }
+  for(const i in canvasStyleAttributes) {
+
+    newCanvasElem.style.setProperty(i, canvasStyleAttributes[i]);
+
+  }
+
+  return newCanvasElem;
+
+}
+
+/**
+ * To create a new HTML Element and append it to HTML.
+ * @param   {String}  tagName  Tag name of element
+ * @param   {String}  id       Id of element
+ * @return  {HTMLElement}      Element created
+ */
+function createElement (tagName, id) {
+
+  const newElem = document.createElement(tagName);
+  newElem.className = 'live2d-widget';
+  if(id !== null) {
+
+    newElem.id = id;
+
+  }
+  document.body.appendChild(newElem);
+  return newElem;
+
+}
+
+/**
+ * Init element for live2d-widget use
+ * @param   {HTMLElement}  elem  HTMLElement to init
+ * @param   {Config}  config     Config
+ * @return  {Object}             Object contains element, webGL, canvas
+ */
+function initElement (elem, config) {
+
+  const element = elem;
+  const canvas = createCanvasElement(config);
+  const webGL = initWebGL(canvas);
+  if(element.createShadowRoot) {
+
+    const shadowRoot = element.attachShadow({'mode': 'open', });
+    shadowRoot.innerHTML = htmlTemplate;
+    shadowRoot.appendChild(canvas);
+
+  }else{
+
+    element.innerHTML = htmlTemplate;
+    element.appendChild(canvas);
+
+  }
+
+  return {
+    element,
+    webGL,
+    canvas,
+  };
+
+}
+
+export {
+  createElement,
+  initElement,
+};

@@ -1,0 +1,19 @@
+{
+  "modelJsonPath": "https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@latest/assets/shizuku.model.json",
+  "modelHeadPosH": 0.5,
+  "modelHeadPosV": 0.618,
+  "modelScale": 1,
+  "displayWidth": 150,
+  "displayHeight": 300,
+  "displaySide": "right",
+  "displaySampleLevel": 2,
+  "displayOffsetH": 0,
+  "displayOffsetV": -20,
+  "mobileShow": true,
+  "mobileScale": 0.5,
+  "mobileMotion": true,
+  "reactOpacityDefault": 0.7,
+  "reactOpacityOnHover": 0.2,
+  "devLog": false,
+  "devMouseLog": false
+}

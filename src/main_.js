@@ -1,30 +1,3 @@
-/**
- * @description The main part of live2d-widget
- */
-
-
-import { config } from './config/configMgr';
-import { createElement, currWebGL, currCanvas } from './elementMgr';
-import { UtSystem,
-         UtDebug,
-         LDTransform,
-         LDGL,
-         Live2D,
-         Live2DModelWebGL,
-         Live2DModelJS,
-         Live2DMotion,
-         MotionQueueManager,
-         PhysicsHair,
-         AMotion,
-         PartsDataID,
-         DrawDataID,
-         BaseDataID,
-         ParamID } from './lib/live2d.core';
-import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramework";
-import { cManager } from "./cManager";
-import { MatrixStack } from "./utils/MatrixStack";
-import { cDefine } from "./cDefine";
-
 let live2DMgr = new cManager();
 let captureFrameCB = undefined;
 let isDrawStart = false;
@@ -53,8 +26,8 @@ function theRealInit (){
 
   dragMgr = new L2DTargetPoint();
   let ratio = currCanvas.height / currCanvas.width;
-  let left = cDefine.VIEW_LOGICAL_LEFT;
-  let right = cDefine.VIEW_LOGICAL_RIGHT;
+  let left = -1;
+  let right = 1;
   let bottom = -ratio;
   let top = ratio;
 
@@ -62,10 +35,10 @@ function theRealInit (){
 
   viewMatrix.setScreenRect(left, right, bottom, top);
 
-  viewMatrix.setMaxScreenRect(cDefine.VIEW_LOGICAL_MAX_LEFT,
-    cDefine.VIEW_LOGICAL_MAX_RIGHT,
-    cDefine.VIEW_LOGICAL_MAX_BOTTOM,
-    cDefine.VIEW_LOGICAL_MAX_TOP);
+  viewMatrix.setMaxScreenRect(-2,
+    2,
+    -2,
+    2);
 
   projMatrix = new L2DMatrix44();
   projMatrix.multScale(1, (currCanvas.width / currCanvas.height));

@@ -1,94 +1,121 @@
+/* global __dirname */
+const _ = require('lodash');
 const webpack = require('webpack');
-const path = require('path');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const visualizer = require('webpack-visualizer-plugin');
-const manifestPlugin = require('webpack-manifest-plugin');
+const uglifyJs = new UglifyJsPlugin({
+  'cache': false,
+  'parallel': true,
+  'sourceMap': true,
+  'uglifyOptions': {
+    'compress': {
+      'drop_console': false,
+      'passes': 2,
+    },
+    'mangle': true,
+    'warnings': false,
+  },
+});
+const path = require('path');
+const Visualizer = require('webpack-visualizer-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const nowDate = new Date();
-const isProd = e => e === 'prod';
+const pkgInfo = require('./package');
 
-module.exports = env => {return{
+/**
+ * Webpack config
+ * @param   {String}  env  Environment varibles, must be 'development' or 'production'
+ * @return  {Object}       The config object
+ */
+module.exports = (env) => ({
 
-  entry: [
-    'core-js/fn/promise',
-    './src/wpPublicPath.js',
-    './src/index.js',
-  ],
+  'devtool': 'source-map',
 
-  output: {
-    filename: 'L2Dwidget.min.js',
-    // YOU MUST INSTALL babel-plugin-syntax-dynamic-import FIRST TO ENABLE CODE SPLITTING!
-    chunkFilename: 'L2Dwidget.[id].min.js',
-    library: 'L2Dwidget',
-    libraryExport: 'L2Dwidget',
-    libraryTarget: 'var',
-    path: path.resolve(__dirname, 'lib'),
-    pathinfo: (isProd(env) ? false : true),
+  // DEBUG
+  'entry': './src/index',
+
+  'mode': env,
+
+  'module': {
+    'rules': [
+      {
+        'include': path.resolve(__dirname, 'src'),
+        'test': /\.js$/,
+        'use': [
+          {
+            'loader': 'babel-loader',
+          },
+        ],
+      },
+      {
+        'test': /\.html$/,
+        'use': [
+          {
+            'loader': 'html-loader',
+            'options': {
+              'minimize': true,
+            },
+          },
+        ],
+      },
+    ],
   },
 
-  target: 'web',
+  'optimization': {
+    'minimizer': [
+      uglifyJs,
+    ],
+  },
 
-  devtool: 'source-map',
+  'output': {
 
-  watch: (isProd(env) ? false : true),
+    /*
+     * Babel-plugin-syntax-dynamic-import must be installed to allow code splitting using import()
+     */
 
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify((isProd(env) ? 'production' : 'development')),
-      },
-    }),
-    new LodashModuleReplacementPlugin(),
-    new UglifyJsPlugin({
-      cache: false,
-      parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        // The L2D core library was droped too much,
-        // so the warnings is useless recently.
-        warnings: false,
-        mangle: true,
-        compress: {
-          drop_console: false,
-        },
-      },
-    }),
+    'chunkFilename': 'L2Dwidget.[id].min.js',
+    'filename': 'L2Dwidget.min.js',
+    // DEBUG
+    'library': 'L2Dwidget',
+    'libraryExport': 'L2Dwidget',
+    'libraryTarget': 'var',
+    'path': path.resolve(__dirname, 'dist'),
+  },
+
+  'plugins': _.concat(env !== 'production' ? [
+    uglifyJs,
+  ] : [], [
+
     // Banner must be put below UglifyJsPlugin, or it won't work.
-    new webpack.BannerPlugin(`${isProd(env) ? '' : '___DEV___'}https://github.com/xiazeyu/live2d-widget.js built@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
+    new webpack.BannerPlugin(`${env !== 'production' ? '___DEV___' : ''}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),
+
     /**
      * Webpack Manifest Plugin
      * https://github.com/danethurber/webpack-manifest-plugin
      */
+    new ManifestPlugin(),
 
-    new manifestPlugin(),
+  ], env !== 'production' ? [
+
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
+    new Visualizer(),
 
-    new visualizer(),
-  ],
+  ] : []),
 
-  resolve: {
-    extensions: ['.js','.html', '.webpack.js', '.web.js'],
+  'resolve': {
+    'extensions': [
+      '.js',
+      '.html',
+      '.json',
+      '.webpack.js',
+      '.web.js',
+    ],
   },
 
-  module: {
-    rules: [
-      {test: /\.js$/,
-        include: path.resolve(__dirname, "src"),
-        use: [{
-          loader: 'babel-loader',
-        }],
-      },
-      {test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            minimize: true,
-          },
-        }],
-      },
-    ]
-  },
-}}
+  'target': 'web',
+
+  'watch': false,
+
+});

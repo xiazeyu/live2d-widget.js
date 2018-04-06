@@ -1,0 +1,17 @@
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-4"
+  fixme:
+    enabled: true
+    config:
+      strings:
+        - FIXME
+        - BUG
+        - DEBUG
+        - HACK
+        - TODO
+    issue_override:
+      severity: info
+  markdownlint:
+    enabled: true

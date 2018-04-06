@@ -1,220 +1,141 @@
+/* global process, Live2DModelWebGL */
+/* eslint-disable no-magic-numbers */
 
-/**
- *
- *  You can modify and use this source freely
- *  only for the development of application related Live2D.
- *
- *  (c) Live2D Inc. All rights reserved.
- */
+class PlatformManager {
 
-// Modified by xiazeyu.
+  /**
+   * Get arrayBuffer of provided path.
+   * @param   {String}  path  Path to load.
+   * @return  {Promise}       Promise to operate whose resolve is a ArrayBuffer.
+   */
+  loadBytes (path) {
 
-/**
-* @desc A library that provide basic IO and json function
-*/
+    return new Promise((resolve) => {
 
-import { currWebGL } from './elementMgr';
-import { Live2DModelWebGL } from "./lib/live2d.core";
+      fetch(path).then((response) => {
 
+        if(response.ok) {
 
-//============================================================
-//============================================================
-//  class PlatformManager     extend IPlatformManager
-//============================================================
-//============================================================
+          resolve(response.arrayBuffer());
 
-/**
-* @name PlatformManager
-* @desc Define the variable type of PlatformManager
-* @param null
-* @returns {Structure} PlatformManager
-*/
-export function PlatformManager()
-{
+        }else{
 
-}
+          console.log(`live2d-widget: Failed to load (network error, ${response}): ${path}`);
 
-
-//============================================================
-//    PlatformManager # loadBytes()
-//============================================================
-
-/**
-* @name loadBytes
-* @desc load bytes from the path and callback
-* @param {String} path, {Function} callback
-* @returns callback {raw} context
-* @memberOf PlatformManager
-*/
-
-PlatformManager.prototype.loadBytes       = function(path/*String*/, callback)
-{
-    var request = new XMLHttpRequest();
-    request.open("GET", path, true);
-    request.responseType = "arraybuffer";
-    request.onload = function(){
-        switch(request.status){
-        case 200:
-            callback(request.response);
-            break;
-        default:
-            console.error("Failed to load (" + request.status + ") : " + path);
-            break;
         }
-    }
-    request.send(null);
-    // return request;
-}
 
+      }).catch((error) => {
 
-//============================================================
-//    PlatformManager # loadString()
-//============================================================
+        console.log(`live2d-widget: Failed to load (fetch error, ${error}): ${path}`);
 
-/**
-* @name loadString
-* @desc load bytes from the path and put it into buffer
-* @param {String} path
-* @returns buffer {raw} context
-* @memberOf PlatformManager
-*/
-PlatformManager.prototype.loadString      = function(path/*String*/)
-{
+      });
 
-    this.loadBytes(path, function(buf) {
-        return buf;
     });
 
-}
+  }
 
+  /**
+   * Load Live2D model.
+   * @param   {String}  path  File path.
+   * @return  {Promise}       Promise to operate.
+   */
+  loadLive2DModel (path) {
 
-//============================================================
-//    PlatformManager # loadLive2DModel()
-//============================================================
+    return new Promise((resolve) => {
 
-/**
-* @name loadLive2DModel
-* @desc load Live2DModel from the path and put it into buffer
-* @param {String} path, {function} callback
-* @returns callback loaded model
-* @memberOf PlatformManager
-*/
-PlatformManager.prototype.loadLive2DModel = function(path/*String*/, callback)
-{
-    var model = null;
+      this.loadBytes(path).then((buffer) => {
 
-    // load moc
-    this.loadBytes(path, function(buf){
-        model = Live2DModelWebGL.loadModel(buf);
-        callback(model);
+        resolve(Live2DModelWebGL.loadModel(buffer));
+
+      });
+
     });
 
-}
+  }
 
+  /**
+   * Load texture.
+   * @param   {live2DModel}      model  live2DModel
+   * @param   {Number}           no     Texture index.
+   * @param   {String}           path   File path.
+   * @param   {RenderingContext} gl     WebGL to operate.
+   * @return  {Promise}                 A Promise.
+   */
+  loadTexture (model, no, path, gl) {
 
-//============================================================
-//    PlatformManager # loadTexture()
-//============================================================
+    return new Promise((resolve) => {
 
-/**
-* @name loadTexture
-* @desc load Live2DModel's Texture and callback
-* @param {Live2DModelWebGL}model, {int}no, {string}path, {function}callback
-* @returns callback
-* @memberOf PlatformManager
-*/
-PlatformManager.prototype.loadTexture     = function(model/*ALive2DModel*/, no/*int*/, path/*String*/, callback)
-{
-    // load textures
-    var loadedImage = new Image();
-    // Thanks to @mashirozx & @fghrsh
-    // Issues:
-    // @https://github.com/journey-ad/live2d_src/issues/1
-    // @https://github.com/journey-ad/live2d_src/issues/3
-    loadedImage.crossOrigin = 'Anonymous';
-    loadedImage.src = path;
-    loadedImage.onload = onload;
-    loadedImage.onerror = onerror;
+      const loadedImage = new Image();
+      loadedImage.crossOrigin = 'Anonymous';
+      // Thanks to @mashirozx & @fghrsh
+      // Issues:
+      // @https://github.com/journey-ad/live2d_src/issues/1
+      // @https://github.com/journey-ad/live2d_src/issues/3
+      loadedImage.onload = () => {
 
-    // var thisRef = this;
-    loadedImage.onload = function() {
-        // create texture
-        var gl = currWebGL;
-        var texture = gl.createTexture();
-        if (!texture){ console.error("Failed to generate gl texture name."); return -1; }
+        const texture = gl.createTexture();
+        if(!texture) {
 
-        if(!model.isPremultipliedAlpha()){
-            // 乗算済アルファテクスチャ以外の場合
-            // emmmm, maybe do something for textures with alpha layer.
-            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+          console.log(`live2d-widget: Failed to create gl texture: ${model}, ${no}`);
+
+        }
+        if(!model.isPremultipliedAlpha()) {
+
+          gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+
         }
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
-                      gl.UNSIGNED_BYTE, loadedImage);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, loadedImage);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
         gl.generateMipmap(gl.TEXTURE_2D);
-
-
-
         model.setTexture(no, texture);
 
-        // テクスチャオブジェクトを解放
-        // Release the texture object to prevent buffer overruns.
-        texture = null;
+      };
+      loadedImage.onerror = () => {
 
-        if (typeof callback == "function") callback();
-    };
+        console.log(`live2d-widget: Failed to load image: ${path}`);
 
-    loadedImage.onerror = function() {
-        console.error("Failed to load image : " + path);
+      };
+      loadedImage.src = path;
+      resolve();
+
+    });
+
+  }
+
+  /**
+   * Get Object parsed from ArrayBuffer.
+   * @param   {ArrayBuffer}  buffer  ArrayBuffer to parse.
+   * @return  {Object}               Parsed object.
+   */
+  jsonParseFromBytes (buffer) {
+
+    let jsonStr;
+    const bomCode = new Uint8Array(buffer, 0, 3);
+    if(bomCode[0] === 239 && bomCode[1] === 187 && bomCode[2] === 191) {
+
+      jsonStr = String.fromCharCode.apply(null, new Uint8Array(buffer, 3));
+
+    }else{
+
+      jsonStr = String.fromCharCode.apply(null, new Uint8Array(buffer));
+
     }
+    return JSON.parse(jsonStr);
+
+  }
+
 }
 
+if (process.env.NODE_ENV === 'development') {
 
-//============================================================
-//    PlatformManager # parseFromBytes(buf)
+  window.PlatformManager = PlatformManager;
 
-//============================================================
+}
 
-/**
-* @name jsonParseFromBytes
-* @desc parse json file into arrays
-* @param {raw} buf
-* @returns {Array}jsonObj
-* @memberOf PlatformManager
-*/
-PlatformManager.prototype.jsonParseFromBytes = function(buf){
-
-    var jsonStr;
-    var bomCode = new Uint8Array(buf, 0, 3);
-    if (bomCode[0] == 239 && bomCode[1] == 187 && bomCode[2] == 191) {
-        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf, 3));
-    } else {
-        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf));
-    }
-
-    var jsonObj = JSON.parse(jsonStr);
-
-    return jsonObj;
+export {
+  PlatformManager,
 };
-
-
-
-//============================================================
-//    PlatformManager # log()
-//============================================================
-
-/**
-* @name log
-* @desc output log in console
-* @param {string} txt
-* @returns null
-* @memberOf PlatformManager
-*/
-PlatformManager.prototype.log             = function(txt/*String*/)
-{
-    console.log(txt);
-}
