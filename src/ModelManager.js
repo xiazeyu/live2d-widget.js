@@ -1,103 +1,95 @@
-import { Live2DFramework } from "./lib/Live2DFramework";
-import { PlatformManager } from "./PlatformManager";
-import { cModel } from "./cModel";
-import { cDefine } from "./cDefine";
+/* global process */
 
-function cManager() {
-  // console.log("--> cManager()");
+import {
+  Model,
+} from './Model';
 
-  this.models = [];
-  this.count = -1;
-  this.reloadFlg = false;
+class ModelManager {
 
-  Live2DFramework.setPlatformManager(new PlatformManager());
+  constructor () {
 
-}
+    this.model = null;
 
-cManager.prototype.createModel = function () {
-
-  var model = new cModel();
-  this.models.push(model);
-
-  return model;
-
-}
-
-
-cManager.prototype.changeModel = function (gl, modelurl) {
-  // console.log("--> cManager.update(gl)");
-
-  if (this.reloadFlg) {
-    this.reloadFlg = false;
-    this.releaseModel(0, gl);
-    this.createModel();
-    this.models[0].load(gl, modelurl);
   }
+  /**
+   * Create and bind a Live2D Model.
+   * Please release the model first otherwise it will throw an Error.
+   * @return  {Model}  A model.
+   */
+  create (gl, modelUrl) {
 
-};
+    if(this.model !== null) {
 
+      this.model = new Model();
+      this.model.load(gl, modelUrl);
+      return this.model;
 
-cManager.prototype.getModel = function (no) {
-  // console.log("--> cManager.getModel(" + no + ")");
-
-  if (no >= this.models.length) return null;
-
-  return this.models[no];
-};
-
-
-
-cManager.prototype.releaseModel = function (no, gl) {
-  // console.log("--> cManager.releaseModel(" + no + ")");
-
-  if (this.models.length <= no) return;
-
-  this.models[no].release(gl);
-
-  delete this.models[no];
-  this.models.splice(no, 1);
-};
-
-
-
-cManager.prototype.numModels = function () {
-  return this.models.length;
-};
-
-
-
-cManager.prototype.setDrag = function (x, y) {
-  for (var i = 0; i < this.models.length; i++) {
-    this.models[i].setDrag(x, y);
-  }
-}
-
-cManager.prototype.tapEvent = function (x, y) {
-  if (cDefine.DEBUG_LOG)
-    console.log("tapEvent view x:" + x + " y:" + y);
-
-  for (var i = 0; i < this.models.length; i++) {
-
-    if (this.models[i].hitTest('head', x, y)) {
-
-      if (cDefine.DEBUG_LOG)
-        console.log("Tap face.");
-
-      this.models[i].setRandomExpression();
     }
-    else if (this.models[i].hitTest('body', x, y)) {
+    throw new Error('live2d-widget: Failed to create a model: Alreday have one, please release first.');
 
-      if (cDefine.DEBUG_LOG)
-        console.log("Tap body." + " models[" + i + "]");
+  }
 
-      this.models[i].startRandomMotion('tap_body',
-        config.reactPriorityNormal);
+  /**
+   * Get current Live2D model.
+   * @return  {Model}  A model.
+   */
+  get(){
+    return this.model;
+  }
+
+  /**
+   * Release current Live2D model.
+   * @return  {Function}  The instance function itself.
+   */
+  release(){
+    this.model.release(gl);
+    this.model = null;
+    return this;
+  }
+
+  /**
+   * Set model to face a direction.
+   * @param  {Number}  x  X position.
+   * @param  {Number}  y  Y position.
+   * @return {Function}   The instance function itself.
+   */
+  setDrag(x, y){
+    this.model.setDrag(x, y);
+    return this;
+  }
+
+  /**
+   * Process a tap event.
+   * @param   {Number}  x  X position.
+   * @param   {Number}  y  Y position.
+   * @return  {Function}   The instance function itself.
+   */
+  tapEvent(x, y, config){
+    if(config.devLog){
+      console.log(`DEBUG-live2d-widget: ModelManager.tapEvent(${x}, ${y});`);
+    }
+    // TODO
+    if(this.model.hitTest('head', x, y)){
+      if(config.devLog){
+        console.log(`DEBUG-live2d-widget: ModelManager.tapEvent(): Tap head.`);
+      }
+      this.model.setRandomExpression();
+    }else if (this.model.hitTest('body', x, y)){
+      if(config.devLog){
+        console.log(`DEBUG-live2d-widget: ModelManager.tapEvent(): Tap body.`);
+      }
+      this.model.setRandomExpression('tap_body', config.reactPriorityNormal)
     }
   }
-
-  return true;
-};
-
-export{
-  cManager,
+  return this;
 }
+
+if (process.env.NODE_ENV === 'development') {
+
+  window.ModelManager = ModelManager;
+
+}
+
+export {
+  ModelManager,
+};

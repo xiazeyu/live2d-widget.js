@@ -10,6 +10,8 @@ import {
   initElement,
 } from './elementMgr';
 
+import './ModelManager';
+
 if (process.env.NODE_ENV === 'development') {
 
   console.log('--- --- --- --- ---\nlive2d-widget: Hey, this is a dev build.\n--- --- --- --- ---');
