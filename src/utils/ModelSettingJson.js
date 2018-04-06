@@ -106,6 +106,62 @@ class ModelSettingJson {
   }
 
   /**
+   * Set model hit area with default settings.
+   * @return {Function} The instance function itself.
+   */
+  setHitArea () {
+
+    if(this.json[this.a.hitAreas] == null) { // eslint-disable-line eqeqeq
+
+      this.json = Object.assign(this.json, {
+        [this.a.hitAreas]: [],
+      });
+
+    }
+    const currHitArea = this.json[this.a.hitAreas];
+    const defaultHitArea = [{
+      'id': 'D_REF.HEAD',
+      'name': 'head',
+    }, {
+      'id': 'D_REF.BODY',
+      'name': 'body',
+    }, {
+      'id': 'D_REF.EAR_L',
+      'name': 'ear_l',
+    }, {
+      'id': 'D_REF.EAR_R',
+      'name': 'ear_r',
+    }, {
+      'id': 'D_REF.BUST',
+      'name': 'bust',
+    },
+    ];
+
+    for(const i in defaultHitArea) {
+
+      let has = false;
+      for(const j in currHitArea) {
+
+        if(currHitArea[j].name === defaultHitArea[i].name) {
+
+          has = true;
+
+        }
+
+      }
+      if(!has) {
+
+        this.json[this.a.hitAreas].push(defaultHitArea[i]);
+
+      }
+
+    }
+
+    return this;
+
+  }
+
+  /**
    * Get model hit area quantity.
    * @return  {Number}  Length of model hit areas's index.
    */
