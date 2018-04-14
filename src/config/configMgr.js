@@ -32,6 +32,11 @@ function configDefaulter (userConfig) {
 
 }
 
+function configValidater(userConfig){
+  return null;
+}
+
 export {
   configDefaulter,
+  configValidater,
 };

@@ -11,16 +11,27 @@ import {
 // import { L2DTargetPoint } from './lib/TargetPoint';
 // import { ModelManager } from './ModelManager';
 
-function loadL2DWidget({ webGL, config, pfMgr }){
-  const platformManager = pfMgr || new PlatformManager();
+function loadL2DWidget(storage){
+  const newStorage = storage;
   const matrixStack = new MatrixStack();
   return {
-    platformManager,
+    newStorage,
   };
 }
 
-function captureFrame(callback, { type, encoderOptions, }){
+function unloadL2DWidget(storage){
+  const newStorage = storage;
+  const matrixStack = new MatrixStack();
+  return {
+    newStorage,
+  };
+}
+
+function captureFrame({ type, encoderOptions, }){
   console.log(callback, type, encoderOptions);
+  return new Promise((resolve) => {
+    resolve();
+  });
 }
 
 export {

@@ -1,6 +1,8 @@
 /* global __webpack_public_path__: true, process */
 
-import { getPathFromUrl } from '../utils/getPathFromUrl';
+import {
+  getPathFromUrl,
+} from '../utils/pathHandler';
 
 // Expose the path to the global,
 // And wp will finish the following work

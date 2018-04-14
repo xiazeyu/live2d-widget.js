@@ -4,13 +4,21 @@ import './lib/setEnv.nodoc';
 import './lib/wpPublicPath.nodoc';
 import {
   configDefaulter,
+  configValidater,
 } from './config/configMgr';
 import {
   createElement as _createElement,
   initElement,
 } from './elementMgr';
+import {
+  Storage,
+} from './Storage';
 
-import './ModelManager';
+// DEBUG
+// DEV
+import './lib/BaseModel';
+
+// DEBUG END
 
 if (process.env.NODE_ENV === 'development') {
 
@@ -50,7 +58,7 @@ class L2Dwidget {
       'hasCanvas': () => this._private.canvas !== null,
       'hasElement': () => this._private.element !== null,
       'hasWebGL': () => this._private.webGL !== null,
-      'platformManager': null,
+      'storage': new Storage(),
     };
     // Use setter to set default config.
     this.config = {};
@@ -309,14 +317,10 @@ class L2Dwidget {
 
       mainFunc = f;
       const {
-        platformManager,
-      } = mainFunc.loadL2DWidget({
-        pfMgr: this.platformManager,
-        webGL: this.webGL,
-        config: this.config,
-      });
-	  this.platformManager = platformManager;
-	  this._private.isActive = true;
+        newStorage,
+      } = mainFunc.loadL2DWidget(this.storage);
+	    this.storage = newStorage;
+	    this._private.isActive = true;
 
     }).catch(err => {
 
@@ -341,7 +345,10 @@ class L2Dwidget {
       throw new Error('live2d-widget: Instance must be loaded.');
 
     }
-    // Todo
+    const {
+      newStorage,
+    } = mainFunc.unloadL2DWidget(this.storage);
+    this.storage = newStorage;
     this._private.isActive = false;
     return this;
 
@@ -378,21 +385,22 @@ class L2Dwidget {
 
   /**
    * To capture current frame.
-   * @param   {Function}  callback                Callback function that receive the image.
    * @param   {Object}    options                 An object to pass in options, keeps for future APIs.
    * @param   {String}    options.type            A DOMString indicating the image format.
    * @param   {Number}    options.encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
-   * @return  {Function}                          The instance function itself.
+   * @return  {Promise}                           A promise which will receive the frame.
    */
-  captureFrame (callback, { type, encoderOptions, } = { 'type': 'image/png', 'encoderOptions': 0.92, }) { // eslint-disable-line no-magic-numbers
+  captureFrame ({ type, encoderOptions, } = { 'type': 'image/png', 'encoderOptions': 0.92, }) { // eslint-disable-line no-magic-numbers
 
     if(!this.isActive) {
 
       throw new Error('Live2d-widget: must be loaded first.');
 
-    }
-    mainFunc.captureFrame(callback, { type, encoderOptions, });
-    return this;
+    };
+
+    return new Promise((resolve) => {
+      resolve(mainFunc.captureFrame({ type, encoderOptions, }));
+    });
 
   }
 
@@ -409,16 +417,16 @@ class L2Dwidget {
       throw new Error('Live2d-widget: must be loaded first.');
 
     }
-    this.captureFrame(function downloadFrameBrowser (e) {
+    this.captureFrame({type, encoderOptions, }).then((data) => {
 
       const link = document.createElement('a');
       document.body.appendChild(link);
       link.setAttribute('type', 'hidden');
-      link.href = e;
+      link.href = data;
       link.download = 'live2d.png';
       link.click();
 
-    }, {type, encoderOptions, });
+    });
     return this;
 
   }

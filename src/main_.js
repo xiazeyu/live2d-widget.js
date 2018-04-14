@@ -99,13 +99,7 @@ function startDraw() {
     isDrawStart = true;
     (function tick() {
       draw();
-      let requestAnimationFrame =
-        window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.msRequestAnimationFrame;
-
-      requestAnimationFrame(tick, currCanvas);
+      window.requestAnimationFrame(tick, currCanvas);
       if(captureFrameCB !== undefined){
         captureFrameCB(currCanvas.toDataURL());
         captureFrameCB = undefined;

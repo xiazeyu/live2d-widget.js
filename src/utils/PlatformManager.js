@@ -1,7 +1,21 @@
 /* global process, Live2DModelWebGL */
 /* eslint-disable no-magic-numbers */
 
+import {
+  resolvePath,
+} from './utils/pathHandler';
+
 class PlatformManager {
+
+  /**
+   * Constructor to PlatformManager.
+   * @param   {Storage}  storage  Storage.
+   * @return  {Function}          The instance function itself.
+   */
+  constructor(storage){
+    this.storage = storage;
+    return this;
+  }
 
   /**
    * Get arrayBuffer of provided path.
@@ -11,11 +25,11 @@ class PlatformManager {
    */
   loadBytes (path, homeDir = '') {
 
-    let loadPath = path;
-
-    if(!(/^http/.test(path) || /^file/.test(path))){
-      loadPath = homeDir + path;
+    if(this.storage.getConfig().devLog){
+      console.log(`live2d-widget: PlatformManager.loadBytes(${path}, ${homeDir});`);
     }
+
+    let loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 
@@ -48,6 +62,10 @@ class PlatformManager {
    */
   loadLive2DModel (path) {
 
+    if(this.storage.getConfig().devLog){
+      console.log(`live2d-widget: PlatformManager.loadLive2DModel(${path});`);
+    }
+
     return new Promise((resolve) => {
 
       this.loadBytes(path).then((buffer) => {
@@ -65,16 +83,15 @@ class PlatformManager {
    * @param   {live2DModel}      model  live2DModel
    * @param   {Number}           no     Texture index.
    * @param   {String}           path   File path.
-   * @param   {RenderingContext} gl     WebGL to operate.
-   * @return  {Promise}                 A Promise.
+   * @return  {Promise}                 A Promise which receives nothing.
    */
-  loadTexture (model, no, path, homeDir, gl) {
+  loadTexture (model, no, path, homeDir) {
 
-    let loadPath = path;
-
-    if(!(/^http/.test(path) || /^file/.test(path))){
-      loadPath = homeDir + path;
+    if(this.storage.getConfig().devLog){
+      console.log(`live2d-widget: PlatformManager.loadTexture(${model}, ${no}, ${path}, ${homeDir});`);
     }
+
+    let loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 
@@ -86,6 +103,7 @@ class PlatformManager {
       // @https://github.com/journey-ad/live2d_src/issues/3
       loadedImage.onload = () => {
 
+        const gl = this.storage.getWebGL();
         const texture = gl.createTexture();
         if(!texture) {
 
@@ -121,11 +139,11 @@ class PlatformManager {
 
   loadSound(path, homeDir){
 
-    let loadPath = path;
-
-    if(!(/^http/.test(path) || /^file/.test(path))){
-      loadPath = homeDir + path;
+    if(this.storage.getConfig().devLog){
+      console.log(`live2d-widget: PlatformManager.loadSound(${path}, ${homeDir});`);
     }
+
+    let loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 
