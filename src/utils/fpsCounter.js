@@ -3,7 +3,7 @@
 // frameRate from stats.js
 // https://github.com/mrdoob/stats.js
 
-window.fpsCounter = {
+window.fpsCounter = window.fpsCounter || {
   '_beginTime': ( performance || Date ).now(),
   '_framesCounting': 0,
   'fps': 60,

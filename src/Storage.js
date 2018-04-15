@@ -1,6 +1,7 @@
 class Storage{
   constructor(){
     this.webGL = null;
+    this.webGLBuffer = null;
     this.config = null;
     this.platformManager = null;
     this.eyeState = {
@@ -27,51 +28,68 @@ class Storage{
     };
   }
 
+  /**
+   * Set WebGL.
+   * Buffer will also be setted.
+   * @param  {RenderingContext}  v  WebGL to set.
+   * @return {Function}             The instance function itself.
+   */
   setWebGL(v){
     this.webGL = v;
+    this.webGLBuffer = v;
     return this;
   }
 
+  /**
+   * Set WebGL buffer.
+   * @param  {RenderingContext}  v  WebGL buffer to set.
+   * @return {Function}             The instance function itself.
+   */
+  setWebGLBuffer(v){
+    this.webGLBuffer = v;
+    return this;
+  }
+
+  /**
+   * Get WebGL.
+   * @return  {RenderingContext}  WebGL.
+   */
   getWebGL(){
     return this.webGL;
   }
 
+  /**
+   * Get WebGL buffer.
+   * @return  {RenderingContext}  WebGL buffer.
+   */
+  getWebGLBuffer(){
+    return this.webGLBuffer;
+  }
+
+  /**
+   * Set config.
+   * @param  {Config}  v  Config to set.
+   */
   setConfig(v){
     this.config = v;
     return this;
   }
 
-  getConfig(){
-    return this.config;
-  }
-
+  /**
+   * Set PlatformManager.
+   * @param  {PlatformManager}  v  PlatformManager to set.
+   */
   setPFM(v){
     this.platformManager = v;
     return this;
   }
 
+  /**
+   * Get PlatformManager.
+   * @return  {PlatformManager}  PlatformManager.
+   */
   getPFM(){
     return this.platformManager;
-  }
-
-  setEyeState(v){
-    console.log('live2d-widget: Make sure you know what you are doing.');
-    this.eyeState = v;
-    return this;
-  }
-
-  getEyeState(){
-    return this.eyeState;
-  }
-
-  setReactPriority(v){
-    console.log('live2d-widget: Make sure you know what you are doing.');
-    this.reactPriority = v;
-    return this;
-  }
-
-  getReactPriority(){
-    return this.reactPriority;
   }
 
 }
