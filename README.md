@@ -28,6 +28,10 @@ Online generator: [WIP.](javascript:void(0);)
 
 ## Useage
 
+### Npm
+
+`npm install --save live2d-widget@4.x`
+
 ### Hexo
 
 Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
@@ -48,7 +52,13 @@ Insert codes into your HTML files using [online generator](javascript:void(0);) 
 import the js:
 
 ```html
-<script src = "( your script path here )"></script>
+<script src ="//cdn.jsdelivr.net/npm/live2d-widget@4.x/dist/L2Dwidget.min.js"></script>
+```
+
+or
+
+```html
+<script src ="//unpkg.com/live2d-widget@4.x/dist/L2Dwidget.min.js"></script>
 ```
 
 Then call the function along with your config.
