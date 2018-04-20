@@ -1,5 +1,7 @@
-class Storage{
-  constructor(){
+class Storage {
+
+  constructor () {
+
     this.webGL = null;
     this.config = null;
     this.platformManager = null;
@@ -44,6 +46,7 @@ class Storage{
       'textures': 'textures',
       'value': 'val',
     };
+
   }
 
   /**
@@ -52,43 +55,53 @@ class Storage{
    * @param  {RenderingContext}  v  WebGL to set.
    * @return {Function}             The instance function itself.
    */
-  setWebGL(v){
+  setWebGL (v) {
+
     this.webGL = v;
     return this;
+
   }
 
   /**
    * Get WebGL.
    * @return  {RenderingContext}  WebGL.
    */
-  getWebGL(){
+  getWebGL () {
+
     return this.webGL;
+
   }
 
   /**
    * Set config.
    * @param  {Config}  v  Config to set.
    */
-  setConfig(v){
+  setConfig (v) {
+
     this.config = v;
     return this;
+
   }
 
   /**
    * Set PlatformManager.
    * @param  {PlatformManager}  v  PlatformManager to set.
    */
-  setPFM(v){
+  setPFM (v) {
+
     this.platformManager = v;
     return this;
+
   }
 
   /**
    * Get PlatformManager.
    * @return  {PlatformManager}  PlatformManager.
    */
-  getPFM(){
+  getPFM () {
+
     return this.platformManager;
+
   }
 
 }

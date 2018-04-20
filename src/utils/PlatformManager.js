@@ -12,9 +12,11 @@ class PlatformManager {
    * @param   {Storage}  storage  Storage.
    * @return  {Function}          The instance function itself.
    */
-  constructor(storage){
+  constructor (storage) {
+
     this.storage = storage;
     return this;
+
   }
 
   /**
@@ -25,11 +27,13 @@ class PlatformManager {
    */
   loadBytes (path, homeDir = '') {
 
-    if(this.storage.getConfig().devLog){
+    if(this.storage.getConfig().devLog) {
+
       console.log(`live2d-widget: PlatformManager.loadBytes(${path}, ${homeDir});`);
+
     }
 
-    let loadPath = resolvePath(path, homeDir);
+    const loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 
@@ -62,8 +66,10 @@ class PlatformManager {
    */
   loadLive2DModel (path) {
 
-    if(this.storage.getConfig().devLog){
+    if(this.storage.getConfig().devLog) {
+
       console.log(`live2d-widget: PlatformManager.loadLive2DModel(${path});`);
+
     }
 
     return new Promise((resolve) => {
@@ -87,11 +93,13 @@ class PlatformManager {
    */
   loadTexture (model, no, path, homeDir) {
 
-    if(this.storage.getConfig().devLog){
+    if(this.storage.getConfig().devLog) {
+
       console.log(`live2d-widget: PlatformManager.loadTexture(${model}, ${no}, ${path}, ${homeDir});`);
+
     }
 
-    let loadPath = resolvePath(path, homeDir);
+    const loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 
@@ -143,13 +151,15 @@ class PlatformManager {
    * @param   {String}  homeDir  Sound home dir.
    * @return  {Promise}          A promise which receives the sound.
    */
-  loadSound(path, homeDir){
+  loadSound (path, homeDir) {
 
-    if(this.storage.getConfig().devLog){
+    if(this.storage.getConfig().devLog) {
+
       console.log(`live2d-widget: PlatformManager.loadSound(${path}, ${homeDir});`);
+
     }
 
-    let loadPath = resolvePath(path, homeDir);
+    const loadPath = resolvePath(path, homeDir);
 
     return new Promise((resolve) => {
 

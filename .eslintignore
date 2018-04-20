@@ -1,10 +1,13 @@
 # /node_modules/* and /bower_components/* ignored by default
 
 # Offcial core library
-src/lib/live2d.core.js
+src/lib/live2d.core.nodoc.js
 
 # Build files
-lib/*
+dist/*
+
+# Doc files
+ghpages/*
 
 # Files that don't support.
 # Don't support import() which may throw an Error

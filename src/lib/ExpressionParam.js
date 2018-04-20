@@ -1,16 +1,20 @@
 /* global process */
 
-class ExpressionParam{
+class ExpressionParam {
+
   /**
    * Constructor to ExpressionParam
    * @return  {Function}  The instance function itself.
    */
-  constructor(){
+  constructor () {
+
     this.id = '';
     this.type = -1;
     this.value = null;
     return this;
+
   }
+
 }
 
 

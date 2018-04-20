@@ -307,15 +307,21 @@ class BaseModel {
     }
 
     return new Promise((resolve) => {
+
       const motion = null;
       this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+
         motion = Live2DMotion.loadMotion(buffer);
-        if(name != null){
+        if(name != null) {
+
           this.motions[name] = motion;
+
         }
         resolve(motion);
-      })
-    })
+
+      });
+
+    });
 
   }
 
@@ -326,7 +332,8 @@ class BaseModel {
    * @param   {String}  homeDir  Home dir.
    * @return  {Promise}          A promise which receives nothing.
    */
-  loadExpression(name, path, homeDir){
+  loadExpression (name, path, homeDir) {
+
     if(this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadExpression(${name}, ${path}, ${homeDir});`);
@@ -334,13 +341,20 @@ class BaseModel {
     }
 
     return new Promise((resolve) => {
+
       this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
-        if(name != null){
+
+        if(name != null) {
+
           this.expressions[name] = ExpressionMotion.loadJson(buffer);
+
         }
         resolve();
-      })
-    })
+
+      });
+
+    });
+
   }
 
   /**
@@ -349,7 +363,8 @@ class BaseModel {
    * @param   {String}  homeDir  Home dir.
    * @return  {Promise}          A promise which receives nothing.
    */
-  loadPose(path, homeDir){
+  loadPose (path, homeDir) {
+
     if(this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadPose(${path}, ${homeDir});`);
@@ -357,10 +372,14 @@ class BaseModel {
     }
 
     return new Promise((resolve) => {
+
       this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+
         this.pose = Pose.load(buffer);
         resolve();
-      })
+
+      });
+
     });
 
   }
@@ -371,18 +390,24 @@ class BaseModel {
    * @param   {String}  homeDir  Home dir.
    * @return  {Promise}          A promise which receives nothing.
    */
-  loadPhysics(path, homeDir){
+  loadPhysics (path, homeDir) {
+
     if(this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadPhysics(${path}, ${homeDir});`);
 
     }
     return new Promise((resolve) => {
+
       this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+
         this.physics = Physics.load(buffer);
-      })
+
+      });
       resolve();
-    })
+
+    });
+
   }
 
   /**
@@ -392,26 +417,54 @@ class BaseModel {
    * @param   {Number}  Y       Y position.
    * @return  {Boolean}         If hitted.
    */
-  _hitTest(drawID, X, Y){
-    if(this.live2DModel === null) return false;
+  _hitTest (drawID, X, Y) {
+
+    if(this.live2DModel === null) {
+
+      return false;
+
+    }
     const drawIndex = this.live2DModel.getDrawDataIndex(drawID);
-    if(drawIndex<0) return false;
+    if(drawIndex < 0) {
+
+      return false;
+
+    }
     const points = this.live2DModel.getTransformedPoints(drawIndex);
     let left = this.live2DModel.getCanvasWidth();
     let right = 0;
     let top = this.live2DModel.getCanvasHeight();
     let bottom = 0;
-    for(const i = 0; i < points.length; j+=2){
+    for(const i = 0; i < points.length; j += 2) {
+
       const px = points[j];
       const py = points[j + 1];
-      if(px < left) left = x;
-      if(px > right) right = x;
-      if(py < top) top = y;
-      if(py > bottom) bottom = y;
+      if(px < left) {
+
+        left = x;
+
+      }
+      if(px > right) {
+
+        right = x;
+
+      }
+      if(py < top) {
+
+        top = y;
+
+      }
+      if(py > bottom) {
+
+        bottom = y;
+
+      }
+
     }
     const tx = this.modelMatrix.invertTransformX(X);
     const ty = this.modelMatrix.invertTransformY(Y);
-    return (left <= tx && tx <= right && top <= ty && ty <= bottom);
+    return left <= tx && tx <= right && top <= ty && ty <= bottom;
+
   }
 
 }

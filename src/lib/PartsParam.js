@@ -1,17 +1,20 @@
 /* global process */
 
-class PartsParam{
+class PartsParam {
+
   /**
    * Constructor to partsParam.
    * @param   {String}  id  Part param id.
    * @return  {Function}    The instance function itself.
    */
-  constructor(id){
+  constructor (id) {
+
     this.id = id;
     this.paramIndex = -1;
     this.partsIndex = -1;
     this.link = null;
     return this;
+
   }
 
   /**
@@ -19,12 +22,15 @@ class PartsParam{
    * @param   {Model}  model  A Model.
    * @return  {Function}      The instance function itself.
    */
-  initIndex(model){
+  initIndex (model) {
+
     this.paramIndex = model.getParamIndex(`VISIBLE:${this.id}`);
     this.partsIndex = model.getPartsDataIndex(PartsDataID.getID(this.id));
     model.setParamFloat(this.paramIndex, 1);
     return this;
+
   }
+
 }
 
 

@@ -18,11 +18,15 @@ function getPathFromUrl (url) {
  * @param   {String}  homeDir  Home dir.
  * @return  {String}           Resolved path.
  */
-function resolvePath(path, homeDir){
-  if(!(/^http/.test(path) || /^file/.test(path) || path[0] === '/') || /^\/\//.test(path)){
+function resolvePath (path, homeDir) {
+
+  if(!(/^http/.test(path) || /^file/.test(path) || path[0] === '/') || /^\/\//.test(path)) {
+
     return homeDir + path;
+
   }
   return path;
+
 }
 
 if (process.env.NODE_ENV === 'development') {
