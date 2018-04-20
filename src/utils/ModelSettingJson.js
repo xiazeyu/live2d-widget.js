@@ -1,33 +1,18 @@
 /* global process */
 
+// TODO
+// Add getMotionNum(name)...
+
 class ModelSettingJson {
 
   /**
    * Constructor
-   * @param   {Object}  userAlias  Custom model setting json alias.
+   * @param   {Storage}  storage  Storage.
    * @return  {Function}           The instance function itself.
    */
-  constructor (userAlias) {
+  constructor (storage) {
 
-    this.a = Object.assign({}, userAlias, {
-      'expressions': 'expressions',
-      'fadeIn': 'fade_in',
-      'fadeOut': 'fade_out',
-      'file': 'file',
-      'hitAreas': 'hit_areas',
-      'id': 'id',
-      'initParam': 'init_param',
-      'initPartsVisible': 'init_parts_visible',
-      'layout': 'layout',
-      'model': 'model',
-      'motions': 'motions',
-      'name': 'name',
-      'physics': 'physics',
-      'pose': 'pose',
-      'sound': 'sound',
-      'textures': 'textures',
-      'value': 'val',
-    });
+    this.storage = storage;
     this.json = {};
     return this;
 
@@ -64,19 +49,12 @@ class ModelSettingJson {
   }
 
   /**
-   * Get texture file.
-   * @param   {Number}  n  Index.
-   * @return  {String}     Texture file path.
+   * Get texture.
+   * @return  {Array}  Textures.
    */
-  getTextureFile (n) {
+  getTexture () {
 
-    if(this.json[this.a.textures] == null || this.json[this.a.textures][n] == null) { // eslint-disable-line eqeqeq
-
-      return null;
-
-    }
-
-    return this.json[this.a.textures][n];
+    return this.json[this.storage.ModelSettingJson.textures];
 
   }
 
@@ -84,24 +62,9 @@ class ModelSettingJson {
    * Get model file.
    * @return  {String}  Model file path.
    */
-  getModelFile () {
+  getModel () {
 
-    return this.json[this.a.model];
-
-  }
-
-  /**
-   * Get model texture quantity.
-   * @return  {Number}  Length of model textures' index.
-   */
-  getTextureNum () {
-
-    if(this.json[this.a.textures] == null) { // eslint-disable-line eqeqeq
-
-      return 0; // eslint-disable-line no-magic-numbers
-
-    }
-    return this.json[this.a.textures].length;
+    return this.json[this.storage.ModelSettingJson.model];
 
   }
 
@@ -111,14 +74,14 @@ class ModelSettingJson {
    */
   setHitArea () {
 
-    if(this.json[this.a.hitAreas] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.hitAreas] == null) { // eslint-disable-line eqeqeq
 
       this.json = Object.assign(this.json, {
-        [this.a.hitAreas]: [],
+        [this.storage.ModelSettingJson.hitAreas]: [],
       });
 
     }
-    const currHitArea = this.json[this.a.hitAreas];
+    const currHitArea = this.json[this.storage.ModelSettingJson.hitAreas];
     const defaultHitArea = [{
       'id': 'D_REF.HEAD',
       'name': 'head',
@@ -151,7 +114,7 @@ class ModelSettingJson {
       }
       if(!has) {
 
-        this.json[this.a.hitAreas].push(defaultHitArea[i]);
+        this.json[this.storage.ModelSettingJson.hitAreas].push(defaultHitArea[i]);
 
       }
 
@@ -162,17 +125,12 @@ class ModelSettingJson {
   }
 
   /**
-   * Get model hit area quantity.
-   * @return  {Number}  Length of model hit areas's index.
+   * Get model hit area.
+   * @return  {Array}  Hit areas.
    */
-  getHitAreaNum () {
+  getHitArea () {
 
-    if(this.json[this.a.hitAreas] == null) { // eslint-disable-line eqeqeq
-
-      return 0; // eslint-disable-line no-magic-numbers
-
-    }
-    return this.json[this.a.hitAreas].length;
+    return this.json[this.storage.ModelSettingJson.hitAreas];
 
   }
 
@@ -183,12 +141,12 @@ class ModelSettingJson {
    */
   getHitAreaID (n) {
 
-    if(this.json[this.a.hitAreas] == null || this.json[this.a.hitAreas][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.hitAreas][n][this.a.id];
+    return this.json[this.storage.ModelSettingJson.hitAreas][n][this.storage.ModelSettingJson.id];
 
   }
 
@@ -199,12 +157,12 @@ class ModelSettingJson {
    */
   getHitAreaName (n) {
 
-    if(this.json[this.a.hitAreas] == null || this.json[this.a.hitAreas][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.hitAreas][n][this.a.name];
+    return this.json[this.storage.ModelSettingJson.hitAreas][n][this.storage.ModelSettingJson.name];
 
   }
 
@@ -214,12 +172,12 @@ class ModelSettingJson {
    */
   getPhysicsFile () {
 
-    if(this.json[this.a.physics] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.physics] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.physics];
+    return this.json[this.storage.ModelSettingJson.physics];
 
   }
 
@@ -229,27 +187,28 @@ class ModelSettingJson {
    */
   getPoseFile () {
 
-    if(this.json[this.a.pose] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.pose] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.pose];
+    return this.json[this.storage.ModelSettingJson.pose];
 
   }
 
   /**
    * Get model expression quantity.
-   * @return  {Number}  Length of model expressions' index.
+   * @return  {Array}  Expressions.
    */
-  getExpressionNum () {
+  getExpression () {
 
-    if(this.json[this.a.expressions] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions].length <= 0) { // eslint-disable-line eqeqeq
 
-      return 0; // eslint-disable-line no-magic-numbers
+      return null;
 
     }
-    return this.json[this.a.expressions].length;
+
+    return this.json[this.storage.ModelSettingJson.expressions];
 
   }
 
@@ -260,12 +219,12 @@ class ModelSettingJson {
    */
   getExpressionFile (n) {
 
-    if(this.json[this.a.expressions] == null || this.json[this.a.expressions][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.expressions][n][this.a.file];
+    return this.json[this.storage.ModelSettingJson.expressions][n][this.storage.ModelSettingJson.file];
 
   }
 
@@ -276,12 +235,12 @@ class ModelSettingJson {
    */
   getExpressionName (n) {
 
-    if(this.json[this.a.expressions] == null || this.json[this.a.expressions][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.expressions][n][this.a.name];
+    return this.json[this.storage.ModelSettingJson.expressions][n][this.storage.ModelSettingJson.name];
 
   }
 
@@ -291,27 +250,22 @@ class ModelSettingJson {
    */
   getLayout () {
 
-    if(this.json[this.a.layout] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.layout] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.layout];
+    return this.json[this.storage.ModelSettingJson.layout];
 
   }
 
   /**
-   * Get init param quantity.
-   * @return  {Number}  Init param's length.
+   * Get init param.
+   * @return  {Array}  Init param.
    */
-  getInitParamNum () {
+  getInitParam () {
 
-    if(this.json[this.a.initParam] == null) { // eslint-disable-line eqeqeq
-
-      return 0; // eslint-disable-line no-magic-numbers
-
-    }
-    return this.json[this.a.initParam].length;
+    return this.json[this.storage.ModelSettingJson.initParam];
 
   }
 
@@ -322,12 +276,12 @@ class ModelSettingJson {
    */
   getInitParamID (n) {
 
-    if(this.json[this.a.initParam] == null || this.json[this.a.initParam][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.initParam][n][this.a.id];
+    return this.json[this.storage.ModelSettingJson.initParam][n][this.storage.ModelSettingJson.id];
 
   }
 
@@ -338,27 +292,22 @@ class ModelSettingJson {
    */
   getInitParamValue (n) {
 
-    if(this.json[this.a.initParam] == null || this.json[this.a.initParam][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
 
       return null; // Origin: NaN
 
     }
-    return this.json[this.a.initParam][n][this.a.value];
+    return this.json[this.storage.ModelSettingJson.initParam][n][this.storage.ModelSettingJson.value];
 
   }
 
   /**
-   * Get init parts visable quantity.
-   * @return  {Number}  Length of init parts visable's index.
+   * Get init parts visable.
+   * @return  {Array}  Init parts visable.
    */
-  getInitPartsVisibleNum () {
+  getInitPartsVisible () {
 
-    if(this.json[this.a.initPartsVisible] == null) { // eslint-disable-line eqeqeq
-
-      return 0; // eslint-disable-line no-magic-numbers
-
-    }
-    return this.json[this.a.initPartsVisible].length;
+    return this.json[this.storage.ModelSettingJson.initPartsVisible];
 
   }
 
@@ -369,12 +318,12 @@ class ModelSettingJson {
    */
   getInitPartsVisibleID (n) {
 
-    if(this.json[this.a.initPartsVisible] == null || this.json[this.a.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.initPartsVisible][n][this.a.id];
+    return this.json[this.storage.ModelSettingJson.initPartsVisible][n][this.storage.ModelSettingJson.id];
 
   }
 
@@ -385,28 +334,28 @@ class ModelSettingJson {
    */
   getInitPartsVisibleValue (n) {
 
-    if(this.json[this.a.initPartsVisible] == null || this.json[this.a.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
 
       return null; // Origin: NaN
 
     }
-    return this.json[this.a.initPartsVisible][n][this.a.value];
+    return this.json[this.storage.ModelSettingJson.initPartsVisible][n][this.storage.ModelSettingJson.value];
 
   }
 
   /**
    * Get motions quantity.
    * @param   {String}  name  Name of motion group.
-   * @return  {Number}        Length of motions' index.
+   * @return  {Array}         Motions.
    */
-  getMotionNum (name) {
+  getMotion (name) {
 
-    if(this.json[this.a.motions] == null || this.json[this.a.motions][name] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null) { // eslint-disable-line eqeqeq
 
-      return 0; // eslint-disable-line no-magic-numbers
+      return null;
 
     }
-    return this.json[this.a.motions][name].length;
+    return this.json[this.storage.ModelSettingJson.motions][name];
 
   }
 
@@ -418,12 +367,12 @@ class ModelSettingJson {
    */
   getMotionFile (name, n) {
 
-    if(this.json[this.a.motions] == null || this.json[this.a.motions][name] == null || this.json[this.a.motions][name][n] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.motions][name][n][this.a.file];
+    return this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.file];
 
   }
 
@@ -435,12 +384,12 @@ class ModelSettingJson {
    */
   getMotionSound (name, n) {
 
-    if(this.json[this.a.motions] == null || this.json[this.a.motions][name] == null || this.json[this.a.motions][name][n] == null || this.json[this.a.motions][name][n][this.a.sound] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.sound] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
     }
-    return this.json[this.a.motions][name][n][this.a.sound];
+    return this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.sound];
 
   }
 
@@ -452,12 +401,12 @@ class ModelSettingJson {
    */
   getMotionFadeIn (name, n) {
 
-    if(this.json[this.a.motions] == null || this.json[this.a.motions][name] == null || this.json[this.a.motions][name][n] == null || this.json[this.a.motions][name][n][this.a.fadeIn] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeIn] == null) { // eslint-disable-line eqeqeq
 
       return 1000; // eslint-disable-line no-magic-numbers
 
     }
-    return this.json[this.a.motions][name][n][this.a.fadeIn];
+    return this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeIn];
 
   }
 
@@ -469,12 +418,12 @@ class ModelSettingJson {
    */
   getMotionFadeOut (name, n) {
 
-    if(this.json[this.a.motions] == null || this.json[this.a.motions][name] == null || this.json[this.a.motions][name][n] == null || this.json[this.a.motions][name][n][this.a.fadeOut] == null) { // eslint-disable-line eqeqeq
+    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeOut] == null) { // eslint-disable-line eqeqeq
 
       return 1000; // eslint-disable-line no-magic-numbers
 
     }
-    return this.json[this.a.motions][name][n][this.a.fadeOut];
+    return this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeOut];
 
   }
 

@@ -1,7 +1,6 @@
 class Storage{
   constructor(){
     this.webGL = null;
-    this.webGLBuffer = null;
     this.config = null;
     this.platformManager = null;
     this.eyeState = {
@@ -26,6 +25,25 @@ class Storage{
       'normal': 2,
       'force': 3,
     };
+    this.ModelSettingJson = {
+      'expressions': 'expressions',
+      'fadeIn': 'fade_in',
+      'fadeOut': 'fade_out',
+      'file': 'file',
+      'hitAreas': 'hit_areas',
+      'id': 'id',
+      'initParam': 'init_param',
+      'initPartsVisible': 'init_parts_visible',
+      'layout': 'layout',
+      'model': 'model',
+      'motions': 'motions',
+      'name': 'name',
+      'physics': 'physics',
+      'pose': 'pose',
+      'sound': 'sound',
+      'textures': 'textures',
+      'value': 'val',
+    };
   }
 
   /**
@@ -36,17 +54,6 @@ class Storage{
    */
   setWebGL(v){
     this.webGL = v;
-    this.webGLBuffer = v;
-    return this;
-  }
-
-  /**
-   * Set WebGL buffer.
-   * @param  {RenderingContext}  v  WebGL buffer to set.
-   * @return {Function}             The instance function itself.
-   */
-  setWebGLBuffer(v){
-    this.webGLBuffer = v;
     return this;
   }
 
@@ -56,14 +63,6 @@ class Storage{
    */
   getWebGL(){
     return this.webGL;
-  }
-
-  /**
-   * Get WebGL buffer.
-   * @return  {RenderingContext}  WebGL buffer.
-   */
-  getWebGLBuffer(){
-    return this.webGLBuffer;
   }
 
   /**

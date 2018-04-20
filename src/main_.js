@@ -21,7 +21,6 @@ let opacityHover = 1;
 
 function theRealInit (){
 
-  createElement();
   initEvent();
 
   dragMgr = new L2DTargetPoint();
@@ -48,7 +47,7 @@ function theRealInit (){
   deviceToScreen.multScale(2 / currCanvas.width, -2 / currCanvas.height);  // #32
 
 
-  Live2D.setGL(currWebGL);
+  Live2D.setGL(config.getWebGL());
   currWebGL.clearColor(0.0, 0.0, 0.0, 0.0);
   changeModel(config.model.jsonPath);
   startDraw();

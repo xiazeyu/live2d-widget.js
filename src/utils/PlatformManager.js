@@ -83,7 +83,7 @@ class PlatformManager {
    * @param   {live2DModel}      model  live2DModel
    * @param   {Number}           no     Texture index.
    * @param   {String}           path   File path.
-   * @return  {Promise}                 A Promise which receives nothing.
+   * @return  {Promise}                 A Promise which receives texture.
    */
   loadTexture (model, no, path, homeDir) {
 
@@ -131,12 +131,18 @@ class PlatformManager {
 
       };
       loadedImage.src = loadPath;
-      resolve();
+      resolve(texture);
 
     });
 
   }
 
+  /**
+   * Load sound
+   * @param   {String}  path     Sound path.
+   * @param   {String}  homeDir  Sound home dir.
+   * @return  {Promise}          A promise which receives the sound.
+   */
   loadSound(path, homeDir){
 
     if(this.storage.getConfig().devLog){
@@ -149,7 +155,7 @@ class PlatformManager {
 
       const sndElem = document.createElement('audio');
       sndElem.src = loadPath;
-      resolve();
+      resolve(sndElem);
 
     });
 

@@ -141,8 +141,9 @@ class L2Dwidget {
       } = initElement(value, this.config);
 
       this._private.element = element;
-      this._private.webGL = webGL;
       this._private.canvas = canvas;
+      this._private.webGL = webGL;
+      this._private.storage.setWebGL(webGL);
 
     }else{
 
@@ -257,6 +258,7 @@ class L2Dwidget {
   set config (value) {
 
     this._private.config = configDefaulter(value);
+    this._private.storage.setConfig(this._private.config);
 
   }
 
@@ -319,7 +321,7 @@ class L2Dwidget {
       const {
         newStorage,
       } = mainFunc.loadL2DWidget(this.storage);
-	    this.storage = newStorage;
+	    this._private.storage = newStorage;
 	    this._private.isActive = true;
 
     }).catch(err => {
@@ -348,7 +350,7 @@ class L2Dwidget {
     const {
       newStorage,
     } = mainFunc.unloadL2DWidget(this.storage);
-    this.storage = newStorage;
+    this._private.storage = newStorage;
     this._private.isActive = false;
     return this;
 
