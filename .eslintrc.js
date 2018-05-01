@@ -4,8 +4,8 @@ module.exports = {
     'commonjs': true,
     'es6': true
   },
-  // 'extends': 'eslint:all',
-  'extends': 'eslint:recommended',
+  'extends': 'eslint:all',
+  // 'extends': 'eslint:recommended',
   'parserOptions': {
     'sourceType': 'module'
   },
@@ -216,5 +216,14 @@ module.exports = {
       'warn',
       'never',
     ],
+    'id-length': [
+      'off',
+    ],
+    'max-len': [
+      'off',
+    ],
+    'no-ternary': [
+      'warn',
+    ]
   },
 };

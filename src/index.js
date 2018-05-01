@@ -26,13 +26,6 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-/**
- * The container for main.js.
- * @private
- * @type {Function}
- */
-let mainFunc = null; // eslint-disable-line prefer-const
-
 class L2Dwidget {
 
   /**
@@ -50,15 +43,14 @@ class L2Dwidget {
      * @type  {Object}
      */
     this._private = {
-      'canvas': null,
       'config': null,
       'element': null,
       'isActive': false,
-      'webGL': null,
       'hasCanvas': () => this._private.canvas !== null,
       'hasElement': () => this._private.element !== null,
       'hasWebGL': () => this._private.webGL !== null,
       'storage': new Storage(),
+      '_L2Dwidget': null,
     };
     // Use setter to set default config.
     this.config = {};
@@ -141,9 +133,8 @@ class L2Dwidget {
       } = initElement(value, this.config);
 
       this._private.element = element;
-      this._private.canvas = canvas;
-      this._private.webGL = webGL;
-      this._private.storage.setWebGL(webGL);
+      this._private.storage.setWebGL(webGL)
+      .setCanvas(canvas);
 
     }else{
 
@@ -317,11 +308,8 @@ class L2Dwidget {
 
     import('./main').then(f => {
 
-      mainFunc = f;
-      const {
-        newStorage,
-      } = mainFunc.loadL2DWidget(this.storage);
-	    this._private.storage = newStorage;
+      this._private._L2Dwidget = new f._L2Dwidget(storage);
+      this._private._L2Dwidget.load();
 	    this._private.isActive = true;
 
     }).catch(err => {
@@ -347,10 +335,7 @@ class L2Dwidget {
       throw new Error('live2d-widget: Instance must be loaded.');
 
     }
-    const {
-      newStorage,
-    } = mainFunc.unloadL2DWidget(this.storage);
-    this._private.storage = newStorage;
+    this._private._L2Dwidget.unload();
     this._private.isActive = false;
     return this;
 
@@ -401,7 +386,9 @@ class L2Dwidget {
     };
 
     return new Promise((resolve) => {
-      resolve(mainFunc.captureFrame({ type, encoderOptions, }));
+      this._private._L2Dwidget.addFrameCallback(() => {
+        resolve(this._private.storage.canvas.toDataURL({ type, encoderOptions, }));
+      }, false);
     });
 
   }
@@ -411,6 +398,7 @@ class L2Dwidget {
    * @param   {String}  type            A DOMString indicating the image format.
    * @param   {Number}  encoderOptions  A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
    * @return  {Function}                The instance function itself.
+   * @description Thanks to @journey-ad https://github.com/journey-ad/live2d_src/commit/97356a19f93d2abd83966f032a53b5ca1109fbc3
    */
   downloadFrame (type = 'image/png', encoderOptions = 0.92) { // eslint-disable-line no-magic-numbers
 

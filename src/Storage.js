@@ -2,6 +2,7 @@ class Storage {
 
   constructor () {
 
+    this.canvas = null;
     this.webGL = null;
     this.config = null;
     this.platformManager = null;
@@ -47,6 +48,10 @@ class Storage {
       'value': 'val',
     };
 
+    this.captureFramePromise = null;
+
+    return this;
+
   }
 
   /**
@@ -59,16 +64,6 @@ class Storage {
 
     this.webGL = v;
     return this;
-
-  }
-
-  /**
-   * Get WebGL.
-   * @return  {RenderingContext}  WebGL.
-   */
-  getWebGL () {
-
-    return this.webGL;
 
   }
 
@@ -94,14 +89,9 @@ class Storage {
 
   }
 
-  /**
-   * Get PlatformManager.
-   * @return  {PlatformManager}  PlatformManager.
-   */
-  getPFM () {
-
-    return this.platformManager;
-
+  setCanvas(v){
+    this.canvas = v;
+    return this;
   }
 
 }

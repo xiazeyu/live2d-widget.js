@@ -31,7 +31,7 @@ your pull request should be accepted quickly.
 Some things that will increase the chance that your pull request is accepted:
 
 - Follow the existing coding style
-- run `npm run lint` before you commit it.
+- run `npm run lint` before you commit it.(or use `npm run lint -- fix` to try to fix automaticly)
 - Write a good commit message use `npm run commit`
 - Make sure that your code can work properly.
 
@@ -69,7 +69,7 @@ work is not in vain.
 
 ### 4. Commit those changes
 
-- Use `npm run lint` to check your code first.
+- Use `npm run lint` to check your code first, or use `npm run lint -- fix` to try to fix automaticly.
 
 - Use `npm run build` to build final client js.
 
