@@ -3,9 +3,11 @@ import 'whatwg-fetch';
 import 'es6-promise/auto';
 
 // eslint-disable-next-line capitalized-comments
-// import 'core-js/fn/object/assign';
-// Polyfill for Object.assign
-// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+/*
+ * import 'core-js/fn/object/assign';
+ * Polyfill for Object.assign
+ * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ */
 if (typeof Object.assign !== 'function') {
 
   // Must be writable: true, enumerable: false, configurable: true
@@ -52,18 +54,22 @@ if (typeof Object.assign !== 'function') {
 }
 
 // Polyfill for document.currentScript.src
-if(!document.currentScript) {
+if (!document.currentScript) {
 
-  // https://github.com/mozilla/pdf.js/blob/e081a708c36cb2aacff7889048863723fcf23671/src/shared/compatibility.js#L97
-  // For IE, Chrome < 29
+  /*
+   * https://github.com/mozilla/pdf.js/blob/e081a708c36cb2aacff7889048863723fcf23671/src/shared/compatibility.js#L97
+   * For IE, Chrome < 29
+   */
   const scripts = document.getElementsByTagName('script');
   document.currentScript = scripts[scripts.length - 1]; // eslint-disable-line no-magic-numbers
 
 }
 
-// Polyfill for window.requestAnimationFrame
-// https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
-if(!window.requestAnimationFrame) { // Chromium
+/*
+ * Polyfill for window.requestAnimationFrame
+ * https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
+ */
+if (!window.requestAnimationFrame) { // Chromium
 
   window.requestAnimationFrame =
      window.webkitRequestAnimationFrame || // Webkit
@@ -72,9 +78,11 @@ if(!window.requestAnimationFrame) { // Chromium
 
 }
 
-// Polyfill for window.cancelAnimationFrame
-// https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
-if(!window.cancelAnimationFrame) { // Chromium
+/*
+ * Polyfill for window.cancelAnimationFrame
+ * https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
+ */
+if (!window.cancelAnimationFrame) { // Chromium
 
   window.cancelAnimationFrame =
      window.webkitCancelAnimationFrame || // Webkit
@@ -86,8 +94,10 @@ if(!window.cancelAnimationFrame) { // Chromium
 
 }
 
-// Fallback function for window.requestAnimationFrame and window.cancelAnimationFrame
-// https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
+/*
+ * Fallback function for window.requestAnimationFrame and window.cancelAnimationFrame
+ * https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
+ */
 if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) || !window.requestAnimationFrame || !window.cancelAnimationFrame) { // IOS6 is buggy
 
   const lastTime = 0;

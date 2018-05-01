@@ -1,8 +1,6 @@
 /* global process, AMotion */
 
-import {
-  ExpressionParam,
-} from './ExpressionParam';
+import {ExpressionParam, } from './ExpressionParam';
 
 class ExpressionMotion extends AMotion {
 
@@ -31,46 +29,46 @@ class ExpressionMotion extends AMotion {
     const json = this.storage.getPMF().jsonParseFromBytes(buffer);
     thisRef.setFadeIn(parseInt(json.fade_in) > 0 ? parseInt(json.fade_in) : 1000);
     thisRef.setFadeOut(parseInt(json.fade_out) > 0 ? parseInt(json.fade_out) : 1000);
-    if(json.params == null) {
+    if (json.params == null) {
 
       return thisRef;
 
     }
     const params = json.params;
     thisRef.paramList = [];
-    for(const i in params) {
+    for (const i in params) {
 
       const param = params[i];
       const paramID = param.id.toString();
       let value = parseFloat(param.val);
       let calcTypeInt = this.storage.expressionMotion.typeAdd;
       const calc = param.calc != null ? param.calc.toString() : 'add';
-      if(calc === 'add') {
+      if (calc === 'add') {
 
         calcTypeInt = this.storage.expressionMotion.typeAdd;
 
-      }else if(calc === 'mult') {
+      } else if (calc === 'mult') {
 
         calcTypeInt = this.storage.expressionMotion.typeMult;
 
-      }else if(calc === 'set') {
+      } else if (calc === 'set') {
 
         calcTypeInt = this.storage.expressionMotion.typeSet;
 
-      }else{
+      } else {
 
         calcTypeInt = this.storage.expressionMotion.typeAdd;
 
       }
-      if(calcTypeInt === this.storage.expressionMotion.typeAdd) {
+      if (calcTypeInt === this.storage.expressionMotion.typeAdd) {
 
         const defaultValue = param.def == null ? 0 : parseFloat(param.def);
         value -= defaultValue;
 
-      }else if(calcTypeInt === this.storage.expressionMotion.typeMult) {
+      } else if (calcTypeInt === this.storage.expressionMotion.typeMult) {
 
         const defaultValue = param.def == null ? 1 : parseFloat(param.def);
-        if(defaultValue === 0) {
+        if (defaultValue === 0) {
 
           defaultValue = 1;
 
@@ -99,18 +97,18 @@ class ExpressionMotion extends AMotion {
    */
   updateParamExe (model, timeMSec, weight, motionQueueEnt) {
 
-    for(const i in this.paramList) {
+    for (const i in this.paramList) {
 
       const param = this.paramList[i];
-      if(param.type === this.storage.expressionMotion.typeAdd) {
+      if (param.type === this.storage.expressionMotion.typeAdd) {
 
         model.addToParamFloat(param.id, param.value, weight);
 
-      }else if(param.type === this.storage.expressionMotion.typeMult) {
+      } else if (param.type === this.storage.expressionMotion.typeMult) {
 
         model.multParamFloat(param.id, param.value, weight);
 
-      }else if(param.type === this.storage.expressionMotion.typeSet) {
+      } else if (param.type === this.storage.expressionMotion.typeSet) {
 
         model.setParamFloat(param.id, param.value, weight);
 
@@ -129,6 +127,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  ExpressionMotion,
-};
+export {ExpressionMotion, };

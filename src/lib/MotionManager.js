@@ -42,11 +42,11 @@ class MotionManager extends MotionQueueManager {
    */
   reserveMotion (priority) {
 
-    if(this.getReservePriority() >= priority) {
+    if (this.getReservePriority() >= priority) {
 
       return false;
 
-    } else if(this.getCurrentPriority() >= priority) {
+    } else if (this.getCurrentPriority() >= priority) {
 
       return false;
 
@@ -74,7 +74,7 @@ class MotionManager extends MotionQueueManager {
   updateParam (model) {
 
     const updated = MotionQueueManager.prototype.updateParam.call(this, model);
-    if(this.isFinished()) {
+    if (this.isFinished()) {
 
       this.currentPriority = 0;
 
@@ -90,7 +90,7 @@ class MotionManager extends MotionQueueManager {
    */
   startMotionPrio (motion, priority) {
 
-    if(priority === this.reservePriority) {
+    if (priority === this.reservePriority) {
 
       this.reservePriority = 0;
 
@@ -109,6 +109,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  MotionManager,
-};
+export {MotionManager, };

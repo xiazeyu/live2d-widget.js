@@ -72,11 +72,11 @@ class EyeBlink {
     const time = UtSystem.getUserTimeMSec();
     let eyeParamValue;
     let t = 0;
-    switch(this.eyeState) {
+    switch (this.eyeState) {
 
     case this.storage.eyeState.closing:
       t = (time - this.stateStartTime) / this.closingMotionMsec;
-      if(t >= 1) {
+      if (t >= 1) {
 
         t = 1;
         this.eyeState = this.storage.eyeState.closed;
@@ -87,7 +87,7 @@ class EyeBlink {
       break;
     case this.storage.eyeState.closed:
       t = (time - this.stateStartTime) / this.closedMotionMsec;
-      if(t >= 1) {
+      if (t >= 1) {
 
         this.eyeState = this.storage.eyeState.opening;
         this.stateStartTime = time;
@@ -97,7 +97,7 @@ class EyeBlink {
       break;
     case this.storage.eyeState.opening:
       t = (time - this.stateStartTime) / this.openingMotionMsec;
-      if(t >= 1) {
+      if (t >= 1) {
 
         t = 1;
         this.eyeState = this.storage.eyeState.interval;
@@ -107,7 +107,7 @@ class EyeBlink {
       eyeParamValue = t;
       break;
     case this.storage.eyeState.interval:
-      if(this.nextBlinkTime < time) {
+      if (this.nextBlinkTime < time) {
 
         this.eyeState = this.storage.eyeState.closing;
         this.stateStartTime = time;
@@ -123,7 +123,7 @@ class EyeBlink {
       break;
 
     }
-    if(!this.closeIfZero) {
+    if (!this.closeIfZero) {
 
       eyeParamValue = -eyeParamValue;
 
@@ -143,6 +143,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  EyeBlink,
-};
+export {EyeBlink, };

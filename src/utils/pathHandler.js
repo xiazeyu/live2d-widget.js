@@ -20,7 +20,7 @@ function getPathFromUrl (url) {
  */
 function resolvePath (path, homeDir) {
 
-  if(!(/^http/.test(path) || /^file/.test(path) || path[0] === '/') || /^\/\//.test(path)) {
+  if (!(/^http/.test(path) || (/^file/).test(path) || path[0] === '/') || (/^\/\//).test(path)) {
 
     return homeDir + path;
 

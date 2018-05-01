@@ -1,9 +1,7 @@
 /* global process, Live2DModelWebGL */
 /* eslint-disable no-magic-numbers */
 
-import {
-  resolvePath,
-} from './utils/pathHandler';
+import {resolvePath, } from './utils/pathHandler';
 
 class PlatformManager {
 
@@ -27,7 +25,7 @@ class PlatformManager {
    */
   loadBytes (path, homeDir = '') {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: PlatformManager.loadBytes(${path}, ${homeDir});`);
 
@@ -39,21 +37,22 @@ class PlatformManager {
 
       fetch(loadPath).then((response) => {
 
-        if(response.ok) {
+        if (response.ok) {
 
           resolve(response.arrayBuffer());
 
-        }else{
+        } else {
 
           console.log(`live2d-widget: Failed to load (network error, ${response}): ${path}`);
 
         }
 
-      }).catch((error) => {
+      })
+        .catch((error) => {
 
-        console.log(`live2d-widget: Failed to load (fetch error, ${error}): ${path}`);
+          console.log(`live2d-widget: Failed to load (fetch error, ${error}): ${path}`);
 
-      });
+        });
 
     });
 
@@ -66,7 +65,7 @@ class PlatformManager {
    */
   loadLive2DModel (path) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: PlatformManager.loadLive2DModel(${path});`);
 
@@ -93,7 +92,7 @@ class PlatformManager {
    */
   loadTexture (model, no, path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: PlatformManager.loadTexture(${model}, ${no}, ${path}, ${homeDir});`);
 
@@ -105,20 +104,23 @@ class PlatformManager {
 
       const loadedImage = new Image();
       loadedImage.crossOrigin = 'Anonymous';
-      // Thanks to @mashirozx & @fghrsh
-      // Issues:
-      // @https://github.com/journey-ad/live2d_src/issues/1
-      // @https://github.com/journey-ad/live2d_src/issues/3
+
+      /*
+       * Thanks to @mashirozx & @fghrsh
+       * Issues:
+       * @https://github.com/journey-ad/live2d_src/issues/1
+       * @https://github.com/journey-ad/live2d_src/issues/3
+       */
       loadedImage.onload = () => {
 
         const gl = this.storage.getWebGL();
         const texture = gl.createTexture();
-        if(!texture) {
+        if (!texture) {
 
           console.log(`live2d-widget: Failed to create gl texture: ${model}, ${no}`);
 
         }
-        if(!model.isPremultipliedAlpha()) {
+        if (!model.isPremultipliedAlpha()) {
 
           gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
 
@@ -153,7 +155,7 @@ class PlatformManager {
    */
   loadSound (path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: PlatformManager.loadSound(${path}, ${homeDir});`);
 
@@ -180,11 +182,11 @@ class PlatformManager {
 
     let jsonStr;
     const bomCode = new Uint8Array(buffer, 0, 3);
-    if(bomCode[0] === 239 && bomCode[1] === 187 && bomCode[2] === 191) {
+    if (bomCode[0] === 239 && bomCode[1] === 187 && bomCode[2] === 191) {
 
       jsonStr = String.fromCharCode.apply(null, new Uint8Array(buffer, 3));
 
-    }else{
+    } else {
 
       jsonStr = String.fromCharCode.apply(null, new Uint8Array(buffer));
 
@@ -201,6 +203,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  PlatformManager,
-};
+export {PlatformManager, };

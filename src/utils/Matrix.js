@@ -2,10 +2,12 @@
 /* eslint-disable no-magic-numbers */
 
 /* eslint-disable one-var, no-mixed-operators */
-// Borrowed from gl-matrix@2.4.0
-// https://github.com/toji/gl-matrix
-//
-// Common.js
+/*
+ * Borrowed from gl-matrix@2.4.0
+ * https://github.com/toji/gl-matrix
+ *
+ * Common.js
+ */
 const ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
 // Mat4.js
 /**
@@ -46,13 +48,28 @@ function create () {
  */
 function multiply (out, a, b) {
 
-  const a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
-  const a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7];
-  const a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
-  const a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+  const a00 = a[0],
+    a01 = a[1],
+    a02 = a[2],
+    a03 = a[3];
+  const a10 = a[4],
+    a11 = a[5],
+    a12 = a[6],
+    a13 = a[7];
+  const a20 = a[8],
+    a21 = a[9],
+    a22 = a[10],
+    a23 = a[11];
+  const a30 = a[12],
+    a31 = a[13],
+    a32 = a[14],
+    a33 = a[15];
 
   // Cache only the current line of the second matrix
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3];
   out[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
   out[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
   out[2] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
@@ -214,7 +231,7 @@ class MatrixStack {
 
     // Not using push() because Float32Array doesn't support it.
     const offset = (this.depth + 1) * 16;
-    if(this.matrixStack.length < offset + 16) {
+    if (this.matrixStack.length < offset + 16) {
 
       // TypedArray.length is read only.
       const newLength = offset + 16;
@@ -244,7 +261,7 @@ class MatrixStack {
   pop () {
 
     this.depth--;
-    if(this.depth < 0) {
+    if (this.depth < 0) {
 
       console.error('Matrix stack underflow.');
       this.depth = 0;
@@ -338,6 +355,8 @@ class Matrix44 {
     return clone(this.tr);
 
   }
+
+
   /**
    * Copy the value from provided matrix44 to current one.
    * @param  {Array}  tr  The source matrix44.
@@ -426,6 +445,8 @@ class Matrix44 {
     return (src - this.tr[12]) / this.tr[0];
 
   }
+
+
   /**
    * Returns the Y-invertTransformed Y-operand;
    * @param   {Number}  src  Number to operate Y.
@@ -841,7 +862,7 @@ class ViewMatrix extends Matrix44 {
 
     const targetScale = scale * this.getScaleX();
 
-    if(targetScale < this.getMinScale()) {
+    if (targetScale < this.getMinScale()) {
 
       if (this.getScaleX() > 0) {
 
@@ -851,14 +872,15 @@ class ViewMatrix extends Matrix44 {
 
     } else if (targetScale > this.getMaxScale()) {
 
-      if(this.getScaleX() > 0) {
+      if (this.getScaleX() > 0) {
 
         scale = this.getMaxScale() / this.getScaleX();
 
       }
 
     }
-    return this.multTranslate(-cx, -cy).multScale(scale, scale).multTranslate(cx, cy);
+    return this.multTranslate(-cx, -cy).multScale(scale, scale)
+      .multTranslate(cx, cy);
 
   }
 

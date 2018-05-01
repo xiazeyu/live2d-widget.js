@@ -26,7 +26,7 @@ class Physics {
     const thisRef = new Physics(storage);
     const json = thisRef.storage.getPFM().jsonParseFromBytes(buffer);
     const params = json.physics_hair;
-    for(const i in params) {
+    for (const i in params) {
 
       const param = params[i];
       const physics = new PhysicsHair();
@@ -36,25 +36,25 @@ class Physics {
       const mass = parseFloat(setup.mass);
       physics.setup(length, resist, mass);
       const srcList = param.src;
-      for(const j in srcList) {
+      for (const j in srcList) {
 
         const src = srcList[j];
         const id = src.id;
         const type = PhysicsHair.Src.SRC_TO_X;
         const typeStr = src.ptype;
-        if(typeStr === 'x') {
+        if (typeStr === 'x') {
 
           type = PhysicsHair.Src.SRC_TO_X;
 
-        }else if(typeStr === 'y') {
+        } else if (typeStr === 'y') {
 
           type = PhysicsHair.Src.SRC_TO_Y;
 
-        }else if(typeStr === 'angle') {
+        } else if (typeStr === 'angle') {
 
           type = PhysicsHair.Src.SRC_TO_G_ANGLE;
 
-        }else{
+        } else {
 
           UtDebug.error('live2d', 'Invalid parameter:PhysicsHair.Src');
 
@@ -65,21 +65,21 @@ class Physics {
 
       }
       const targetList = param.targets;
-      for(const j in targetList) {
+      for (const j in targetList) {
 
         const target = targetList[j];
         const id = target.id;
         let type = PhysicsHair.Target.TARGET_FROM_ANGLE;
         const typeStr = target.ptype;
-        if(typeStr === 'angle') {
+        if (typeStr === 'angle') {
 
           type = PhysicsHair.Target.TARGET_FROM_ANGLE;
 
-        }else if(typeStr === 'angle_v') {
+        } else if (typeStr === 'angle_v') {
 
           type = PhysicsHair.Target.TARGET_FROM_ANGLE_V;
 
-        }else{
+        } else {
 
           UtDebug.error('live2d', 'Invalid parameter:PhysicsHair.Target');
 
@@ -104,7 +104,7 @@ class Physics {
   updateParam (model) {
 
     const timeMSec = UtSystem.getUserTimeMSec() - this.startTimeMSec;
-    for(const i in physicsList) {
+    for (const i in physicsList) {
 
       this.physicsList[i].update(model, timeMSec);
 
@@ -122,6 +122,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  Physics,
-};
+export {Physics, };

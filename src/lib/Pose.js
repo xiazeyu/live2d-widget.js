@@ -1,8 +1,6 @@
 /* global process */
 
-import {
-  PartsParam,
-} from './PartsParam';
+import {PartsParam, } from './PartsParam';
 
 class Pose {
 
@@ -31,24 +29,24 @@ class Pose {
     const thisRef = new Pose();
     const json = this.storage.getPFM().jsonParseFromBytes(buffer);
     const poseListInfo = json.parts_visible;
-    for(const i in poseListInfo) {
+    for (const i in poseListInfo) {
 
       const poseInfo = poseListInfo[i];
       const idListInfo = postInfo.group;
       const partsGroup = new Array();
-      for(const j in idListInfo) {
+      for (const j in idListInfo) {
 
         const partsInfo = idListInfo[j];
         const parts = new PartsParam(partsInfo.id);
         partsGroup[j] = parts;
-        if(partsInfo.link == null) {
+        if (partsInfo.link == null) {
 
           continue;
 
         }
         const linkListInfo = partsInfo.link;
         parts.link = new Array();
-        for(const k in linkListInfo) {
+        for (const k in linkListInfo) {
 
           const linkParts = new PartsParam(linkListInfo[k]);
           parts.link.push(linkParts);
@@ -70,12 +68,12 @@ class Pose {
    */
   updateParam (model) {
 
-    if(model == null) {
+    if (model == null) {
 
       return;
 
     }
-    if(!(model === this.model)) {
+    if (!(model === this.model)) {
 
       this.initParam(model);
 
@@ -84,12 +82,12 @@ class Pose {
     const curTime = UtSystem.getUserTimeMSec();
     const deltaTimeSec = this.lastTime == 0 ? 0 : (curTime - this.lastTime) / 1000.0;
     this.lastTime = curTime;
-    if(deltaTimeSec < 0) {
+    if (deltaTimeSec < 0) {
 
       deltaTimeSec = 0;
 
     }
-    for(const i in partsGroups) {
+    for (const i in partsGroups) {
 
       this.normalizePartsOpacityGroup(model, this.partsGroups[i], deltaTimeSec)
         .copyOpacityOtherParts(model, this.partsGroups[i]);
@@ -106,15 +104,15 @@ class Pose {
    */
   initParam (model) {
 
-    if(model == null) {
+    if (model == null) {
 
       return;
 
     }
-    for(const i in partsGroups) {
+    for (const i in partsGroups) {
 
       const partsGroup = this.partsGroups[i];
-      for(const j in partsGroup) {
+      for (const j in partsGroup) {
 
         partsGroup[j].initIndex(model);
         const partsIndex = partsGroup[j].partsIndex;
@@ -132,7 +130,7 @@ class Pose {
           continue;
 
         }
-        for(const k in partsGroup) {
+        for (const k in partsGroup) {
 
           partsGroup[j].link[k].initIndex(model);
 
@@ -159,18 +157,18 @@ class Pose {
     const clearTimeSec = 0.5;
     const phi = 0.5;
     const maxBackOpacity = 0.15;
-    for(i in partsGroup) {
+    for (i in partsGroup) {
 
       const partsIndex = partsGroup[i].partsIndex;
       const paramIndex = partsGroup[i].paramIndex;
-      if(partsIndex < 0) {
+      if (partsIndex < 0) {
 
         continue;
 
       }
-      if(model.getParamFloat(paramIndex) !== 0) {
+      if (model.getParamFloat(paramIndex) !== 0) {
 
-        if(visibleParts >= 0) {
+        if (visibleParts >= 0) {
 
           break;
 
@@ -178,7 +176,7 @@ class Pose {
         visibleParts = i;
         visibleOpacity = model.getPartsOpacity(partsIndex);
         visibleOpacity += deltaTimeSec / clearTimeSec;
-        if(visibleOpacity > 1) {
+        if (visibleOpacity > 1) {
 
           visibleOpacity = 1;
 
@@ -187,21 +185,21 @@ class Pose {
       }
 
     }
-    if(visibleParts < 0) {
+    if (visibleParts < 0) {
 
       visibleParts = 0;
       visibleOpacity = 1;
 
     }
-    for(const i in partsGroup) {
+    for (const i in partsGroup) {
 
       const partsIndex = partsGroup[i].partsIndex;
-      if(partsIndex < 0) {
+      if (partsIndex < 0) {
 
         continue;
 
       }
-      if(visibleParts === i) {
+      if (visibleParts === i) {
 
         model.setPartsOpacity(partsIndex, visibleOpacity);
 
@@ -209,22 +207,22 @@ class Pose {
 
         let opacity = model.getPartsOpacity(partsIndex);
         let a1;
-        if(visibleOpacity < phi) {
+        if (visibleOpacity < phi) {
 
           a1 = visibleOpacity * (phi - 1) / phi + 1;
 
-        }else{
+        } else {
 
           a1 = (1 - visibleOpacity) * phi / (1 - phi);
 
         }
         const backOp = (1 - a1) * (1 - visibleOpacity);
-        if(backOp > maxBackOpacity) {
+        if (backOp > maxBackOpacity) {
 
           a1 = 1 - maxBackOpacity / (1 - visibleOpacity);
 
         }
-        if(opacity > a1) {
+        if (opacity > a1) {
 
           opacity = a1;
 
@@ -246,21 +244,21 @@ class Pose {
    */
   copyOpacityOtherParts (model, partsGroup) {
 
-    for(const i in partsGroup) {
+    for (const i in partsGroup) {
 
       const partsParam = partsGroup[i];
-      if(partsParam.link == null) {
+      if (partsParam.link == null) {
 
         continue;
 
       }
-      if(partsParam.partsIndex < 0) {
+      if (partsParam.partsIndex < 0) {
 
         continue;
 
       }
       const opacity = model.getPartsOpacity(partsParam.partsIndex);
-      for(const j in partsParam.link) {
+      for (const j in partsParam.link) {
 
         const linkParts = partsParam.link[j];
         if (linkParts.partsIndex < 0) {
@@ -286,6 +284,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  Pose,
-};
+export {Pose, };

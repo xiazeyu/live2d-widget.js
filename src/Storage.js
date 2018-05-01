@@ -89,9 +89,11 @@ class Storage {
 
   }
 
-  setCanvas(v){
+  setCanvas (v) {
+
     this.canvas = v;
     return this;
+
   }
 
 }
@@ -103,6 +105,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  Storage,
-};
+export {Storage, };

@@ -1,20 +1,12 @@
 /* global Live2D, process */
 
-import {
-  MotionManager,
-} from './MotionManager';
+import {MotionManager, } from './MotionManager';
 
-import {
-  ModelMatrix,
-} from '../utils/Matrix';
+import {ModelMatrix, } from '../utils/Matrix';
 
-import {
-  ExpressionMotion,
-} from './ExpressionMotion';
+import {ExpressionMotion, } from './ExpressionMotion';
 
-import {
-  Pose,
-} from './Pose';
+import {Pose, } from './Pose';
 
 class BaseModel {
 
@@ -70,11 +62,11 @@ class BaseModel {
    */
   setAlpha (a) {
 
-    if(a > 0.99) { // eslint-disable-line no-magic-numbers
+    if (a > 0.99) { // eslint-disable-line no-magic-numbers
 
       a = 1; // eslint-disable-line no-magic-numbers
 
-    }else if(a < 0.01) { // eslint-disable-line no-magic-numbers
+    } else if (a < 0.01) { // eslint-disable-line no-magic-numbers
 
       a = 0; // eslint-disable-line no-magic-numbers
 
@@ -229,30 +221,31 @@ class BaseModel {
    */
   loadModelData (path) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadModelData(${path});`);
 
     }
     return new Promise((resolve, reject) => {
 
-      this.storage.getPFM().loadLive2DModel(path).then((l2dModel) => {
+      this.storage.getPFM().loadLive2DModel(path)
+        .then((l2dModel) => {
 
-        this.live2DModel = l2dModel;
-        this.live2DModel.saveParam();
-        if (Live2D.getError() !== 0) { // eslint-disable-line no-magic-numbers
+          this.live2DModel = l2dModel;
+          this.live2DModel.saveParam();
+          if (Live2D.getError() !== 0) { // eslint-disable-line no-magic-numbers
 
-          reject(new Error(`live2d-widget: Failed to BaseModel.loadModelData(). Error code: ${Live2D.getError()}`));
+            reject(new Error(`live2d-widget: Failed to BaseModel.loadModelData(). Error code: ${Live2D.getError()}`));
 
-        }
-        this.modelMatrix = new ModelMatrix(
-          this.live2DModel.getCanvasWidth(),
-          this.live2DModel.getCanvasHeight()
-        ).setWidth(2) // eslint-disable-line no-magic-numbers
-          .setCenterPosition(0, 0); // eslint-disable-line no-magic-numbers
-        resolve(this.live2DModel);
+          }
+          this.modelMatrix = new ModelMatrix(
+            this.live2DModel.getCanvasWidth(),
+            this.live2DModel.getCanvasHeight()
+          ).setWidth(2) // eslint-disable-line no-magic-numbers
+            .setCenterPosition(0, 0); // eslint-disable-line no-magic-numbers
+          resolve(this.live2DModel);
 
-      });
+        });
 
     });
 
@@ -267,7 +260,7 @@ class BaseModel {
    */
   loadTexture (no, path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadTexture(${no}, ${path}, ${homeDir});`);
 
@@ -275,17 +268,18 @@ class BaseModel {
     this.texCounter++;
     return new Promise((resolve) => {
 
-      this.storage.getPFM().loadTexture(this.live2DModel, no, path, homeDir).then(() => {
+      this.storage.getPFM().loadTexture(this.live2DModel, no, path, homeDir)
+        .then(() => {
 
-        this.texCounter--;
-        if(this.texCounter === 0) { // eslint-disable-line no-magic-numbers
+          this.texCounter--;
+          if (this.texCounter === 0) { // eslint-disable-line no-magic-numbers
 
-          this.isTexLoaded = true;
+            this.isTexLoaded = true;
 
-        }
-        resolve();
+          }
+          resolve();
 
-      });
+        });
 
     });
 
@@ -300,7 +294,7 @@ class BaseModel {
    */
   loadMotion (name, path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadMotion(${name}, ${path}, ${homeDir});`);
 
@@ -309,17 +303,18 @@ class BaseModel {
     return new Promise((resolve) => {
 
       const motion = null;
-      this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+      this.storage.getPFM().loadBytes(path, homeDir)
+        .then((buffer) => {
 
-        motion = Live2DMotion.loadMotion(buffer);
-        if(name != null) {
+          motion = Live2DMotion.loadMotion(buffer);
+          if (name != null) {
 
-          this.motions[name] = motion;
+            this.motions[name] = motion;
 
-        }
-        resolve(motion);
+          }
+          resolve(motion);
 
-      });
+        });
 
     });
 
@@ -334,7 +329,7 @@ class BaseModel {
    */
   loadExpression (name, path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadExpression(${name}, ${path}, ${homeDir});`);
 
@@ -342,16 +337,17 @@ class BaseModel {
 
     return new Promise((resolve) => {
 
-      this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+      this.storage.getPFM().loadBytes(path, homeDir)
+        .then((buffer) => {
 
-        if(name != null) {
+          if (name != null) {
 
-          this.expressions[name] = ExpressionMotion.loadJson(buffer);
+            this.expressions[name] = ExpressionMotion.loadJson(buffer);
 
-        }
-        resolve();
+          }
+          resolve();
 
-      });
+        });
 
     });
 
@@ -365,7 +361,7 @@ class BaseModel {
    */
   loadPose (path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadPose(${path}, ${homeDir});`);
 
@@ -373,12 +369,13 @@ class BaseModel {
 
     return new Promise((resolve) => {
 
-      this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+      this.storage.getPFM().loadBytes(path, homeDir)
+        .then((buffer) => {
 
-        this.pose = Pose.load(buffer);
-        resolve();
+          this.pose = Pose.load(buffer);
+          resolve();
 
-      });
+        });
 
     });
 
@@ -392,18 +389,19 @@ class BaseModel {
    */
   loadPhysics (path, homeDir) {
 
-    if(this.storage.getConfig().devLog) {
+    if (this.storage.getConfig().devLog) {
 
       console.log(`live2d-widget: BaseModel.loadPhysics(${path}, ${homeDir});`);
 
     }
     return new Promise((resolve) => {
 
-      this.storage.getPFM().loadBytes(path, homeDir).then((buffer) => {
+      this.storage.getPFM().loadBytes(path, homeDir)
+        .then((buffer) => {
 
-        this.physics = Physics.load(buffer);
+          this.physics = Physics.load(buffer);
 
-      });
+        });
       resolve();
 
     });
@@ -419,13 +417,13 @@ class BaseModel {
    */
   _hitTest (drawID, X, Y) {
 
-    if(this.live2DModel === null) {
+    if (this.live2DModel === null) {
 
       return false;
 
     }
     const drawIndex = this.live2DModel.getDrawDataIndex(drawID);
-    if(drawIndex < 0) {
+    if (drawIndex < 0) {
 
       return false;
 
@@ -435,26 +433,26 @@ class BaseModel {
     let right = 0;
     let top = this.live2DModel.getCanvasHeight();
     let bottom = 0;
-    for(const i = 0; i < points.length; j += 2) {
+    for (const i = 0; i < points.length; j += 2) {
 
       const px = points[j];
       const py = points[j + 1];
-      if(px < left) {
+      if (px < left) {
 
         left = x;
 
       }
-      if(px > right) {
+      if (px > right) {
 
         right = x;
 
       }
-      if(py < top) {
+      if (py < top) {
 
         top = y;
 
       }
-      if(py > bottom) {
+      if (py > bottom) {
 
         bottom = y;
 
@@ -475,6 +473,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  BaseModel,
-};
+export {BaseModel, };

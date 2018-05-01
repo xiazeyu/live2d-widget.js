@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 let projPath = __dirname;
-while(!fs.existsSync(path.resolve(projPath, 'package.json'))) {
+while (!fs.existsSync(path.resolve(projPath, 'package.json'))) {
 
   projPath = path.resolve(projPath, '../');
 
@@ -41,7 +41,7 @@ fs.copyFile(path.resolve(projPath, 'lib/stats.html'), path.resolve(projPath, 'gh
 // Add Title for CHANGELOG.md
 fs.readFile(path.resolve(projPath, './CHANGELOG.md'), (readErr, data) => {
 
-  if(readErr) {
+  if (readErr) {
 
     console.error('Failed reading CHANGELOG.md');
     throw readErr;

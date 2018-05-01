@@ -1,7 +1,9 @@
 /* global process */
 
-// FrameRate from stats.js
-// https://github.com/mrdoob/stats.js
+/*
+ * FrameRate from stats.js
+ * https://github.com/mrdoob/stats.js
+ */
 
 window.fpsCounter = window.fpsCounter || {
   '_beginTime': (performance || Date).now(),
@@ -10,7 +12,7 @@ window.fpsCounter = window.fpsCounter || {
   '_actived': false,
   'start': () => {
 
-    if(window.fpsCounter._actived) {
+    if (window.fpsCounter._actived) {
 
       return;
 
@@ -23,7 +25,7 @@ window.fpsCounter = window.fpsCounter || {
 
     const offset = (performance || Date).now() - window.fpsCounter._beginTime;
     window.fpsCounter._framesCounting++;
-    if(offset >= 1000) {
+    if (offset >= 1000) {
 
       window.fpsCounter._beginTime += offset;
       window.fpsCounter.fps = window.fpsCounter._framesCounting;

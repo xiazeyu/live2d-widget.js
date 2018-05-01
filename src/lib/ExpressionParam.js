@@ -24,6 +24,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  ExpressionParam,
-};
+export {ExpressionParam, };

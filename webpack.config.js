@@ -40,31 +40,21 @@ module.exports = (env) => ({
       {
         'include': path.resolve(__dirname, 'src'),
         'test': /\.js$/,
-        'use': [
-          {
-            'loader': 'babel-loader',
-          },
-        ],
+        'use': [{'loader': 'babel-loader', },],
       },
       {
         'test': /\.html$/,
         'use': [
           {
             'loader': 'html-loader',
-            'options': {
-              'minimize': true,
-            },
+            'options': {'minimize': true, },
           },
         ],
       },
     ],
   },
 
-  'optimization': {
-    'minimizer': [
-      uglifyJs,
-    ],
-  },
+  'optimization': {'minimizer': [uglifyJs, ],},
 
   'output': {
 
@@ -81,9 +71,7 @@ module.exports = (env) => ({
     'path': path.resolve(__dirname, 'dist'),
   },
 
-  'plugins': _.concat(env !== 'production' ? [
-    uglifyJs,
-  ] : [], [
+  'plugins': _.concat(env !== 'production' ? [uglifyJs, ] : [], [
 
     // Banner must be put below UglifyJsPlugin, or it won't work.
     new webpack.BannerPlugin(`${env !== 'production' ? '___DEV___' : ''}https://github.com/xiazeyu/live2d-widget.js built-v${pkgInfo.version}@${nowDate.toLocaleDateString()} ${nowDate.toLocaleTimeString()}`),

@@ -63,7 +63,7 @@ class TargetPoint {
     const timeToMaxSpeed = 0.15;
     const faceParamMaxV = 40.0 / 7.5;
     const maxV = faceParamMaxV / window.fpsCounter.fps;
-    if(this.lastTimeSec === 0) {
+    if (this.lastTimeSec === 0) {
 
       this.lastTimeSec = UtSystem.getUserTimeMSec();
       return;
@@ -76,7 +76,7 @@ class TargetPoint {
     const maxA = deltaTimeWeight * maxV / frameToMaxSpeed;
     const dx = this.faceTargetX - this.faceX;
     const dy = this.faceTargetY - this.faceY;
-    if(Math.abs(dx) <= this.EPS && Math.abs(dy) <= this.EPS) {
+    if (Math.abs(dx) <= this.EPS && Math.abs(dy) <= this.EPS) {
 
       return;
 
@@ -87,7 +87,7 @@ class TargetPoint {
     const ax = vx - this.faceVX;
     const ay = vy - this.faceVY;
     const a = Math.sqrt(ax * ax + ay * ay);
-    if(a < -maxA || a > maxA) {
+    if (a < -maxA || a > maxA) {
 
       ax *= maxA / a;
       ay *= maxA / a;
@@ -100,7 +100,7 @@ class TargetPoint {
 
       const maxV = 0.5 * (Math.sqrt(maxA * maxA + 16 * maxA * d - 8 * maxA * d) - maxA);
       const curV = Math.sqrt(this.faceVX * this.faceVX + this.faceVY + this.faceVY);
-      if(curV > maxV) {
+      if (curV > maxV) {
 
         this.faceVX *= maxV / curV;
         this.faceVY *= maxV / curV;
@@ -123,6 +123,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  TargetPoint,
-};
+export {TargetPoint, };

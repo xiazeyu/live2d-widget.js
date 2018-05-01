@@ -1,7 +1,9 @@
 /* global process */
 
-// TODO
-// Add getMotionNum(name)...
+/*
+ * TODO
+ * Add getMotionNum(name)...
+ */
 
 class ModelSettingJson {
 
@@ -74,45 +76,48 @@ class ModelSettingJson {
    */
   setHitArea () {
 
-    if(this.json[this.storage.ModelSettingJson.hitAreas] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.hitAreas] == null) { // eslint-disable-line eqeqeq
 
-      this.json = Object.assign(this.json, {
-        [this.storage.ModelSettingJson.hitAreas]: [],
-      });
+      this.json = Object.assign(this.json, {[this.storage.ModelSettingJson.hitAreas]: [], });
 
     }
     const currHitArea = this.json[this.storage.ModelSettingJson.hitAreas];
-    const defaultHitArea = [{
-      'id': 'D_REF.HEAD',
-      'name': 'head',
-    }, {
-      'id': 'D_REF.BODY',
-      'name': 'body',
-    }, {
-      'id': 'D_REF.EAR_L',
-      'name': 'ear_l',
-    }, {
-      'id': 'D_REF.EAR_R',
-      'name': 'ear_r',
-    }, {
-      'id': 'D_REF.BUST',
-      'name': 'bust',
-    },
+    const defaultHitArea = [
+      {
+        'id': 'D_REF.HEAD',
+        'name': 'head',
+      },
+      {
+        'id': 'D_REF.BODY',
+        'name': 'body',
+      },
+      {
+        'id': 'D_REF.EAR_L',
+        'name': 'ear_l',
+      },
+      {
+        'id': 'D_REF.EAR_R',
+        'name': 'ear_r',
+      },
+      {
+        'id': 'D_REF.BUST',
+        'name': 'bust',
+      },
     ];
 
-    for(const i in defaultHitArea) {
+    for (const i in defaultHitArea) {
 
       let has = false;
-      for(const j in currHitArea) {
+      for (const j in currHitArea) {
 
-        if(currHitArea[j].name === defaultHitArea[i].name) {
+        if (currHitArea[j].name === defaultHitArea[i].name) {
 
           has = true;
 
         }
 
       }
-      if(!has) {
+      if (!has) {
 
         this.json[this.storage.ModelSettingJson.hitAreas].push(defaultHitArea[i]);
 
@@ -141,7 +146,7 @@ class ModelSettingJson {
    */
   getHitAreaID (n) {
 
-    if(this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -157,7 +162,7 @@ class ModelSettingJson {
    */
   getHitAreaName (n) {
 
-    if(this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.hitAreas] == null || this.json[this.storage.ModelSettingJson.hitAreas][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -172,7 +177,7 @@ class ModelSettingJson {
    */
   getPhysicsFile () {
 
-    if(this.json[this.storage.ModelSettingJson.physics] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.physics] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -187,7 +192,7 @@ class ModelSettingJson {
    */
   getPoseFile () {
 
-    if(this.json[this.storage.ModelSettingJson.pose] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.pose] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -202,7 +207,7 @@ class ModelSettingJson {
    */
   getExpression () {
 
-    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions].length <= 0) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions].length <= 0) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -219,7 +224,7 @@ class ModelSettingJson {
    */
   getExpressionFile (n) {
 
-    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -235,7 +240,7 @@ class ModelSettingJson {
    */
   getExpressionName (n) {
 
-    if(this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.expressions] == null || this.json[this.storage.ModelSettingJson.expressions][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -250,7 +255,7 @@ class ModelSettingJson {
    */
   getLayout () {
 
-    if(this.json[this.storage.ModelSettingJson.layout] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.layout] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -276,7 +281,7 @@ class ModelSettingJson {
    */
   getInitParamID (n) {
 
-    if(this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -292,7 +297,7 @@ class ModelSettingJson {
    */
   getInitParamValue (n) {
 
-    if(this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.initParam] == null || this.json[this.storage.ModelSettingJson.initParam][n] == null) { // eslint-disable-line eqeqeq
 
       return null; // Origin: NaN
 
@@ -318,7 +323,7 @@ class ModelSettingJson {
    */
   getInitPartsVisibleID (n) {
 
-    if(this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -334,7 +339,7 @@ class ModelSettingJson {
    */
   getInitPartsVisibleValue (n) {
 
-    if(this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.initPartsVisible] == null || this.json[this.storage.ModelSettingJson.initPartsVisible][n] == null) { // eslint-disable-line eqeqeq
 
       return null; // Origin: NaN
 
@@ -350,7 +355,7 @@ class ModelSettingJson {
    */
   getMotion (name) {
 
-    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -367,7 +372,7 @@ class ModelSettingJson {
    */
   getMotionFile (name, n) {
 
-    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -384,7 +389,7 @@ class ModelSettingJson {
    */
   getMotionSound (name, n) {
 
-    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.sound] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.sound] == null) { // eslint-disable-line eqeqeq
 
       return null;
 
@@ -401,7 +406,7 @@ class ModelSettingJson {
    */
   getMotionFadeIn (name, n) {
 
-    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeIn] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeIn] == null) { // eslint-disable-line eqeqeq
 
       return 1000; // eslint-disable-line no-magic-numbers
 
@@ -418,7 +423,7 @@ class ModelSettingJson {
    */
   getMotionFadeOut (name, n) {
 
-    if(this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeOut] == null) { // eslint-disable-line eqeqeq
+    if (this.json[this.storage.ModelSettingJson.motions] == null || this.json[this.storage.ModelSettingJson.motions][name] == null || this.json[this.storage.ModelSettingJson.motions][name][n] == null || this.json[this.storage.ModelSettingJson.motions][name][n][this.storage.ModelSettingJson.fadeOut] == null) { // eslint-disable-line eqeqeq
 
       return 1000; // eslint-disable-line no-magic-numbers
 
@@ -435,6 +440,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  ModelSettingJson,
-};
+export {ModelSettingJson, };

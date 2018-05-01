@@ -17,9 +17,9 @@ function initWebGL (canvas) {
     'webkit-3d',
     'moz-webgl',
   ];
-  for(const i in contextTypes) {
+  for (const i in contextTypes) {
 
-    try{
+    try {
 
       const ctx = canvas.getContext(contextTypes[i], {
         'alpha': true,
@@ -27,16 +27,16 @@ function initWebGL (canvas) {
         'premultipliedAlpha': true,
         'failIfMajorPerformanceCaveat': false,
       });
-      if(ctx) {
+      if (ctx) {
 
         return ctx;
 
       }
 
-    }catch(e) {} // eslint-disable-line no-empty
+    } catch (e) {} // eslint-disable-line no-empty
 
   }
-  if(!window.WebGLRenderingContext) {
+  if (!window.WebGLRenderingContext) {
 
     console.error('Your browser may not support webGL, check https://get.webgl.org/.');
 
@@ -44,6 +44,7 @@ function initWebGL (canvas) {
   throw new Error('live2d-widget: Failed to create WebGL context.');
 
 }
+
 /**
  * Create and init canvas for live2d-widget use.
  * @param   {Config}  config  Config
@@ -64,16 +65,16 @@ function createCanvasElement (config) {
     'opacity': config.reactOpacityDefault,
     [config.displaySide]: `${config.displayOffsetH}px`,
     'bottom': `${config.displayOffsetV}px`,
-    'z-index':  473193,
+    'z-index': 473193,
     'pointer-events': 'none',
     'border': process.env.NODE_ENV === 'development' ? 'dashed 1px #CCC' : null,
   };
-  for(const i in canvasAttributes) {
+  for (const i in canvasAttributes) {
 
     newCanvasElem.setAttribute(i, canvasAttributes[i]);
 
   }
-  for(const i in canvasStyleAttributes) {
+  for (const i in canvasStyleAttributes) {
 
     newCanvasElem.style.setProperty(i, canvasStyleAttributes[i]);
 
@@ -93,7 +94,7 @@ function createElement (tagName, id) {
 
   const newElem = document.createElement(tagName);
   newElem.className = 'live2d-widget';
-  if(id !== null) {
+  if (id !== null) {
 
     newElem.id = id;
 
@@ -114,13 +115,13 @@ function initElement (elem, config) {
   const element = elem;
   const canvas = createCanvasElement(config);
   const webGL = initWebGL(canvas);
-  if(element.createShadowRoot) {
+  if (element.createShadowRoot) {
 
     const shadowRoot = element.attachShadow({'mode': 'open', });
     shadowRoot.innerHTML = htmlTemplate;
     shadowRoot.appendChild(canvas);
 
-  }else{
+  } else {
 
     element.innerHTML = htmlTemplate;
     element.appendChild(canvas);

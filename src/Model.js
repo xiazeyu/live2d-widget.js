@@ -1,20 +1,12 @@
 /* global process, UtSystem */
 
-import {
-  BaseModel,
-} from './lib/BaseModel';
+import {BaseModel, } from './lib/BaseModel';
 
-import{
-  EyeBlink,
-} from './lib/EyeBlink';
+import {EyeBlink, } from './lib/EyeBlink';
 
-import{
-  ModelSettingJson,
-} from './utils/ModelSettingJson';
+import {ModelSettingJson, } from './utils/ModelSettingJson';
 
-import{
-  getPathFromUrl,
-} from './utils/pathHandler';
+import {getPathFromUrl, } from './utils/pathHandler';
 
 class Model extends BaseModel {
 
@@ -52,18 +44,18 @@ class Model extends BaseModel {
         const path = this.modelSetting.getModel();
         this.loadModelData(path, this.modelHomeDir).then((model) => {
 
-          for(const i in this.modelSetting.getTexture()) {
+          for (const i in this.modelSetting.getTexture()) {
 
             const texPaths = this.modelSetting.getTexture[i];
             this.loadTexture(i, texPaths, this.modelHomeDir).then((texture) => {
 
               this.textures.push(texture);
-              if(this.isTexLoaded) {
+              if (this.isTexLoaded) {
 
                 this.expressions = {};
-                if(this.modelSetting.getExpression() !== null) {
+                if (this.modelSetting.getExpression() !== null) {
 
-                  for(const j in this.modelSetting.getExpression()) {
+                  for (const j in this.modelSetting.getExpression()) {
 
                     const expName = this.modelSetting.getExpressionName(j);
                     const expFilePath = this.modelSetting.getExpressionFile(j);
@@ -71,28 +63,28 @@ class Model extends BaseModel {
 
                   }
 
-                }else{
+                } else {
 
                   this.expressionManager = null;
 
                 }
 
               }
-              if(this.eyeBlink == null) {
+              if (this.eyeBlink == null) {
 
                 this.eyeBlink = new EyeBlink(this.storage);
 
               }
-              if(this.modelSetting.getPhysicsFile() !== null) {
+              if (this.modelSetting.getPhysicsFile() !== null) {
 
                 this.loadPhysics(this.modelSetting.getPhysicsFile(), this.modelHomeDir);
 
-              }else{
+              } else {
 
                 this.physics = null;
 
               }
-              if(this.modelSetting.getPoseFile() !== null) {
+              if (this.modelSetting.getPoseFile() !== null) {
 
                 this.loadPose(this.modelSetting.getPoseFile(), this.modelHomeDir).then(() => {
 
@@ -100,12 +92,12 @@ class Model extends BaseModel {
 
                 });
 
-              }else{
+              } else {
 
                 this.pose = null;
 
               }
-              if(this.modelSetting.getLayout() !== null) {
+              if (this.modelSetting.getLayout() !== null) {
 
                 const layout = this.modelSetting.getLayout();
                 if (layout.width != null) {
@@ -160,12 +152,12 @@ class Model extends BaseModel {
                 }
 
               }
-              for(const j in this.modelSetting.getInitParam()) {
+              for (const j in this.modelSetting.getInitParam()) {
 
                 this.live2DModel.setParamFloat(this.modelSetting.getInitParamID(j), this.modelSetting.getInitParamValue(j));
 
               }
-              for(const j in this.modelSetting.getInitPartsVisible()) {
+              for (const j in this.modelSetting.getInitPartsVisible()) {
 
                 this.live2DModel.setPartsOpacity(this.modelSetting.getInitPartsVisibleID(j), this.modelSetting.getInitPartsVisibleValue(j));
 
@@ -196,7 +188,7 @@ class Model extends BaseModel {
    */
   release () {
 
-    for(const i in this.textures) {
+    for (const i in this.textures) {
 
       this.storage.getWebGL().deleteTextures(this.textures[i]);
 
@@ -212,7 +204,7 @@ class Model extends BaseModel {
    */
   preloadMotionGroup (name) {
 
-    for(const i in this.modelSetting.getMotion(name)) {
+    for (const i in this.modelSetting.getMotion(name)) {
 
       const file = this.modelSetting.getMotionFile(name, i);
       this.loadMotion(name, file, this.modelHomeDir).then((motion) => {
@@ -233,9 +225,9 @@ class Model extends BaseModel {
    */
   update () {
 
-    if(this.live2DModel === null) {
+    if (this.live2DModel === null) {
 
-      if(this.storage.config.devLog) {
+      if (this.storage.config.devLog) {
 
         console.log('live2d-widget: Failed to update.');
 
@@ -245,16 +237,16 @@ class Model extends BaseModel {
     const timeMSec = UtSystem.getUserTimeMSec() - this.startTimeMSec;
     const timeSec = timeMSec / 1000.0;
     const t = timeSec * 2 * Math.PI;
-    if(this.mainMotionManager.isFinished()) {
+    if (this.mainMotionManager.isFinished()) {
 
       this.startRandomMotion('idle', this.storage.reactPriority.idle);
 
     }
     this.live2DModel.loadParam();
     const update = this.mainMotionManager.updateParam(this.live2DModel);
-    if(!update) {
+    if (!update) {
 
-      if(this.eyeBlink != null) {
+      if (this.eyeBlink != null) {
 
         this, eyeBlink.updateParam(this.live2DModel);
 
@@ -262,7 +254,7 @@ class Model extends BaseModel {
 
     }
     this.live2DModel.saveParam();
-    if(this.expressionManager != null && this.expressions != null && !this.expressionManager.isFinished()) {
+    if (this.expressionManager != null && this.expressions != null && !this.expressionManager.isFinished()) {
 
       this.expressionManager.updateParam(this.live2DModel);
 
@@ -272,63 +264,73 @@ class Model extends BaseModel {
         'a': 'PARAM_ANGLE_X',
         'b': this.dragX * 30,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_ANGLE_Y',
         'b': this.dragY * 30,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_ANGLE_Z',
         'b': this.dragX * this.dragY * -30,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_BODY_ANGLE_X',
         'b': this.dragX * 10,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_EYE_BALL_X',
         'b': this.dragX,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_EYE_BALL_Y',
         'b': this.dragY,
         'c': 1,
-      }, {
+      },
+      {
         'a': 'PARAM_ANGLE_X',
         'b': Number(15 * Math.sin(t / 6.5345)),
         'c': 0.5,
-      }, {
+      },
+      {
         'a': 'PARAM_ANGLE_Y',
         'b': Number(8 * Math.sin(t / 3.5345)),
         'c': 0.5,
-      }, {
+      },
+      {
         'a': 'PARAM_ANGLE_Z',
         'b': Number(10 * Math.sin(t / 5.5345)),
         'c': 0.5,
-      }, {
+      },
+      {
         'a': 'PARAM_BODY_ANGLE_X',
         'b': Number(4 * Math.sin(t / 15.5345)),
         'c': 0.5,
-      }, {
+      },
+      {
         'a': 'PARAM_BREATH',
         'b': Number(0.5 + 0.5 * Math.sin(t / 3.2345)),
         'c': '1',
       }, ];
-    for(const i in paramFloatToAdd) {
+    for (const i in paramFloatToAdd) {
 
       this.live2DModel.addToParamFloat(paramFloatToAdd[i].a, paramFloatToAdd[i].b, paramFloatToAdd[i].c);
 
     }
-    if(this.physics != null) {
+    if (this.physics != null) {
 
       this.physics.updateParam(this.live2DModel);
 
     }
-    if(this.lipSync != null) {
+    if (this.lipSync != null) {
 
       this.live2DModel.setParamFloat('PARAM_MOUTH_OPEN_Y', this.lipSyncValue);
 
     }
-    if(this.pose != null) {
+    if (this.pose != null) {
 
       this.pose.updateParam(this.live2DModel);
 
@@ -345,7 +347,7 @@ class Model extends BaseModel {
   setRandomExpression () {
 
     const tmp = [];
-    for(const name in this.expressions) {
+    for (const name in this.expressions) {
 
       tmp.push(name);
 
@@ -380,15 +382,15 @@ class Model extends BaseModel {
    */
   startMotion (name, no, priority) {
 
-    if(this.storage.config.devLog) {
+    if (this.storage.config.devLog) {
 
       console.log(`live2d-widget: Model.startMotion(${name}, ${no}, ${priority});`);
 
     }
     const motionName = this.modelSetting.getMotion(name)[no];
-    if(motionName == null || motionName === '') {
+    if (motionName == null || motionName === '') {
 
-      if(this.storage.config.devLog) {
+      if (this.storage.config.devLog) {
 
         console.log('live2d-widget: Failed to motion.');
 
@@ -396,13 +398,13 @@ class Model extends BaseModel {
       return;
 
     }
-    if(priority === this.storage.reactPriority.force) {
+    if (priority === this.storage.reactPriority.force) {
 
       this.mainMotionManager.setReservePriority(priority);
 
-    }else if(!this.mainMotionManager.reserveMotion(priority)) {
+    } else if (!this.mainMotionManager.reserveMotion(priority)) {
 
-      if(this.storage.config.devLog) {
+      if (this.storage.config.devLog) {
 
         console.log('live2d-widget: Motion is running.');
 
@@ -411,7 +413,7 @@ class Model extends BaseModel {
 
     }
     let motion;
-    if(this.motions[name] == null) {
+    if (this.motions[name] == null) {
 
       this.loadMotion(null, motionName, this.modelHomeDir).then((mtn) => {
 
@@ -420,7 +422,7 @@ class Model extends BaseModel {
 
       });
 
-    }else{
+    } else {
 
       motion = this.motions[name];
       this.setFadeInFadeOut(name, no, priority, motion);
@@ -443,29 +445,30 @@ class Model extends BaseModel {
     const motionName = this.modelSetting.getMotion(name)[no];
     motion.setFadeIn(this.modelSetting.getMotionFadeIn(name, no))
       .setFadeOut(this.modelSetting.getMotionFadeOut(name, no));
-    if(this.storage.config.devLog) {
+    if (this.storage.config.devLog) {
 
       console.log(`live2d-widget: Start motion ${motionName}`);
 
     }
-    if(this.modelSetting.getMotionSound(name, no) == null) {
+    if (this.modelSetting.getMotionSound(name, no) == null) {
 
       this.mainMotionManager.startMotionPrio(motion, priority);
 
-    }else{
+    } else {
 
       const soundName = this.modelSetting.getMotionSound(name, no);
-      if(this.storage.config.devLog) {
+      if (this.storage.config.devLog) {
 
         console.log(`live2d-widget: Play sound ${soundName} with motion ${motionName}.`);
 
       }
-      this.storage.getPFM().loadSound(soundName, this.modelHomeDir).then((elem) => {
+      this.storage.getPFM().loadSound(soundName, this.modelHomeDir)
+        .then((elem) => {
 
-        this.mainMotionManager.startMotionPrio(motion, priority);
-        elem.play();
+          this.mainMotionManager.startMotionPrio(motion, priority);
+          elem.play();
 
-      });
+        });
 
     }
     return this;
@@ -480,7 +483,7 @@ class Model extends BaseModel {
   setExpression (name) {
 
     const motion = this.expressions[name];
-    if(this.storage.config.devLog) {
+    if (this.storage.config.devLog) {
 
       console.log(`live2d-widget: Model.setExpression(${name});`);
 
@@ -497,7 +500,7 @@ class Model extends BaseModel {
    */
   draw (matrixStack) {
 
-    if(this.live2DModel == null) {
+    if (this.live2DModel == null) {
 
       return;
 
@@ -521,9 +524,9 @@ class Model extends BaseModel {
    */
   hitTest (id, testX, testY) {
 
-    for(const i in this.modelSetting.getHitArea) {
+    for (const i in this.modelSetting.getHitArea) {
 
-      if(id === this.modelSetting.getHitAreaName(i)) {
+      if (id === this.modelSetting.getHitAreaName(i)) {
 
         const drawID = this.model.getHitAreaID(i);
         return this._hitTest(drawID, testX, testY);
@@ -543,6 +546,4 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {
-  Model,
-};
+export {Model, };
