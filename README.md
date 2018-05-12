@@ -32,6 +32,8 @@ Online generator: [WIP.](javascript:void(0);)
 
 `npm install --save live2d-widget@4.x`
 
+> `yarn add live2d-widget` use `yarn` to have a better installation experience.
+
 ### Hexo
 
 Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
@@ -140,8 +142,6 @@ issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/
 - [@fghrsh](https://github.com/fghrsh)
 - [@journey-ad](https://github.com/journey-ad)
 - [@gwzz](https://github.com/gwzz)
-
-<br>
 
 Open sourced under the GPL v2.0 license.
 
