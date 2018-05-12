@@ -122,4 +122,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {Physics, };
+export {
+  Physics, };

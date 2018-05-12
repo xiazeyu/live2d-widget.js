@@ -1,12 +1,17 @@
 /* global process, UtSystem */
 
-import {BaseModel, } from './lib/BaseModel';
+import {
+  BaseModel,
+} from './lib/BaseModel';
 
-import {EyeBlink, } from './lib/EyeBlink';
+import {
+  EyeBlink, } from './lib/EyeBlink';
 
-import {ModelSettingJson, } from './utils/ModelSettingJson';
+import {
+  ModelSettingJson, } from './utils/ModelSettingJson';
 
-import {getPathFromUrl, } from './utils/pathHandler';
+import {
+  getPathFromUrl, } from './utils/pathHandler';
 
 class Model extends BaseModel {
 
@@ -21,7 +26,8 @@ class Model extends BaseModel {
     this.modelSetting = null;
     this.tmpMatrix = matrixStack.getMatrix();
     this.modelHomeDir = null;
-    this.textures = [];
+    this.textures = [
+    ];
 
   }
 
@@ -52,7 +58,8 @@ class Model extends BaseModel {
               this.textures.push(texture);
               if (this.isTexLoaded) {
 
-                this.expressions = {};
+                this.expressions = {
+                };
                 if (this.modelSetting.getExpression() !== null) {
 
                   for (const j in this.modelSetting.getExpression()) {
@@ -346,7 +353,8 @@ class Model extends BaseModel {
    */
   setRandomExpression () {
 
-    const tmp = [];
+    const tmp = [
+    ];
     for (const name in this.expressions) {
 
       tmp.push(name);
@@ -546,4 +554,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {Model, };
+export {
+  Model, };

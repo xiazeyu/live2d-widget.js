@@ -117,7 +117,8 @@ function initElement (elem, config) {
   const webGL = initWebGL(canvas);
   if (element.createShadowRoot) {
 
-    const shadowRoot = element.attachShadow({'mode': 'open', });
+    const shadowRoot = element.attachShadow({
+      'mode': 'open', });
     shadowRoot.innerHTML = htmlTemplate;
     shadowRoot.appendChild(canvas);
 

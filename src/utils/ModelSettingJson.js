@@ -15,7 +15,8 @@ class ModelSettingJson {
   constructor (storage) {
 
     this.storage = storage;
-    this.json = {};
+    this.json = {
+    };
     return this;
 
   }
@@ -78,7 +79,9 @@ class ModelSettingJson {
 
     if (this.json[this.storage.ModelSettingJson.hitAreas] == null) { // eslint-disable-line eqeqeq
 
-      this.json = Object.assign(this.json, {[this.storage.ModelSettingJson.hitAreas]: [], });
+      this.json = Object.assign(this.json, {
+        [this.storage.ModelSettingJson.hitAreas]: [
+        ], });
 
     }
     const currHitArea = this.json[this.storage.ModelSettingJson.hitAreas];
@@ -440,4 +443,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {ModelSettingJson, };
+export {
+  ModelSettingJson, };

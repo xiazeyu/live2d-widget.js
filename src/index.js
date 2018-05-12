@@ -1,7 +1,8 @@
 /* global process, device */
 
+import './lib/wpPublicPath.nodoc.js';
 import './lib/setEnv.nodoc';
-import './lib/wpPublicPath.nodoc';
+
 import {
   configDefaulter,
   configValidater,

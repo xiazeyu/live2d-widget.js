@@ -28,7 +28,8 @@ import defaultConfig from './defaultConfig';
  */
 function configDefaulter (userConfig) {
 
-  return Object.assign({}, userConfig, defaultConfig);
+  return Object.assign({
+  }, userConfig, defaultConfig);
 
 }
 

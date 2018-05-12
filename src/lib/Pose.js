@@ -1,6 +1,7 @@
 /* global process */
 
-import {PartsParam, } from './PartsParam';
+import {
+  PartsParam, } from './PartsParam';
 
 class Pose {
 
@@ -284,4 +285,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {Pose, };
+export {
+  Pose, };

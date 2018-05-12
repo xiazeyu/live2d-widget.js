@@ -1,12 +1,17 @@
 /* global Live2D, process */
 
-import {MotionManager, } from './MotionManager';
+import {
+  MotionManager,
+} from './MotionManager';
 
-import {ModelMatrix, } from '../utils/Matrix';
+import {
+  ModelMatrix, } from '../utils/Matrix';
 
-import {ExpressionMotion, } from './ExpressionMotion';
+import {
+  ExpressionMotion, } from './ExpressionMotion';
 
-import {Pose, } from './Pose';
+import {
+  Pose, } from './Pose';
 
 class BaseModel {
 
@@ -37,8 +42,10 @@ class BaseModel {
     this.startTimeMSec = null;
     this.mainMotionManager = new MotionManager();
     this.expressionManager = new MotionManager();
-    this.motions = {};
-    this.expressions = {};
+    this.motions = {
+    };
+    this.expressions = {
+    };
     this.isTexLoaded = false;
     this.texCounter = 0;
     return this;
@@ -473,4 +480,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {BaseModel, };
+export {
+  BaseModel, };

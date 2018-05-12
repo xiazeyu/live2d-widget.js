@@ -105,4 +105,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {Storage, };
+export {
+  Storage, };

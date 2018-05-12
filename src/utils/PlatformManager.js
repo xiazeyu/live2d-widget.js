@@ -1,7 +1,8 @@
 /* global process, Live2DModelWebGL */
 /* eslint-disable no-magic-numbers */
 
-import {resolvePath, } from './utils/pathHandler';
+import {
+  resolvePath, } from './utils/pathHandler';
 
 class PlatformManager {
 
@@ -203,4 +204,5 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-export {PlatformManager, };
+export {
+  PlatformManager, };
