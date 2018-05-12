@@ -15,6 +15,5 @@ install:
 - npm install
 script:
 - npm run build:prod
-- npm run build:stats
 - npm run lint
 - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/deploy_docs; fi'

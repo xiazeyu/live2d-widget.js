@@ -25,19 +25,6 @@ fs.copyFile(path.resolve(projPath, 'src/config/defaultConfig.json'), path.resolv
 
 });
 
-// Copy stats.html
-fs.copyFile(path.resolve(projPath, 'lib/stats.html'), path.resolve(projPath, 'ghpages/stats.html'), (err) => {
-
-  if (err) {
-
-    console.error('Failed copying stats.html');
-    throw err;
-
-  }
-  console.error('succeeded copying stats.html');
-
-});
-
 // Add Title for CHANGELOG.md
 fs.readFile(path.resolve(projPath, './CHANGELOG.md'), (readErr, data) => {
 

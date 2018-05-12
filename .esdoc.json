@@ -6,7 +6,7 @@
     {
       "name": "esdoc-standard-plugin",
       "option": {
-        "lint": {"enable": false},
+        "lint": {"enable": true},
         "coverage": {"enable": true},
         "undocumentIdentifier": {"enable": true},
         "unexportedIdentifier": {"enable": false},

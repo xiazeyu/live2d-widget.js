@@ -7,5 +7,5 @@
   ],
   "plugins": [
     "syntax-dynamic-import"
-  ],
+  ]
 }
