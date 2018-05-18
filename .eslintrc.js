@@ -6,18 +6,19 @@ module.exports = {
     'commonjs': true,
     'es6': true,
   },
-  // 'extends': 'eslint:all',
-  'extends': 'eslint:recommended',
+  'extends': 'eslint:all',
+  // 'extends': 'eslint:recommended',
   'parserOptions': {
     'sourceType': 'module',
   },
   'rules': {
     'array-bracket-newline': [
       'warn',
-      'always',
+      'never',
     ],
     'array-bracket-spacing': [
       'error',
+      'never',
     ],
     'array-callback-return': [
       'error',
@@ -120,7 +121,6 @@ module.exports = {
     ],
     'max-len': [
       'off',
-
     ],
     'multiline-ternary': [
       'warn',
@@ -197,12 +197,11 @@ module.exports = {
     ],
     'object-curly-spacing': [
       'warn',
-
+      'never',
     ],
     'one-var': [
       'error',
       'never',
-
     ],
     'padded-blocks': [
       'warn',
@@ -265,6 +264,121 @@ module.exports = {
     'valid-jsdoc': [
       'warn',
 
+    ],
+    'no-sync': [
+      'warn',
+    ],
+    'no-unused-vars': [
+      'error',
+    ],
+    'no-prototype-builtins': [
+      'error',
+    ],
+    'guard-for-in': [
+      'error',
+    ],
+    'no-process-env': [
+      'warn',
+    ],
+    'max-lines': [
+      'off',
+    ],
+    'sort-imports': [
+      'warn',
+    ],
+    'max-statements': [
+      'off',
+    ],
+    'no-param-reassign': [
+      'error',
+    ],
+    'no-plusplus': [
+      'off',
+    ],
+    'no-const-assign': [
+      'error',
+    ],
+    'no-new-object': [
+      'warn',
+    ],
+    'no-array-constructor': [
+      'warn',
+    ],
+    'no-undef': [
+      'error',
+    ],
+    'no-eq-null': [
+      'error',
+    ],
+    'eqeqeq': [
+      'warn',
+    ],
+    'radix': [
+      'error',
+    ],
+    'prefer-destructuring': [
+      'off',
+    ],
+    'no-negated-condition': [
+      'warn',
+    ],
+    'max-params': [
+      'off',
+    ],
+    'no-mixed-operators': [
+      'off',
+    ],
+    'init-declarations': [
+      'warn',
+    ],
+    'line-comment-position': [
+      'off',
+    ],
+    'no-inline-comments': [
+      'off',
+    ],
+    'no-continue': [
+      'warn',
+    ],
+    'consistent-return': [
+      'error',
+    ],
+    'no-shadow': [
+      'error',
+    ],
+    'no-unused-expressions': [
+      'error',
+    ],
+    'no-sequences': [
+      'error',
+    ],
+    'no-underscore-dangle': [
+      'off',
+    ],
+    'max-statements-per-line': [
+      'off',
+    ],
+    'class-methods-use-this': [
+      'warn',
+    ],
+    'lines-around-comment': [
+      'error',
+      {
+        'beforeBlockComment': true,
+        'afterBlockComment': false,
+        'beforeLineComment': false,
+        'afterLineComment': false,
+        'allowBlockStart': false,
+        'allowBlockEnd': false,
+        'allowObjectStart': false,
+        'allowObjectEnd': false,
+        'allowArrayStart': false,
+        'allowArrayEnd': false,
+      },
+    ],
+    'space-before-function-paren': [
+      'warn',
+      'always',
     ],
   },
 };

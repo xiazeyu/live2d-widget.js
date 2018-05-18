@@ -71,7 +71,7 @@ class Pose {
 
     if (model == null) {
 
-      return;
+      return this;
 
     }
     if (!(model === this.model)) {

@@ -80,33 +80,30 @@ class ModelSettingJson {
     if (this.json[this.storage.ModelSettingJson.hitAreas] == null) { // eslint-disable-line eqeqeq
 
       this.json = Object.assign(this.json, {
-        [this.storage.ModelSettingJson.hitAreas]: [
-        ], });
+        [this.storage.ModelSettingJson.hitAreas]: [], });
 
     }
     const currHitArea = this.json[this.storage.ModelSettingJson.hitAreas];
-    const defaultHitArea = [
-      {
-        'id': 'D_REF.HEAD',
-        'name': 'head',
-      },
-      {
-        'id': 'D_REF.BODY',
-        'name': 'body',
-      },
-      {
-        'id': 'D_REF.EAR_L',
-        'name': 'ear_l',
-      },
-      {
-        'id': 'D_REF.EAR_R',
-        'name': 'ear_r',
-      },
-      {
-        'id': 'D_REF.BUST',
-        'name': 'bust',
-      },
-    ];
+    const defaultHitArea = [{
+      'id': 'D_REF.HEAD',
+      'name': 'head',
+    },
+    {
+      'id': 'D_REF.BODY',
+      'name': 'body',
+    },
+    {
+      'id': 'D_REF.EAR_L',
+      'name': 'ear_l',
+    },
+    {
+      'id': 'D_REF.EAR_R',
+      'name': 'ear_r',
+    },
+    {
+      'id': 'D_REF.BUST',
+      'name': 'bust',
+    }, ];
 
     for (const i in defaultHitArea) {
 

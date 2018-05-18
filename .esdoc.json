@@ -15,7 +15,7 @@
           "title": "live2d-widget.js",
           "description": "Add the Sseexxyyy live2d to webpages.",
           "repository": "https://github.com/xiazeyu/live2d-widget.js",
-          "site": "https://github.com/xiazeyu/live2d-widget.js"
+          "site": "https://l2dwidget.js.org/"
         },
         "manual": {
         "index": "./README.md",

@@ -309,11 +309,10 @@ class BaseModel {
 
     return new Promise((resolve) => {
 
-      const motion = null;
       this.storage.getPFM().loadBytes(path, homeDir)
         .then((buffer) => {
 
-          motion = Live2DMotion.loadMotion(buffer);
+          const motion = Live2DMotion.loadMotion(buffer);
           if (name != null) {
 
             this.motions[name] = motion;

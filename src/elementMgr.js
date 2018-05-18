@@ -9,14 +9,12 @@ import htmlTemplate from './tmplate/innerHTML';
  */
 function initWebGL (canvas) {
 
-  const contextTypes = [
-    'webgl2',
+  const contextTypes = ['webgl2',
     'webgl',
     'experimental-webgl2',
     'experimental-webgl',
     'webkit-3d',
-    'moz-webgl',
-  ];
+    'moz-webgl', ];
   for (const i in contextTypes) {
 
     try {

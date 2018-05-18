@@ -35,47 +35,41 @@ const UglifyJS = new UglifyJsPlugin({
 
 const baseConfig = {
   'devtool': 'source-map',
+
   /*
    * TOCONCAT entry
    * TOCONCAT mode
    */
   'module': {
-    'rules': [
-      {
-        'include': path.resolve(__dirname, 'src'),
-        'test': /\.js$/,
-        'use': [
-          {
-            'loader': 'babel-loader',
-          },
-        ],
-      },
-      {
-        'test': /\.html$/,
-        'use': [
-          {
-            'loader': 'html-loader',
-            'options': {
-              'minimize': true,
-            },
-          },
-        ],
-      },
-    ],
+    'rules': [{
+      'include': path.resolve(__dirname, 'src'),
+      'test': /\.js$/,
+      'use': [{
+        'loader': 'babel-loader',
+      }, ],
+    },
+    {
+      'test': /\.html$/,
+      'use': [{
+        'loader': 'html-loader',
+        'options': {
+          'minimize': true,
+        },
+      }, ],
+    }, ],
   },
+
   /*
    * TOCONCAT optimization
    * TOCONCAT output
    * TOCONCAT plugins
    */
   'resolve': {
-    'extensions': [
-      '.js',
+    'extensions': ['.js',
       '.html',
       '.json',
       '.webpack.js',
-      '.web.js',
-    ],
+      '.web.js', ],
   },
   'target': 'web',
   'watch': false,
@@ -89,16 +83,12 @@ function getDefault () {
 
   console.log('Build: default.');
 
-  const entry = [
-    './src/lib/polyfill.nodoc',
+  const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
-    './src/index',
-  ];
+    './src/index', ];
   const mode = 'production';
   const optimization = {
-    'minimizer': [
-      UglifyJS,
-    ],
+    'minimizer': [UglifyJS, ],
   };
   const output = {
     'chunkFilename': 'L2Dwidget.[id].min.js',
@@ -108,8 +98,7 @@ function getDefault () {
     'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'dist'),
   };
-  const plugins = [
-    UglifyJS,
+  const plugins = [UglifyJS,
 
     // Banner must sort after UglifyJS, or it won't work.
     new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},default ${nowDate.toLocaleTimeString()}`),
@@ -128,8 +117,7 @@ function getDefault () {
      */
     new Visualizer({
       'filename': 'stats_default.html',
-    }),
-  ];
+    }), ];
 
   const restConfig = {
     entry,
@@ -152,17 +140,13 @@ function getSingle () {
 
   console.log('Build: single.');
 
-  const entry = [
-    './src/lib/polyfill.nodoc',
+  const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
     './src/main',
-    './src/index',
-  ];
+    './src/index', ];
   const mode = 'production';
   const optimization = {
-    'minimizer': [
-      UglifyJS,
-    ],
+    'minimizer': [UglifyJS, ],
   };
   const output = {
     'filename': 'L2Dwidget.single.min.js',
@@ -171,8 +155,7 @@ function getSingle () {
     'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'dist'),
   };
-  const plugins = [
-    UglifyJS,
+  const plugins = [UglifyJS,
 
     // Banner must sort after UglifyJS, or it won't work.
     new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},single ${nowDate.toLocaleTimeString()}`),
@@ -191,8 +174,7 @@ function getSingle () {
      */
     new Visualizer({
       'filename': 'stats_single.html',
-    }),
-  ];
+    }), ];
 
   const restConfig = {
     entry,
@@ -215,16 +197,12 @@ function getNoPolyFill () {
 
   console.log('Build: nopolyfill.');
 
-  const entry = [
-    './src/lib/setEnv.nodoc',
+  const entry = ['./src/lib/setEnv.nodoc',
     './src/main',
-    './src/index',
-  ];
+    './src/index', ];
   const mode = 'production';
   const optimization = {
-    'minimizer': [
-      UglifyJS,
-    ],
+    'minimizer': [UglifyJS, ],
   };
   const output = {
     'filename': 'L2Dwidget.nopolyfill.min.js',
@@ -233,8 +211,7 @@ function getNoPolyFill () {
     'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'dist'),
   };
-  const plugins = [
-    UglifyJS,
+  const plugins = [UglifyJS,
 
     // Banner must sort after UglifyJS, or it won't work.
     new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},nopolyfill ${nowDate.toLocaleTimeString()}`),
@@ -253,8 +230,7 @@ function getNoPolyFill () {
      */
     new Visualizer({
       'filename': 'stats_nopolyfill.html',
-    }),
-  ];
+    }), ];
 
   const restConfig = {
     entry,
@@ -277,11 +253,9 @@ function getUmd () {
 
   console.log('Build: umd.');
 
-  const entry = [
-    './src/lib/setEnv.nodoc',
+  const entry = ['./src/lib/setEnv.nodoc',
     './src/main',
-    './src/index',
-  ];
+    './src/index', ];
   const mode = 'production';
   const output = {
     'filename': 'L2Dwidget.js',
@@ -290,9 +264,7 @@ function getUmd () {
     'libraryTarget': 'umd',
     'path': path.resolve(__dirname, 'dist', 'umd'),
   };
-  const plugins = [
-
-    new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
+  const plugins = [new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
 
     /**
      * Webpack Manifest Plugin
@@ -308,8 +280,7 @@ function getUmd () {
      */
     new Visualizer({
       'filename': 'stats_umd.html',
-    }),
-  ];
+    }), ];
 
   const restConfig = {
     entry,
@@ -331,12 +302,10 @@ function getDev () {
 
   console.log('Build: dev.');
 
-  const entry = [
-    './src/lib/polyfill.nodoc',
+  const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
     './src/main',
-    './src/index',
-  ];
+    './src/index', ];
   const mode = 'development';
   const output = {
     'filename': 'L2Dwidget.js',
@@ -345,9 +314,7 @@ function getDev () {
     'libraryTarget': 'var',
     'path': path.resolve(__dirname, 'dist', 'dev'),
   };
-  const plugins = [
-
-    new webpack.BannerPlugin(`___DEV___https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
+  const plugins = [new webpack.BannerPlugin(`___DEV___https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
 
     /**
      * Webpack Manifest Plugin
@@ -363,8 +330,7 @@ function getDev () {
      */
     new Visualizer({
       'filename': 'stats_dev.html',
-    }),
-  ];
+    }), ];
 
   const restConfig = {
     entry,
@@ -385,13 +351,11 @@ module.exports = (env) => {
 
   case 'development': return getDev();
   case 'production':
-  default: return [
-    getDefault(),
+  default: return [getDefault(),
     getSingle(),
     getNoPolyFill(),
     getUmd(),
-    getDev(),
-  ];
+    getDev(), ];
 
   }
 

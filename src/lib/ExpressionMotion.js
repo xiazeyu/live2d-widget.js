@@ -36,8 +36,7 @@ class ExpressionMotion extends AMotion {
 
     }
     const params = json.params;
-    thisRef.paramList = [
-    ];
+    thisRef.paramList = [];
     for (const i in params) {
 
       const param = params[i];

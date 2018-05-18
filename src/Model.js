@@ -8,7 +8,8 @@ import {
   EyeBlink, } from './lib/EyeBlink';
 
 import {
-  ModelSettingJson, } from './utils/ModelSettingJson';
+  ModelSettingJson,
+} from './utils/ModelSettingJson';
 
 import {
   getPathFromUrl, } from './utils/pathHandler';
@@ -26,8 +27,7 @@ class Model extends BaseModel {
     this.modelSetting = null;
     this.tmpMatrix = matrixStack.getMatrix();
     this.modelHomeDir = null;
-    this.textures = [
-    ];
+    this.textures = [];
 
   }
 
@@ -255,7 +255,7 @@ class Model extends BaseModel {
 
       if (this.eyeBlink != null) {
 
-        this, eyeBlink.updateParam(this.live2DModel);
+        this.eyeBlink.updateParam(this.live2DModel);
 
       }
 
@@ -266,62 +266,61 @@ class Model extends BaseModel {
       this.expressionManager.updateParam(this.live2DModel);
 
     }
-    const paramFloatToAdd = [
-      {
-        'a': 'PARAM_ANGLE_X',
-        'b': this.dragX * 30,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_ANGLE_Y',
-        'b': this.dragY * 30,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_ANGLE_Z',
-        'b': this.dragX * this.dragY * -30,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_BODY_ANGLE_X',
-        'b': this.dragX * 10,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_EYE_BALL_X',
-        'b': this.dragX,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_EYE_BALL_Y',
-        'b': this.dragY,
-        'c': 1,
-      },
-      {
-        'a': 'PARAM_ANGLE_X',
-        'b': Number(15 * Math.sin(t / 6.5345)),
-        'c': 0.5,
-      },
-      {
-        'a': 'PARAM_ANGLE_Y',
-        'b': Number(8 * Math.sin(t / 3.5345)),
-        'c': 0.5,
-      },
-      {
-        'a': 'PARAM_ANGLE_Z',
-        'b': Number(10 * Math.sin(t / 5.5345)),
-        'c': 0.5,
-      },
-      {
-        'a': 'PARAM_BODY_ANGLE_X',
-        'b': Number(4 * Math.sin(t / 15.5345)),
-        'c': 0.5,
-      },
-      {
-        'a': 'PARAM_BREATH',
-        'b': Number(0.5 + 0.5 * Math.sin(t / 3.2345)),
-        'c': '1',
-      }, ];
+    const paramFloatToAdd = [{
+      'a': 'PARAM_ANGLE_X',
+      'b': this.dragX * 30,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_ANGLE_Y',
+      'b': this.dragY * 30,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_ANGLE_Z',
+      'b': this.dragX * this.dragY * -30,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_BODY_ANGLE_X',
+      'b': this.dragX * 10,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_EYE_BALL_X',
+      'b': this.dragX,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_EYE_BALL_Y',
+      'b': this.dragY,
+      'c': 1,
+    },
+    {
+      'a': 'PARAM_ANGLE_X',
+      'b': Number(15 * Math.sin(t / 6.5345)),
+      'c': 0.5,
+    },
+    {
+      'a': 'PARAM_ANGLE_Y',
+      'b': Number(8 * Math.sin(t / 3.5345)),
+      'c': 0.5,
+    },
+    {
+      'a': 'PARAM_ANGLE_Z',
+      'b': Number(10 * Math.sin(t / 5.5345)),
+      'c': 0.5,
+    },
+    {
+      'a': 'PARAM_BODY_ANGLE_X',
+      'b': Number(4 * Math.sin(t / 15.5345)),
+      'c': 0.5,
+    },
+    {
+      'a': 'PARAM_BREATH',
+      'b': Number(0.5 + 0.5 * Math.sin(t / 3.2345)),
+      'c': '1',
+    }, ];
     for (const i in paramFloatToAdd) {
 
       this.live2DModel.addToParamFloat(paramFloatToAdd[i].a, paramFloatToAdd[i].b, paramFloatToAdd[i].c);
@@ -353,8 +352,7 @@ class Model extends BaseModel {
    */
   setRandomExpression () {
 
-    const tmp = [
-    ];
+    const tmp = [];
     for (const name in this.expressions) {
 
       tmp.push(name);
