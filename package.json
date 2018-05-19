@@ -12,7 +12,7 @@
     "_changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
     "build:dev": "./node_modules/.bin/webpack --colors --display-error-details --env \"development\" --progress --watch",
     "build:prod": "./node_modules/.bin/webpack --colors --display-error-details --env \"production\" --progress",
-    "build:esdoc": "npm run build:prod && npm run _esdoc && npm run _afterCIbuild ",
+    "build:esdoc": "npm run build:prod && npm run _esdoc && npm run _afterCIbuild",
     "deploy:ghpages": "git pull && git checkout master && cd ghpages/ && git status && git add --all && git commit -m \"Update docs\" && git push origin HEAD:master --force && cd ..",
     "inst:dev": "npm install -g commitizen && npm install -g conventional-changelog-cli && npm install",
     "build": "git pull && npm run build:prod && npm run _changelog && npm run _afterBuild && git add --all && npm run update:submodule && git add ghpages",

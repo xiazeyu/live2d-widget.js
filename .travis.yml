@@ -16,4 +16,4 @@ install:
 script:
 - npm run build:prod
 - npm run lint
-- 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/deploy_docs; fi'
+- 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./build/deployDocs; fi'
