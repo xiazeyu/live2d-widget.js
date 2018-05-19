@@ -2,6 +2,7 @@ import defaultConfig from './defaultConfig';
 
 /**
  * @typedef {Object} Config
+ * See default config on https://cdn.jsdelivr.net/npm/live2d-widget/dist/defaultConfig.json
  * @property {String}   modelJsonPath        Path to model.json eg. `https://test.com/miku.model.json`  模型model.json文件路径
  * @property {Number}   modelHeadPosH        Horizontal position of model's head  模型头部横坐标
  * @property {Number}   modelHeadPosV        Vertical position of model's head  模型头部纵坐标

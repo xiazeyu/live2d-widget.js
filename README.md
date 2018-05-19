@@ -1,6 +1,7 @@
 # live2d-widget.js
 
 [![npm package][npm-package]][npm-package-url]
+
 [![jsDelivr][jsDelivr]][jsdelivr-url]
 [![dependencies][dependencies]][dependencies-url]
 [![devDependencies][devDependencies]][devDependencies-url]
@@ -20,89 +21,124 @@
 
 Add the Sseexxyyy live2d to your webpages! Seperated from [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d).
 
-Demo: [Still working, but you can have a look~](https://l2dwidget.js.org/dev.html)
+Demo: [Playground](https://l2dwidget.js.org/playground.html)
 
-Docs(including APIs): [Click me!](l2dwidget.js.org)
+Docs: [Click me!](https://l2dwidget.js.org/docs/index.html)
 
-Online generator: [WIP.](javascript:void(0);)
+## Installation
 
-## Useage
+> Please have a look at both README and [CHANGELOG](CHANGELOG.md) if you are upgraded from older version.
 
-### Npm
+### Yarn
 
-`npm install --save live2d-widget@4.x`
+`yarn add live2d-widget@4`
 
-> `yarn add live2d-widget` use `yarn` to have a better installation experience.
+> Sometimes yarn does better job than npm.
+
+### NPM
+
+`npm i --save live2d-widget@4`
 
 ### Hexo
 
-Please visit [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
-for the hexo plugin.
+See [hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d) for the hexo plugin.
 
 ### Webpages
 
-#### Store script on your server
+JS code online generator: [Click me!](https://l2dwidget.js.org/generator.html)
+
+#### Store script on your own web server
 
 Download the [latest release](https://github.com/xiazeyu/live2d-widget.js/releases),
 
-then extract and copy the `lib` folder to your website.
+then extract and copy the `dist` folder to your website.
 
-Insert codes into your HTML files using [online generator](javascript:void(0);) **(recommended)**.
+Insert codes into your HTML files using [online generator](https://l2dwidget.js.org/generator.html), or make your own code
 
-<details><summary>Manually, follow the instruction below:</summary><br>
+<details><summary>Making code manually:</summary><br>
 
-import the js:
+import the js(replcae your own js path here in the `src`):
 
-```html
-<script src ="//cdn.jsdelivr.net/npm/live2d-widget@4.x/dist/L2Dwidget.min.js"></script>
-```
-
-or
+eg.
 
 ```html
-<script src ="//unpkg.com/live2d-widget@4.x/dist/L2Dwidget.min.js"></script>
+
+<script src="//js/live2d-widget/L2Dwidget.min.js"></script>
+
 ```
 
-Then call the function along with your config.
+Then init it.
+
+eg.
 
 ```js
-var currL2Dwidget = new L2Dwidget({
-  'config1': 'value1',
-  'config2': 'value2'
+
+var currL2Dwidget = new L2Dwidget().init({});
+
+```
+
+Or with your own config
+
+eg.
+
+```js
+
+var currL2Dwidget = new L2Dwidget().init({
+  'modelJsonPath': "https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku/assets/shizuku.model.json",
+  'displayWidth': 150,
+  'mobileShow': true
 });
+
 ```
 
 </details>
 
 #### Using CDN
 
-We have
+We have 3 CDNs,
 
 - Jsdelivr(Recommended)
-  `https://cdn.jsdelivr.net/npm/live2d-widget@4.x/dist/L2Dwidget.min.js`
+  `https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/L2Dwidget.min.js`
 
 - Unkpg
-  `https://unpkg.com/live2d-widget@4.x/dist/L2Dwidget.min.js`
+  `https://unpkg.com/live2d-widget@4/dist/L2Dwidget.min.js`
+
+- BundleRun
+  `https://bundle.run/live2d-widget@4/dist/L2Dwidget.min.js`
+
+Select your favourite CDN, and put code like this into your webpage.
+
+eg.
+
+```html
+
+<script src ="//cdn.jsdelivr.net/npm/live2d-widget@4/dist/L2Dwidget.min.js"></script>
+
+```
 
 ### Bookmark (any pages)
 
-`data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget/dist/L2Dwidget.min.js></script><script>L2Dwidget.init()</script>`
+```url
 
-```js
-javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget/dist/L2Dwidget.min.js",function(){L2Dwidget.init();});
+data:text/html,<script src=https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/L2Dwidget.min.js></script><script>const currL2Dwidget = new L2Dwidget().init({});</script>
+
 ```
 
-WIP.
+```js
 
-<https://www.cnblogs.com/pcyy/p/5655542.html/>.
+javascript:function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};loadScript("https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/L2Dwidget.min.js",function(){const currL2Dwidget = new L2Dwidget().init({});});
+
+```
 
 ## Settings
 
-See the [document](https://xiazeyu.github.io/live2d-widget.js/docs/class/src/index.js~L2Dwidget.html#instance-method-init).
+See the [document](https://l2dwidget.js.org/docs/typedef/index.html#static-typedef-Config).
+
+Default settings are at[defaultConfig.json](https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/defaultConfig.json).
 
 Enjoy!:beer:
 
-> This is my first npm plugin, star :star: and watch :eyeglasses:, pull request is also welcomed.
+> This is my first plugin, star :star: and watch :eyeglasses:, pull request is also welcomed.
 
 Github: [https://github.com/xiazeyu/live2d-widget.js](https://github.com/xiazeyu/live2d-widget.js)
 
@@ -132,7 +168,7 @@ issues: [https://github.com/xiazeyu/live2d-widget.js/issues](https://github.com/
 [![collaborator0 QQ][collaborator0-qq]][collaborator0-qq-url]
 [![collaborator0 email][collaborator0-email]][collaborator0-email-url]
 
-## Imported
+## Dependcies
 
 [![current-device][current-device]][current-device-url]
 
@@ -149,7 +185,7 @@ Open sourced under the GPL v2.0 license.
 [build-url]: https://www.travis-ci.org/xiazeyu/live2d-widget.js.svg?branch=master
 
 [npm-package]: https://badge.fury.io/js/live2d-widget.svg?label=live2d-widget
-[npm-package-url]: https://www.npmjs.com/package/live2d-widget
+[npm-package-url]: https://yarn.pm/live2d-widget
 
 [jsDelivr]: https://data.jsdelivr.com/v1/package/npm/live2d-widget/badge
 [jsDelivr-url]: https://www.jsdelivr.com/package/npm/live2d-widget

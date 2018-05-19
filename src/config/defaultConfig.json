@@ -1,5 +1,5 @@
 {
-  "modelJsonPath": "https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@latest/assets/shizuku.model.json",
+  "modelJsonPath": "https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku/assets/shizuku.model.json",
   "modelHeadPosH": 0.5,
   "modelHeadPosV": 0.618,
   "modelScale": 1,

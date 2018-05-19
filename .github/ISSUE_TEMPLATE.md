@@ -12,8 +12,8 @@ Your browser version:
 
 live2d-widget:
 
-> use `npm ls live2d-widget` npm ls live2d-widget
-使用 `npm ls live2d-widget` 来获取当前插件版本
+> use `npm ls live2d-widget` to get current plugin's version.
+使用 `npm ls live2d-widget` 来获取当前插件版本.
 
 Command of loading:
 加载命令:
@@ -41,8 +41,11 @@ Screenshot(if have):
 
 3.
 
-- [ ] I have alreday read instructions in [CONTRIBUTING](./CONTRIBUTING.md).
-  我已仔细阅读[CONTRIBUTING](./CONTRIBUTING.md)中的相关内容。
+- [ ] I have alreday read instructions in [CONTRIBUTING](CONTRIBUTING.md).
+  我已仔细阅读[CONTRIBUTING](CONTRIBUTING.md)中的相关内容。
+
+- [ ] I have alreday read instructions in [README](../README.md).
+  我已仔细阅读[README](../README.md)中的相关内容。
 
 > Change the `[ ]` into `[x]` to show your acceptance.
 将 `[ ]` 变为 `[x]` 来表示你接受了这些问题。
