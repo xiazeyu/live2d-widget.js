@@ -6,23 +6,18 @@
   "sideEffects": false,
   "scripts": {
     "update:submodule": "git submodule foreach git pull origin master",
-    "_afterbuild": "node scripts/afterBuild.js",
+    "_afterBuild": "node scripts/afterBuild.js",
+    "_afterCIbuild": "node scripts/afterCIBuild.js",
     "_esdoc": "./node_modules/.bin/esdoc",
     "_changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
-    "inst:dev": "npm install -g commitizen && npm install -g conventional-changelog-cli && npm install",
     "build:dev": "./node_modules/.bin/webpack --colors --display-error-details --env \"development\" --progress --watch",
     "build:prod": "./node_modules/.bin/webpack --colors --display-error-details --env \"production\" --progress",
-    "build": "git pull && npm run _changelog  && npm run build:prod && npm run _afterbuild && git add --all && npm run update:submodule && git add ghpages",
-    "build:esdoc": "build:prod && npm run _afterbuild && npm run _esdoc",
+    "build:esdoc": "npm run build:prod && npm run _esdoc && npm run _afterCIbuild ",
     "deploy:ghpages": "git pull && git checkout master && cd ghpages/ && git status && git add --all && git commit -m \"Update docs\" && git push origin HEAD:master --force && cd ..",
+    "inst:dev": "npm install -g commitizen && npm install -g conventional-changelog-cli && npm install",
+    "build": "git pull && npm run build:prod && npm run _changelog && npm run _afterBuild && git add --all && npm run update:submodule && git add ghpages",
     "lint": "eslint --ext .js ./",
     "commit": "git pull && git-cz",
-    "v:major": "npm version major",
-    "v:pmajor": "npm version premajor",
-    "v:minor": "npm version minor",
-    "v:pminor": "npm version preminor",
-    "v:patch": "npm version patch",
-    "v:ppatch": "npm version prepatch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -42,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/xiazeyu/live2d-widget.js/issues"
   },
-  "homepage": "https://github.com/xiazeyu/live2d-widget.js#readme",
+  "homepage": "https://l2dwidget.js.org/",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
