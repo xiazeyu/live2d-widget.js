@@ -46,7 +46,7 @@ const baseConfig = {
       'test': /\.js$/,
       'use': [{
         'loader': 'babel-loader',
-      }, ],
+      }],
     },
     {
       'test': /\.html$/,
@@ -55,8 +55,8 @@ const baseConfig = {
         'options': {
           'minimize': true,
         },
-      }, ],
-    }, ],
+      }],
+    }],
   },
 
   /*
@@ -69,7 +69,7 @@ const baseConfig = {
       '.html',
       '.json',
       '.webpack.js',
-      '.web.js', ],
+      '.web.js'],
   },
   'target': 'web',
   'watch': false,
@@ -85,10 +85,10 @@ function getDefault () {
 
   const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
-    './src/index', ];
+    './src/index'];
   const mode = 'production';
   const optimization = {
-    'minimizer': [UglifyJS, ],
+    'minimizer': [UglifyJS],
   };
   const output = {
     'chunkFilename': 'L2Dwidget.[id].min.js',
@@ -117,7 +117,7 @@ function getDefault () {
      */
     new Visualizer({
       'filename': 'stats_default.html',
-    }), ];
+    })];
 
   const restConfig = {
     entry,
@@ -143,10 +143,10 @@ function getSingle () {
   const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
     './src/main',
-    './src/index', ];
+    './src/index'];
   const mode = 'production';
   const optimization = {
-    'minimizer': [UglifyJS, ],
+    'minimizer': [UglifyJS],
   };
   const output = {
     'filename': 'L2Dwidget.single.min.js',
@@ -174,7 +174,7 @@ function getSingle () {
      */
     new Visualizer({
       'filename': 'stats_single.html',
-    }), ];
+    })];
 
   const restConfig = {
     entry,
@@ -199,10 +199,10 @@ function getNoPolyFill () {
 
   const entry = ['./src/lib/setEnv.nodoc',
     './src/main',
-    './src/index', ];
+    './src/index'];
   const mode = 'production';
   const optimization = {
-    'minimizer': [UglifyJS, ],
+    'minimizer': [UglifyJS],
   };
   const output = {
     'filename': 'L2Dwidget.nopolyfill.min.js',
@@ -230,7 +230,7 @@ function getNoPolyFill () {
      */
     new Visualizer({
       'filename': 'stats_nopolyfill.html',
-    }), ];
+    })];
 
   const restConfig = {
     entry,
@@ -255,7 +255,7 @@ function getUmd () {
 
   const entry = ['./src/lib/setEnv.nodoc',
     './src/main',
-    './src/index', ];
+    './src/index'];
   const mode = 'production';
   const output = {
     'filename': 'L2Dwidget.js',
@@ -266,10 +266,10 @@ function getUmd () {
   };
   const plugins = [new webpack.BannerPlugin(`https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
 
-    /**
-     * Webpack Manifest Plugin
-     * https://github.com/danethurber/webpack-manifest-plugin
-     */
+  /**
+   * Webpack Manifest Plugin
+   * https://github.com/danethurber/webpack-manifest-plugin
+   */
     new ManifestPlugin({
       'fileName': 'manifest_umd.json',
     }),
@@ -280,7 +280,7 @@ function getUmd () {
      */
     new Visualizer({
       'filename': 'stats_umd.html',
-    }), ];
+    })];
 
   const restConfig = {
     entry,
@@ -305,7 +305,7 @@ function getDev () {
   const entry = ['./src/lib/polyfill.nodoc',
     './src/lib/setEnv.nodoc',
     './src/main',
-    './src/index', ];
+    './src/index'];
   const mode = 'development';
   const output = {
     'filename': 'L2Dwidget.js',
@@ -316,10 +316,10 @@ function getDev () {
   };
   const plugins = [new webpack.BannerPlugin(`___DEV___https://github.com/xiazeyu/live2d-widget.js built-v${thisPkgInfo.version}@${nowDate.toLocaleDateString()},umd ${nowDate.toLocaleTimeString()}`),
 
-    /**
-     * Webpack Manifest Plugin
-     * https://github.com/danethurber/webpack-manifest-plugin
-     */
+  /**
+   * Webpack Manifest Plugin
+   * https://github.com/danethurber/webpack-manifest-plugin
+   */
     new ManifestPlugin({
       'fileName': 'manifest_dev.json',
     }),
@@ -330,7 +330,7 @@ function getDev () {
      */
     new Visualizer({
       'filename': 'stats_dev.html',
-    }), ];
+    })];
 
   const restConfig = {
     entry,
@@ -355,7 +355,7 @@ module.exports = (env) => {
     getSingle(),
     getNoPolyFill(),
     getUmd(),
-    getDev(), ];
+    getDev()];
 
   }
 
