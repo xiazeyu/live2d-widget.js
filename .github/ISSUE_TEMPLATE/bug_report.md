@@ -30,10 +30,10 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
- - Device: [e.g. iPhone 6, PC]
- - OS: [e.g. iOS 8.1, Windows 10]
- - Browser [e.g. Chrome 66, Safari 11.2]
- - live2d-widget: [e.g. 3.0.0]
+- Device: [e.g. iPhone 6, PC]
+- OS: [e.g. iOS 8.1, Windows 10]
+- Browser [e.g. Chrome 66, Safari 11.2]
+- live2d-widget: [e.g. 3.0.0]
 > use `npm ls live2d-widget` to get current plugin's version.
 
 **Additional context**
