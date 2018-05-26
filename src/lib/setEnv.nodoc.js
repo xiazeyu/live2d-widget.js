@@ -1,6 +1,6 @@
 /* global __webpack_public_path__: true, process */
 import 'current-device';
-import 'fpsCounter';
+import 'fpscounter';
 
 import {
   getPathFromUrl,

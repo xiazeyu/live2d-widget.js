@@ -116,7 +116,9 @@ module.exports = {
     'no-useless-return': ['warn'],
     'no-var': ['error'],
     'object-curly-newline': ['warn',
-      'always'],
+      {
+        multiline: true,
+      }],
     'object-curly-spacing': ['warn',
       'never'],
     'one-var': ['error',

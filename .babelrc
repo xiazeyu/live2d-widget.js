@@ -1,9 +1,19 @@
 {
   "presets": [
-    ["env",{
-      "debug": false,
-      "modules": false
-    }]
+    [
+      "env",
+      {
+        "debug": false,
+        "targets": {
+          "browsers": [
+            "cover 99%",
+            "last 2 years",
+            "not ie < 9",
+            "edge >= 12"
+          ]
+        }
+      }
+    ]
   ],
   "plugins": [
     "syntax-dynamic-import"

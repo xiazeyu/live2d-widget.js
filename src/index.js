@@ -12,12 +12,6 @@ import {
   Storage,
 } from './Storage';
 
-// DEBUG
-// DEV
-import './lib/BaseModel';
-
-// DEBUG END
-
 if (process.env.NODE_ENV === 'development') {
 
   console.log('--- --- --- --- ---\nlive2d-widget: Hey, this is a dev build.\n--- --- --- --- ---');
@@ -303,7 +297,8 @@ class L2Dwidget {
 
     }
     /* eslint-disable */
-
+    // DEBUG
+/*
     import('./main').then(f => {
 
       this._private._L2Dwidget = new f._L2Dwidget(storage);
@@ -315,7 +310,7 @@ class L2Dwidget {
       throw err;
 
     });
-
+*/
     /* eslint-enable */
     return this;
 

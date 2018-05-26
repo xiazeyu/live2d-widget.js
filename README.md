@@ -25,6 +25,21 @@ Demo: [Playground](https://l2dwidget.js.org/playground.html)
 
 Docs: [Click me!](https://l2dwidget.js.org/docs/index.html)
 
+## Browser requirements
+
+We use config below as our supported browsers.
+
+```json
+
+"browsers": [
+  "cover 99%",
+  "last 2 years",
+  "not ie < 9",
+  "edge >= 12"
+]
+
+```
+
 ## Installation
 
 > Please have a look at both README and [CHANGELOG](CHANGELOG.md) if you are upgraded from older version.

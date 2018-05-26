@@ -11,4 +11,5 @@ ghpages/*
 
 # Files that don't support.
 # Don't support import() which may throw an Error
-src/index.js
+# DEBUG
+# src/index.js
