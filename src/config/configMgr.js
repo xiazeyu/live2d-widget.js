@@ -2,7 +2,7 @@ import defaultConfig from './defaultConfig';
 
 /**
  * @typedef {Object} Config
- * @desc The object structure for config. Default config sees [dist/defaultConfig.json](https://cdn.jsdelivr.net/npm/live2d-widget/dist/defaultConfig.json).
+ * @desc The object structure for config. Default config sees [dist/defaultConfig.js](https://cdn.jsdelivr.net/npm/live2d-widget/dist/defaultConfig.js).
  * @property {String}   modelJsonPath="https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku/assets/shizuku.model.json"  Specifies the path to `.model.json`.  模型`.model.json`文件路径 <br> eg. `"/live2d/miku.model.json"`<br>`"https://test.com/live2d/miku.model.json"`<br>`"http://test.com/live2d/miku.model.json"`<br>`"file:///d:/live2d/miku.model.json"`
  * @property {String}   displayWidth="150px"         Specifies the width of actual widget element.  插件宽度 <br> eg. `150` == `"150px"`, `"35%"`, `"auto"` <br> *used as canvas.element.width.*
  * @property {String}   displaySide="right"          Specifies left or right side to show.  左右侧显示位置 <br> eg. `"left"`, `"right"`
@@ -16,7 +16,6 @@ import defaultConfig from './defaultConfig';
  * @property {Number}   displaySampleLevel   Sampling level.  采样等级
  * @property {Number}   displayOffsetV       Vertical offset of canvas.  canvas垂直偏移
  * @property {Number}   displayOffsetH       Horizontal offset of canvas.  canvas水平偏移
- * @property {Boolean}  mobileShow           If show on mobile device.  是否在移动设备上显示
  * @property {Boolean}  mobileMotion         If enable motion reaction on mobile devices.  是否在移动设备上开启运动响应
  * @property {Boolean}  devMouseLog=false          If shows mouse log.  显示鼠标日志
  * @property {Boolean}  devLog=false               If shows log.  显示日志

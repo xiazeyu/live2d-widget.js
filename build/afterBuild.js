@@ -2,18 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const getProjPath = require('./getProjPath');
 
-// Copy defaultConfig.json
+// Copy defaultConfig.js
 getProjPath((projPath) => {
 
-  fs.copyFile(path.resolve(projPath, 'src/config/defaultConfig.json'), path.resolve(projPath, 'dist/defaultConfig.json'), (err) => {
+  fs.copyFile(path.resolve(projPath, 'src/config/defaultConfig.js'), path.resolve(projPath, 'dist/defaultConfig.js'), (err) => {
 
     if (err) {
 
-      console.error('Failed copying defaultConfig.json');
+      console.error('Failed copying defaultConfig.js');
       throw err;
 
     }
-    console.log('succeeded copying defaultConfig.json');
+    console.log('succeeded copying defaultConfig.js');
 
   });
 

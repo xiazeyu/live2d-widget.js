@@ -1,4 +1,4 @@
-/* global process, device */
+/* global process */
 
 import {
   configDefaulter,
