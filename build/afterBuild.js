@@ -2,18 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const getProjPath = require('./getProjPath');
 
-// Copy defaultConfig.js
+// Copy configStorage.js
 getProjPath((projPath) => {
 
-  fs.copyFile(path.resolve(projPath, 'src/config/defaultConfig.js'), path.resolve(projPath, 'dist/defaultConfig.js'), (err) => {
+  fs.copyFile(path.resolve(projPath, 'src/config/configStorage.js'), path.resolve(projPath, 'dist/configStorage.js'), (err) => {
 
     if (err) {
 
-      console.error('Failed copying defaultConfig.js');
+      console.error('Failed copying configStorage.js');
       throw err;
 
     }
-    console.log('succeeded copying defaultConfig.js');
+    console.log('succeeded copying configStorage.js');
 
   });
 

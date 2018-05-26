@@ -149,7 +149,7 @@ javascript:function loadScript(c,b){var a=document.createElement("script");a.typ
 
 See the [document](https://l2dwidget.js.org/docs/typedef/index.html#static-typedef-Config).
 
-Default settings are at[defaultConfig.js](https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/defaultConfig.js).
+Default settings are at[configStorage.js](https://cdn.jsdelivr.net/npm/live2d-widget@4/dist/configStorage.js).
 
 Enjoy!:beer:
 
