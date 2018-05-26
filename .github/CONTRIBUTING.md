@@ -83,19 +83,21 @@ work is not in vain.
 
 ## Workflow(author): Release a new version
 
-### Let the Collaborator or author do it
+### Let the author or Collaborator do it
 
 ### 1. Bump the version
 
 - bump the version in `package.json`
 
-- delete `package-lock.json`
+- delete `package-lock.json` and `yarn.lock`
 
 - run `npm install` to generate new `package-lock.json`
 
+- run `yarn install` to generate new `yarn.lock`
+
 ### 2. Build the library
 
-- `npm run deploy`
+- `npm run build`
 
 ### 3. Commit package.json and package-lock.json
 
