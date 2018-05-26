@@ -27,7 +27,7 @@ Docs: [Click me!](https://l2dwidget.js.org/docs/index.html)
 
 ## Browser requirements
 
-We use config below as our supported browsers.
+We use config below as our [babel-preset-env](https://babeljs.io/docs/plugins/preset-env/)'s config.
 
 ```json
 
@@ -131,7 +131,7 @@ eg.
 
 ```
 
-### Bookmark (any pages)
+### Bookmarks
 
 ```url
 

@@ -10,10 +10,10 @@ cache:
   directories:
   - node_modules
 before_install:
-- git submodule update --init --recursive
+- 'git submodule update --init --recursive'
 install:
-- npm install
+- 'npm install'
 script:
-- npm run build:prod
-- npm run lint
+- 'npm run build:prod'
+- 'npm run lint'
 - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./build/deployDocs; fi'

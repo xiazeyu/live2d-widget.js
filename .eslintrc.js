@@ -6,8 +6,8 @@ module.exports = {
     'commonjs': true,
     'es6': true,
   },
-  'extends': 'eslint:all',
-  // 'extends': 'eslint:recommended',
+  // 'extends': 'eslint:all',
+  'extends': 'eslint:recommended',
   'parserOptions': {
     'sourceType': 'module',
   },

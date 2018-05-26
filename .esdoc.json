@@ -1,16 +1,28 @@
 {
   "source": "./src",
   "destination": "./ghpages/docs",
-  "excludes": ["\\.nodoc\\.js$"],
+  "excludes": [
+    "\\.nodoc\\.js$"
+  ],
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
       "option": {
-        "lint": {"enable": true},
-        "coverage": {"enable": true},
-        "undocumentIdentifier": {"enable": true},
-        "unexportedIdentifier": {"enable": false},
-        "typeInference": {"enable": true},
+        "lint": {
+          "enable": true
+        },
+        "coverage": {
+          "enable": true
+        },
+        "undocumentIdentifier": {
+          "enable": true
+        },
+        "unexportedIdentifier": {
+          "enable": false
+        },
+        "typeInference": {
+          "enable": true
+        },
         "brand": {
           "title": "live2d-widget.js",
           "description": "Add the Sseexxyyy live2d to webpages.",
@@ -18,13 +30,13 @@
           "site": "https://l2dwidget.js.org/"
         },
         "manual": {
-        "index": "./README.md",
-        "globalIndex": true,
-        "asset": "./ghpages/assets/",
-        "files": [
-          "./README.md",
-          "./CHANGELOG.md"
-        ]
+          "index": "./README.md",
+          "globalIndex": true,
+          "asset": "./ghpages/assets/",
+          "files": [
+            "./README.md",
+            "./CHANGELOG.md"
+          ]
         }
       }
     },

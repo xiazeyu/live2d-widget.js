@@ -44,17 +44,13 @@ const baseConfig = {
     'rules': [{
       'include': path.resolve(__dirname, 'src'),
       'test': /\.js$/,
-      'use': [{
-        'loader': 'babel-loader',
-      }],
+      'use': [{'loader': 'babel-loader'}],
     },
     {
       'test': /\.html$/,
       'use': [{
         'loader': 'html-loader',
-        'options': {
-          'minimize': true,
-        },
+        'options': {'minimize': true},
       }],
     }],
   },
@@ -87,9 +83,7 @@ function getDefault () {
     './src/lib/setEnv.nodoc',
     './src/index'];
   const mode = 'production';
-  const optimization = {
-    'minimizer': [UglifyJS],
-  };
+  const optimization = {'minimizer': [UglifyJS]};
   const output = {
     'chunkFilename': 'L2Dwidget.[id].min.js',
     'filename': 'L2Dwidget.min.js',
@@ -107,17 +101,13 @@ function getDefault () {
      * Webpack Manifest Plugin
      * https://github.com/danethurber/webpack-manifest-plugin
      */
-    new ManifestPlugin({
-      'fileName': 'manifest_default.json',
-    }),
+    new ManifestPlugin({'fileName': 'manifest_default.json'}),
 
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
-    new Visualizer({
-      'filename': 'stats_default.html',
-    })];
+    new Visualizer({'filename': 'stats_default.html'})];
 
   const restConfig = {
     entry,
@@ -127,8 +117,7 @@ function getDefault () {
     plugins,
   };
 
-  return Object.assign({
-  }, baseConfig, restConfig);
+  return Object.assign({}, baseConfig, restConfig);
 
 }
 
@@ -145,9 +134,7 @@ function getSingle () {
     './src/main',
     './src/index'];
   const mode = 'production';
-  const optimization = {
-    'minimizer': [UglifyJS],
-  };
+  const optimization = {'minimizer': [UglifyJS]};
   const output = {
     'filename': 'L2Dwidget.single.min.js',
     'library': 'L2Dwidget',
@@ -164,17 +151,13 @@ function getSingle () {
      * Webpack Manifest Plugin
      * https://github.com/danethurber/webpack-manifest-plugin
      */
-    new ManifestPlugin({
-      'fileName': 'manifest_single.json',
-    }),
+    new ManifestPlugin({'fileName': 'manifest_single.json'}),
 
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
-    new Visualizer({
-      'filename': 'stats_single.html',
-    })];
+    new Visualizer({'filename': 'stats_single.html'})];
 
   const restConfig = {
     entry,
@@ -184,8 +167,7 @@ function getSingle () {
     plugins,
   };
 
-  return Object.assign({
-  }, baseConfig, restConfig);
+  return Object.assign({}, baseConfig, restConfig);
 
 }
 
@@ -201,9 +183,7 @@ function getNoPolyFill () {
     './src/main',
     './src/index'];
   const mode = 'production';
-  const optimization = {
-    'minimizer': [UglifyJS],
-  };
+  const optimization = {'minimizer': [UglifyJS]};
   const output = {
     'filename': 'L2Dwidget.nopolyfill.min.js',
     'library': 'L2Dwidget',
@@ -220,17 +200,13 @@ function getNoPolyFill () {
      * Webpack Manifest Plugin
      * https://github.com/danethurber/webpack-manifest-plugin
      */
-    new ManifestPlugin({
-      'fileName': 'manifest_nopolyfill.json',
-    }),
+    new ManifestPlugin({'fileName': 'manifest_nopolyfill.json'}),
 
     /**
      * Webpack Visualizer
      * https://github.com/chrisbateman/webpack-visualizer
      */
-    new Visualizer({
-      'filename': 'stats_nopolyfill.html',
-    })];
+    new Visualizer({'filename': 'stats_nopolyfill.html'})];
 
   const restConfig = {
     entry,
@@ -240,8 +216,7 @@ function getNoPolyFill () {
     plugins,
   };
 
-  return Object.assign({
-  }, baseConfig, restConfig);
+  return Object.assign({}, baseConfig, restConfig);
 
 }
 
@@ -270,17 +245,13 @@ function getUmd () {
    * Webpack Manifest Plugin
    * https://github.com/danethurber/webpack-manifest-plugin
    */
-    new ManifestPlugin({
-      'fileName': 'manifest_umd.json',
-    }),
+    new ManifestPlugin({'fileName': 'manifest_umd.json'}),
 
     /**
-     * Webpack Visualizer
-     * https://github.com/chrisbateman/webpack-visualizer
-     */
-    new Visualizer({
-      'filename': 'stats_umd.html',
-    })];
+   * Webpack Visualizer
+   * https://github.com/chrisbateman/webpack-visualizer
+   */
+    new Visualizer({'filename': 'stats_umd.html'})];
 
   const restConfig = {
     entry,
@@ -289,8 +260,7 @@ function getUmd () {
     plugins,
   };
 
-  return Object.assign({
-  }, baseConfig, restConfig);
+  return Object.assign({}, baseConfig, restConfig);
 
 }
 
@@ -320,17 +290,13 @@ function getDev () {
    * Webpack Manifest Plugin
    * https://github.com/danethurber/webpack-manifest-plugin
    */
-    new ManifestPlugin({
-      'fileName': 'manifest_dev.json',
-    }),
+    new ManifestPlugin({'fileName': 'manifest_dev.json'}),
 
     /**
-     * Webpack Visualizer
-     * https://github.com/chrisbateman/webpack-visualizer
-     */
-    new Visualizer({
-      'filename': 'stats_dev.html',
-    })];
+   * Webpack Visualizer
+   * https://github.com/chrisbateman/webpack-visualizer
+   */
+    new Visualizer({'filename': 'stats_dev.html'})];
 
   const restConfig = {
     entry,
@@ -339,8 +305,7 @@ function getDev () {
     plugins,
   };
 
-  return Object.assign({
-  }, baseConfig, restConfig);
+  return Object.assign({}, baseConfig, restConfig);
 
 }
 
