@@ -1,3 +1,5 @@
+/* global process */
+
 import configStorage from './configStorage';
 
 /**
@@ -226,6 +228,22 @@ function configUpdater (oldConfig) {
 
   }
 
+  // For latest config
+
+  for (const key in configStorage.defaultConfig) {
+
+    if ({}.hasOwnProperty.call(configStorage.defaultConfig, key)) {
+
+      if (!newConfig[key]) {
+
+        newConfig[key] = oldConfig[key];
+
+      }
+
+    }
+
+  }
+
   // Convert type
 
   if ('displayHeight' in newConfig) {
@@ -264,7 +282,6 @@ function configUpdater (oldConfig) {
     }
 
   }
-
 
   return newConfig;
 
@@ -313,6 +330,15 @@ function configValidater (userConfig) {
   }
 
   return validFlag;
+
+}
+
+
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
+
+  window.configDefaulter = configDefaulter;
+  window.configValidater = configValidater;
+  window.configUpdater = configUpdater;
 
 }
 

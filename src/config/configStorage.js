@@ -1,5 +1,4 @@
-
-/* global device */
+/* global process, device */
 
 /**
  * An example of Config.displayFunc, to manually get display config on the basis of current client browsers.
@@ -115,6 +114,14 @@ const configType = {
   'modelJsonPath': 'string',
   'zindex': 'number',
 };
+
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
+
+  window.configType = configType;
+  window.defaultConfig = defaultConfig;
+  window.sampleDisplayFunc = sampleDisplayFunc;
+
+}
 
 export {
   configType,
