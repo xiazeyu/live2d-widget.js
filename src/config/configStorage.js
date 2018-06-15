@@ -117,9 +117,11 @@ const configType = {
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
 
-  window.configType = configType;
-  window.defaultConfig = defaultConfig;
-  window.sampleDisplayFunc = sampleDisplayFunc;
+  window.configStorage = {
+    configType,
+    defaultConfig,
+    sampleDisplayFunc,
+  };
 
 }
 

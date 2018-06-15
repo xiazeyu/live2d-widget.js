@@ -336,14 +336,16 @@ function configValidater (userConfig) {
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
 
-  window.configDefaulter = configDefaulter;
-  window.configValidater = configValidater;
-  window.configUpdater = configUpdater;
+  window.configMgr = {
+    configDefaulter,
+    configUpdater,
+    configValidater,
+  };
 
 }
 
 export {
   configDefaulter,
-  configValidater,
   configUpdater,
+  configValidater,
 };
