@@ -3,139 +3,221 @@
 import htmlTemplate from './tmplate/innerHTML';
 
 /**
- * Find and init webGL RenderingContext according to canvas element
- * @param   {HTMLElement}  canvas  Canvas element
- * @return  {RenderingContext}          The webGL RenderingContext
+ * Get webGL RenderingContext.
+ * @param   {HTMLElement}  canvas  The anvas element.
+ * @return  {RenderingContext}     The rendering context.
  */
-function initWebGL (canvas) {
+function getWebGL (canvas) {
 
-  const contextTypes = ['webgl2',
-    'webgl',
-    'experimental-webgl2',
-    'experimental-webgl',
-    'webkit-3d',
-    'moz-webgl', ];
-  for (const i in contextTypes) {
+  if (!canvas.getContext) {
 
-    try {
-
-      const ctx = canvas.getContext(contextTypes[i], {
-        'alpha': true,
-        'antialias': true,
-        'premultipliedAlpha': true,
-        'failIfMajorPerformanceCaveat': false,
-      });
-      if (ctx) {
-
-        return ctx;
-
-      }
-
-    } catch (e) {} // eslint-disable-line no-empty
+    console.error('Unable to get canvas.getContext, your browser may not support canvas, check https://get.webgl.org/.');
+    throw new Error('live2d-widget: Failed to get WebGL context.');
 
   }
   if (!window.WebGLRenderingContext) {
 
-    console.error('Your browser may not support webGL, check https://get.webgl.org/.');
+    console.error('Unable to get window.WebGLRenderingContext, browser may not support webGL, check https://get.webgl.org/.');
+    throw new Error('live2d-widget: Failed to get WebGL context.');
 
   }
-  throw new Error('live2d-widget: Failed to create WebGL context.');
+
+  const contextTypes = ['webgl2',
+    'webgl',
+    'webkit-3d',
+    'moz-webgl',
+    'experimental-webgl2',
+    'experimental-webgl'];
+
+  for (const key in contextTypes) {
+
+    if ({}.hasOwnProperty.call(contextTypes, key)) {
+
+      try{
+
+        const ctx = canvas.getContext(contextTypes[key], {
+          'alpha': true,
+          'antialias': true,
+          'failIfMajorPerformanceCaveat': device.mobile(),
+          'premultipliedAlpha': true,
+        });
+        if(ctx) {
+
+          return ctx;
+
+        }
+
+      } catch (e) { } // eslint-disable-line no-empty
+
+    }
+
+  }
+  console.error('Unable to get the rendering context, your browser may not support canvas, check https://get.webgl.org/.');
+  throw new Error('live2d-widget: Failed to get WebGL context.');
 
 }
 
 /**
- * Create and init canvas for live2d-widget use.
- * @param   {Config}  config  Config
- * @return  {HTMLElement}     Canvas processed
- * @todo Finish program
+ * To detect if user's display size is dynamic.
+ * @param  {Config}   usrConfig User's config.
+ * @return {Boolean}  If user's display size is dynamic.
  */
-function createCanvasElement (config) {
+function isDynamic (usrConfig) {
+
+  const isHeightDynamic = !!usrConfig.displayHeight.match('%');
+  const isWidthDynamic = !!usrConfig.displayWidth.match('%');
+  if (isHeightDynamic !== isWidthDynamic) {
+
+    throw new Error('live2d-widget: config.displayHeight must have the same size type(fixed or dynamic) with config.displayWidth.');
+
+  }
+  return isHeightDynamic;
+
+}
+
+/**
+ * Create canvas for live2d-widget.
+ * @param   {Config}  usrConfig  Config.
+ * @return  {HTMLElement}        The canvas element.
+ */
+function createCanvasElement (usrConfig) {
 
   const newCanvasElem = document.createElement('canvas');
   const canvasAttributes = {
-    'width': config.displayWidth * config.displaySampleLevel * (device.mobile() ? config.mobileScale : 1), // eslint-disable-line no-magic-numbers
-    'height': config.displayHeight * config.displaySampleLevel * (device.mobile() ? config.mobileScale : 1), // eslint-disable-line no-magic-numbers
+    'height': undefined,
+    'width': undefined,
   };
   const canvasStyleAttributes = {
-    'position': 'fixed',
-    'width': `${config.displayWidth}px`,
-    'height': `${config.displayHeight}px`,
-    'opacity': config.reactOpacityDefault,
-    [config.displaySide]: `${config.displayOffsetH}px`,
-    'bottom': `${config.displayOffsetV}px`,
-    'z-index': 473193,
+    'border': usrConfig.devBorder ? 'dashed 1px #CCC' : null, // eslint-disable-line no-ternary
+    'bottom': usrConfig.displayOffsetV,
+    'height': undefined,
+    'opacity': usrConfig.displayOpacityDefault,
     'pointer-events': 'none',
-    'border': process.env.NODE_ENV === 'development' ? 'dashed 1px #CCC' : null,
+    'position': 'fixed',
+    'visibility': usrConfig.displayShow ? 'visible' : 'hidden', // eslint-disable-line no-ternary
+    'width': undefined,
+    [usrConfig.displaySide]: usrConfig.displayOffsetH,
+    'z-index': usrConfig.displayzindex,
   };
-  for (const i in canvasAttributes) {
 
-    newCanvasElem.setAttribute(i, canvasAttributes[i]);
+  if (isDynamic(usrConfig)) {
+
+    window.requestAnimationFrame(function changeSize () {
+
+      // TODO
+      window.requestAnimationFrame(changeSize);
+
+    });
+    // TODO
+
+  }else{
+
+    canvasAttributes.height = parseFloat(usrConfig.displayHeight) * usrConfig.displaySampleLevel;
+    canvasAttributes.width = parseFloat(usrConfig.displayWidth) * usrConfig.displaySampleLevel;
+    canvasStyleAttributes.height = usrConfig.displayHeight;
+    canvasStyleAttributes.width = usrConfig.displayWidth;
 
   }
-  for (const i in canvasStyleAttributes) {
 
-    newCanvasElem.style.setProperty(i, canvasStyleAttributes[i]);
+  for (const key in canvasAttributes) {
+
+    if ({}.hasOwnProperty.call(canvasAttributes, key)) {
+
+      if (canvasAttributes[key]) {
+
+        newCanvasElem.setAttribute(key, canvasAttributes[key]);
+
+      }
+
+    }
+
+  }
+  for (const key in canvasStyleAttributes) {
+
+    if ({}.hasOwnProperty.call(canvasStyleAttributes, key)) {
+
+      if(canvasStyleAttributes[key]) {
+
+        newCanvasElem.style.setProperty(key, `${canvasStyleAttributes[key]} !important`);
+
+      }
+
+    }
 
   }
 
+  if (usrConfig.displayOpacityDefault !== usrConfig.displayOpacityOnHover) {
+
+    window.requestAnimationFrame(function changeOpacity () {
+
+      window.requestAnimationFrame(changeOpacity);
+      // TODO
+
+    });
+
+  }
   return newCanvasElem;
 
 }
 
 /**
- * To create a new HTML Element and append it to HTML.
- * @param   {String}  tagName  Tag name of element
- * @param   {String}  id       Id of element
- * @return  {HTMLElement}      Element created
+ * Create a new live2d-widget Element and append it to HTML.
+ * @param   {Config}  usrConfig  User's config.
+ * @return  {Object}  An object of elements created.
+ * @property  {HTMLElement}  canvas   The canvas element.
+ * @property  {HTMLElement}  element  The live2d-widget element.
+ * @property  {RenderingContext}  webGL  The rendering context.
  */
-function createElement (tagName, id) {
+function createElement (usrConfig) {
 
-  const newElem = document.createElement(tagName);
-  newElem.className = 'live2d-widget';
-  if (id !== null) {
+  const newElem = document.createElement('live2d-widget');
+  const newCanvasElem = createCanvasElement(usrConfig);
+  const webGL = getWebGL(newCanvasElem);
+  const elemAttributes = {'className': 'live2d-widget'};
+  for (const key in elemAttributes) {
 
-    newElem.id = id;
+    if ({}.hasOwnProperty.call(elemAttributes, key)) {
+
+      if (elemAttributes[key]) {
+
+        newElem.setAttribute(key, elemAttributes[key]);
+
+      }
+
+    }
 
   }
-  document.body.appendChild(newElem);
-  return newElem;
+  if(newElem.createShadowRoot) {
 
-}
-
-/**
- * Init element for live2d-widget use
- * @param   {HTMLElement}  elem  HTMLElement to init
- * @param   {Config}  config     Config
- * @return  {Object}             Object contains element, webGL, canvas
- */
-function initElement (elem, config) {
-
-  const element = elem;
-  const canvas = createCanvasElement(config);
-  const webGL = initWebGL(canvas);
-  if (element.createShadowRoot) {
-
-    const shadowRoot = element.attachShadow({
-      'mode': 'open', });
+    const shadowRoot = newElem.attachShadow({'mode': 'open'});
     shadowRoot.innerHTML = htmlTemplate;
-    shadowRoot.appendChild(canvas);
+    shadowRoot.appendChild(newCanvasElem);
 
-  } else {
+  }else{
 
-    element.innerHTML = htmlTemplate;
-    element.appendChild(canvas);
+    newElem.innerHTML = htmlTemplate;
+    newElem.appendChild(newCanvasElem);
 
   }
 
+  document.body.appendChild(newElem);
   return {
-    element,
+    'canvas': newCanvasElem,
+    'element': newElem,
     webGL,
-    canvas,
   };
 
 }
 
-export {
-  createElement,
-  initElement,
-};
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
+
+  window.elementMgr = {
+    createCanvasElement,
+    createElement,
+    getWebGL,
+    isDynamic,
+  };
+
+}
+
+export {createElement};
