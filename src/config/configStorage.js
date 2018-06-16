@@ -35,6 +35,7 @@ function sampleDisplayFunc () {
     'displayShow': null/* !device.mobile() */, // eslint-disable-line capitalized-comments
     'displaySide': null,
     'displayWidth': null,
+    'displayzindex': null,
   };
 
 }
@@ -57,7 +58,7 @@ function sampleDisplayFunc () {
  * @property {number}  displayOpacityDefault=0.7    Specifies the opacity of live2d-widget element.<br>指定live2d-widget元素的透明度。
  * @property {number}  displayOpacityOnHover=0.2    Specifies the opacity when mouse is on hover the element.<br>指定live2d-widget元素鼠标上移后的透明度。
  * @property {boolean}  displayDeviceMotion=true    [WIP]Specifies whether to use device motion.<br>指定是否使用设备动作感应。
- * @property {number}  zindex=2333    Specifies the z-order of live2d-widget element.<br>指定模型的z-index数值。
+ * @property {number}  displayzindex=2333    Specifies the z-order of live2d-widget element.<br>指定模型的z-index数值。
  * @property {boolean}  devBorder=false    [DEV]Specifies whether to enable border around the canvas for debugging.<br>指定是否启用调试用描边。
  * @property {boolean}  devLog=false    [DEV]Specifies whether to enable log in console for debugging.<br>指定是否启用调试用日志。
  * @property {boolean}  devMouseLog=false    [DEV][WARN]Specifies whether to enable mouse log in console for debugging.<br>指定是否启用调试用鼠标日志。<br>NOTICE: may cause lag.<br>可能造成卡顿。
@@ -82,11 +83,11 @@ const defaultConfig = {
   'displayShow': true,
   'displaySide': 'right',
   'displayWidth': '35%',
+  'displayzindex': 2333,
   'modelAspectRatio': 0.75,
   'modelHeadPosH': 0.5,
   'modelHeadPosV': 0.618,
   'modelJsonPath': 'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku/assets/shizuku.model.json',
-  'zindex': 2333,
 };
 
 /**
@@ -108,11 +109,11 @@ const configType = {
   'displayShow': 'boolean',
   'displaySide': 'string',
   'displayWidth': 'string',
+  'displayzindex': 'number',
   'modelAspectRatio': 'number',
   'modelHeadPosH': 'number',
   'modelHeadPosV': 'number',
   'modelJsonPath': 'string',
-  'zindex': 'number',
 };
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env

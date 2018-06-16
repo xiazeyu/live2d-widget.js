@@ -290,14 +290,14 @@ function configUpdater (oldConfig) {
 /**
  * Default config based on user's config and default config.<br>
  * Will update the Config first.
- * @param  {Config} userConfig  User's custom config.
- * @return {Config}             Config that has been defaulted.
+ * @param  {Config} usrConfig  User's custom config.
+ * @return {Config}            Config that has been defaulted.
  */
-function configDefaulter (userConfig) {
+function configDefaulter (usrConfig) {
 
-  const newConfig = configUpdater(userConfig);
+  const updatedConfig = configUpdater(usrConfig);
 
-  return Object.assign({}, newConfig, configStorage.defaultConfig);
+  return Object.assign({}, updatedConfig, configStorage.defaultConfig);
 
 }
 
@@ -306,10 +306,10 @@ function configDefaulter (userConfig) {
 /**
  * To validate whether user config is valid.<br>
  * Console an error if there's something wrong.
- * @param  {Config} userConfig  User's custom config.
- * @return {Boolean}            Whether the config is valid.
+ * @param  {Config} usrConfig User's custom config.
+ * @return {Boolean}          Whether the config is valid.
  */
-function configValidater (userConfig) {
+function configValidater (usrConfig) {
 
   let validFlag = true;
 
@@ -317,15 +317,14 @@ function configValidater (userConfig) {
 
     if ({}.hasOwnProperty.call(configStorage.configType, key)) {
 
-      if (key in userConfig && typeof userConfig[key] !== configStorage.configType[key]) {
+      if (key in usrConfig && typeof usrConfig[key] !== configStorage.configType[key]) {
 
         validFlag = false;
-        console.error(`config.${key} is expected a ${configStorage.configType[key]}, but got a ${typeof userConfig[key]}`);
+        console.error(`config.${key} is expected a ${configStorage.configType[key]}, but got a ${typeof usrConfig[key]}`);
 
       }
 
     }
-
 
   }
 
