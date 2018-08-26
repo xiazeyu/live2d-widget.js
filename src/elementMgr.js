@@ -102,13 +102,20 @@ function createCanvasElement (usrConfig) {
 
   if (isDynamic(usrConfig)) {
 
-    window.requestAnimationFrame(function changeSize () {
+    const screenHeight = window.screen.availHeight || window.screen.height || (device.mobile() ? 1920 : 1080);
+    const screenWidth = window.screen.availWidth || window.screen.width || (device.mobile() ? 1080 : 1920);
 
-      // TODO
-      window.requestAnimationFrame(changeSize);
+    canvasAttributes.height = parseFloat(usrConfig.displayHeight) * 0.01 * usrConfig.displaySampleLevel;
+    canvasAttributes.width = parseFloat(usrConfig.displayWidth) * usrConfig.displaySampleLevel;
 
-    });
-    // TODO
+    function changeSize () {
+
+      const styleHeight = '300px';
+      const styleWidth = '150px';
+
+    }
+    window.addEventListener('resize', changeSize);
+    changeSize();
 
   }else{
 
@@ -156,6 +163,12 @@ function createCanvasElement (usrConfig) {
     });
 
   }
+  window.addEventListener('beforeprint', () => {
+    newCanvasElem.style.visibility = 'hidden';
+  })
+  window.addEventListener('afterprint', () => {
+    newCanvasElem.style.visibility = 'visible';
+  })
   return newCanvasElem;
 
 }

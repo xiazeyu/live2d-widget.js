@@ -1,14 +1,18 @@
 /* global process */
 /* eslint-disable no-magic-numbers */
 
-/* eslint-disable one-var, no-mixed-operators */
 /*
  * Borrowed from gl-matrix@2.4.0
  * https://github.com/toji/gl-matrix
  *
- * Common.js
+ * Beginning.
  */
-const ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
+/* eslint-disable one-var, no-mixed-operators */
+
+// Common.js
+// Configuration Constants
+const ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array; // eslint-disable-line
+
 // Mat4.js
 /**
  * Creates a new identity mat4
@@ -182,6 +186,12 @@ function copy (out, a) {
 
 }
 /* eslint-enable one-var, no-mixed-operators */
+/*
+ * Borrowed from gl-matrix@2.4.0
+ * https://github.com/toji/gl-matrix
+ *
+ * Ending.
+ */
 
 class MatrixStack {
 
@@ -826,28 +836,30 @@ class ViewMatrix extends Matrix44 {
     const tRight = this.getScaleX() * this.getMaxRight();
     const tTop = this.getScaleY() * this.getMaxTop();
     const tBottom = this.getScaleY() * this.getMaxBottom();
+    let outShiftX = shiftX;
+    let outShiftY = shiftY;
 
-    if (tLeft + this.getTransX() + shiftX > this.getScreenLeft()) {
+    if (tLeft + this.getTransX() + outShiftX > this.getScreenLeft()) {
 
-      shiftX = this.getScreenLeft() - tLeft - this.getTransX();
-
-    }
-    if (tRight + this.getTransX() + shiftX < this.getScreenRight()) {
-
-      shiftX = this.getScreenRight() - tRight - this.getTransX();
+      outShiftX = this.getScreenLeft() - tLeft - this.getTransX();
 
     }
-    if (tTop + this.getTransY() + shiftY < this.getScreenTop()) {
+    if (tRight + this.getTransX() + outShiftX < this.getScreenRight()) {
 
-      shiftY = this.getScreenTop() - tTop - this.getTransY();
-
-    }
-    if (tBottom + this.getTransY() + shiftY > this.getScreenBottom()) {
-
-      shiftY = this.getScreenBottom() - tBottom - this.getTransY();
+      outShiftX = this.getScreenRight() - tRight - this.getTransX();
 
     }
-    return this.multTranslate(shiftX, shiftY);
+    if (tTop + this.getTransY() + outShiftY < this.getScreenTop()) {
+
+      outShiftY = this.getScreenTop() - tTop - this.getTransY();
+
+    }
+    if (tBottom + this.getTransY() + outShiftY > this.getScreenBottom()) {
+
+      outShiftY = this.getScreenBottom() - tBottom - this.getTransY();
+
+    }
+    return this.multTranslate(outShiftX, outShiftY);
 
   }
 
@@ -860,13 +872,14 @@ class ViewMatrix extends Matrix44 {
    */
   adjustScale (cx, cy, scale) {
 
-    const targetScale = scale * this.getScaleX();
+    let outScale = scale;
+    const targetScale = outScale * this.getScaleX();
 
     if (targetScale < this.getMinScale()) {
 
       if (this.getScaleX() > 0) {
 
-        scale = this.getMinScale() / this.getScaleX();
+        outScale = this.getMinScale() / this.getScaleX();
 
       }
 
@@ -874,12 +887,12 @@ class ViewMatrix extends Matrix44 {
 
       if (this.getScaleX() > 0) {
 
-        scale = this.getMaxScale() / this.getScaleX();
+        outScale = this.getMaxScale() / this.getScaleX();
 
       }
 
     }
-    return this.multTranslate(-cx, -cy).multScale(scale, scale)
+    return this.multTranslate(-cx, -cy).multScale(outScale, outScale)
       .multTranslate(cx, cy);
 
   }
@@ -1002,18 +1015,51 @@ class ViewMatrix extends Matrix44 {
 
 }
 
-if (process.env.NODE_ENV === 'development') {
+/**
+ * Log a Matrix.
+ * @param {Array} matrix Matrix to log.
+ * @return {Undefined} Undefined.
+ */
+function logMatrix (matrix) {
 
-  window.MatrixStack = MatrixStack;
-  window.Matrix44 = Matrix44;
-  window.ModelMatrix = ModelMatrix;
-  window.ViewMatrix = ViewMatrix;
+  const count = matrix.length / 16;
+  for (let i = 1; i <= count; i++) {
+
+    const offset = 16 * (i - 1);
+    for (let j = 0; j < 16; j += 4) {
+
+      console.log(matrix[j + offset], matrix[j + 1 + offset], matrix[j + 2 + offset], matrix[j + 3 + offset]);
+
+    }
+    console.log(`---\ncount ${i}\n---`);
+
+  }
+
+}
+
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
+
+  window.Matrix = {
+    Matrix44,
+    MatrixStack,
+    ModelMatrix,
+    ViewMatrix,
+    'glMatrix': {
+      ARRAY_TYPE,
+      clone,
+      copy,
+      create,
+      identity,
+      multiply,
+    },
+    logMatrix,
+  };
 
 }
 
 export {
-  MatrixStack,
   Matrix44,
+  MatrixStack,
   ModelMatrix,
   ViewMatrix,
 };

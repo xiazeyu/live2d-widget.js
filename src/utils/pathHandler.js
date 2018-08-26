@@ -1,9 +1,9 @@
 /* global process */
 
 /**
- * Get path from provided url.
+ * Separate folder path from mixed ones(contains both filename and folder path).
  * @param   {String}  url  Url to prase.
- * @return  {String}       Path to the url.
+ * @return  {String}       Folder path.
  */
 function getPathFromUrl (url) {
 
@@ -12,7 +12,7 @@ function getPathFromUrl (url) {
 }
 
 /**
- * Resolve full path from provided url.
+ * Resolve absolute path.
  * To convert relative and absolute path into absolute path.
  * @param   {String}  path     Path to resolve.
  * @param   {String}  homeDir  Home dir.
@@ -20,7 +20,7 @@ function getPathFromUrl (url) {
  */
 function resolvePath (path, homeDir) {
 
-  if (!(/^http/.test(path) || (/^file/).test(path) || path[0] === '/') || (/^\/\//).test(path)) {
+  if (!(/^http/.test(path) || (/^file/).test(path) || path[0] === '/') || (/^\/\//).test(path)) { // eslint-disable-line no-magic-numbers
 
     return homeDir + path;
 
@@ -29,10 +29,12 @@ function resolvePath (path, homeDir) {
 
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
 
-  window.getPathFromUrl = getPathFromUrl;
-  window.resolvePath = resolvePath;
+  window.pathHandler = {
+    getPathFromUrl,
+    resolvePath,
+  };
 
 }
 
