@@ -1,5 +1,9 @@
 # live2d-widget.js
 
+## NOTEICE: This project won't be updated until next year
+
+- See [#38](https://github.com/xiazeyu/live2d-widget.js/issues/38)
+
 [![npm package][npm-package]][npm-package-url]
 
 [![jsDelivr][jsDelivr]][jsdelivr-url]
