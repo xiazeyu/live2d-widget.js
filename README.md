@@ -13,6 +13,8 @@
 [![PRs Welcome][PRs Welcome]][PRs Welcome-url]
 [![license][license]][license-url]
 
+[![Backers on Open Collective](https://opencollective.com/live2d-widgetjs/backers/badge.svg)](#backers)
+ [![Sponsors on Open Collective](https://opencollective.com/live2d-widgetjs/sponsors/badge.svg)](#sponsors) 
 
 # live2d-widget.js
 
@@ -240,3 +242,33 @@ Open sourced under the GPL v2.0 license.
 
 [current-device]: https://img.shields.io/npm/v/current-device.svg?label=current-device
 [current-device-url]: https://github.com/matthewhudson/current-device
+
+## Contributors
+
+This project exists thanks to all the people who contribute. 
+<a href="https://github.com/xiazeyu/live2d-widget.js/graphs/contributors"><img src="https://opencollective.com/live2d-widgetjs/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/live2d-widgetjs#backer)]
+
+<a href="https://opencollective.com/live2d-widgetjs#backers" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/live2d-widgetjs#sponsor)]
+
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/1/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/2/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/3/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/4/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/5/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/6/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/7/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/8/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/live2d-widgetjs/sponsor/9/website" target="_blank"><img src="https://opencollective.com/live2d-widgetjs/sponsor/9/avatar.svg"></a>
+
+
