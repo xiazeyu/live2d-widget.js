@@ -368,12 +368,12 @@ cModel.prototype.startMotion = function(name, no, priority)
 
     if (this.motions[name] == null)
     {
-        this.loadMotion(null, this.modelHomeDir + motionName, function(mtn) {
+        this.loadMotion(name, this.modelHomeDir + motionName, function(mtn) {
             motion = mtn;
 
 
             thisRef.setFadeInFadeOut(name, no, priority, motion);
-
+            
         });
     }
     else
