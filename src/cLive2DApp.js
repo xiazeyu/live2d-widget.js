@@ -52,7 +52,8 @@ function theRealInit (){
   initEvent();
 
   dragMgr = new L2DTargetPoint();
-  let ratio = currCanvas.height / currCanvas.width;
+  let rect = currCanvas.getBoundingClientRect();
+  let ratio = rect.height / rect.width;
   let left = cDefine.VIEW_LOGICAL_LEFT;
   let right = cDefine.VIEW_LOGICAL_RIGHT;
   let bottom = -ratio;
@@ -68,11 +69,11 @@ function theRealInit (){
     cDefine.VIEW_LOGICAL_MAX_TOP);
 
   projMatrix = new L2DMatrix44();
-  projMatrix.multScale(1, (currCanvas.width / currCanvas.height));
+  projMatrix.multScale(1, (rect.width / rect.height));
 
   deviceToScreen = new L2DMatrix44();
-  deviceToScreen.multTranslate(-currCanvas.width / 2.0, -currCanvas.height / 2.0);  // #32
-  deviceToScreen.multScale(2 / currCanvas.width, -2 / currCanvas.height);  // #32
+  deviceToScreen.multTranslate(-rect.width / 2.0, -rect.height / 2.0);  // #32
+  deviceToScreen.multScale(2 / rect.width, -2 / rect.height);  // #32
 
 
   Live2D.setGL(currWebGL);
