@@ -7,8 +7,8 @@
 
 'use strict';
 
-import _ from 'lodash';
 import defaultConfig from './defaultConfig';
+import defaultsDeep from './defaultsDeep';
 
 /**
  * The container of current configs
@@ -25,7 +25,7 @@ let currConfig = {};
 
 function configApplyer(userConfig){
 
-  currConfig = _.defaultsDeep(userConfig, defaultConfig);
+  currConfig = defaultsDeep(userConfig, defaultConfig);
   // console.log('Live2Dwidget: currConfig', currConfig);
 
 }
