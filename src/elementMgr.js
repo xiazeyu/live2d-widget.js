@@ -25,7 +25,7 @@ let currCanvas;
  * @return {null}
  */
 
-function createElement() {
+function createElement(eventemitter) {
 
   let e = document.getElementById(config.name.div)
   if (e !== null) {
@@ -35,6 +35,8 @@ function createElement() {
   let newElem = document.createElement('div');
   newElem.id = config.name.div;
   newElem.innerHTML = htmlTemplate;
+  document.body.appendChild(newElem);
+  eventemitter.emit('create-container', newElem);
   let newCanvasElem = document.createElement('canvas');
   newCanvasElem.setAttribute('id', config.name.canvas);
   newCanvasElem.setAttribute('width', config.display.width * config.display.superSample);
@@ -50,8 +52,8 @@ function createElement() {
   if (config.dev.border) newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
   newElem.appendChild(newCanvasElem);
 
-  document.body.appendChild(newElem);
   currCanvas = document.getElementById(config.name.canvas);
+  eventemitter.emit('create-canvas', newCanvasElem);
 
   initWebGL();
 

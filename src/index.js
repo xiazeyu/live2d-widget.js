@@ -23,7 +23,38 @@ let coreApp;
  * The main entry point, which is ... nothing
  */
 
-class L2Dwidget{
+class L2Dwidget {
+
+  constructor() {
+    this.eventHandlers = {};
+  }
+
+  on(name, handler) {
+    if (typeof handler !== 'function') {
+      throw new TypeError('Event handler is not a function.');
+    }
+    if (!this.eventHandlers[name]) {
+      this.eventHandlers[name] = [];
+    }
+    this.eventHandlers[name].push(handler);
+  }
+
+  emit(name, ...args) {
+    if (!!this.eventHandlers[name]) {
+      this.eventHandlers[name].forEach(handler => {
+        if (typeof handler === 'function') {
+          handler(...args);
+        }
+      });
+    }
+    if (!!this.eventHandlers['*']) {
+      this.eventHandlers['*'].forEach(handler => {
+        if (typeof handler === 'function') {
+          handler(name, ...args);
+        }
+      });
+    }
+  }
 
 /**
  * The init function
@@ -61,7 +92,7 @@ class L2Dwidget{
     }
     import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
       coreApp = f;
-      coreApp.theRealInit();
+      coreApp.theRealInit(this);
     }).catch(err => {
       console.error(err);
     });

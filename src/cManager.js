@@ -3,8 +3,10 @@ import { PlatformManager } from "./PlatformManager";
 import { cModel } from "./cModel";
 import { cDefine } from "./cDefine";
 
-function cManager() {
+function cManager(eventemitter) {
   // console.log("--> cManager()");
+
+  this.eventemitter = eventemitter;
 
   this.models = [];
   this.count = -1;
@@ -79,14 +81,15 @@ cManager.prototype.tapEvent = function (x, y) {
   for (var i = 0; i < this.models.length; i++) {
 
     if (this.models[i].hitTest(cDefine.HIT_AREA_HEAD, x, y)) {
-
+      this.eventemitter.emit('tapface');
+      
       if (cDefine.DEBUG_LOG)
         console.log("Tap face.");
 
       this.models[i].setRandomExpression();
     }
     else if (this.models[i].hitTest(cDefine.HIT_AREA_BODY, x, y)) {
-
+      this.eventemitter.emit('tapbody');
       if (cDefine.DEBUG_LOG)
         console.log("Tap body." + " models[" + i + "]");
 

@@ -25,7 +25,7 @@ import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
 
-let live2DMgr = new cManager();
+let live2DMgr = null;
 let captureFrameCB = undefined;
 let isDrawStart = false;
 let dragMgr = null;
@@ -38,7 +38,7 @@ let lastMouseY = 0;
 let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
-
+let eventemitter = null;
 
 
 /**
@@ -46,11 +46,13 @@ let opacityHover = 1;
  * @return {null}
  */
 
-function theRealInit (){
+function theRealInit (emitter){
+  eventemitter = emitter
 
-  createElement();
+  createElement(eventemitter);
   initEvent();
 
+  live2DMgr = new cManager(eventemitter)
   dragMgr = new L2DTargetPoint();
   let rect = currCanvas.getBoundingClientRect();
   let ratio = rect.height / rect.width;
@@ -327,6 +329,8 @@ function modelTapEvent(event)
 
     lastMouseX = sx;
     lastMouseY = sy;
+
+    eventemitter.emit('tap', event);
 
     live2DMgr.tapEvent(vx, vy);
 }
