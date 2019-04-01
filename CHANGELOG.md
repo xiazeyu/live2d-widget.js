@@ -1,5 +1,28 @@
-<a name="3.0.5"></a>
-## 3.0.5 (2018-02-15)
+## <small>3.0.6 (2019-04-01)</small>
+
+* Added backers and sponsors on the README ([f4f28a5](https://github.com/xiazeyu/live2d-widget.js/commit/f4f28a5))
+* Added call to donate after npm install (optional) ([c2de585](https://github.com/xiazeyu/live2d-widget.js/commit/c2de585))
+* Update Docs ([4684581](https://github.com/xiazeyu/live2d-widget.js/commit/4684581))
+* update ghpages submodule ([c04026d](https://github.com/xiazeyu/live2d-widget.js/commit/c04026d))
+* Update issue templates ([59747f7](https://github.com/xiazeyu/live2d-widget.js/commit/59747f7))
+* Update issue templates ([9ea3e92](https://github.com/xiazeyu/live2d-widget.js/commit/9ea3e92))
+* Update Readme ([32423c3](https://github.com/xiazeyu/live2d-widget.js/commit/32423c3))
+* fix: model motion (.mtn) cache ([a337ff7](https://github.com/xiazeyu/live2d-widget.js/commit/a337ff7)), closes [#4](https://github.com/xiazeyu/live2d-widget.js/issues/4)
+* fix: tap area error ([d929f60](https://github.com/xiazeyu/live2d-widget.js/commit/d929f60))
+* refactor: remove lodash ([fe17c5a](https://github.com/xiazeyu/live2d-widget.js/commit/fe17c5a))
+* docs: update submodule ([c47dcac](https://github.com/xiazeyu/live2d-widget.js/commit/c47dcac))
+* docs: update submodule, fix errors ([892fdbe](https://github.com/xiazeyu/live2d-widget.js/commit/892fdbe))
+* docs: update template ([34fde16](https://github.com/xiazeyu/live2d-widget.js/commit/34fde16))
+* ci: auto add title on CHANGELOG.md ([b8e187d](https://github.com/xiazeyu/live2d-widget.js/commit/b8e187d))
+* ci: encrypt new ssh key ([5e49a05](https://github.com/xiazeyu/live2d-widget.js/commit/5e49a05))
+* ci: fix error ([357391e](https://github.com/xiazeyu/live2d-widget.js/commit/357391e))
+* ci: fix error ([7f504ef](https://github.com/xiazeyu/live2d-widget.js/commit/7f504ef))
+* ci: fix typo ([b41562f](https://github.com/xiazeyu/live2d-widget.js/commit/b41562f))
+* build: greater build flow ([4a99b1c](https://github.com/xiazeyu/live2d-widget.js/commit/4a99b1c))
+
+
+
+## <small>3.0.5 (2018-02-15)</small>
 
 * chore: bump version, upload production lib ([d321872](https://github.com/xiazeyu/live2d-widget.js/commit/d321872))
 * ci: add support for Travis ([b575b69](https://github.com/xiazeyu/live2d-widget.js/commit/b575b69))
@@ -23,8 +46,7 @@
 
 
 
-<a name="3.0.4"></a>
-## 3.0.4 (2018-02-07)
+## <small>3.0.4 (2018-02-07)</small>
 
 * docs: migrate documents to live2d-widget.js-doc ([90b9894](https://github.com/xiazeyu/live2d-widget.js/commit/90b9894))
 * docs: update CHANGELOG ([9ae492e](https://github.com/xiazeyu/live2d-widget.js/commit/9ae492e))
@@ -34,8 +56,7 @@
 
 
 
-<a name="3.0.2"></a>
-## 3.0.2 (2018-01-20)
+## <small>3.0.2 (2018-01-20)</small>
 
 * 3.0.2 ([1bd3909](https://github.com/xiazeyu/live2d-widget.js/commit/1bd3909))
 * docs(update doc): ([423465f](https://github.com/xiazeyu/live2d-widget.js/commit/423465f))
@@ -43,8 +64,7 @@
 
 
 
-<a name="3.0.1"></a>
-## 3.0.1 (2018-01-19)
+## <small>3.0.1 (2018-01-19)</small>
 
 * docs: relink js to unpkg CDN ([0bd9cdf](https://github.com/xiazeyu/live2d-widget.js/commit/0bd9cdf))
 * docs: update CHANGELOG ([c840cfa](https://github.com/xiazeyu/live2d-widget.js/commit/c840cfa))
@@ -60,8 +80,7 @@
 
 
 
-<a name="3.0.0"></a>
-# 3.0.0 (2018-01-13)
+## 3.0.0 (2018-01-13)
 
 * feat: 3.0 API now is fixed. reday to publish ([32a7b6d](https://github.com/xiazeyu/live2d-widget.js/commit/32a7b6d))
 * feat: API chanes again ! get current frame ([cc76f02](https://github.com/xiazeyu/live2d-widget.js/commit/cc76f02))
