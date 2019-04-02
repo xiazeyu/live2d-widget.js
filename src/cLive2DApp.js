@@ -24,6 +24,7 @@ import { L2DTargetPoint, L2DViewMatrix, L2DMatrix44 } from "./lib/Live2DFramewor
 import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
+import device from 'current-device';
 
 let live2DMgr = null;
 let captureFrameCB = undefined;
@@ -69,6 +70,8 @@ function theRealInit (emitter){
     cDefine.VIEW_LOGICAL_MAX_RIGHT,
     cDefine.VIEW_LOGICAL_MAX_BOTTOM,
     cDefine.VIEW_LOGICAL_MAX_TOP);
+
+  modelScaling(device.mobile() && config.mobile.scale || config.model.scale)
 
   projMatrix = new L2DMatrix44();
   projMatrix.multScale(1, (rect.width / rect.height));
