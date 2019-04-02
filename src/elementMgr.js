@@ -44,7 +44,7 @@ function createElement(eventemitter) {
   newCanvasElem.style.setProperty('position', 'fixed');
   newCanvasElem.style.setProperty('width', config.display.width + 'px');
   newCanvasElem.style.setProperty('height', config.display.height + 'px');
-  newCanvasElem.style.setProperty('opacity', config.react.opacityDefault);
+  newCanvasElem.style.setProperty('opacity', config.react.opacity);
   newCanvasElem.style.setProperty(config.display.position, config.display.hOffset + 'px');
   newCanvasElem.style.setProperty('bottom', config.display.vOffset + 'px');
   newCanvasElem.style.setProperty('z-index', 99999);
