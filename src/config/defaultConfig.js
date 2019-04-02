@@ -35,6 +35,10 @@ const defaultConfig = {
   dev: {
     border: false
   },
+  dialog: {
+    enable: false,
+    hitokoto: false
+  }
 }
 
 module.exports = defaultConfig;

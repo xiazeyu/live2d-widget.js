@@ -77,6 +77,8 @@ class L2Dwidget {
  * @param {String}   [userConfig.name.div = 'live2d-widget'] ID name of the div div元素的ID
  * @param {Number}   [userConfig.react.opacity = 0.7] opacity 透明度
  * @param {Boolean}  [userConfig.dev.border = false] Whether to show border around the canvas 在canvas周围显示边界
+ * @param {Boolean}  [userConfig.dialog.enable = false] Display dialog 显示人物对话框
+ * @param {Boolean}  [userConfig.dialog.hitokoto = false] Enable hitokoto 使用一言API
  * @return {null}
  */
 
@@ -126,8 +128,6 @@ class L2Dwidget {
 };
 
 let _ = new L2Dwidget();
-
-live2dWidgetDialog(_);
 
 export {
   _ as L2Dwidget,

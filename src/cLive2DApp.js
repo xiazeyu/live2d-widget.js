@@ -25,6 +25,7 @@ import { cManager } from "./cManager";
 import { MatrixStack } from "./utils/MatrixStack";
 import { cDefine } from "./cDefine";
 import device from 'current-device';
+import { L2Dwidget } from './index';
 
 let live2DMgr = null;
 let captureFrameCB = undefined;
@@ -39,21 +40,18 @@ let lastMouseY = 0;
 let headPos = 0.5;
 let opacityDefault = 0.7;
 let opacityHover = 1;
-let eventemitter = null;
-
 
 /**
  * Main function of live2d-widget
  * @return {null}
  */
 
-function theRealInit (emitter){
-  eventemitter = emitter
+function theRealInit (){
 
-  createElement(eventemitter);
+  createElement();
   initEvent();
 
-  live2DMgr = new cManager(eventemitter)
+  live2DMgr = new cManager(L2Dwidget)
   dragMgr = new L2DTargetPoint();
   let rect = currCanvas.getBoundingClientRect();
   let ratio = rect.height / rect.width;
@@ -333,7 +331,7 @@ function modelTapEvent(event)
     lastMouseX = sx;
     lastMouseY = sy;
 
-    eventemitter.emit('tap', event);
+    L2Dwidget.emit('tap', event);
 
     live2DMgr.tapEvent(vx, vy);
 }

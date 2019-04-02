@@ -1,3 +1,5 @@
+import { config } from '../config/configMgr';
+import { L2Dwidget } from '../index';
 
 document.head.innerHTML += `
 <style>
@@ -19,7 +21,7 @@ document.head.innerHTML += `
     font-size: 16px;
     padding: 12px;
     border: 2px solid rgb(236, 203, 180);
-    background: rgba(236, 203, 180, 0.14);
+    background: rgb(252, 248, 244);
     box-sizing: border-box;
     border-radius: 10px;
     transform: rotate(-2deg);
@@ -41,15 +43,19 @@ let containerElement,dialogElement,closeTimer;
  * 创建对话框元素
  * @param {HTMLElement} root 位置
  */
-function createDialogElement(root, config) {
+function createDialogElement(root) {
   containerElement = document.createElement('div');
-  containerElement.className = 'live2d-widget-dialog-container'
+  containerElement.className = 'live2d-widget-dialog-container';
   containerElement.style.transform = `scale(${config.display.width / 250})`
   dialogElement = document.createElement('div');
-  dialogElement.className = 'live2d-widget-dialog'
-  dialogElement.innerText = '所谓的人类，可是连短短的十分钟也等不起的。'
-  containerElement.appendChild(dialogElement)
+  dialogElement.className = 'live2d-widget-dialog';
+  containerElement.appendChild(dialogElement);
   root.appendChild(containerElement);
+
+  L2Dwidget.emit('create-dialog', containerElement);
+
+  if (config.dialog.hitokoto)
+    showHitokotoLoop()
 }
 
 function displayDialog() {
@@ -61,7 +67,7 @@ function hiddenDialog() {
 }
 
 function alertText(text) {
-  displayDialog()
+  displayDialog();
   dialogElement.innerText = text;
   clearTimeout(closeTimer);
   closeTimer = setTimeout(function () {
@@ -69,7 +75,7 @@ function alertText(text) {
   }, 5000);
 }
 
-function showHitokoto() {
+function showHitokotoLoop() {
   var xhr = new XMLHttpRequest();
   xhr.open('get', 'https://v1.hitokoto.cn');
   xhr.setRequestHeader("Cache-Control", "no-cache");
@@ -77,16 +83,13 @@ function showHitokoto() {
     if (xhr.readyState === 4) {
       var data = JSON.parse(xhr.responseText);
       alertText(data.hitokoto);
-      setTimeout(showHitokoto, 10000)
+      setTimeout(showHitokotoLoop, 10000)
     }
   }
   xhr.send();
 }
 
-module.exports = function live2dWidgetDialog(app) {
-  app.on('create-container', function (element) {
-    createDialogElement(element, app.config);
 
-    showHitokoto();
-  });
+module.exports = {
+  createDialogElement, displayDialog, hiddenDialog, alertText, showHitokotoLoop
 }
