@@ -4,7 +4,6 @@
 
 
 import { config } from './config/configMgr';
-import htmlTemplate from './tmplate/innerHTML';
 
 /**
  * The current WebGL element
@@ -34,21 +33,26 @@ function createElement(eventemitter) {
 
   let newElem = document.createElement('div');
   newElem.id = config.name.div;
-  newElem.innerHTML = htmlTemplate;
+  newElem.className = 'live2d-widget-container';
+  newElem.style.setProperty('position', 'fixed');
+  newElem.style.setProperty(config.display.position, config.display.hOffset + 'px');
+  newElem.style.setProperty('bottom', config.display.vOffset + 'px');
+  newElem.style.setProperty('width', config.display.width + 'px');
+  newElem.style.setProperty('height', config.display.height + 'px');
+  newElem.style.setProperty('z-index', 99999);
+  newElem.style.setProperty('opacity', config.react.opacity);
+  newElem.style.setProperty('pointer-events', 'none');
   document.body.appendChild(newElem);
   eventemitter.emit('create-container', newElem);
   let newCanvasElem = document.createElement('canvas');
   newCanvasElem.setAttribute('id', config.name.canvas);
   newCanvasElem.setAttribute('width', config.display.width * config.display.superSample);
   newCanvasElem.setAttribute('height', config.display.height * config.display.superSample);
-  newCanvasElem.style.setProperty('position', 'fixed');
+  newCanvasElem.style.setProperty('position', 'absolute');
+  newCanvasElem.style.setProperty('left', '0px');
+  newCanvasElem.style.setProperty('top', '0px');
   newCanvasElem.style.setProperty('width', config.display.width + 'px');
   newCanvasElem.style.setProperty('height', config.display.height + 'px');
-  newCanvasElem.style.setProperty('opacity', config.react.opacity);
-  newCanvasElem.style.setProperty(config.display.position, config.display.hOffset + 'px');
-  newCanvasElem.style.setProperty('bottom', config.display.vOffset + 'px');
-  newCanvasElem.style.setProperty('z-index', 99999);
-  newCanvasElem.style.setProperty('pointer-events', 'none');
   if (config.dev.border) newCanvasElem.style.setProperty('border', 'dashed 1px #CCC');
   newElem.appendChild(newCanvasElem);
 

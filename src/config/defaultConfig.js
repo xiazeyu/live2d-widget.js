@@ -14,8 +14,8 @@ const defaultConfig = {
   },
   display: {
     superSample: 2,
-    width: 150,
-    height: 300,
+    width: 200,
+    height: 400,
     position: 'right',
     hOffset: 0,
     vOffset: -20,
@@ -33,7 +33,7 @@ const defaultConfig = {
     opacity: 1,
   },
   dev: {
-    border: (process.env.NODE_ENV === 'development' ? true : false)
+    border: false
   },
 }
 

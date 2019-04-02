@@ -13,6 +13,7 @@
 
 import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
+import live2dWidgetDialog from './dialog';
 
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
@@ -27,6 +28,7 @@ class L2Dwidget {
 
   constructor() {
     this.eventHandlers = {};
+    this.config = config;
   }
 
   on(name, handler) {
@@ -37,6 +39,7 @@ class L2Dwidget {
       this.eventHandlers[name] = [];
     }
     this.eventHandlers[name].push(handler);
+    return this;
   }
 
   emit(name, ...args) {
@@ -54,6 +57,7 @@ class L2Dwidget {
         }
       });
     }
+    return this;
   }
 
 /**
@@ -78,6 +82,7 @@ class L2Dwidget {
 
   init(userConfig = {}){
     configApplyer(userConfig);
+    this.emit('config', this.config);
     if((!config.mobile.show)&&(device.mobile())){
       return;
     }
@@ -122,6 +127,7 @@ class L2Dwidget {
 
 let _ = new L2Dwidget();
 
+live2dWidgetDialog(_);
 
 export {
   _ as L2Dwidget,
