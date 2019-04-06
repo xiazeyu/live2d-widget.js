@@ -13,7 +13,6 @@
 
 import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
-import live2dWidgetDialog from './dialog';
 
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
