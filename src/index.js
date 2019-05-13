@@ -13,6 +13,7 @@
 
 import device from 'current-device';
 import { config, configApplyer }from './config/configMgr';
+import { EventEmitter } from './utils/EventEmitter';
 
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
@@ -23,40 +24,11 @@ let coreApp;
  * The main entry point, which is ... nothing
  */
 
-class L2Dwidget {
+class L2Dwidget extends EventEmitter {
 
   constructor() {
-    this.eventHandlers = {};
+    super();
     this.config = config;
-  }
-
-  on(name, handler) {
-    if (typeof handler !== 'function') {
-      throw new TypeError('Event handler is not a function.');
-    }
-    if (!this.eventHandlers[name]) {
-      this.eventHandlers[name] = [];
-    }
-    this.eventHandlers[name].push(handler);
-    return this;
-  }
-
-  emit(name, ...args) {
-    if (!!this.eventHandlers[name]) {
-      this.eventHandlers[name].forEach(handler => {
-        if (typeof handler === 'function') {
-          handler(...args);
-        }
-      });
-    }
-    if (!!this.eventHandlers['*']) {
-      this.eventHandlers['*'].forEach(handler => {
-        if (typeof handler === 'function') {
-          handler(name, ...args);
-        }
-      });
-    }
-    return this;
   }
 
 /**

@@ -1,5 +1,11 @@
 import { config } from '../config/configMgr';
+import { ScriptEngine } from './script';
 import { L2Dwidget } from '../index';
+import { everyEmitter } from './emitter/every';
+import { hoverEmitter } from './emitter/hover';
+import { tapbodyEmitter } from './emitter/tapbody'; 
+import { tapfaceEmitter } from './emitter/tapface'; 
+import { hitokotoVariable } from './variable/hitokoto';
 
 document.head.innerHTML += `
 <style>
@@ -53,9 +59,19 @@ function createDialogElement(root) {
   root.appendChild(containerElement);
 
   L2Dwidget.emit('create-dialog', containerElement);
+  
+  if (config.dialog.script) {
+    const scriptEngine = new ScriptEngine(alertText);
+    scriptEngine.registerEmitter('every', everyEmitter(scriptEngine));
+    scriptEngine.registerEmitter('hover', hoverEmitter());
+    scriptEngine.registerEmitter('tap body', tapbodyEmitter(L2Dwidget));
+    scriptEngine.registerEmitter('tap face', tapfaceEmitter(L2Dwidget));
 
-  if (config.dialog.hitokoto)
-    showHitokotoLoop()
+    scriptEngine.registerVariable('hitokoto', hitokotoVariable);
+    Object.keys(config.dialog.script).forEach(key => {
+      scriptEngine.run(key, config.dialog.script[key]);
+    })
+  }
 }
 
 function displayDialog() {
@@ -75,21 +91,6 @@ function alertText(text) {
   }, 5000);
 }
 
-function showHitokotoLoop() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('get', 'https://v1.hitokoto.cn');
-  xhr.setRequestHeader("Cache-Control", "no-cache");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      var data = JSON.parse(xhr.responseText);
-      alertText(data.hitokoto);
-      setTimeout(showHitokotoLoop, 10000)
-    }
-  }
-  xhr.send();
-}
-
-
 module.exports = {
-  createDialogElement, displayDialog, hiddenDialog, alertText, showHitokotoLoop
+  createDialogElement, displayDialog, hiddenDialog, alertText
 }

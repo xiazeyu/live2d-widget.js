@@ -37,7 +37,7 @@ const defaultConfig = {
   },
   dialog: {
     enable: false,
-    hitokoto: false
+    script: null
   }
 }
 
