@@ -7,7 +7,7 @@ class ScriptEngine extends EventEmitter {
     this.emitters = [];
     this.variables = [];
   }
-  
+
   /**
    * @param {string} name 
    * @param {(...args:string[], cb: () => void, engine: ScriptEngine) => void} func 
@@ -50,6 +50,9 @@ class ScriptEngine extends EventEmitter {
    * @param {string} text
    */
   injectVariable(sourceText) {
+    if (Array.isArray(sourceText)) {
+      sourceText = sourceText[Math.floor(Math.random() * sourceText.length)];
+    }
     const re = /\$(\w+)\$/g;
     let text = sourceText;
     let match = null;
