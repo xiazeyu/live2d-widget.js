@@ -7,8 +7,8 @@ import { tapbodyEmitter } from './emitter/tapbody';
 import { tapfaceEmitter } from './emitter/tapface'; 
 import { hitokotoVariable } from './variable/hitokoto';
 
-document.head.innerHTML += `
-<style>
+const dialogStyle = document.createElement('style');
+dialogStyle.innerHTML = `
   .live2d-widget-dialog-container {
     width: 300px;
     height: 120px;
@@ -39,9 +39,8 @@ document.head.innerHTML += `
   @keyframes live2d-widget-dialog-tingle {
     0% { transform: translate(-1px, 1.5px) rotate(-2deg); }
     100% { transform: translate(1px, -1.5px) rotate(2deg); }
-  }
-</style>
-`;
+  }`;
+document.head.appendChild(dialogStyle);
 
 let containerElement,dialogElement,closeTimer;
 
@@ -52,7 +51,7 @@ let containerElement,dialogElement,closeTimer;
 function createDialogElement(root) {
   containerElement = document.createElement('div');
   containerElement.className = 'live2d-widget-dialog-container';
-  containerElement.style.transform = `scale(${config.display.width / 250})`
+  containerElement.style.transform = `scale(${config.display.width / 250})`;
   dialogElement = document.createElement('div');
   dialogElement.className = 'live2d-widget-dialog';
   containerElement.appendChild(dialogElement);
@@ -70,7 +69,7 @@ function createDialogElement(root) {
     scriptEngine.registerVariable('hitokoto', hitokotoVariable);
     Object.keys(config.dialog.script).forEach(key => {
       scriptEngine.run(key, config.dialog.script[key]);
-    })
+    });
   }
 }
 
@@ -93,4 +92,4 @@ function alertText(text) {
 
 module.exports = {
   createDialogElement, displayDialog, hiddenDialog, alertText
-}
+};
