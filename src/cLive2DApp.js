@@ -84,7 +84,7 @@ function theRealInit (){
   changeModel(config.model.jsonPath);
   startDraw();
 
-
+  return live2DMgr;
 }
 
 /**

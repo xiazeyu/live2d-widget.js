@@ -18,8 +18,6 @@ import { EventEmitter } from './utils/EventEmitter';
 if (process.env.NODE_ENV === 'development'){
   console.log('--- --- --- --- ---\nLive2Dwidget: Hey that, notice that you are now in DEV MODE.\n--- --- --- --- ---');
 }
-
-let coreApp;
 /**
  * The main entry point, which is ... nothing
  */
@@ -60,8 +58,8 @@ class L2Dwidget extends EventEmitter {
       return;
     }
     import(/* webpackMode: 'lazy' */ './cLive2DApp').then(f => {
-      coreApp = f;
-      coreApp.theRealInit(this);
+      this.coreApp = f;
+      this.live2DMgr = this.coreApp.theRealInit(this);
     }).catch(err => {
       console.error(err);
     });
@@ -75,7 +73,7 @@ class L2Dwidget extends EventEmitter {
  */
 
   captureFrame(callback){
-    return coreApp.captureFrame(callback);
+    return this.coreApp.captureFrame(callback);
   }
 
 /**
