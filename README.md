@@ -15,6 +15,8 @@
 
 [![Backers on Open Collective](https://opencollective.com/live2d-widgetjs/backers/badge.svg)](#backers)
  [![Sponsors on Open Collective](https://opencollective.com/live2d-widgetjs/sponsors/badge.svg)](#sponsors) 
+ 
+ [![DOI](https://zenodo.org/badge/115202370.svg)](https://zenodo.org/badge/latestdoi/115202370)
 
 # live2d-widget.js
 
