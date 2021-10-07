@@ -1,3 +1,5 @@
+# This repo is beyond maintenance. For better implementation and support, please refer https://github.com/stevenjoezhang/live2d-widget
+
 [![npm][npm]][npm-url]
 [![deps][deps]][deps-url]
 [![devdeps][devdeps]][devdeps-url]
