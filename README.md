@@ -164,14 +164,10 @@ issues: [https://github.com/EYHN/hexo-helper-live2d/issues](https://github.com/E
 
 [![Author][author]][author-url]
 
-[![Author QQ][author-qq]][author-qq-url]
-
 [![Author Email][author-email]][author-email-url]
 
 
 [![Collaborator 0][collaborator0]][collaborator0-url]
-
-[![Collaborator 0 QQ][collaborator0-qq]][collaborator0-qq-url]
 
 [![Collaborator 0 Email][collaborator0-email]][collaborator0-email-url]
 
@@ -227,17 +223,11 @@ Open sourced under the GPL v2.0 license.
 [author]: https://img.shields.io/badge/author-cneyhn-green.svg
 [author-url]: https://delusion.coding.me/
 
-[author-qq]: https://img.shields.io/badge/QQ-1106996185-blue.svg
-[author-qq-url]: tencent://message/?uin=1106996185&Site=Senlon.Net&Menu=yes
-
 [author-email]: https://img.shields.io/badge/Emali%20me-cneyhn@gmail.com-green.svg
 [author-email-url]: mailto:cneyhn@gmail.com
 
 [collaborator0]: https://img.shields.io/badge/author-xiazeyu-green.svg
 [collaborator0-url]: https://xiazeyu.coding.me/
-
-[collaborator0-qq]: https://img.shields.io/badge/QQ-2320732807-blue.svg
-[collaborator0-qq-url]: tencent://message/?uin=2320732807&Site=Senlon.Net&Menu=yes
 
 [collaborator0-email]: https://img.shields.io/badge/Emali%20me-xiazeyu_2011@126.com-green.svg
 [collaborator0-email-url]: mailto:xiazeyu_2011@126.com
